@@ -154,7 +154,8 @@ for d in sorted(glob.glob(os.path.join(pertask_dir, "*"))):
            "sd_of_task_differences": sd_obs, "p_sd_task_differences_exceeds_shared_noise": p_sd, "p_mean_gap_exchangeable": p_gap,
            "cmh_reject_at_0.05": cmh,
            "dispersion_ratio_original": dispersion(po), "dispersion_ratio_harbor": dispersion(ph),
-           "tasks_with_different_pass_rate": int(np.sum(task_o != task_h)), "share_tasks_discordant": float(np.mean(task_o != task_h))}
+           "tasks_with_different_pass_rate": int(np.sum(task_o != task_h)), "share_tasks_discordant": float(np.mean(task_o != task_h)),
+           "n_tasks_always_pass_one_side_fail_other": int(np.sum(((task_o == 100) & (task_h == 0)) | ((task_o == 0) & (task_h == 100))))}
     results[adapter] = rec
     rows.append({"adapter": adapter, **{k: (round(v, 4) if isinstance(v, float) else v) for k, v in rec.items() if k not in ("paired_ci90", "paired_ci95", "width_ratio_null_quartiles")}})
 
@@ -183,7 +184,8 @@ def summarise(S):
             "paired_gap_distinguishable_95": sum(1 for r in S.values() if r["paired_ci95"][0] > 0 or r["paired_ci95"][1] < 0),
             "dispersion_ratio_harbor_quartiles": [float(x) for x in np.percentile([r["dispersion_ratio_harbor"] for r in both if r["dispersion_ratio_harbor"] is not None], [25, 50, 75])] if both else None,
             "dispersion_ratio_original_quartiles": [float(x) for x in np.percentile([r["dispersion_ratio_original"] for r in both if r["dispersion_ratio_original"] is not None], [25, 50, 75])] if both else None,
-            "under_dispersed_below_0.1": sorted(a for a, r in S.items() if any((r[f"dispersion_ratio_{s}"] or 1) < 0.1 for s in ("original", "harbor"))),
+            "under_dispersed_below_0.1": sorted(a for a, r in S.items() if any(r[f"dispersion_ratio_{s}"] is not None and r[f"dispersion_ratio_{s}"] < 0.1 + 1e-9 for s in ("original", "harbor"))),
+            "tasks_always_pass_one_side_fail_other": {a: r["n_tasks_always_pass_one_side_fail_other"] for a, r in sorted(S.items(), key=lambda kv: -kv[1]["n_tasks_always_pass_one_side_fail_other"]) if r["n_tasks_always_pass_one_side_fail_other"] >= 5},
             "discordance_share_quartiles": [float(x) for x in np.percentile([r["share_tasks_discordant"] for r in S.values()], [25, 50, 75])]}
 
 

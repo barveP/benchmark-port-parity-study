@@ -70,13 +70,15 @@ results["closed_form_false_alarm"] = {str(k): rule_false_alarm_exact(k) for k in
 results["tost_runs_needed_sd_units_power80_gap0"] = {str(m): runs_needed_power(m, 0.0, 1.0, 0.8) for m in (1, 1.5, 2, 3)}
 
 # "rewards noise": fixed true gap of 2 points, common SD sigma; and one-sided (port noisier, original SD 1)
-noise_common = {str(s): {"R": 1 - rule_mismatch_rate_normal(3, 2.0 / s)} for s in (0.25, 0.5, 1, 1.5, 2, 3, 5, 10, 100)}
-for s in (0.25, 0.5, 1, 1.5, 2, 3, 5, 10, 100):
+SDS = (0.25, 0.5, 1, 1.5, 1.7, 2, 3, 5, 10, 100)
+noise_common = {str(s): {"R": 1 - rule_mismatch_rate_normal(3, 2.0 / s)} for s in SDS}
+for s in SDS:
     a = rng.standard_normal((N, 3)) * s; b = rng.standard_normal((N, 3)) * s + 2.0
     r = rates(a, b, margins=(3, 5))
     noise_common[str(s)].update({"W_pass": 1 - r["W"], "T_pass": 1 - r["T"], "S1_pass": 1 - r["S1"], "E3": r["E3"], "E5": r["E5"]})
-noise_one_sided = {}
-for s in (0.25, 0.5, 1, 2, 4, 8, 32, 100):
+from scipy.stats import norm as _norm  # noqa: E402
+noise_one_sided = {"0": {"R_pass": float(1 - _norm.cdf(1) ** 3 - (1 - _norm.cdf(1)) ** 3), "note": "port SD -> 0: closed form 1 - Phi(1)^3 - (1 - Phi(1))^3"}}
+for s in (0.25, 0.5, 1, 2, 3, 4, 8, 32, 100):
     a = rng.standard_normal((N, 3)); b = rng.standard_normal((N, 3)) * s + 1.0
     r = rates(a, b, margins=(3,))
     noise_one_sided[str(s)] = {"R_pass": 1 - r["R"], "W_pass": 1 - r["W"], "T_pass": 1 - r["T"], "S1_pass": 1 - r["S1"]}
@@ -112,8 +114,11 @@ if pertask_dir:
         if allowed is not None and adapter not in allowed:
             continue
         by_task = {}
+        drop = set(((json.load(open(man_path))["adapters"].get(adapter, {}).get("drop_runs") or {}).get("harbor", [])) if os.path.exists(man_path) else [])
         for row in csv.DictReader(open(f)):
             try:
+                if int(float(row["run"])) in drop:
+                    continue
                 by_task.setdefault(row["task_id"], []).append(float(row["reward"]))
             except ValueError:
                 pass

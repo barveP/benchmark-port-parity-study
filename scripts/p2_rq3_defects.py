@@ -158,13 +158,13 @@ def aggregate(adapters, prefix=""):
 
 binary_adapters = [a for a in results if results[a]["binary_outcomes"]]
 frac_adapters = [a for a in results if not results[a]["binary_outcomes"]]
-well_dispersed = [a for a in binary_adapters if (results[a]["dispersion_ratio_harbor_runs"] or 1) >= 0.1]
+well_dispersed = [a for a in binary_adapters if results[a]["dispersion_ratio_harbor_runs"] is None or results[a]["dispersion_ratio_harbor_runs"] >= 0.1 + 1e-9]
 agg = {"primary_binary_light": aggregate(binary_adapters), "binary_dispersion_ratio_ge_0.1": aggregate(well_dispersed),
        "beta11_break_k3": {cell: aggregate(binary_adapters, "beta11")[cell] for cell in aggregate(binary_adapters, "beta11")} if binary_adapters else {},
        "fractional_resample": aggregate(frac_adapters, "resample") if frac_adapters else {}}
 summary = {"reps": REPS, "fractions": FS, "ks": KS, "n_binary": len(binary_adapters), "n_fractional": len(frac_adapters), "n_well_dispersed": len(well_dispersed),
            "dispersion_ratio_quartiles_binary": [float(x) for x in np.percentile([results[a]["dispersion_ratio_harbor_runs"] for a in binary_adapters if results[a]["dispersion_ratio_harbor_runs"] is not None], [25, 50, 75])],
-           "under_dispersed_below_0.1": sorted(a for a in binary_adapters if results[a]["dispersion_ratio_harbor_runs"] is not None and results[a]["dispersion_ratio_harbor_runs"] < 0.1),
+           "under_dispersed_below_0.1": sorted(a for a in binary_adapters if results[a]["dispersion_ratio_harbor_runs"] is not None and results[a]["dispersion_ratio_harbor_runs"] < 0.1 + 1e-9),
            "model_run_sd_quartiles_light": [float(x) for x in np.percentile([results[a]["model_run_sd_points_light"] for a in binary_adapters], [25, 50, 75])],
            "p_minus_t_at_break10_k3": {"n_P_gt_T": int(sum(results[a]["break,f=0.1,k=3"]["P"] > results[a]["break,f=0.1,k=3"]["T"] for a in binary_adapters)),
                                         "quartiles": [float(x) for x in np.percentile([results[a]["break,f=0.1,k=3"]["P"] - results[a]["break,f=0.1,k=3"]["T"] for a in binary_adapters], [25, 50, 75])]}}
