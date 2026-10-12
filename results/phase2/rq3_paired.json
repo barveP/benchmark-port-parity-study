@@ -60,8 +60,18 @@
     "kumo",
     "labbench",
     "ml_dev_bench",
+    "spider2-dbt",
     "theagentcompany"
    ],
+   "tasks_always_pass_one_side_fail_other": {
+    "swebench": 36,
+    "ds1000": 13,
+    "crustbench": 6,
+    "dacode": 6,
+    "kumo": 6,
+    "bfcl": 5,
+    "multi-swe-bench": 5
+   },
    "discordance_share_quartiles": [
     0.24874213836477987,
     0.37037037037037035,
@@ -125,6 +135,9 @@
    "under_dispersed_below_0.1": [
     "quixbugs"
    ],
+   "tasks_always_pass_one_side_fail_other": {
+    "deveval": 6
+   },
    "discordance_share_quartiles": [
     0.201875,
     0.29791666666666666,
@@ -231,7 +244,8 @@
    "dispersion_ratio_original": 3.183908045977009,
    "dispersion_ratio_harbor": 0.5119047619047622,
    "tasks_with_different_pass_rate": 99,
-   "share_tasks_discordant": 0.4419642857142857
+   "share_tasks_discordant": 0.4419642857142857,
+   "n_tasks_always_pass_one_side_fail_other": 4
   },
   "adebench": {
    "status": "ok",
@@ -277,7 +291,8 @@
    "dispersion_ratio_original": 0.21428571428571402,
    "dispersion_ratio_harbor": 0.0909090909090911,
    "tasks_with_different_pass_rate": 18,
-   "share_tasks_discordant": 0.375
+   "share_tasks_discordant": 0.375,
+   "n_tasks_always_pass_one_side_fail_other": 1
   },
   "arc_agi_2": {
    "status": "excluded by manifest",
@@ -327,7 +342,8 @@
    "dispersion_ratio_original": 0.926470588235294,
    "dispersion_ratio_harbor": 1.2857142857142858,
    "tasks_with_different_pass_rate": 80,
-   "share_tasks_discordant": 0.4
+   "share_tasks_discordant": 0.4,
+   "n_tasks_always_pass_one_side_fail_other": 3
   },
   "bfcl": {
    "status": "ok",
@@ -373,7 +389,8 @@
    "dispersion_ratio_original": 0.34999999999999964,
    "dispersion_ratio_harbor": 1.083333333333332,
    "tasks_with_different_pass_rate": 25,
-   "share_tasks_discordant": 0.2032520325203252
+   "share_tasks_discordant": 0.2032520325203252,
+   "n_tasks_always_pass_one_side_fail_other": 5
   },
   "bixbench": {
    "status": "ok",
@@ -419,7 +436,8 @@
    "dispersion_ratio_original": 2.1,
    "dispersion_ratio_harbor": 0.9285714285714285,
    "tasks_with_different_pass_rate": 16,
-   "share_tasks_discordant": 0.32
+   "share_tasks_discordant": 0.32,
+   "n_tasks_always_pass_one_side_fail_other": 1
   },
   "codepde": {
    "status": "excluded by manifest",
@@ -469,7 +487,8 @@
    "dispersion_ratio_original": 0.4814814814814818,
    "dispersion_ratio_harbor": 0.13793103448275867,
    "tasks_with_different_pass_rate": 40,
-   "share_tasks_discordant": 0.40404040404040403
+   "share_tasks_discordant": 0.40404040404040403,
+   "n_tasks_always_pass_one_side_fail_other": 6
   },
   "dacode": {
    "status": "ok",
@@ -515,7 +534,8 @@
    "dispersion_ratio_original": 3.052319766018722,
    "dispersion_ratio_harbor": 0.10377512167291333,
    "tasks_with_different_pass_rate": 159,
-   "share_tasks_discordant": 0.33194154488517746
+   "share_tasks_discordant": 0.33194154488517746,
+   "n_tasks_always_pass_one_side_fail_other": 6
   },
   "deepsynth": {
    "status": "ok",
@@ -561,7 +581,8 @@
    "dispersion_ratio_original": 0.1657507246249648,
    "dispersion_ratio_harbor": 0.0947288006111536,
    "tasks_with_different_pass_rate": 16,
-   "share_tasks_discordant": 0.4
+   "share_tasks_discordant": 0.4,
+   "n_tasks_always_pass_one_side_fail_other": 0
   },
   "deveval": {
    "status": "ok",
@@ -607,7 +628,8 @@
    "dispersion_ratio_original": 3.3750000000000004,
    "dispersion_ratio_harbor": 0.9999999999999996,
    "tasks_with_different_pass_rate": 23,
-   "share_tasks_discordant": 0.38333333333333336
+   "share_tasks_discordant": 0.38333333333333336,
+   "n_tasks_always_pass_one_side_fail_other": 6
   },
   "devopsgym": {
    "status": "excluded by manifest",
@@ -657,7 +679,8 @@
    "dispersion_ratio_original": 0.5384615384615402,
    "dispersion_ratio_harbor": 1.648401826484009,
    "tasks_with_different_pass_rate": 281,
-   "share_tasks_discordant": 0.281
+   "share_tasks_discordant": 0.281,
+   "n_tasks_always_pass_one_side_fail_other": 13
   },
   "featbench": {
    "status": "ok",
@@ -703,7 +726,8 @@
    "dispersion_ratio_original": 0.31034482758620585,
    "dispersion_ratio_harbor": 3.166666666666664,
    "tasks_with_different_pass_rate": 60,
-   "share_tasks_discordant": 0.38461538461538464
+   "share_tasks_discordant": 0.38461538461538464,
+   "n_tasks_always_pass_one_side_fail_other": 2
   },
   "featurebench": {
    "status": "excluded by manifest",
@@ -757,7 +781,8 @@
    "dispersion_ratio_original": 0.6315789473684215,
    "dispersion_ratio_harbor": 0.1904761904761906,
    "tasks_with_different_pass_rate": 25,
-   "share_tasks_discordant": 0.12626262626262627
+   "share_tasks_discordant": 0.12626262626262627,
+   "n_tasks_always_pass_one_side_fail_other": 3
   },
   "gso": {
    "status": "ok",
@@ -803,7 +828,8 @@
    "dispersion_ratio_original": 0.22222222222222227,
    "dispersion_ratio_harbor": 0.5294117647058819,
    "tasks_with_different_pass_rate": 21,
-   "share_tasks_discordant": 0.20588235294117646
+   "share_tasks_discordant": 0.20588235294117646,
+   "n_tasks_always_pass_one_side_fail_other": 2
   },
   "humanevalfix": {
    "status": "excluded by manifest",
@@ -853,7 +879,8 @@
    "dispersion_ratio_original": 0.5174251564909267,
    "dispersion_ratio_harbor": 1.906010237543264,
    "tasks_with_different_pass_rate": 40,
-   "share_tasks_discordant": 0.38461538461538464
+   "share_tasks_discordant": 0.38461538461538464,
+   "n_tasks_always_pass_one_side_fail_other": 1
   },
   "kumo": {
    "status": "ok",
@@ -899,7 +926,8 @@
    "dispersion_ratio_original": 0.815789473684209,
    "dispersion_ratio_harbor": 0.02127659574468126,
    "tasks_with_different_pass_rate": 56,
-   "share_tasks_discordant": 0.2641509433962264
+   "share_tasks_discordant": 0.2641509433962264,
+   "n_tasks_always_pass_one_side_fail_other": 6
   },
   "labbench": {
    "status": "ok",
@@ -945,7 +973,8 @@
    "dispersion_ratio_original": 0.01587301587301587,
    "dispersion_ratio_harbor": 0.09459459459459456,
    "tasks_with_different_pass_rate": 74,
-   "share_tasks_discordant": 0.4088397790055249
+   "share_tasks_discordant": 0.4088397790055249,
+   "n_tasks_always_pass_one_side_fail_other": 1
   },
   "lawbench": {
    "status": "ok",
@@ -991,7 +1020,8 @@
    "dispersion_ratio_original": 0.2411999278638185,
    "dispersion_ratio_harbor": 1.39540147922078,
    "tasks_with_different_pass_rate": 111,
-   "share_tasks_discordant": 0.925
+   "share_tasks_discordant": 0.925,
+   "n_tasks_always_pass_one_side_fail_other": 0
   },
   "livecodebench": {
    "status": "ok",
@@ -1037,7 +1067,8 @@
    "dispersion_ratio_original": 3.0,
    "dispersion_ratio_harbor": 0.8113207547169811,
    "tasks_with_different_pass_rate": 17,
-   "share_tasks_discordant": 0.17
+   "share_tasks_discordant": 0.17,
+   "n_tasks_always_pass_one_side_fail_other": 0
   },
   "llmsr_bench": {
    "status": "excluded by manifest",
@@ -1087,7 +1118,8 @@
    "dispersion_ratio_original": 6.300000000000001,
    "dispersion_ratio_harbor": 1.1666666666666656,
    "tasks_with_different_pass_rate": 12,
-   "share_tasks_discordant": 0.04
+   "share_tasks_discordant": 0.04,
+   "n_tasks_always_pass_one_side_fail_other": 0
   },
   "ml_dev_bench": {
    "status": "ok",
@@ -1133,7 +1165,8 @@
    "dispersion_ratio_original": 0.7500000000000003,
    "dispersion_ratio_harbor": 0.09999999999999958,
    "tasks_with_different_pass_rate": 15,
-   "share_tasks_discordant": 0.45454545454545453
+   "share_tasks_discordant": 0.45454545454545453,
+   "n_tasks_always_pass_one_side_fail_other": 2
   },
   "mlgym-bench": {
    "status": "excluded by manifest",
@@ -1187,7 +1220,8 @@
    "dispersion_ratio_original": 0.4383561643835636,
    "dispersion_ratio_harbor": 0.36764705882353066,
    "tasks_with_different_pass_rate": 35,
-   "share_tasks_discordant": 0.23333333333333334
+   "share_tasks_discordant": 0.23333333333333334,
+   "n_tasks_always_pass_one_side_fail_other": 0
   },
   "multi-swe-bench": {
    "status": "ok",
@@ -1233,7 +1267,8 @@
    "dispersion_ratio_original": 0.8888888888888891,
    "dispersion_ratio_harbor": 0.350000000000001,
    "tasks_with_different_pass_rate": 33,
-   "share_tasks_discordant": 0.4714285714285714
+   "share_tasks_discordant": 0.4714285714285714,
+   "n_tasks_always_pass_one_side_fail_other": 5
   },
   "pixiu": {
    "status": "ok",
@@ -1279,7 +1314,8 @@
    "dispersion_ratio_original": 0.551020408163263,
    "dispersion_ratio_harbor": 0.4098360655737706,
    "tasks_with_different_pass_rate": 84,
-   "share_tasks_discordant": 0.29473684210526313
+   "share_tasks_discordant": 0.29473684210526313,
+   "n_tasks_always_pass_one_side_fail_other": 4
   },
   "qcircuitbench": {
    "status": "excluded by manifest",
@@ -1329,7 +1365,8 @@
    "dispersion_ratio_original": 0.0769230769230769,
    "dispersion_ratio_harbor": 0.07142857142857142,
    "tasks_with_different_pass_rate": 17,
-   "share_tasks_discordant": 0.2125
+   "share_tasks_discordant": 0.2125,
+   "n_tasks_always_pass_one_side_fail_other": 0
   },
   "rexbench": {
    "status": "excluded by manifest",
@@ -1383,7 +1420,8 @@
    "dispersion_ratio_original": 2.210526315789474,
    "dispersion_ratio_harbor": 3.2058823529411744,
    "tasks_with_different_pass_rate": 40,
-   "share_tasks_discordant": 0.37037037037037035
+   "share_tasks_discordant": 0.37037037037037035,
+   "n_tasks_always_pass_one_side_fail_other": 0
   },
   "simpleqa": {
    "status": "ok",
@@ -1429,7 +1467,8 @@
    "dispersion_ratio_original": 1.7499999999999996,
    "dispersion_ratio_harbor": 0.125,
    "tasks_with_different_pass_rate": 9,
-   "share_tasks_discordant": 0.18
+   "share_tasks_discordant": 0.18,
+   "n_tasks_always_pass_one_side_fail_other": 0
   },
   "spider2-dbt": {
    "status": "ok",
@@ -1475,7 +1514,8 @@
    "dispersion_ratio_original": 0.0,
    "dispersion_ratio_harbor": 0.16666666666666666,
    "tasks_with_different_pass_rate": 12,
-   "share_tasks_discordant": 0.1875
+   "share_tasks_discordant": 0.1875,
+   "n_tasks_always_pass_one_side_fail_other": 0
   },
   "swebench": {
    "status": "ok",
@@ -1517,7 +1557,8 @@
    "dispersion_ratio_original": null,
    "dispersion_ratio_harbor": 0.8345864661654112,
    "tasks_with_different_pass_rate": 169,
-   "share_tasks_discordant": 0.33867735470941884
+   "share_tasks_discordant": 0.33867735470941884,
+   "n_tasks_always_pass_one_side_fail_other": 36
   },
   "swebenchpro": {
    "status": "ok",
@@ -1563,7 +1604,8 @@
    "dispersion_ratio_original": 0.21383647798742134,
    "dispersion_ratio_harbor": 0.6774193548387099,
    "tasks_with_different_pass_rate": 56,
-   "share_tasks_discordant": 0.56
+   "share_tasks_discordant": 0.56,
+   "n_tasks_always_pass_one_side_fail_other": 1
   },
   "swegym": {
    "status": "excluded by manifest",
@@ -1613,7 +1655,8 @@
    "dispersion_ratio_original": 0.34392614103543356,
    "dispersion_ratio_harbor": 0.0824752282883236,
    "tasks_with_different_pass_rate": 15,
-   "share_tasks_discordant": 0.40540540540540543
+   "share_tasks_discordant": 0.40540540540540543,
+   "n_tasks_always_pass_one_side_fail_other": 0
   },
   "widesearch": {
    "status": "ok",
@@ -1659,7 +1702,8 @@
    "dispersion_ratio_original": 0.27835375977769916,
    "dispersion_ratio_harbor": 0.1320867559166917,
    "tasks_with_different_pass_rate": 192,
-   "share_tasks_discordant": 0.96
+   "share_tasks_discordant": 0.96,
+   "n_tasks_always_pass_one_side_fail_other": 0
   }
  }
 }
