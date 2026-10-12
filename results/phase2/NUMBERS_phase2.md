@@ -26,8 +26,8 @@
 | RQ1 P(pass) for a 2-point gap by common SD, k=3 | `{"0.25": 0.0, "0.5": 0.02, "1": 0.38, "1.5": 0.62, "2": 0.74, "3": 0.82, "5": 0.87, "10": 0.89, "100": 0.9}` | `scripts/p2_rq1_rules.py` | `results/phase2/rq1_rules.json` |
 | RQ1 P(pass), port side noisier only | `{"0.25": 0.52, "0.5": 0.62, "1": 0.73, "2": 0.81, "4": 0.82, "8": 0.8, "32": 0.76, "100": 0.75}` | `scripts/p2_rq1_rules.py` | `results/phase2/rq1_rules.json` |
 | RQ1 discrete false alarm by n tasks (k=3, p=0.3) | `{"10": 0.049, "30": 0.067, "50": 0.072, "100": 0.08, "300": 0.089, "1000": 0.092}` | `scripts/p2_rq1_rules.py` | `results/phase2/rq1_rules.json` |
-| RQ1 realistic medians (light prior) | `{"light,k=3,gap=0": {"R": 0.07, "S1": 0.25, "S2": 0.37, "S3": 0.43, "W": 0.03, "T": 0.05, "E3": 0.08, "E5": 0.45}, "light,k=3,gap=2": {"R": 0.17, "S1": 0.43, "S2": 0.55, "S3": 0.61, "W": 0.09, "T": 0.12, "E3": 0.05, "E5": 0.3}, "light,k=3,gap=5": {"R": 0.57, "S1": 0.86, "S2": 0.93, "S3": 0.94, "W": 0.37, "T": 0.47, "E3": 0.0, "E5": 0.05}, "light,k=5,gap=5": {"R": 0.32, "S1": 0.96, "S2": 0.99, "S3": 0.99, "W": 0.78, "T": 0.8, "E3": 0.0, "E5": 0.05}, "beta11,k=3,gap=0": {"R": 0.08, "S1": 0.25, "S2": 0.37, "S3": 0.43, "W": 0.03, "T": 0.05, "E3": 0.01, "E5": 0.1}, "beta11,k=3,gap=5": {"R": 0.33, "S1": 0.63, "S2": 0.75, "S3": 0.79, "W": 0.18, "T": 0.23, "E3": 0.0, "E5": 0.03}}` | `scripts/p2_rq1_rules.py` | `results/phase2/rq1_rules.json` |
-| RQ1 realistic implied run SD quartiles | `{"light": [1.52, 2.07, 2.82], "beta11": [2.63, 3.26, 4.53]}` | `scripts/p2_rq1_rules.py` | `results/phase2/rq1_rules.json` |
+| RQ1 realistic medians (light prior) | `{"light,k=3,gap=0": {"R": 0.07, "S1": 0.25, "S2": 0.37, "S3": 0.43, "W": 0.03, "T": 0.05, "E3": 0.12, "E5": 0.57}, "light,k=3,gap=2": {"R": 0.19, "S1": 0.45, "S2": 0.58, "S3": 0.63, "W": 0.1, "T": 0.13, "E3": 0.06, "E5": 0.35}, "light,k=3,gap=5": {"R": 0.61, "S1": 0.88, "S2": 0.94, "S3": 0.95, "W": 0.39, "T": 0.49, "E3": 0.0, "E5": 0.05}, "light,k=5,gap=5": {"R": 0.36, "S1": 0.97, "S2": 0.99, "S3": 0.99, "W": 0.8, "T": 0.82, "E3": 0.0, "E5": 0.05}, "beta11,k=3,gap=0": {"R": 0.08, "S1": 0.25, "S2": 0.37, "S3": 0.43, "W": 0.03, "T": 0.05, "E3": 0.01, "E5": 0.12}, "beta11,k=3,gap=5": {"R": 0.35, "S1": 0.65, "S2": 0.76, "S3": 0.8, "W": 0.19, "T": 0.25, "E3": 0.0, "E5": 0.03}}` | `scripts/p2_rq1_rules.py` | `results/phase2/rq1_rules.json` |
+| RQ1 realistic model run SD quartiles (100 sqrt(sum p(1-p))/n) | `{"light": [1.72, 2.12, 3.14], "beta11": [2.95, 3.6, 5.0]}` | `scripts/p2_rq1_rules.py` | `results/phase2/rq1_rules.json` |
 | RQ1 expected smallest provable margin under parity, k=3 (SD units) | `2.29` | `scripts/p2_rq1_rules.py` | `results/phase2/rq1_rules.json` |
 | RQ1 runs/side for 80% TOST power at gap 0, margin in SD | `{"1": 18, "1.5": 9, "2": 6, "3": 3}` | `scripts/p2_rq1_rules.py` | `results/phase2/rq1_rules.json` |
 | RQ2 [k = 3 on both sides] n / median gap / median SD / margin quartiles / within 2,3,5 / fail overlap / S1,S2,S3 / passes with margin>5 | `[58, 0.67, 1.71, [2.4, 4.4, 6.0], [7, 22, 36], 1, [4, 12, 18], 21]` | `scripts/p2_rq2_evidence.py` | `results/phase2/rq2_summary.json` |
@@ -61,27 +61,66 @@
 | RQ3 runs/side sd_p75,gap=0.6,m=2: 80% / 90% power (plug-in k, its power) | `[49, 67, 22, 0.434]` | `scripts/p2_rq3_runs_needed.py` | `results/phase2/rq3_runs_needed.json` |
 | RQ3 runs/side sd_p75,gap=0.6,m=3: 80% / 90% power (plug-in k, its power) | `[18, 24, 9, 0.401]` | `scripts/p2_rq3_runs_needed.py` | `results/phase2/rq3_runs_needed.json` |
 | RQ3 runs/side sd_p75,gap=0.6,m=5: 80% / 90% power (plug-in k, its power) | `[7, 8, 4, 0.478]` | `scripts/p2_rq3_runs_needed.py` | `results/phase2/rq3_runs_needed.json` |
-| RQ3 per-comparison runs for ±3 at gap 0 (quartiles; share <=3, <=5, <=10) | `[[4.0, 7.0, 13.25], 0.21428571428571427, 0.4107142857142857, 0.6428571428571429]` | `scripts/p2_rq3_runs_needed.py` | `results/phase2/rq3_runs_needed.json` |
-| RQ3 comparisons whose gap exceeds the margin (±2, ±3, ±5) | `{"m=2": 14, "m=3": 4, "m=5": 4}` | `scripts/p2_rq3_runs_needed.py` | `results/phase2/rq3_runs_needed.json` |
-| RQ3 paired: n_adapters_with_both_sides | `32` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
-| RQ3 paired: n_adapters_skipped | `12` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
-| RQ3 paired: validation_both_match | `21` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
-| RQ3 paired: sides_swapped_vs_published | `[]` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
-| RQ3 paired: paired_margin_quartiles | `[3.16, 4.48, 5.73]` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
-| RQ3 paired: run_margin_quartiles | `[2.21, 3.17, 5.9]` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
-| RQ3 paired: width_ratio_quartiles | `[0.49, 0.71, 1.33]` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
-| RQ3 paired: paired_within | `{"1": 1, "2": 3, "3": 7, "5": 21}` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
-| RQ3 paired: run_within | `{"1": 1, "2": 5, "3": 15, "5": 21}` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
-| RQ3 paired: paired_gap_distinguishable_95 | `0` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
-| RQ3 defects: adapters, replications | `[39, 2000]` | `scripts/p2_rq3_defects.py` | `results/phase2/rq3_defects.json` |
-| RQ3 defects break,f=0.0,k=3: gap, R, S1, T, paired, E3, E5 | `[0.0, 0.07, 0.25, 0.05, 0.05, 0.21, 0.49]` | `scripts/p2_rq3_defects.py` | `results/phase2/rq3_defects.json` |
-| RQ3 defects break,f=0.02,k=3: gap, R, S1, T, paired, E3, E5 | `[-1.1, 0.14, 0.36, 0.1, 0.1, 0.16, 0.45]` | `scripts/p2_rq3_defects.py` | `results/phase2/rq3_defects.json` |
-| RQ3 defects break,f=0.05,k=3: gap, R, S1, T, paired, E3, E5 | `[-2.6, 0.34, 0.58, 0.29, 0.26, 0.05, 0.29]` | `scripts/p2_rq3_defects.py` | `results/phase2/rq3_defects.json` |
-| RQ3 defects break,f=0.1,k=3: gap, R, S1, T, paired, E3, E5 | `[-5.4, 0.61, 0.8, 0.56, 0.52, 0.01, 0.08]` | `scripts/p2_rq3_defects.py` | `results/phase2/rq3_defects.json` |
-| RQ3 defects break,f=0.2,k=3: gap, R, S1, T, paired, E3, E5 | `[-10.9, 0.85, 0.93, 0.83, 0.8, 0.0, 0.02]` | `scripts/p2_rq3_defects.py` | `results/phase2/rq3_defects.json` |
-| RQ3 defects leak,f=0.1,k=3: gap, R, S1, T, paired, E3, E5 | `[4.6, 0.58, 0.78, 0.52, 0.48, 0.03, 0.15]` | `scripts/p2_rq3_defects.py` | `results/phase2/rq3_defects.json` |
-| RQ3 defects break,f=0.1,k=5: gap, R, S1, T, paired, E3, E5 | `[-5.4, 0.47, 0.85, 0.72, 0.59, 0.02, 0.13]` | `scripts/p2_rq3_defects.py` | `results/phase2/rq3_defects.json` |
-| RQ3 defects break,f=0.1,k=10: gap, R, S1, T, paired, E3, E5 | `[-5.5, 0.33, 0.9, 0.85, 0.66, 0.03, 0.2]` | `scripts/p2_rq3_defects.py` | `results/phase2/rq3_defects.json` |
-| RQ3 defects break,f=0.0,k=5: gap, R, S1, T, paired, E3, E5 | `[0.0, 0.0, 0.21, 0.05, 0.05, 0.36, 0.71]` | `scripts/p2_rq3_defects.py` | `results/phase2/rq3_defects.json` |
-| RQ3 defects break,f=0.0,k=10: gap, R, S1, T, paired, E3, E5 | `[0.0, 0.0, 0.18, 0.05, 0.05, 0.63, 0.92]` | `scripts/p2_rq3_defects.py` | `results/phase2/rq3_defects.json` |
-| RQ3 defects beta11,break,f=0.1,k=3: gap, R, S1, T, paired, E3, E5 | `[-5.2, 0.42, 0.67, 0.33, 0.38, 0.0, 0.03]` | `scripts/p2_rq3_defects.py` | `results/phase2/rq3_defects.json` |
+| RQ3 per-comparison runs for ±3 at gap 0 (quartiles; share <=3, <=5, <=10; n over 400) | `[[4.0, 7.0, 15.5], 0.20689655172413793, 0.39655172413793105, 0.6206896551724138, 2]` | `scripts/p2_rq3_runs_needed.py` | `results/phase2/rq3_runs_needed.json` |
+| RQ3 comparisons whose gap exceeds the margin (±2, ±3, ±5) | `{"m=2": 10, "m=3": 4, "m=5": 2}` | `scripts/p2_rq3_runs_needed.py` | `results/phase2/rq3_runs_needed.json` |
+| RQ3 paired [primary]: n | `27` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [primary]: n_with_run_interval | `26` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [primary]: validation_both_match | `21` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [primary]: paired_margin_quartiles | `[3.01, 4.54, 5.73]` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [primary]: run_margin_quartiles | `[2.2, 2.91, 5.93]` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [primary]: width_ratio_quartiles | `[0.49, 0.67, 1.27]` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [primary]: width_ratio_null_median_quartiles | `[1.19, 1.2, 1.22]` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [primary]: n_ratio_below_1 | `15` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [primary]: n_ratio_below_null_q25 | `15` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [primary]: paired_within | `{"1": 1, "2": 3, "3": 7, "5": 16}` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [primary]: run_within | `{"1": 1, "2": 4, "3": 14, "5": 17}` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [primary]: n_sd_task_diff_exceeds_noise_p05 | `14` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [primary]: n_sd_task_diff_exceeds_noise_p01 | `10` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [primary]: n_mean_gap_not_exchangeable_p05 | `0` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [primary]: n_cmh_reject | `0` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [primary]: n_binary | `21` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [primary]: paired_gap_distinguishable_95 | `0` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [primary]: dispersion_ratio_harbor_quartiles | `[0.11, 0.36, 1.04]` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [primary]: dispersion_ratio_original_quartiles | `[0.25, 0.5, 0.87]` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [primary]: under_dispersed_below_0.1 | `["adebench", "deepsynth", "kumo", "labbench", "ml_dev_bench", "theagentcompany"]` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [primary]: discordance_share_quartiles | `[0.25, 0.37, 0.41]` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [secondary_terminal_bench_legs]: n | `4` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [secondary_terminal_bench_legs]: n_with_run_interval | `4` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [secondary_terminal_bench_legs]: validation_both_match | `3` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [secondary_terminal_bench_legs]: paired_margin_quartiles | `[3.42, 4.25, 6.11]` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [secondary_terminal_bench_legs]: run_margin_quartiles | `[3.62, 4.48, 5.53]` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [secondary_terminal_bench_legs]: width_ratio_quartiles | `[0.72, 1.13, 1.42]` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [secondary_terminal_bench_legs]: width_ratio_null_median_quartiles | `[1.16, 1.18, 1.2]` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [secondary_terminal_bench_legs]: n_ratio_below_1 | `2` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [secondary_terminal_bench_legs]: n_ratio_below_null_q25 | `2` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [secondary_terminal_bench_legs]: paired_within | `{"1": 0, "2": 0, "3": 0, "5": 3}` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [secondary_terminal_bench_legs]: run_within | `{"1": 0, "2": 1, "3": 1, "5": 3}` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [secondary_terminal_bench_legs]: n_sd_task_diff_exceeds_noise_p05 | `1` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [secondary_terminal_bench_legs]: n_sd_task_diff_exceeds_noise_p01 | `1` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [secondary_terminal_bench_legs]: n_mean_gap_not_exchangeable_p05 | `0` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [secondary_terminal_bench_legs]: n_cmh_reject | `0` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [secondary_terminal_bench_legs]: n_binary | `4` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [secondary_terminal_bench_legs]: paired_gap_distinguishable_95 | `0` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [secondary_terminal_bench_legs]: dispersion_ratio_harbor_quartiles | `[0.63, 0.91, 1.07]` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [secondary_terminal_bench_legs]: dispersion_ratio_original_quartiles | `[0.71, 1.96, 3.09]` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [secondary_terminal_bench_legs]: under_dispersed_below_0.1 | `["quixbugs"]` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 paired [secondary_terminal_bench_legs]: discordance_share_quartiles | `[0.2, 0.3, 0.39]` | `scripts/p2_rq3_paired.py` | `results/phase2/rq3_paired.json` |
+| RQ3 defects: binary adapters, fractional adapters, replications | `[30, 8, 2000]` | `scripts/p2_rq3_defects.py` | `results/phase2/rq3_defects.json` |
+| RQ3 defects: dispersion ratio quartiles of the real Harbor runs (binary adapters) | `[0.1, 0.52, 1.26]` | `scripts/p2_rq3_defects.py` | `results/phase2/rq3_defects.json` |
+| RQ3 defects: adapters with dispersion ratio below 0.1 | `["adebench", "bird_bench", "financeagent", "ineqmath", "kumo", "labbench", "ml_dev_bench", "quixbugs", "satbench"]` | `scripts/p2_rq3_defects.py` | `results/phase2/rq3_defects.json` |
+| RQ3 defects: model run SD quartiles (light prior) | `[1.72, 2.25, 3.14]` | `scripts/p2_rq3_defects.py` | `results/phase2/rq3_defects.json` |
+| RQ3 defects: paired t minus pooled t at break 10%, k=3 (n with P > T; quartiles) | `[6, [-0.053, -0.018, -0.0]]` | `scripts/p2_rq3_defects.py` | `results/phase2/rq3_defects.json` |
+| RQ3 defects break,f=0.0,k=3: gap; mean (median) of R, S1, T, paired t, CMH, E3 shown, E5 shown | `[0.0, "0.07 (0.07)", "0.24 (0.24)", "0.05 (0.05)", "0.05 (0.05)", "0.05 (0.05)", "0.22 (0.10)", "0.51 (0.50)"]` | `scripts/p2_rq3_defects.py` | `results/phase2/rq3_defects.json` |
+| RQ3 defects break,f=0.02,k=3: gap; mean (median) of R, S1, T, paired t, CMH, E3 shown, E5 shown | `[-1.1, "0.15 (0.10)", "0.38 (0.32)", "0.11 (0.07)", "0.10 (0.06)", "0.14 (0.09)", "0.17 (0.10)", "0.47 (0.48)"]` | `scripts/p2_rq3_defects.py` | `results/phase2/rq3_defects.json` |
+| RQ3 defects break,f=0.05,k=3: gap; mean (median) of R, S1, T, paired t, CMH, E3 shown, E5 shown | `[-2.7, "0.37 (0.23)", "0.61 (0.53)", "0.32 (0.18)", "0.29 (0.15)", "0.39 (0.26)", "0.04 (0.03)", "0.29 (0.24)"]` | `scripts/p2_rq3_defects.py` | `results/phase2/rq3_defects.json` |
+| RQ3 defects break,f=0.1,k=3: gap; mean (median) of R, S1, T, paired t, CMH, E3 shown, E5 shown | `[-5.4, "0.64 (0.68)", "0.82 (0.90)", "0.59 (0.58)", "0.54 (0.48)", "0.67 (0.74)", "0.01 (0.00)", "0.07 (0.04)"]` | `scripts/p2_rq3_defects.py` | `results/phase2/rq3_defects.json` |
+| RQ3 defects break,f=0.2,k=3: gap; mean (median) of R, S1, T, paired t, CMH, E3 shown, E5 shown | `[-11.0, "0.87 (0.99)", "0.95 (1.00)", "0.85 (0.98)", "0.82 (0.97)", "0.90 (1.00)", "0.00 (0.00)", "0.02 (0.00)"]` | `scripts/p2_rq3_defects.py` | `results/phase2/rq3_defects.json` |
+| RQ3 defects leak,f=0.05,k=3: gap; mean (median) of R, S1, T, paired t, CMH, E3 shown, E5 shown | `[2.3, "0.29 (0.27)", "0.55 (0.57)", "0.23 (0.20)", "0.21 (0.16)", "0.30 (0.27)", "0.11 (0.04)", "0.37 (0.24)"]` | `scripts/p2_rq3_defects.py` | `results/phase2/rq3_defects.json` |
+| RQ3 defects leak,f=0.1,k=3: gap; mean (median) of R, S1, T, paired t, CMH, E3 shown, E5 shown | `[4.5, "0.58 (0.64)", "0.77 (0.88)", "0.51 (0.55)", "0.48 (0.47)", "0.61 (0.70)", "0.04 (0.00)", "0.18 (0.08)"]` | `scripts/p2_rq3_defects.py` | `results/phase2/rq3_defects.json` |
+| RQ3 defects break,f=0.0,k=5: gap; mean (median) of R, S1, T, paired t, CMH, E3 shown, E5 shown | `[0.0, "0.00 (0.00)", "0.21 (0.21)", "0.05 (0.05)", "0.05 (0.05)", "0.05 (0.05)", "0.37 (0.28)", "0.75 (0.87)"]` | `scripts/p2_rq3_defects.py` | `results/phase2/rq3_defects.json` |
+| RQ3 defects break,f=0.1,k=5: gap; mean (median) of R, S1, T, paired t, CMH, E3 shown, E5 shown | `[-5.4, "0.51 (0.48)", "0.87 (0.97)", "0.75 (0.87)", "0.60 (0.60)", "0.77 (0.91)", "0.02 (0.00)", "0.12 (0.05)"]` | `scripts/p2_rq3_defects.py` | `results/phase2/rq3_defects.json` |
+| RQ3 defects break,f=0.0,k=10: gap; mean (median) of R, S1, T, paired t, CMH, E3 shown, E5 shown | `[0.0, "0.00 (0.00)", "0.18 (0.18)", "0.05 (0.05)", "0.05 (0.05)", "0.05 (0.05)", "0.66 (0.79)", "0.94 (1.00)"]` | `scripts/p2_rq3_defects.py` | `results/phase2/rq3_defects.json` |
+| RQ3 defects break,f=0.1,k=10: gap; mean (median) of R, S1, T, paired t, CMH, E3 shown, E5 shown | `[-5.4, "0.36 (0.19)", "0.92 (1.00)", "0.86 (0.98)", "0.67 (0.78)", "0.86 (0.99)", "0.04 (0.00)", "0.19 (0.07)"]` | `scripts/p2_rq3_defects.py` | `results/phase2/rq3_defects.json` |
+| RQ3 defects sensitivity [binary_dispersion_ratio_ge_0.1] break,f=0.1,k=3: n, mean of R, T, paired t, CMH, E5 | `[21, 0.64, 0.59, 0.56, 0.67, 0.09]` | `scripts/p2_rq3_defects.py` | `results/phase2/rq3_defects.json` |
+| RQ3 defects sensitivity [beta11_break_k3] beta11,break,f=0.1,k=3: n, mean of R, T, paired t, CMH, E5 | `[30, 0.43, 0.34, 0.39, 0.45, 0.03]` | `scripts/p2_rq3_defects.py` | `results/phase2/rq3_defects.json` |
+| RQ3 defects sensitivity [fractional_resample] resample,break,f=0.1,k=3: n, mean of R, T, paired t, CMH, E5 | `[8, 0.72, 0.67, 0.59, 0.53, 0.13]` | `scripts/p2_rq3_defects.py` | `results/phase2/rq3_defects.json` |
