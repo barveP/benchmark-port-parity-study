@@ -28,7 +28,8 @@
    },
    "replicate_note": "the four Harbor files are four different agent/model experiments with one run each",
    "use_for_defect_model": false,
-   "use_for_paired": false
+   "use_for_paired": false,
+   "binary_outcomes": true
   },
   "abc-bench": {
    "hf_name": "abc-bench",
@@ -53,7 +54,8 @@
     "harbor": true
    },
    "use_for_defect_model": true,
-   "use_for_paired": true
+   "use_for_paired": true,
+   "binary_outcomes": true
   },
   "adebench": {
    "hf_name": "adebench",
@@ -78,7 +80,8 @@
     "harbor": true
    },
    "use_for_defect_model": true,
-   "use_for_paired": true
+   "use_for_paired": true,
+   "binary_outcomes": true
   },
   "arc_agi_2": {
    "hf_name": "arc_agi_2",
@@ -102,9 +105,10 @@
     "original": false,
     "harbor": false
    },
-   "use_for_defect_model": true,
-   "use_for_paired": true,
-   "paired_note": "published rates are per puzzle (120); the files hold per test pair (167); same tasks on both sides, so the paired analysis is valid at pair level"
+   "use_for_defect_model": false,
+   "use_for_paired": false,
+   "paired_note": "excluded (amendment 6): Harbor runs 1, 2 and 4 do not reproduce the published per-puzzle scores; the files appear to hold runs other than the published ones. Reported as a sensitivity row.",
+   "binary_outcomes": true
   },
   "autocodebench": {
    "hf_name": "autocodebench",
@@ -129,7 +133,10 @@
     "harbor": true
    },
    "use_for_defect_model": true,
-   "use_for_paired": true
+   "use_for_paired": true,
+   "paired_secondary_leg": true,
+   "paired_note": " The 'original' side of these files is the Terminal-Bench adapter run (transitive leg), so the adapter is reported in the secondary set, not the headline paired set.",
+   "binary_outcomes": true
   },
   "bfcl": {
    "hf_name": "bfcl",
@@ -156,7 +163,8 @@
    },
    "replicate_note": "primary pair is experiment 1; the gpt-4o-mini experiment is in separate files",
    "use_for_defect_model": true,
-   "use_for_paired": true
+   "use_for_paired": true,
+   "binary_outcomes": true
   },
   "bigcodebench_hard": {
    "hf_name": "bigcodebench_hard",
@@ -181,7 +189,8 @@
     "harbor": true
    },
    "use_for_defect_model": true,
-   "use_for_paired": false
+   "use_for_paired": false,
+   "binary_outcomes": true
   },
   "bird_bench": {
    "hf_name": "bird-bench",
@@ -206,7 +215,8 @@
     "harbor": true
    },
    "use_for_defect_model": true,
-   "use_for_paired": false
+   "use_for_paired": false,
+   "binary_outcomes": true
   },
   "bixbench": {
    "hf_name": "bixbench (actual path on HF: adapters/bixbench; the top-level \"bixbench\" path returns 404, every adapter lives under adapters/)",
@@ -231,7 +241,8 @@
     "harbor": true
    },
    "use_for_defect_model": true,
-   "use_for_paired": true
+   "use_for_paired": true,
+   "binary_outcomes": true
   },
   "codepde": {
    "hf_name": "codepde",
@@ -258,7 +269,8 @@
    },
    "replicate_note": "32 and 8 run files over 5 tasks, not the published design",
    "use_for_defect_model": false,
-   "use_for_paired": false
+   "use_for_paired": false,
+   "binary_outcomes": true
   },
   "crustbench": {
    "hf_name": "crust-bench",
@@ -284,7 +296,8 @@
    },
    "use_for_defect_model": false,
    "use_for_paired": true,
-   "paired_note": "file labels used; the published JSON lists the sides the other way round (each side's run list matches the other side's files)"
+   "paired_note": "file labels used; the published JSON lists the sides the other way round (each side's run list matches the other side's files)",
+   "binary_outcomes": true
   },
   "dacode": {
    "hf_name": "dacode",
@@ -309,7 +322,8 @@
     "harbor": true
    },
    "use_for_defect_model": true,
-   "use_for_paired": true
+   "use_for_paired": true,
+   "binary_outcomes": false
   },
   "deepsynth": {
    "hf_name": "deepsynth",
@@ -334,7 +348,8 @@
     "harbor": true
    },
    "use_for_defect_model": true,
-   "use_for_paired": true
+   "use_for_paired": true,
+   "binary_outcomes": false
   },
   "deveval": {
    "hf_name": "deveval",
@@ -359,7 +374,10 @@
     "harbor": true
    },
    "use_for_defect_model": true,
-   "use_for_paired": true
+   "use_for_paired": true,
+   "paired_secondary_leg": true,
+   "paired_note": " The 'original' side of these files is the Terminal-Bench adapter run (transitive leg), so the adapter is reported in the secondary set, not the headline paired set.",
+   "binary_outcomes": true
   },
   "devopsgym": {
    "hf_name": "devopsgym",
@@ -387,7 +405,8 @@
    },
    "replicate_note": "HF files hold a single 46-task run per experiment, not the five published 50-task runs",
    "use_for_defect_model": false,
-   "use_for_paired": false
+   "use_for_paired": false,
+   "binary_outcomes": true
   },
   "ds1000": {
    "hf_name": "ds-1000",
@@ -412,7 +431,8 @@
     "harbor": true
    },
    "use_for_defect_model": true,
-   "use_for_paired": true
+   "use_for_paired": true,
+   "binary_outcomes": true
   },
   "featbench": {
    "hf_name": "featbench",
@@ -440,7 +460,8 @@
    },
    "replicate_note": "original.csv holds 2 of the 3 original runs (download budget); harbor.csv all 3",
    "use_for_defect_model": true,
-   "use_for_paired": true
+   "use_for_paired": true,
+   "binary_outcomes": true
   },
   "featurebench": {
    "hf_name": "featurebench",
@@ -465,7 +486,8 @@
     "harbor": false
    },
    "use_for_defect_model": false,
-   "use_for_paired": false
+   "use_for_paired": false,
+   "binary_outcomes": true
   },
   "financeagent": {
    "hf_name": "financeagent (dataset path adapters/financeagent; the top-level \"financeagent\" path does not exist on HF, every adapter sits under adapters/)",
@@ -490,7 +512,8 @@
     "harbor": true
    },
    "use_for_defect_model": true,
-   "use_for_paired": false
+   "use_for_paired": false,
+   "binary_outcomes": true
   },
   "gpqa-diamond": {
    "hf_name": "gpqa-diamond",
@@ -515,7 +538,8 @@
     "harbor": true
    },
    "use_for_defect_model": true,
-   "use_for_paired": true
+   "use_for_paired": true,
+   "binary_outcomes": true
   },
   "gso": {
    "hf_name": "gso",
@@ -540,7 +564,8 @@
     "harbor": true
    },
    "use_for_defect_model": true,
-   "use_for_paired": true
+   "use_for_paired": true,
+   "binary_outcomes": true
   },
   "humanevalfix": {
    "hf_name": "humanevalfix",
@@ -567,7 +592,8 @@
    },
    "replicate_note": "runs 1-3 and 4-6 are two experiments (gpt-5-mini, gpt-4o-mini) in one file",
    "use_for_defect_model": false,
-   "use_for_paired": false
+   "use_for_paired": false,
+   "binary_outcomes": true
   },
   "ineqmath": {
    "hf_name": "ineqmath",
@@ -592,7 +618,8 @@
     "harbor": true
    },
    "use_for_defect_model": true,
-   "use_for_paired": false
+   "use_for_paired": false,
+   "binary_outcomes": true
   },
   "kramabench": {
    "hf_name": "kramabench",
@@ -617,7 +644,8 @@
     "harbor": true
    },
    "use_for_defect_model": true,
-   "use_for_paired": true
+   "use_for_paired": true,
+   "binary_outcomes": false
   },
   "kumo": {
    "hf_name": "kumo",
@@ -642,7 +670,8 @@
     "harbor": true
    },
    "use_for_defect_model": true,
-   "use_for_paired": true
+   "use_for_paired": true,
+   "binary_outcomes": true
   },
   "labbench": {
    "hf_name": "labbench",
@@ -667,7 +696,8 @@
     "harbor": true
    },
    "use_for_defect_model": true,
-   "use_for_paired": true
+   "use_for_paired": true,
+   "binary_outcomes": true
   },
   "lawbench": {
    "hf_name": "lawbench",
@@ -692,7 +722,8 @@
     "harbor": true
    },
    "use_for_defect_model": true,
-   "use_for_paired": true
+   "use_for_paired": true,
+   "binary_outcomes": false
   },
   "livecodebench": {
    "hf_name": "livecodebench",
@@ -717,7 +748,10 @@
     "harbor": true
    },
    "use_for_defect_model": true,
-   "use_for_paired": true
+   "use_for_paired": true,
+   "paired_secondary_leg": true,
+   "paired_note": " The 'original' side of these files is the Terminal-Bench adapter run (transitive leg), so the adapter is reported in the secondary set, not the headline paired set.",
+   "binary_outcomes": true
   },
   "llmsr_bench": {
    "hf_name": "llmsr-bench",
@@ -742,7 +776,8 @@
     "harbor": false
    },
    "use_for_defect_model": false,
-   "use_for_paired": false
+   "use_for_paired": false,
+   "binary_outcomes": false
   },
   "medagentbench": {
    "hf_name": "medagentbench",
@@ -767,7 +802,8 @@
     "harbor": true
    },
    "use_for_defect_model": true,
-   "use_for_paired": true
+   "use_for_paired": true,
+   "binary_outcomes": true
   },
   "ml_dev_bench": {
    "hf_name": "ml_dev_bench",
@@ -792,7 +828,8 @@
     "harbor": true
    },
    "use_for_defect_model": true,
-   "use_for_paired": true
+   "use_for_paired": true,
+   "binary_outcomes": true
   },
   "mlgym-bench": {
    "hf_name": "mlgym-bench",
@@ -817,7 +854,8 @@
     "harbor": true
    },
    "use_for_defect_model": false,
-   "use_for_paired": false
+   "use_for_paired": false,
+   "binary_outcomes": false
   },
   "mmau": {
    "hf_name": "mmau",
@@ -843,7 +881,8 @@
    },
    "use_for_defect_model": true,
    "use_for_paired": false,
-   "paired_note": "the two sides are per-task identical in every run (2999 of 3000 outcomes), so the sides are not independent evaluations; excluded from the paired analysis, kept for the defect model"
+   "paired_note": "the two sides are per-task identical in every run (2999 of 3000 outcomes), so the sides are not independent evaluations; excluded from the paired analysis, kept for the defect model",
+   "binary_outcomes": true
   },
   "mmmlu": {
    "hf_name": "mmmlu",
@@ -868,7 +907,8 @@
     "harbor": true
    },
    "use_for_defect_model": true,
-   "use_for_paired": true
+   "use_for_paired": true,
+   "binary_outcomes": true
   },
   "multi-swe-bench": {
    "hf_name": "multi-swe-bench",
@@ -893,7 +933,8 @@
     "harbor": true
    },
    "use_for_defect_model": true,
-   "use_for_paired": true
+   "use_for_paired": true,
+   "binary_outcomes": true
   },
   "pixiu": {
    "hf_name": "pixiu",
@@ -918,7 +959,8 @@
     "harbor": true
    },
    "use_for_defect_model": true,
-   "use_for_paired": true
+   "use_for_paired": true,
+   "binary_outcomes": false
   },
   "qcircuitbench": {
    "hf_name": "qcircuitbench",
@@ -943,7 +985,8 @@
     "harbor": true
    },
    "use_for_defect_model": true,
-   "use_for_paired": false
+   "use_for_paired": false,
+   "binary_outcomes": false
   },
   "quixbugs": {
    "hf_name": "quixbugs",
@@ -968,7 +1011,10 @@
     "harbor": true
    },
    "use_for_defect_model": true,
-   "use_for_paired": true
+   "use_for_paired": true,
+   "paired_secondary_leg": true,
+   "paired_note": " The 'original' side of these files is the Terminal-Bench adapter run (transitive leg), so the adapter is reported in the secondary set, not the headline paired set.",
+   "binary_outcomes": true
   },
   "rexbench": {
    "hf_name": "rexbench",
@@ -993,7 +1039,8 @@
     "harbor": true
    },
    "use_for_defect_model": false,
-   "use_for_paired": false
+   "use_for_paired": false,
+   "binary_outcomes": true
   },
   "satbench": {
    "hf_name": "satbench",
@@ -1018,7 +1065,8 @@
     "harbor": true
    },
    "use_for_defect_model": true,
-   "use_for_paired": false
+   "use_for_paired": false,
+   "binary_outcomes": true
   },
   "seal0": {
    "hf_name": "seal0",
@@ -1043,7 +1091,8 @@
     "harbor": true
    },
    "use_for_defect_model": true,
-   "use_for_paired": true
+   "use_for_paired": true,
+   "binary_outcomes": true
   },
   "simpleqa": {
    "hf_name": "simpleqa",
@@ -1068,7 +1117,8 @@
     "harbor": true
    },
    "use_for_defect_model": true,
-   "use_for_paired": true
+   "use_for_paired": true,
+   "binary_outcomes": true
   },
   "spider2-dbt": {
    "hf_name": "spider2-dbt",
@@ -1093,7 +1143,8 @@
     "harbor": true
    },
    "use_for_defect_model": true,
-   "use_for_paired": true
+   "use_for_paired": true,
+   "binary_outcomes": true
   },
   "swebench": {
    "hf_name": "swebench",
@@ -1118,7 +1169,8 @@
     "harbor": true
    },
    "use_for_defect_model": true,
-   "use_for_paired": true
+   "use_for_paired": true,
+   "binary_outcomes": true
   },
   "swebenchpro": {
    "hf_name": "swebenchpro (adapters/swebenchpro in harborframework/parity-experiments)",
@@ -1146,12 +1198,13 @@
    "replicate_note": "primary pair original.csv/harbor.csv is the 6-run gpt-5-mini experiment; the gpt-5.4 rerun is in separate files",
    "use_for_defect_model": true,
    "use_for_paired": true,
-   "paired_drop_runs": {
+   "paired_note": "Harbor run 1 was run on a different 100-task sample (21 tasks in common with the original side); runs 2 to 6 match the original's tasks; run 1 dropped from the paired analysis and from the defect model",
+   "binary_outcomes": true,
+   "drop_runs": {
     "harbor": [
      1
     ]
-   },
-   "paired_note": "Harbor run 1 was run on a different 100-task sample (21 tasks in common with the original side); runs 2 to 6 match the original's tasks; run 1 dropped for the paired analysis"
+   }
   },
   "swegym": {
    "hf_name": "swegym (adapters/swegym in harborframework/parity-experiments)",
@@ -1178,7 +1231,8 @@
    },
    "replicate_note": "one run per side recovered",
    "use_for_defect_model": false,
-   "use_for_paired": false
+   "use_for_paired": false,
+   "binary_outcomes": true
   },
   "theagentcompany": {
    "hf_name": "theagentcompany",
@@ -1203,7 +1257,8 @@
     "harbor": true
    },
    "use_for_defect_model": true,
-   "use_for_paired": true
+   "use_for_paired": true,
+   "binary_outcomes": false
   },
   "usaco": {
    "hf_name": "usaco",
@@ -1228,7 +1283,8 @@
     "harbor": true
    },
    "use_for_defect_model": true,
-   "use_for_paired": false
+   "use_for_paired": false,
+   "binary_outcomes": true
   },
   "widesearch": {
    "hf_name": "widesearch",
@@ -1253,7 +1309,8 @@
     "harbor": true
    },
    "use_for_defect_model": true,
-   "use_for_paired": true
+   "use_for_paired": true,
+   "binary_outcomes": false
   }
  },
  "failed_agents": [
