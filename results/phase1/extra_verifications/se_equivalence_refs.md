@@ -1,0 +1,11 @@
+# Verified citations: equivalence testing and replication in empirical software engineering (2026-10-11, via Crossref/OpenAlex)
+
+- Dolado, Otero, Harman. "Equivalence hypothesis testing in experimental software engineering." Software Quality Journal 22(2):215-238, 2014 (online 2013-03-13). DOI 10.1007/s11219-013-9196-0. Imports bioequivalence-style equivalence testing into SE; re-analyses three comprehension experiments. Full text paywalled; abstract and reference list read; exact margin unconfirmed (a citing paper applies it with a 20%-of-mean bound).
+- Huang, Leach, Sharafi, McKay, Santander, Weimer. ESEC/FSE 2020, pp. 456-468, DOI 10.1145/3368089.3409681. Applies Dolado's equivalence test as a manipulation check ("the 20% x mean bound"). Full text read.
+- Dolado, Rodriguez, Harman, Langdon, Sarro. "Evaluation of estimation models using the Minimum Interval of Equivalence." Applied Soft Computing 49:956-967, 2016. DOI 10.1016/j.asoc.2016.03.026. Metadata only.
+- Shepperd. "Replication studies considered harmful." ICSE-NIER 2018, pp. 73-76, DOI 10.1145/3183399.3183423 (arXiv 1802.04580). Shows by simulation that prediction intervals are so wide that almost all replications count as confirmatory while adding little knowledge; argues for meta-analysis. Abstract read. Directly relevant to "ranges overlap means same".
+- Shepperd, Ajienka, Counsell. "The role and value of replication in empirical software engineering results." IST 99:120-132, 2018. DOI 10.1016/j.infsof.2018.01.006. Abstract read.
+- Torkar et al. "A Method to Assess and Argue for Practical Significance in Software Engineering." IEEE TSE 48(6):2053-2065, 2022. DOI 10.1109/TSE.2020.3048991. Abstract read.
+- de Oliveira Neto et al. "Evolution of statistical analysis in empirical software engineering research." JSS 156:246-267, 2019. DOI 10.1016/j.jss.2019.07.002. Abstract read.
+- Lakens 2017 (SPPS 8(4):355-362, DOI 10.1177/1948550617697177) and Schuirmann 1987 (J Pharmacokinet Biopharm 15(6):657-680, DOI 10.1007/BF01068419): re-verified via Crossref, no discrepancies.
+Set aside after checking: Arcuri & Briand 2014 (no equivalence testing); Reyes et al. ICSE 2018 (error catalogue lacks "non-significance read as no effect"); Ahmad et al. ICSE 2024 (invokes absence-of-evidence but no TOST).
