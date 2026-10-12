@@ -8,7 +8,7 @@ Harbor is the agent-evaluation framework behind Terminal-Bench. About 90 benchma
 
 - Phase 0 (reproduce the first-pass numbers): done. Every number in `BRIEF.md` regenerates from `scripts/`; see `NUMBERS.md`. Two independent re-derivations and two adversarial reviews found no arithmetic errors; the caveats they raised are in `memos/phase-0-1-memo.md`.
 - Phase 1 (prior-work check): done; table and verdict in `memos/phase-0-1-memo.md`.
-- Phase 2 (analysis): in progress on branch `phase-2`; rules fixed in `memos/phase-2-preregistration.md` before any outcome was computed; results in `results/phase2/`.
+- Phase 2 (analysis): done on branch `phase-2`. Rules were fixed in `memos/phase-2-preregistration.md` before any outcome was computed (six recorded amendments); results and figures in `results/phase2/`, every quoted number mapped in `results/phase2/NUMBERS_phase2.md`, memo in `memos/phase-2-memo.md`.
 - Phases 3 and 4 (results memo, paper): not started.
 
 ## Layout
@@ -42,7 +42,7 @@ bash scripts/run_phase0.sh
 bash scripts/run_phase2.sh
 ```
 
-Scripts are run with `python -I` and take the data directory as an argument, so nothing is imported from the data folder.
+Scripts are run with `python -I` and take the data directory as an argument, so nothing is imported from the data folder. `data/pertask/` holds per-task outcomes recovered from the Hugging Face dataset with one parser per adapter under `scripts/pertask/`; `data/pertask/MANIFEST.json` records how each was validated and which analyses use it.
 
 ## Data sources
 
