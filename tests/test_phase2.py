@@ -104,3 +104,21 @@ def test_builder_applies_the_preregistered_rule(tmp_path):
     assert rows["gamma"]["metric"].startswith("success rate") and rows["gamma"]["single_run_side"] == "True" and rows["gamma"]["scaled_x100"] == "True"
     assert json.loads(rows["gamma"]["harbor_runs"]) == [42.0]
     assert log["n_legs"] == 0  # tb leg has no original list, so no leg either
+
+
+def test_cmh_matches_manual_and_mcnemar():
+    rng = np.random.default_rng(5)
+    n, k = 40, 3
+    xa = rng.random((20, k, n)) < 0.5; xb = rng.random((20, k, n)) < 0.5
+    v = paired_task_verdicts(xa, xb, margins=(3,))
+    for i in range(20):
+        a = xb[i].sum(0); T = xa[i].sum(0) + a; K = 2 * k
+        num = (a - k * T / K).sum(); var = (k * k * T * (K - T) / (K ** 2 * (K - 1))).sum()
+        assert v["CMH"][i] == (abs(num / math.sqrt(var)) > 1.959964)
+    # k = 1 reduces to McNemar's z on discordant tasks: z = (b - c) / sqrt(b + c)
+    xa1 = rng.random((50, 1, n)) < 0.5; xb1 = rng.random((50, 1, n)) < 0.5
+    v1 = paired_task_verdicts(xa1, xb1, margins=(3,))
+    for i in range(50):
+        b = int(((xb1[i, 0] == 1) & (xa1[i, 0] == 0)).sum()); c = int(((xb1[i, 0] == 0) & (xa1[i, 0] == 1)).sum())
+        z = (b - c) / math.sqrt(b + c) if b + c else 0.0
+        assert v1["CMH"][i] == (abs(z) > 1.959964)

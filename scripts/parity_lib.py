@@ -300,7 +300,8 @@ def runs_needed_plugin(margin: float, gap0: float, sigma: float, alpha: float = 
     """The first pass's heuristic: smallest k with gap0 + t_{1-alpha, 2k-2} sigma sqrt(2/k) <= margin.
 
     This is the k at which a comparison landing exactly on (gap0, sigma) would pass; its actual
-    TOST power at that k is only about 40-55%. Kept for comparison with tost_power.
+    TOST power at that k is well below 80% (0.1 to 0.8 depending on margin and noise). Kept for
+    comparison with tost_power.
     """
     for k in range(2, kmax + 1):
         if gap0 + t_quantile(1 - alpha, 2 * k - 2) * sigma * math.sqrt(2 / k) <= margin:
@@ -373,4 +374,18 @@ def paired_task_verdicts(xa, xb, margins=(3, 5)):
     hw90 = t_quantile(0.95, n - 1) * se
     for m in margins:
         out[f"PE{m}"] = np.abs(md) + hw90 <= m
+    # Cochran-Mantel-Haenszel z, stratified by task (binary outcomes; McNemar at k = 1):
+    # a_i = port passes over k_b runs, T_i = passes over all runs of task i; under the null of
+    # exchangeable outcomes within a task, E[a_i] = k_b T_i / (k_a + k_b) and
+    # Var[a_i] = k_a k_b T_i (K - T_i) / (K^2 (K - 1)) with K = k_a + k_b (hypergeometric).
+    xa_, xb_ = np.asarray(xa, dtype=float), np.asarray(xb, dtype=float)
+    ka, kb = xa_.shape[1], xb_.shape[1]
+    K = ka + kb
+    a_i = xb_.sum(1)
+    T_i = xa_.sum(1) + a_i
+    num = (a_i - kb * T_i / K).sum(1)
+    var = (ka * kb * T_i * (K - T_i) / (K ** 2 * (K - 1))).sum(1)
+    with np.errstate(divide="ignore", invalid="ignore"):
+        z = np.where(var > 0, num / np.sqrt(np.where(var > 0, var, 1.0)), np.where(num != 0, np.inf, 0.0))
+    out["CMH"] = np.abs(z) > 1.959964
     return out
