@@ -1,0 +1,307 @@
+#!/usr/bin/env python3
+"""Shared helpers for the port-parity analysis.
+
+Every analysis script imports from here, so each definition lives in one place.
+Dependencies: standard library, numpy, scipy.
+
+Vocabulary (one line each)
+  experiment : one agent+model comparison inside a parity_experiment.json (one JSON object)
+  metric row : one entry of an experiment's "metrics" list (one scored quantity)
+  side       : "original" (upstream harness) or "harbor" (the port); some rows add "tb_adapter"
+  run list   : per-run scores for one side, e.g. original_runs = [39.5, 40.5, 41.0]
+  k          : runs per side
+  SEM        : standard error of the mean = sample SD / sqrt(k)
+"""
+from __future__ import annotations
+
+import glob
+import json
+import math
+import os
+import re
+import statistics
+
+# ----------------------------------------------------------------------------- loading
+
+
+def snapshot_files(root: str) -> list[str]:
+    """Parity JSON files under `root`.
+
+    Accepts our pinned snapshot (data/raw/harbor_parity/<adapter>.json) or a Harbor
+    checkout (<root>/adapters/<adapter>/parity_experiment.json). Sorted by path, so the
+    adapter order is alphabetical in both layouts.
+    """
+    a = sorted(glob.glob(os.path.join(root, "adapters", "*", "parity_experiment.json")))
+    if a:
+        return a
+    b = [f for f in sorted(glob.glob(os.path.join(root, "*.json")))
+         if os.path.basename(f) != "MANIFEST.json"]
+    if not b:
+        raise FileNotFoundError(f"no parity files under {root}")
+    return b
+
+
+def adapter_name(path: str) -> str:
+    base = os.path.basename(path)
+    if base == "parity_experiment.json":
+        return os.path.basename(os.path.dirname(path))
+    return os.path.splitext(base)[0]
+
+
+def iter_experiments(root: str):
+    """Yield (adapter, index_within_file, experiment_dict) in file order."""
+    for f in snapshot_files(root):
+        with open(f) as fh:
+            d = json.load(fh)
+        exps = d if isinstance(d, list) else [d]
+        for i, e in enumerate(exps):
+            yield adapter_name(f), i, e
+
+
+def iter_metric_rows(root: str):
+    """Yield (adapter, exp_index, experiment, metric_index, metric_row) in file order."""
+    for adapter, i, e in iter_experiments(root):
+        for j, m in enumerate(e.get("metrics") or []):
+            yield adapter, i, e, j, m
+
+
+# ----------------------------------------------------------------------------- run lists
+
+
+def is_num(x) -> bool:
+    return isinstance(x, (int, float)) and not isinstance(x, bool) and math.isfinite(x)
+
+
+def numeric_runs(v):
+    """First-pass convention: keep only numeric entries of a run list; None if none remain."""
+    if not isinstance(v, list):
+        return None
+    nums = [float(x) for x in v if is_num(x)]
+    return nums or None
+
+
+def side_runs(m: dict, side: str):
+    """First-pass convention: first non-empty numeric list among <side>_runs, <side>_trials."""
+    for suf in ("_runs", "_trials"):
+        nums = numeric_runs(m.get(side + suf))
+        if nums:
+            return nums
+    return None
+
+
+_PCT = re.compile(r"^\s*([-+]?\d+(?:\.\d+)?)\s*%?\s*$")
+
+
+def lenient_runs(v):
+    """Phase-2 convention: also accept strings such as '58.3%' or '58.7'. None if any entry fails."""
+    if not isinstance(v, list) or not v:
+        return None
+    out = []
+    for x in v:
+        if is_num(x):
+            out.append(float(x))
+        elif isinstance(x, str) and _PCT.match(x):
+            out.append(float(_PCT.match(x).group(1)))
+        else:
+            return None
+    return out
+
+
+_PM = re.compile(
+    r"^\s*([-+]?\d+(?:\.\d+)?)\s*%?\s*(?:(?:\+/-|±|\+-|\\pm)\s*([-+]?\d+(?:\.\d+)?)\s*%?)?\s*$"
+)
+
+
+def parse_pm(s):
+    """Parse a reported 'mean ± err' string ('40.3 +/- 0.44', '65.0% ± 6.5%', '68.0').
+
+    Returns (mean, err) with err=None when absent, or None when the string does not parse.
+    """
+    if not isinstance(s, str):
+        return None
+    m = _PM.match(s)
+    if not m:
+        return None
+    return float(m.group(1)), (float(m.group(2)) if m.group(2) is not None else None)
+
+
+# ----------------------------------------------------------------------------- statistics
+
+
+def mean(x):
+    return sum(x) / len(x)
+
+
+def sample_sd(x):
+    return statistics.stdev(x) if len(x) > 1 else float("nan")
+
+
+def sem(x):
+    """Harbor's reporting convention: sample SD / sqrt(k)."""
+    return sample_sd(x) / math.sqrt(len(x))
+
+
+def pooled_sd(a, b):
+    """Pooled run-to-run SD under equal variance: sqrt(((k1-1) var_a + (k2-1) var_b) / (k1+k2-2)).
+
+    With equal k this is sqrt((var_a + var_b) / 2). Needs at least 2 runs on each side.
+    """
+    k1, k2 = len(a), len(b)
+    if min(k1, k2) < 2:
+        raise ValueError("pooled_sd needs at least 2 runs per side")
+    return math.sqrt(((k1 - 1) * statistics.variance(a) + (k2 - 1) * statistics.variance(b)) / (k1 + k2 - 2))
+
+
+def diff_ci_halfwidth(a, b, conf: float = 0.95):
+    """Half-width of the pooled-t confidence interval for mean(a) - mean(b).
+
+    hw = t_{(1+conf)/2, k1+k2-2} * s_p * sqrt(1/k1 + 1/k2). conf=0.90 gives the TOST interval:
+    equivalence within +-m at alpha=0.05 holds iff |gap| + hw90 <= m.
+    """
+    k1, k2 = len(a), len(b)
+    return t_quantile((1 + conf) / 2, k1 + k2 - 2) * pooled_sd(a, b) * math.sqrt(1 / k1 + 1 / k2)
+
+
+def welch_ci_halfwidth(a, b, conf: float = 0.95):
+    """Half-width of the Welch (unequal-variance) interval for mean(a) - mean(b), Satterthwaite df."""
+    k1, k2 = len(a), len(b)
+    v1, v2 = statistics.variance(a) / k1, statistics.variance(b) / k2
+    se = math.sqrt(v1 + v2)
+    if se == 0:
+        return 0.0
+    df = (v1 + v2) ** 2 / ((v1 ** 2 / (k1 - 1)) + (v2 ** 2 / (k2 - 1)))
+    return t_quantile((1 + conf) / 2, df) * se
+
+
+def ranges_overlap(a, b, eps: float = 0.0) -> bool:
+    """Harbor's matching criterion (adapters/ADAPTER_CONTRIBUTING.md, Step 5).
+
+    eps > 0 treats ranges separated by less than eps as touching; the first pass used eps = 0,
+    which lets a floating-point difference of 1e-17 count as a non-overlap.
+    """
+    return max(a) + eps >= min(b) and max(b) + eps >= min(a)
+
+
+def range_separation(a, b) -> float:
+    """Distance between the two run ranges: positive when they do not overlap, else <= 0."""
+    return max(min(b) - max(a), min(a) - max(b))
+
+
+def zero_spread(x) -> bool:
+    return len(set(x)) == 1
+
+
+def rule_false_alarm_exact(k: int) -> float:
+    """P(ranges do not overlap | both sides identically distributed, k runs per side).
+
+    All 2k runs are exchangeable, so each way of choosing which k of the 2k sorted positions
+    belong to 'original' is equally likely: C(2k, k) ways. The ranges fail to overlap only when
+    one side holds the k lowest positions and the other the k highest: 2 ways. Hence
+    P = 2 / C(2k, k) = 2 (k!)^2 / (2k)!.  k=2: 1/3, k=3: 1/10, k=5: 1/126, k=8: 1/6435.
+    This holds for ANY continuous noise distribution, not only the normal.
+    """
+    return 2.0 * math.factorial(k) ** 2 / math.factorial(2 * k)
+
+
+def rule_mismatch_rate_normal(k: int, delta: float) -> float:
+    """Exact P(ranges do not overlap) for k normal runs per side, unit SD, true gap delta.
+
+    P(max A < min B) = integral of k phi(x) Phi(x)^(k-1) (1 - Phi(x - delta))^k dx, and the
+    mirror term for max B < min A. delta is in units of the run-to-run SD.
+    """
+    from scipy.integrate import quad
+    from scipy.stats import norm
+
+    def a_below_b(x):
+        return k * norm.pdf(x) * norm.cdf(x) ** (k - 1) * norm.sf(x - delta) ** k
+
+    def b_below_a(y):
+        return k * norm.pdf(y - delta) * norm.cdf(y - delta) ** (k - 1) * norm.sf(y) ** k
+
+    delta = abs(delta)  # the probability is even in delta; integrate on the side where mass lies
+    lo, hi = -12.0, 12.0 + delta
+    p1, _ = quad(a_below_b, lo, hi, limit=200)
+    p2, _ = quad(b_below_a, lo, hi, limit=200)
+    return p1 + p2
+
+
+def rule_mismatch_rate_sim(k: int, delta: float, n: int = 200_000, seed: int = 7) -> float:
+    """Monte Carlo estimate of the same quantity with normal noise (vectorised, fixed seed)."""
+    import numpy as np
+
+    rng = np.random.default_rng(seed)
+    a = rng.standard_normal((n, k))
+    b = rng.standard_normal((n, k)) + delta
+    miss = (a.max(axis=1) < b.min(axis=1)) | (b.max(axis=1) < a.min(axis=1))
+    return float(miss.mean())
+
+
+def rule_false_alarm_binomial_sim(k: int, n_tasks: int, p: float, n: int = 200_000, seed: int = 7) -> float:
+    """False-alarm rate of the overlap rule when each run score is a pass rate over n_tasks tasks.
+
+    Scores are discrete, so ties happen and count as overlap under the '>=' rule; the result is
+    below the continuous value 2 (k!)^2 / (2k)!.
+    """
+    import numpy as np
+
+    rng = np.random.default_rng(seed)
+    a = rng.binomial(n_tasks, p, (n, k)) / n_tasks
+    b = rng.binomial(n_tasks, p, (n, k)) / n_tasks
+    miss = (a.max(axis=1) < b.min(axis=1)) | (b.max(axis=1) < a.min(axis=1))
+    return float(miss.mean())
+
+
+def t_quantile(p: float, df) -> float:
+    """Student-t quantile, e.g. t_quantile(0.975, 4) = 2.776."""
+    from scipy.stats import t
+
+    return float(t.ppf(p, df))
+
+
+def tost_power(k: int, true_gap: float, sigma: float, margin: float, alpha: float = 0.05) -> float:
+    """P(pooled-t TOST at level alpha shows equivalence within +-margin) with k runs per side.
+
+    Model: run scores normal with common SD sigma; true mean gap D = true_gap. The observed gap
+    dhat ~ N(D, sigma^2 c^2) with c = sqrt(2/k), independent of s_p where nu s_p^2 / sigma^2 ~ chi2(nu),
+    nu = 2k - 2. TOST passes iff |dhat| + t_{1-alpha, nu} s_p c <= margin. Integrating over s_p:
+      power = int chi2_nu(v) [ Phi((m - t c s - D)/(sigma c)) - Phi((-m + t c s - D)/(sigma c)) ]_+ dv,
+    with s = sigma sqrt(v / nu). (This is what the plug-in 'runs needed' rule does NOT compute.)
+    """
+    from scipy.integrate import quad
+    from scipy.stats import chi2, norm
+
+    nu = 2 * k - 2
+    c = math.sqrt(2 / k)
+    tq = t_quantile(1 - alpha, nu)
+
+    def integrand(v):
+        s = sigma * math.sqrt(v / nu)
+        hi = (margin - tq * c * s - true_gap) / (sigma * c)
+        lo = (-margin + tq * c * s - true_gap) / (sigma * c)
+        return chi2.pdf(v, nu) * max(0.0, norm.cdf(hi) - norm.cdf(lo))
+
+    # the bracket is zero once t c s >= margin, i.e. v >= nu (margin / (t c sigma))^2
+    v_max = nu * (margin / (tq * c * sigma)) ** 2
+    val, _ = quad(integrand, 0, v_max, limit=400)
+    return float(val)
+
+
+def runs_needed_power(margin: float, true_gap: float, sigma: float, power: float = 0.8,
+                      alpha: float = 0.05, kmax: int = 2000):
+    """Smallest k (runs per side) with tost_power >= power; None if not reached by kmax."""
+    for k in range(2, kmax + 1):
+        if tost_power(k, true_gap, sigma, margin, alpha) >= power:
+            return k
+    return None
+
+
+def runs_needed_plugin(margin: float, gap0: float, sigma: float, alpha: float = 0.05, kmax: int = 2000):
+    """The first pass's heuristic: smallest k with gap0 + t_{1-alpha, 2k-2} sigma sqrt(2/k) <= margin.
+
+    This is the k at which a comparison landing exactly on (gap0, sigma) would pass; its actual
+    TOST power at that k is only about 40-55%. Kept for comparison with tost_power.
+    """
+    for k in range(2, kmax + 1):
+        if gap0 + t_quantile(1 - alpha, 2 * k - 2) * sigma * math.sqrt(2 / k) <= margin:
+            return k
+    return None
