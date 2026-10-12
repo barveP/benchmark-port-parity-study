@@ -1,0 +1,2636 @@
+[
+ {
+  "benchmark": "SWE-Bench-Multilingual",
+  "subdomain": "Repo Issues",
+  "scenario": "2",
+  "mode": "A",
+  "parity_agent": "codex",
+  "parity_model": "gpt-5-mini",
+  "k": "3",
+  "parity_set": "50/300",
+  "orig": "33.3 \u00b1 0.7",
+  "harbor": "33.3 \u00b1 3.3",
+  "table": 3,
+  "orig_mean": 33.3,
+  "orig_sem": 0.7,
+  "harbor_mean": 33.3,
+  "harbor_sem": 3.3,
+  "parity_n": 50,
+  "full_n": 300,
+  "json_matches": [
+   {
+    "adapter": "swebench_multilingual",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "codex@0.117.0",
+    "model": "gpt-5-mini",
+    "number_of_runs": 3,
+    "metric": "Resolved Rate",
+    "scale": 1.0,
+    "json_sem": [
+     0.7,
+     3.3
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "SWE-Bench Pro",
+  "subdomain": "Repo Issues",
+  "scenario": "2",
+  "mode": "A",
+  "parity_agent": "codex",
+  "parity_model": "gpt-5-mini",
+  "k": "6",
+  "parity_set": "100/731",
+  "orig": "35.7 \u00b1 0.6",
+  "harbor": "36.3 \u00b1 1.0",
+  "table": 3,
+  "orig_mean": 35.7,
+  "orig_sem": 0.6,
+  "harbor_mean": 36.3,
+  "harbor_sem": 1.0,
+  "parity_n": 100,
+  "full_n": 731,
+  "json_matches": [
+   {
+    "adapter": "swebenchpro",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "codex@0.77.0",
+    "model": "gpt-5-mini-2025-08-07",
+    "number_of_runs": 6,
+    "metric": "Resolved Rate (%)",
+    "scale": 1.0,
+    "json_sem": [
+     0.6,
+     1.0
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "SWE-bench Verified",
+  "subdomain": "Repo Issues",
+  "scenario": "1",
+  "mode": "A",
+  "parity_agent": "mini-swe-agent",
+  "parity_model": "gpt-5-mini",
+  "k": "3",
+  "parity_set": "499/500",
+  "orig": "56.3 \u00b1 0.0",
+  "harbor": "54.5 \u00b1 0.7",
+  "table": 3,
+  "orig_mean": 56.3,
+  "orig_sem": 0.0,
+  "harbor_mean": 54.5,
+  "harbor_sem": 0.7,
+  "parity_n": 499,
+  "full_n": 500,
+  "json_matches": [
+   {
+    "adapter": "swebench",
+    "exp": 4,
+    "metric_index": 0,
+    "agent": "mini-swe-agent@2.1.0",
+    "model": "openai/gpt-5-mini",
+    "number_of_runs": 3,
+    "metric": "Resolved Rate",
+    "scale": 100.0,
+    "json_sem": [
+     0.0,
+     0.007
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "SWE-smith",
+  "subdomain": "Repo Issues",
+  "scenario": "1",
+  "mode": "A",
+  "parity_agent": "mini-swe-agent",
+  "parity_model": "claude-3-haiku",
+  "k": "\u2013",
+  "parity_set": "100/100",
+  "orig": "0.0",
+  "harbor": "0.0",
+  "table": 3,
+  "orig_mean": 0.0,
+  "orig_sem": null,
+  "harbor_mean": 0.0,
+  "harbor_sem": null,
+  "parity_n": 100,
+  "full_n": 100,
+  "json_matches": [
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 5,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "mcc",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 6,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "missing",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0222222222
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 7,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "missing_stderr",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0222222222
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 12,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "mcc",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 13,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "missing",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 14,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "missing_stderr",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 19,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "mcc",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 20,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "missing",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0222222222
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 21,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "missing_stderr",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0222222222
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 27,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "missing",
+    "scale": 1.0,
+    "json_sem": [
+     0.0222222222,
+     0.0222222222
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 28,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "missing_stderr",
+    "scale": 1.0,
+    "json_sem": [
+     0.0222222222,
+     0.0222222222
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 30,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "acc_stderr",
+    "scale": 1.0,
+    "json_sem": [
+     0.0222222222,
+     0.0222222222
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 34,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "missing",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0222222222
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 35,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "missing_stderr",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0222222222
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 41,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "missing",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 42,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "missing_stderr",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 47,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "mcc",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 48,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "missing",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 49,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "missing_stderr",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 55,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "missing",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 56,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "missing_stderr",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 61,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "mcc",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 62,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "missing",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 63,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "missing_stderr",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 69,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "missing",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 70,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "missing_stderr",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 75,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "mcc",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 76,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "missing",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0222222222
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 77,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "missing_stderr",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0222222222
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 83,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "missing",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 84,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "missing_stderr",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 86,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "acc_stderr",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0222222222
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 89,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "mcc",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 90,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "missing",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0222222222
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 91,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "missing_stderr",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0222222222
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 97,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "missing",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0222222222
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 98,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "missing_stderr",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0222222222
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 104,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "missing",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0222222222
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 105,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "missing_stderr",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0222222222
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 110,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "mcc",
+    "scale": 1.0,
+    "json_sem": [
+     0.0238095238,
+     0.0238095238
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 111,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "missing",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 112,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "missing_stderr",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 117,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "mcc",
+    "scale": 1.0,
+    "json_sem": [
+     0.0964668853,
+     0.101644287
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 118,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "missing",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 119,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "missing_stderr",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 120,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "missing",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 121,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "missing_stderr",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 123,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "acc",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 124,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "acc_stderr",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.0
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 127,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "entity_f1",
+    "scale": 1.0,
+    "json_sem": [
+     0.0266666667,
+     0.024691358
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 132,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "f1",
+    "scale": 1.0,
+    "json_sem": [
+     0.0235643715,
+     0.0003272829
+    ]
+   },
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 133,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "precision",
+    "scale": 1.0,
+    "json_sem": [
+     0.0149857858,
+     0.0002676033
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "SWT Bench",
+  "subdomain": "Repo Issues",
+  "scenario": "1",
+  "mode": "A",
+  "parity_agent": "claude-code",
+  "parity_model": "haiku-4-5",
+  "k": "\u2013",
+  "parity_set": "433/433",
+  "orig": "20.55 \u00b1 0.0",
+  "harbor": "20.55 \u00b1 0.0",
+  "table": 3,
+  "orig_mean": 20.55,
+  "orig_sem": 0.0,
+  "harbor_mean": 20.55,
+  "harbor_sem": 0.0,
+  "parity_n": 433,
+  "full_n": 433,
+  "json_matches": []
+ },
+ {
+  "benchmark": "CooperBench",
+  "subdomain": "Feature Dev",
+  "scenario": "1",
+  "mode": "A",
+  "parity_agent": "openhands-sdk",
+  "parity_model": "gemini-3-flash",
+  "k": "3",
+  "parity_set": "50/652",
+  "orig": "32.7 \u00b1 1.3",
+  "harbor": "30.7 \u00b1 1.3",
+  "table": 3,
+  "orig_mean": 32.7,
+  "orig_sem": 1.3,
+  "harbor_mean": 30.7,
+  "harbor_sem": 1.3,
+  "parity_n": 50,
+  "full_n": 652,
+  "json_matches": [
+   {
+    "adapter": "cooperbench",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "openhands-sdk@1.10.0",
+    "model": "gemini-3-flash-preview",
+    "number_of_runs": 3,
+    "metric": "pass_rate",
+    "scale": 1.0,
+    "json_sem": [
+     1.33,
+     1.33
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "FeatBench",
+  "subdomain": "Feature Dev",
+  "scenario": "1",
+  "mode": "A",
+  "parity_agent": "trae-agent",
+  "parity_model": "deepseek-v3.2",
+  "k": "3",
+  "parity_set": "156/156",
+  "orig": "49.8 \u00b1 2.3",
+  "harbor": "49.4 \u00b1 1.1",
+  "table": 3,
+  "orig_mean": 49.8,
+  "orig_sem": 2.3,
+  "harbor_mean": 49.4,
+  "harbor_sem": 1.1,
+  "parity_n": 156,
+  "full_n": 156,
+  "json_matches": [
+   {
+    "adapter": "featbench",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "trae-agent@0.1.0",
+    "model": "deepseek-v3.2",
+    "number_of_runs": 3,
+    "metric": "resolved_rate",
+    "scale": 1.0,
+    "json_sem": [
+     2.26,
+     1.11
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "FeatureBench",
+  "subdomain": "Feature Dev",
+  "scenario": "1",
+  "mode": "A",
+  "parity_agent": "codex",
+  "parity_model": "gpt-5-mini",
+  "k": "2",
+  "parity_set": "30/200",
+  "orig": "13.3 \u00b1 0.0",
+  "harbor": "15.0 \u00b1 1.7",
+  "table": 3,
+  "orig_mean": 13.3,
+  "orig_sem": 0.0,
+  "harbor_mean": 15.0,
+  "harbor_sem": 1.7,
+  "parity_n": 30,
+  "full_n": 200,
+  "json_matches": [
+   {
+    "adapter": "featurebench",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "codex@0.106.0",
+    "model": "openai/gpt-5-mini",
+    "number_of_runs": 2,
+    "metric": "resolved_rate",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     1.7
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "SWE-Lancer",
+  "subdomain": "Feature Dev",
+  "scenario": "2",
+  "mode": "A",
+  "parity_agent": "claude-code",
+  "parity_model": "claude-sonnet-4",
+  "k": "5",
+  "parity_set": "463/463",
+  "orig": "48.4 \u00b1 1.0",
+  "harbor": "47.6 \u00b1 0.4",
+  "table": 3,
+  "orig_mean": 48.4,
+  "orig_sem": 1.0,
+  "harbor_mean": 47.6,
+  "harbor_sem": 0.4,
+  "parity_n": 463,
+  "full_n": 463,
+  "json_matches": [
+   {
+    "adapter": "swelancer",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "claude-code@1.0.53",
+    "model": "claude-sonnet-4-20250514",
+    "number_of_runs": 5,
+    "metric": "Pass Rate (%)",
+    "scale": 1.0,
+    "json_sem": [
+     0.99,
+     0.43
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "WebGen-Bench",
+  "subdomain": "Feature Dev",
+  "scenario": "2",
+  "mode": "M",
+  "parity_agent": "aider",
+  "parity_model": "gpt-5-mini",
+  "k": "3",
+  "parity_set": "101/101",
+  "orig": "16.7 \u00b1 0.9",
+  "harbor": "16.2 \u00b1 1.6",
+  "table": 3,
+  "orig_mean": 16.7,
+  "orig_sem": 0.9,
+  "harbor_mean": 16.2,
+  "harbor_sem": 1.6,
+  "parity_n": 101,
+  "full_n": 101,
+  "json_matches": [
+   {
+    "adapter": "webgen_bench",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "aider@v0.86.2",
+    "model": "gpt-5-mini",
+    "number_of_runs": 3,
+    "metric": "accuracy ((YES + 0.5\u00d7PARTIAL) / total_ui_instruct_tests)",
+    "scale": 1.0,
+    "json_sem": [
+     0.9,
+     1.6
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "Aider Polyglot",
+  "subdomain": "Coding",
+  "scenario": "2",
+  "mode": "N",
+  "parity_agent": "claude-code",
+  "parity_model": "claude-3-haiku",
+  "k": "1",
+  "parity_set": "225/225",
+  "orig": "2.7 \u00b1 0.0",
+  "harbor": "2.7 \u00b1 0.0",
+  "table": 3,
+  "orig_mean": 2.7,
+  "orig_sem": 0.0,
+  "harbor_mean": 2.7,
+  "harbor_sem": 0.0,
+  "parity_n": 225,
+  "full_n": 225,
+  "json_matches": []
+ },
+ {
+  "benchmark": "BigCodeBench",
+  "subdomain": "Coding",
+  "scenario": "2",
+  "mode": "M",
+  "parity_agent": "codex",
+  "parity_model": "gpt-5-mini",
+  "k": "3",
+  "parity_set": "145/145",
+  "orig": "32.7 \u00b1 0.4",
+  "harbor": "34.0 \u00b1 1.6",
+  "table": 3,
+  "orig_mean": 32.7,
+  "orig_sem": 0.4,
+  "harbor_mean": 34.0,
+  "harbor_sem": 1.6,
+  "parity_n": 145,
+  "full_n": 145,
+  "json_matches": [
+   {
+    "adapter": "bigcodebench_hard",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "codex@0.77.0",
+    "model": "gpt-5-mini-2025-08-07",
+    "number_of_runs": 3,
+    "metric": "Mean Resolved Rate",
+    "scale": 1.0,
+    "json_sem": [
+     0.4,
+     1.6
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "FrontierCS",
+  "subdomain": "Coding",
+  "scenario": "2",
+  "mode": "M",
+  "parity_agent": "claude-code",
+  "parity_model": "opus-4-6",
+  "k": "3",
+  "parity_set": "10/172",
+  "orig": "68.9 \u00b1 11.5",
+  "harbor": "53.4 \u00b1 9.9",
+  "table": 3,
+  "orig_mean": 68.9,
+  "orig_sem": 11.5,
+  "harbor_mean": 53.4,
+  "harbor_sem": 9.9,
+  "parity_n": 10,
+  "full_n": 172,
+  "json_matches": []
+ },
+ {
+  "benchmark": "LiveCodeBench",
+  "subdomain": "Coding",
+  "scenario": "2",
+  "mode": "N",
+  "parity_agent": "claude-code",
+  "parity_model": "haiku-4-5",
+  "k": "4",
+  "parity_set": "100/1055",
+  "orig": "54.5 \u00b1 1.5",
+  "harbor": "53.3 \u00b1 1.0",
+  "table": 3,
+  "orig_mean": 54.5,
+  "orig_sem": 1.5,
+  "harbor_mean": 53.3,
+  "harbor_sem": 1.0,
+  "parity_n": 100,
+  "full_n": 1055,
+  "json_matches": []
+ },
+ {
+  "benchmark": "USACO",
+  "subdomain": "Coding",
+  "scenario": "2",
+  "mode": "N",
+  "parity_agent": "claude-code",
+  "parity_model": "haiku-4-5",
+  "k": "3",
+  "parity_set": "304/304",
+  "orig": "40.3 \u00b1 0.4",
+  "harbor": "43.0 \u00b1 1.4",
+  "table": 3,
+  "orig_mean": 40.3,
+  "orig_sem": 0.4,
+  "harbor_mean": 43.0,
+  "harbor_sem": 1.4,
+  "parity_n": 304,
+  "full_n": 304,
+  "json_matches": [
+   {
+    "adapter": "usaco",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "claude-code@v2.0.34",
+    "model": "claude-haiku-4-5-20251001",
+    "number_of_runs": 3,
+    "metric": "Resolved Rate (%)",
+    "scale": 1.0,
+    "json_sem": [
+     0.44,
+     1.4
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "HumanEvalFix",
+  "subdomain": "Coding",
+  "scenario": "1",
+  "mode": "N",
+  "parity_agent": "openhands",
+  "parity_model": "gpt-5-mini",
+  "k": "3",
+  "parity_set": "164/164",
+  "orig": "98.2 \u00b1 0.6",
+  "harbor": "98.0 \u00b1 0.4",
+  "table": 3,
+  "orig_mean": 98.2,
+  "orig_sem": 0.6,
+  "harbor_mean": 98.0,
+  "harbor_sem": 0.4,
+  "parity_n": 164,
+  "full_n": 164,
+  "json_matches": [
+   {
+    "adapter": "humanevalfix",
+    "exp": 1,
+    "metric_index": 0,
+    "agent": "openhands@v0.60.0",
+    "model": "gpt-5-mini-2025-08-07",
+    "number_of_runs": 3,
+    "metric": "Accuracy",
+    "scale": 1.0,
+    "json_sem": [
+     0.6,
+     0.4
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "QuixBugs",
+  "subdomain": "Coding",
+  "scenario": "2",
+  "mode": "N",
+  "parity_agent": "codex",
+  "parity_model": "gpt-5-mini",
+  "k": "3",
+  "parity_set": "80/80",
+  "orig": "88.4 \u00b1 0.4",
+  "harbor": "87.9 \u00b1 0.4",
+  "table": 3,
+  "orig_mean": 88.4,
+  "orig_sem": 0.4,
+  "harbor_mean": 87.9,
+  "harbor_sem": 0.4,
+  "parity_n": 80,
+  "full_n": 80,
+  "json_matches": []
+ },
+ {
+  "benchmark": "GSO",
+  "subdomain": "Perf. Opt.",
+  "scenario": "1",
+  "mode": "A",
+  "parity_agent": "openhands",
+  "parity_model": "gpt-5.1",
+  "k": "2",
+  "parity_set": "102/102",
+  "orig": "13.7 \u00b1 1.0",
+  "harbor": "13.2 \u00b1 1.5",
+  "table": 3,
+  "orig_mean": 13.7,
+  "orig_sem": 1.0,
+  "harbor_mean": 13.2,
+  "harbor_sem": 1.5,
+  "parity_n": 102,
+  "full_n": 102,
+  "json_matches": [
+   {
+    "adapter": "gso",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "OpenHands@1.4.0",
+    "model": "gpt-5.1-2025-11-13 (high)",
+    "number_of_runs": 2,
+    "metric": "Opt@1",
+    "scale": 1.0,
+    "json_sem": [
+     1.0,
+     1.5
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "AlgoTune",
+  "subdomain": "Perf. Opt.",
+  "scenario": "2",
+  "mode": "A",
+  "parity_agent": "terminus-2",
+  "parity_model": "gpt-5-mini",
+  "k": "3",
+  "parity_set": "154/154",
+  "orig": "1.23 \u00b1 0.02",
+  "harbor": "1.23 \u00b1 0.02",
+  "table": 3,
+  "orig_mean": 1.23,
+  "orig_sem": 0.02,
+  "harbor_mean": 1.23,
+  "harbor_sem": 0.02,
+  "parity_n": 154,
+  "full_n": 154,
+  "json_matches": []
+ },
+ {
+  "benchmark": "CRUST-Bench",
+  "subdomain": "Lang. Trans.",
+  "scenario": "2",
+  "mode": "M",
+  "parity_agent": "codex",
+  "parity_model": "gpt-5-nano",
+  "k": "3",
+  "parity_set": "100/100",
+  "orig": "58.3 \u00b1 0.7",
+  "harbor": "58.3 \u00b1 1.2",
+  "table": 3,
+  "orig_mean": 58.3,
+  "orig_sem": 0.7,
+  "harbor_mean": 58.3,
+  "harbor_sem": 1.2,
+  "parity_n": 100,
+  "full_n": 100,
+  "json_matches": [
+   {
+    "adapter": "crustbench",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "codex@0.77.0",
+    "model": "gpt-5-nano",
+    "number_of_runs": 3,
+    "metric": "Resolved Rate",
+    "scale": 100.0,
+    "json_sem": [
+     0.007,
+     0.012
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "DevOpsGym",
+  "subdomain": "DevOps",
+  "scenario": "1",
+  "mode": "A",
+  "parity_agent": "codex",
+  "parity_model": "gpt-5-mini",
+  "k": "3",
+  "parity_set": "50/733",
+  "orig": "22.7 \u00b1 1.8",
+  "harbor": "22.0 \u00b1 0.0",
+  "table": 3,
+  "orig_mean": 22.7,
+  "orig_sem": 1.8,
+  "harbor_mean": 22.0,
+  "harbor_sem": 0.0,
+  "parity_n": 50,
+  "full_n": 733,
+  "json_matches": [
+   {
+    "adapter": "devopsgym",
+    "exp": 1,
+    "metric_index": 0,
+    "agent": "codex@0.81.0-alpha.8",
+    "model": "gpt-5-mini",
+    "number_of_runs": 3,
+    "metric": "Resolved Rate",
+    "scale": 1.0,
+    "json_sem": [
+     1.76,
+     0.0
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "AIME",
+  "subdomain": "Comp. Math",
+  "scenario": "2",
+  "mode": "N",
+  "parity_agent": "codex",
+  "parity_model": "gpt-5-nano",
+  "k": "\u2013",
+  "parity_set": "30/30",
+  "orig": "N/A",
+  "harbor": "N/A",
+  "table": 3,
+  "orig_mean": null,
+  "orig_sem": null,
+  "harbor_mean": null,
+  "harbor_sem": null,
+  "parity_n": 30,
+  "full_n": 30,
+  "json_matches": []
+ },
+ {
+  "benchmark": "IneqMath",
+  "subdomain": "Comp. Math",
+  "scenario": "2",
+  "mode": "N",
+  "parity_agent": "codex",
+  "parity_model": "gpt-4o-mini",
+  "k": "3",
+  "parity_set": "100/100",
+  "orig": "50.0 \u00b1 1.5",
+  "harbor": "52.0 \u00b1 0.7",
+  "table": 3,
+  "orig_mean": 50.0,
+  "orig_sem": 1.5,
+  "harbor_mean": 52.0,
+  "harbor_sem": 0.7,
+  "parity_n": 100,
+  "full_n": 100,
+  "json_matches": [
+   {
+    "adapter": "ineqmath",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "codex@0.77.0",
+    "model": "gpt-4o-mini-2024-07-18",
+    "number_of_runs": 3,
+    "metric": "Accuracy",
+    "scale": 100.0,
+    "json_sem": [
+     0.015,
+     0.007
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "Omni-Math",
+  "subdomain": "Comp. Math",
+  "scenario": "2",
+  "mode": "N",
+  "parity_agent": "codex",
+  "parity_model": "gpt-5.3-codex",
+  "k": "2",
+  "parity_set": "100/4428",
+  "orig": "80.0 \u00b1 2.0",
+  "harbor": "81.0 \u00b1 2.0",
+  "table": 3,
+  "orig_mean": 80.0,
+  "orig_sem": 2.0,
+  "harbor_mean": 81.0,
+  "harbor_sem": 2.0,
+  "parity_n": 100,
+  "full_n": 4428,
+  "json_matches": [
+   {
+    "adapter": "omnimath",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "codex@0.1.0",
+    "model": "gpt-5.3-codex",
+    "number_of_runs": 2,
+    "metric": "Accuracy",
+    "scale": 1.0,
+    "json_sem": [
+     2.0,
+     2.0
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "ARC-AGI-2",
+  "subdomain": "Abs. Reason.",
+  "scenario": "2",
+  "mode": "N",
+  "parity_agent": "codex",
+  "parity_model": "gpt-5.2",
+  "k": "6",
+  "parity_set": "167/167",
+  "orig": "36.0 \u00b1 0.8",
+  "harbor": "35.8 \u00b1 0.8",
+  "table": 3,
+  "orig_mean": 36.0,
+  "orig_sem": 0.8,
+  "harbor_mean": 35.8,
+  "harbor_sem": 0.8,
+  "parity_n": 167,
+  "full_n": 167,
+  "json_matches": [
+   {
+    "adapter": "arc_agi_2",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "codex@0.53.0",
+    "model": "gpt-5.2",
+    "number_of_runs": 6,
+    "metric": "Pass@2 Rate (%)",
+    "scale": 1.0,
+    "json_sem": [
+     0.76,
+     0.78
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "KUMO",
+  "subdomain": "Abs. Reason.",
+  "scenario": "2",
+  "mode": "N",
+  "parity_agent": "kumo-vanilla",
+  "parity_model": "gpt-5-mini",
+  "k": "3",
+  "parity_set": "212/5300",
+  "orig": "88.7 \u00b1 0.7",
+  "harbor": "89.9 \u00b1 0.7",
+  "table": 3,
+  "orig_mean": 88.7,
+  "orig_sem": 0.7,
+  "harbor_mean": 89.9,
+  "harbor_sem": 0.7,
+  "parity_n": 212,
+  "full_n": 5300,
+  "json_matches": [
+   {
+    "adapter": "kumo",
+    "exp": 1,
+    "metric_index": 0,
+    "agent": "kumo-vanilla",
+    "model": "openai/gpt-5-mini",
+    "number_of_runs": null,
+    "metric": "Accuracy",
+    "scale": 100.0,
+    "json_sem": [
+     0.007,
+     0.007
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "Reasoning Gym",
+  "subdomain": "Abs. Reason.",
+  "scenario": "2",
+  "mode": "N",
+  "parity_agent": "codex",
+  "parity_model": "gpt-5.1-codex-mini",
+  "k": "3",
+  "parity_set": "576/576",
+  "orig": "85.7 \u00b1 0.4",
+  "harbor": "85.9 \u00b1 0.3",
+  "table": 3,
+  "orig_mean": 85.7,
+  "orig_sem": 0.4,
+  "harbor_mean": 85.9,
+  "harbor_sem": 0.3,
+  "parity_n": 576,
+  "full_n": 576,
+  "json_matches": [
+   {
+    "adapter": "reasoning-gym",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "codex@0.77.0",
+    "model": "gpt-5.1-codex-mini",
+    "number_of_runs": 3,
+    "metric": "Mean Reward",
+    "scale": 100.0,
+    "json_sem": [
+     0.0041,
+     0.0033
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "GPQA Diamond",
+  "subdomain": "Expert QA",
+  "scenario": "2",
+  "mode": "N",
+  "parity_agent": "codex",
+  "parity_model": "gpt-5.2",
+  "k": "3",
+  "parity_set": "198/198",
+  "orig": "87.9 \u00b1 0.6",
+  "harbor": "87.2 \u00b1 0.3",
+  "table": 3,
+  "orig_mean": 87.9,
+  "orig_sem": 0.6,
+  "harbor_mean": 87.2,
+  "harbor_sem": 0.3,
+  "parity_n": 198,
+  "full_n": 198,
+  "json_matches": [
+   {
+    "adapter": "gpqa-diamond",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "codex",
+    "model": "gpt-5.2",
+    "number_of_runs": 3,
+    "metric": "Accuracy",
+    "scale": 1.0,
+    "json_sem": [
+     0.58,
+     0.34
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "Humanity\u2019s Last Exam",
+  "subdomain": "Expert QA",
+  "scenario": "2",
+  "mode": "N",
+  "parity_agent": "claude-code",
+  "parity_model": "haiku-4-5",
+  "k": "3",
+  "parity_set": "249/2500",
+  "orig": "10.7 \u00b1 0.9",
+  "harbor": "11.0 \u00b1 0.4",
+  "table": 3,
+  "orig_mean": 10.7,
+  "orig_sem": 0.9,
+  "harbor_mean": 11.0,
+  "harbor_sem": 0.4,
+  "parity_n": 249,
+  "full_n": 2500,
+  "json_matches": [
+   {
+    "adapter": "hle",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "claude-code@2.1.76",
+    "model": "claude-haiku-4-5",
+    "number_of_runs": 3,
+    "metric": "Accuracy (%)",
+    "scale": 1.0,
+    "json_sem": [
+     0.94,
+     0.36
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "MMMLU",
+  "subdomain": "Expert QA",
+  "scenario": "2",
+  "mode": "N",
+  "parity_agent": "codex-cli",
+  "parity_model": "gpt-5.1-codex-mini",
+  "k": "5",
+  "parity_set": "150/210630",
+  "orig": "63.5 \u00b1 0.5",
+  "harbor": "63.3 \u00b1 0.5",
+  "table": 3,
+  "orig_mean": 63.5,
+  "orig_sem": 0.5,
+  "harbor_mean": 63.3,
+  "harbor_sem": 0.5,
+  "parity_n": 150,
+  "full_n": 210630,
+  "json_matches": [
+   {
+    "adapter": "mmmlu",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "codex-cli@0.69.0",
+    "model": "gpt-5.1-codex-mini",
+    "number_of_runs": 5,
+    "metric": "accuracy",
+    "scale": 1.0,
+    "json_sem": [
+     0.53,
+     0.47
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "SimpleQA",
+  "subdomain": "Expert QA",
+  "scenario": "2",
+  "mode": "N",
+  "parity_agent": "claude-code",
+  "parity_model": "opus-4-6",
+  "k": "3",
+  "parity_set": "50/4326",
+  "orig": "96.7 \u00b1 1.8",
+  "harbor": "94.7 \u00b1 0.7",
+  "table": 3,
+  "orig_mean": 96.7,
+  "orig_sem": 1.8,
+  "harbor_mean": 94.7,
+  "harbor_sem": 0.7,
+  "parity_n": 50,
+  "full_n": 4326,
+  "json_matches": [
+   {
+    "adapter": "simpleqa",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "claude-code@2.1.32",
+    "model": "claude-opus-4-6",
+    "number_of_runs": 3,
+    "metric": "accuracy",
+    "scale": 100.0,
+    "json_sem": [
+     0.018,
+     0.007
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "AA-LCR",
+  "subdomain": "Long Ctx.",
+  "scenario": "2",
+  "mode": "N",
+  "parity_agent": "codex",
+  "parity_model": "gpt-5-mini",
+  "k": "1",
+  "parity_set": "99/99",
+  "orig": "68.0",
+  "harbor": "68.7",
+  "table": 3,
+  "orig_mean": 68.0,
+  "orig_sem": null,
+  "harbor_mean": 68.7,
+  "harbor_sem": null,
+  "parity_n": 99,
+  "full_n": 99,
+  "json_matches": []
+ },
+ {
+  "benchmark": "ReplicationBench",
+  "subdomain": "Research WF",
+  "scenario": "1",
+  "mode": "A",
+  "parity_agent": "claude-code",
+  "parity_model": "haiku-4-5",
+  "k": "1",
+  "parity_set": "90/90",
+  "orig": "14.4",
+  "harbor": "14.4",
+  "table": 4,
+  "orig_mean": 14.4,
+  "orig_sem": null,
+  "harbor_mean": 14.4,
+  "harbor_sem": null,
+  "parity_n": 90,
+  "full_n": 90,
+  "json_matches": []
+ },
+ {
+  "benchmark": "ScienceAgent Bench",
+  "subdomain": "Research WF",
+  "scenario": "1",
+  "mode": "A",
+  "parity_agent": "claude-code",
+  "parity_model": "haiku-4-5",
+  "k": "5",
+  "parity_set": "102/102",
+  "orig": "33.7 \u00b1 0.9",
+  "harbor": "31.8 \u00b1 1.2",
+  "table": 4,
+  "orig_mean": 33.7,
+  "orig_sem": 0.9,
+  "harbor_mean": 31.8,
+  "harbor_sem": 1.2,
+  "parity_n": 102,
+  "full_n": 102,
+  "json_matches": [
+   {
+    "adapter": "scienceagentbench",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "claude-code@2.1.63",
+    "model": "claude-haiku-4-5-20251001",
+    "number_of_runs": 5,
+    "metric": "success_rate",
+    "scale": 1.0,
+    "json_sem": [
+     0.91,
+     1.18
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "SLDBench",
+  "subdomain": "Research WF",
+  "scenario": "1",
+  "mode": "A",
+  "parity_agent": "claude-code",
+  "parity_model": "haiku-4-5",
+  "k": "5",
+  "parity_set": "8/8",
+  "orig": "38.1 \u00b1 9.5",
+  "harbor": "39.2 \u00b1 10.7",
+  "table": 4,
+  "orig_mean": 38.1,
+  "orig_sem": 9.5,
+  "harbor_mean": 39.2,
+  "harbor_sem": 10.7,
+  "parity_n": 8,
+  "full_n": 8,
+  "json_matches": []
+ },
+ {
+  "benchmark": "MLGym-Bench",
+  "subdomain": "Research WF",
+  "scenario": "2",
+  "mode": "M",
+  "parity_agent": "mini-swe-agent",
+  "parity_model": "gpt-5",
+  "k": "3",
+  "parity_set": "12/12",
+  "orig": "80.6 \u00b1 2.8",
+  "harbor": "80.6 \u00b1 2.8",
+  "table": 4,
+  "orig_mean": 80.6,
+  "orig_sem": 2.8,
+  "harbor_mean": 80.6,
+  "harbor_sem": 2.8,
+  "parity_n": 12,
+  "full_n": 12,
+  "json_matches": [
+   {
+    "adapter": "mlgym-bench",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "mini-swe-agent@1.10.0",
+    "model": "openai/gpt-5",
+    "number_of_runs": 3,
+    "metric": "Pass Rate (%)",
+    "scale": 1.0,
+    "json_sem": [
+     2.78,
+     2.78
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "CodePDE",
+  "subdomain": "Sci. Comp.",
+  "scenario": "2",
+  "mode": "M",
+  "parity_agent": "terminus-2",
+  "parity_model": "haiku-4-5",
+  "k": "8",
+  "parity_set": "5/5",
+  "orig": "27.5 \u00b1 3.7",
+  "harbor": "27.5 \u00b1 3.7",
+  "table": 4,
+  "orig_mean": 27.5,
+  "orig_sem": 3.7,
+  "harbor_mean": 27.5,
+  "harbor_sem": 3.7,
+  "parity_n": 5,
+  "full_n": 5,
+  "json_matches": []
+ },
+ {
+  "benchmark": "ResearchCode Bench",
+  "subdomain": "Sci. Comp.",
+  "scenario": "2",
+  "mode": "M",
+  "parity_agent": "codex",
+  "parity_model": "gpt-4.1-mini",
+  "k": "3",
+  "parity_set": "212/212",
+  "orig": "41.0 \u00b1 0.4",
+  "harbor": "40.7 \u00b1 0.3",
+  "table": 4,
+  "orig_mean": 41.0,
+  "orig_sem": 0.4,
+  "harbor_mean": 40.7,
+  "harbor_sem": 0.3,
+  "parity_n": 212,
+  "full_n": 212,
+  "json_matches": [
+   {
+    "adapter": "research-code-bench",
+    "exp": 1,
+    "metric_index": 0,
+    "agent": "codex@gpt-4.1-mini-2025-04-14",
+    "model": "gpt-4.1-mini-2025-04-14",
+    "number_of_runs": 3,
+    "metric": "success_rate (%)",
+    "scale": 1.0,
+    "json_sem": [
+     0.35,
+     0.32
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "SciCode",
+  "subdomain": "Sci. Comp.",
+  "scenario": "2",
+  "mode": "M",
+  "parity_agent": "codex",
+  "parity_model": "gpt-5.1-codex-mini",
+  "k": "3",
+  "parity_set": "80/80",
+  "orig": "43.3 \u00b1 0.6",
+  "harbor": "43.8 \u00b1 0.6",
+  "table": 4,
+  "orig_mean": 43.3,
+  "orig_sem": 0.6,
+  "harbor_mean": 43.8,
+  "harbor_sem": 0.6,
+  "parity_n": 80,
+  "full_n": 80,
+  "json_matches": [
+   {
+    "adapter": "scicode",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "codex@0.106.0",
+    "model": "openai/gpt-5.1-codex-mini",
+    "number_of_runs": 3,
+    "metric": "Mean Sub-step Accuracy (macro)",
+    "scale": 100.0,
+    "json_sem": [
+     0.0055,
+     0.0061
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "QCircuitBench",
+  "subdomain": "Sci. Comp.",
+  "scenario": "2",
+  "mode": "N",
+  "parity_agent": "codex",
+  "parity_model": "gpt-5.2",
+  "k": "3",
+  "parity_set": "28/28",
+  "orig": "60.9 \u00b1 2.5",
+  "harbor": "61.9 \u00b1 2.1",
+  "table": 4,
+  "orig_mean": 60.9,
+  "orig_sem": 2.5,
+  "harbor_mean": 61.9,
+  "harbor_sem": 2.1,
+  "parity_n": 28,
+  "full_n": 28,
+  "json_matches": [
+   {
+    "adapter": "qcircuitbench",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "codex@0.76.0",
+    "model": "gpt-5.2-2025-12-11",
+    "number_of_runs": 3,
+    "metric": "Mean Semantic Score",
+    "scale": 100.0,
+    "json_sem": [
+     0.025,
+     0.021
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "BIX-Bench",
+  "subdomain": "Biomed.",
+  "scenario": "3",
+  "mode": "A",
+  "parity_agent": "bixbench-agent",
+  "parity_model": "gpt-4o-mini",
+  "k": "3",
+  "parity_set": "50/205",
+  "orig": "16.0 \u00b1 3.1",
+  "harbor": "16.7 \u00b1 2.4",
+  "table": 4,
+  "orig_mean": 16.0,
+  "orig_sem": 3.1,
+  "harbor_mean": 16.7,
+  "harbor_sem": 2.4,
+  "parity_n": 50,
+  "full_n": 205,
+  "json_matches": [
+   {
+    "adapter": "bixbench",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "BixbenchJupyterAgent",
+    "model": "gpt-4o-mini-2024-07-18",
+    "number_of_runs": 3,
+    "metric": "Resolved Rate",
+    "scale": 100.0,
+    "json_sem": [
+     0.031,
+     0.024
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "LAB-Bench",
+  "subdomain": "Biomed.",
+  "scenario": "2",
+  "mode": "N",
+  "parity_agent": "codex",
+  "parity_model": "gpt-5-codex",
+  "k": "3",
+  "parity_set": "181/181",
+  "orig": "40.0 \u00b1 0.2",
+  "harbor": "41.1 \u00b1 0.5",
+  "table": 4,
+  "orig_mean": 40.0,
+  "orig_sem": 0.2,
+  "harbor_mean": 41.1,
+  "harbor_sem": 0.5,
+  "parity_n": 181,
+  "full_n": 181,
+  "json_matches": [
+   {
+    "adapter": "labbench",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "codex@0.71.0",
+    "model": "gpt-5-codex",
+    "number_of_runs": 3,
+    "metric": "accuracy",
+    "scale": 100.0,
+    "json_sem": [
+     0.002,
+     0.005
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "ACE-Bench",
+  "subdomain": "Tool Use",
+  "scenario": "1",
+  "mode": "A",
+  "parity_agent": "claude-code",
+  "parity_model": "haiku-4-5",
+  "k": "3",
+  "parity_set": "973/973",
+  "orig": "83.6 \u00b1 0.4",
+  "harbor": "83.2 \u00b1 0.8",
+  "table": 4,
+  "orig_mean": 83.6,
+  "orig_sem": 0.4,
+  "harbor_mean": 83.2,
+  "harbor_sem": 0.8,
+  "parity_n": 973,
+  "full_n": 973,
+  "json_matches": [
+   {
+    "adapter": "ace-bench",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "claude-code@2.1.110",
+    "model": "claude-haiku-4-5",
+    "number_of_runs": 3,
+    "metric": "accuracy",
+    "scale": 100.0,
+    "json_sem": [
+     0.0043,
+     0.008
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "GAIA",
+  "subdomain": "Tool Use",
+  "scenario": "1",
+  "mode": "A",
+  "parity_agent": "openhands",
+  "parity_model": "gpt-5-mini",
+  "k": "3",
+  "parity_set": "165/165",
+  "orig": "51.3 \u00b1 0.7",
+  "harbor": "50.7 \u00b1 0.5",
+  "table": 4,
+  "orig_mean": 51.3,
+  "orig_sem": 0.7,
+  "harbor_mean": 50.7,
+  "harbor_sem": 0.5,
+  "parity_n": 165,
+  "full_n": 165,
+  "json_matches": [
+   {
+    "adapter": "gaia",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "openhands",
+    "model": "openai/gpt-5-mini",
+    "number_of_runs": 3,
+    "metric": "Accuracy",
+    "scale": 1.0,
+    "json_sem": [
+     0.73,
+     0.53
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "GAIA2",
+  "subdomain": "Tool Use",
+  "scenario": "3",
+  "mode": "A",
+  "parity_agent": "gaia2-parity-agent",
+  "parity_model": "gpt-5-mini",
+  "k": "2",
+  "parity_set": "100/800",
+  "orig": "6.0 \u00b1 1.0",
+  "harbor": "6.0 \u00b1 0.0",
+  "table": 4,
+  "orig_mean": 6.0,
+  "orig_sem": 1.0,
+  "harbor_mean": 6.0,
+  "harbor_sem": 0.0,
+  "parity_n": 100,
+  "full_n": 800,
+  "json_matches": [
+   {
+    "adapter": "gaia2",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "gaia2-parity-agent@0.1.0",
+    "model": "openai/gpt-5-mini",
+    "number_of_runs": 2,
+    "metric": "validation_success_rate",
+    "scale": 1.0,
+    "json_sem": [
+     1.0,
+     0.0
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "BFCL",
+  "subdomain": "Tool Use",
+  "scenario": "2",
+  "mode": "N",
+  "parity_agent": "codex",
+  "parity_model": "gpt-5-mini",
+  "k": "3",
+  "parity_set": "123/3641",
+  "orig": "83.2 \u00b1 0.7",
+  "harbor": "83.5 \u00b1 1.0",
+  "table": 4,
+  "orig_mean": 83.2,
+  "orig_sem": 0.7,
+  "harbor_mean": 83.5,
+  "harbor_sem": 1.0,
+  "parity_n": 123,
+  "full_n": 3641,
+  "json_matches": [
+   {
+    "adapter": "bfcl",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "codex@0.77.0",
+    "model": "gpt-5-mini-2025-08-07",
+    "number_of_runs": 3,
+    "metric": "AST Exact Match Accuracy (%)",
+    "scale": 1.0,
+    "json_sem": [
+     0.72,
+     0.98
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "DeepSynth",
+  "subdomain": "Web Agents",
+  "scenario": "1",
+  "mode": "A",
+  "parity_agent": "claude-code",
+  "parity_model": "haiku-4-5",
+  "k": "3",
+  "parity_set": "40/40",
+  "orig": "9.3 \u00b1 1.0",
+  "harbor": "7.8 \u00b1 0.6",
+  "table": 4,
+  "orig_mean": 9.3,
+  "orig_sem": 1.0,
+  "harbor_mean": 7.8,
+  "harbor_sem": 0.6,
+  "parity_n": 40,
+  "full_n": 40,
+  "json_matches": [
+   {
+    "adapter": "deepsynth",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "claude-code@2.1.73",
+    "model": "anthropic/claude-haiku-4-5-20251001",
+    "number_of_runs": 3,
+    "metric": "Mean F1",
+    "scale": 100.0,
+    "json_sem": [
+     0.01,
+     0.006
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "Seal-0",
+  "subdomain": "Web Agents",
+  "scenario": "1",
+  "mode": "A",
+  "parity_agent": "claude-code",
+  "parity_model": "haiku-4-5",
+  "k": "3",
+  "parity_set": "111/111",
+  "orig": "33.9 \u00b1 3.0",
+  "harbor": "33.3 \u00b1 3.6",
+  "table": 4,
+  "orig_mean": 33.9,
+  "orig_sem": 3.0,
+  "harbor_mean": 33.3,
+  "harbor_sem": 3.6,
+  "parity_n": 111,
+  "full_n": 111,
+  "json_matches": [
+   {
+    "adapter": "seal0",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "claude-code@2.1.81+2.1.86",
+    "model": "claude-haiku-4-5",
+    "number_of_runs": 3,
+    "metric": "accuracy",
+    "scale": 100.0,
+    "json_sem": [
+     0.03,
+     0.036
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "WideSearch",
+  "subdomain": "Web Agents",
+  "scenario": "1",
+  "mode": "A",
+  "parity_agent": "claude-code",
+  "parity_model": "haiku-4-5",
+  "k": "3",
+  "parity_set": "200/200",
+  "orig": "53.8 \u00b1 0.3",
+  "harbor": "53.9 \u00b1 0.3",
+  "table": 4,
+  "orig_mean": 53.8,
+  "orig_sem": 0.3,
+  "harbor_mean": 53.9,
+  "harbor_sem": 0.3,
+  "parity_n": 200,
+  "full_n": 200,
+  "json_matches": [
+   {
+    "adapter": "widesearch",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "claude-code@2.1.98",
+    "model": "claude-haiku-4-5-20251001",
+    "number_of_runs": 3,
+    "metric": "Mean Item F1",
+    "scale": 100.0,
+    "json_sem": [
+     0.003,
+     0.003
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "DA-Code",
+  "subdomain": "SQL & DS",
+  "scenario": "3",
+  "mode": "A",
+  "parity_agent": "da-agent",
+  "parity_model": "gpt-4o",
+  "k": "3",
+  "parity_set": "479/479",
+  "orig": "38.7 \u00b1 1.1",
+  "harbor": "38.9 \u00b1 0.2",
+  "table": 4,
+  "orig_mean": 38.7,
+  "orig_sem": 1.1,
+  "harbor_mean": 38.9,
+  "harbor_sem": 0.2,
+  "parity_n": 479,
+  "full_n": 479,
+  "json_matches": [
+   {
+    "adapter": "dacode",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "da-agent@1.0",
+    "model": "gpt-4o",
+    "number_of_runs": 3,
+    "metric": "Score (average of various metrics depending on task category)",
+    "scale": 100.0,
+    "json_sem": [
+     0.0108,
+     0.002
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "Spider 2",
+  "subdomain": "SQL & DS",
+  "scenario": "1",
+  "mode": "A",
+  "parity_agent": "spider-agent",
+  "parity_model": "gpt-5-mini",
+  "k": "3",
+  "parity_set": "64/64",
+  "orig": "18.8 \u00b1 0.0",
+  "harbor": "18.3 \u00b1 0.5",
+  "table": 4,
+  "orig_mean": 18.8,
+  "orig_sem": 0.0,
+  "harbor_mean": 18.3,
+  "harbor_sem": 0.5,
+  "parity_n": 64,
+  "full_n": 64,
+  "json_matches": [
+   {
+    "adapter": "spider2-dbt",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "spider-agent",
+    "model": "gpt-5-mini-2025-08-07",
+    "number_of_runs": 3,
+    "metric": "Mean Resolved Rate (%)",
+    "scale": 1.0,
+    "json_sem": [
+     0.0,
+     0.53
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "FinanceAgent",
+  "subdomain": "Finance",
+  "scenario": "3",
+  "mode": "A",
+  "parity_agent": "finance-agent",
+  "parity_model": "gpt-5.2",
+  "k": "3",
+  "parity_set": "50/50",
+  "orig": "78.0 \u00b1 1.0",
+  "harbor": "80.0 \u00b1 0.0",
+  "table": 4,
+  "orig_mean": 78.0,
+  "orig_sem": 1.0,
+  "harbor_mean": 80.0,
+  "harbor_sem": 0.0,
+  "parity_n": 50,
+  "full_n": 50,
+  "json_matches": [
+   {
+    "adapter": "financeagent",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "finance-agent",
+    "model": "gpt-5.2-2025-12-11",
+    "number_of_runs": 3,
+    "metric": "Accuracy",
+    "scale": 100.0,
+    "json_sem": [
+     0.01,
+     0.0
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "PIXIU",
+  "subdomain": "Finance",
+  "scenario": "2",
+  "mode": "M",
+  "parity_agent": "codex",
+  "parity_model": "gpt-5-mini",
+  "k": "3",
+  "parity_set": "435/54083",
+  "orig": "90.1 \u00b1 3.3",
+  "harbor": "85.2 \u00b1 6.4",
+  "table": 4,
+  "orig_mean": 90.1,
+  "orig_sem": 3.3,
+  "harbor_mean": 85.2,
+  "harbor_sem": 6.4,
+  "parity_n": 435,
+  "full_n": 54083,
+  "json_matches": [
+   {
+    "adapter": "pixiu",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "codex@0.75.0",
+    "model": "gpt-5-mini-2026-03-01",
+    "number_of_runs": 3,
+    "metric": "avg_f1",
+    "scale": 100.0,
+    "json_sem": [
+     0.0326635964,
+     0.0641500299
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "CRMArena",
+  "subdomain": "Business",
+  "scenario": "3",
+  "mode": "A",
+  "parity_agent": "crmarena-react",
+  "parity_model": "haiku-4-5",
+  "k": "3",
+  "parity_set": "90/1170",
+  "orig": "69.0 \u00b1 1.0",
+  "harbor": "68.0 \u00b1 2.0",
+  "table": 4,
+  "orig_mean": 69.0,
+  "orig_sem": 1.0,
+  "harbor_mean": 68.0,
+  "harbor_sem": 2.0,
+  "parity_n": 90,
+  "full_n": 1170,
+  "json_matches": [
+   {
+    "adapter": "crmarena",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "crmarena-react@1.0",
+    "model": "anthropic/claude-haiku-4-5",
+    "number_of_runs": 3,
+    "metric": "overall_mean",
+    "scale": 100.0,
+    "json_sem": [
+     0.01,
+     0.02
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "SpreadsheetBench",
+  "subdomain": "Business",
+  "scenario": "1",
+  "mode": "A",
+  "parity_agent": "claude-code",
+  "parity_model": "haiku-4-5",
+  "k": "3",
+  "parity_set": "400/400",
+  "orig": "68.8 \u00b1 0.8",
+  "harbor": "68.3 \u00b1 1.1",
+  "table": 4,
+  "orig_mean": 68.8,
+  "orig_sem": 0.8,
+  "harbor_mean": 68.3,
+  "harbor_sem": 1.1,
+  "parity_n": 400,
+  "full_n": 400,
+  "json_matches": [
+   {
+    "adapter": "spreadsheetbench-verified",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "claude-code@2.1.80",
+    "model": "claude-haiku-4-5",
+    "number_of_runs": 3,
+    "metric": "Pass Rate",
+    "scale": 1.0,
+    "json_sem": [
+     0.79,
+     1.09
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "MedAgentBench",
+  "subdomain": "Healthcare",
+  "scenario": "3",
+  "mode": "A",
+  "parity_agent": "medagent-react",
+  "parity_model": "gpt-4o-mini",
+  "k": "3",
+  "parity_set": "300/300",
+  "orig": "58.0 \u00b1 0.9",
+  "harbor": "57.9 \u00b1 0.3",
+  "table": 4,
+  "orig_mean": 58.0,
+  "orig_sem": 0.9,
+  "harbor_mean": 57.9,
+  "harbor_sem": 0.3,
+  "parity_n": 300,
+  "full_n": 300,
+  "json_matches": []
+ },
+ {
+  "benchmark": "LawBench",
+  "subdomain": "Legal",
+  "scenario": "2",
+  "mode": "N",
+  "parity_agent": "qwen-code",
+  "parity_model": "glm-4.7",
+  "k": "3",
+  "parity_set": "120/1000",
+  "orig": "65.0 \u00b1 0.3",
+  "harbor": "65.6 \u00b1 0.7",
+  "table": 4,
+  "orig_mean": 65.0,
+  "orig_sem": 0.3,
+  "harbor_mean": 65.6,
+  "harbor_sem": 0.7,
+  "parity_n": 120,
+  "full_n": 1000,
+  "json_matches": [
+   {
+    "adapter": "lawbench",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "qwen-code@0.6.0",
+    "model": "glm-4.7",
+    "number_of_runs": 3,
+    "metric": "Accuracy (%)",
+    "scale": 1.0,
+    "json_sem": [
+     0.3,
+     0.7
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "CyberGym",
+  "subdomain": "Cybersec.",
+  "scenario": "3",
+  "mode": "A",
+  "parity_agent": "openhands",
+  "parity_model": "haiku-4-5",
+  "k": "5",
+  "parity_set": "10/1507",
+  "orig": "64.0 \u00b1 4.0",
+  "harbor": "66.0 \u00b1 2.5",
+  "table": 4,
+  "orig_mean": 64.0,
+  "orig_sem": 4.0,
+  "harbor_mean": 66.0,
+  "harbor_sem": 2.5,
+  "parity_n": 10,
+  "full_n": 1507,
+  "json_matches": [
+   {
+    "adapter": "cybergym",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "openhands@1.6.0",
+    "model": "anthropic/claude-haiku-4-5",
+    "number_of_runs": 5,
+    "metric": "Accuracy",
+    "scale": 100.0,
+    "json_sem": [
+     0.04,
+     0.025
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "StrongReject",
+  "subdomain": "Jailbreak",
+  "scenario": "2",
+  "mode": "N",
+  "parity_agent": "codex",
+  "parity_model": "gpt-5-nano",
+  "k": "3",
+  "parity_set": "150/12207",
+  "orig": "95.0 \u00b1 0.7",
+  "harbor": "95.0 \u00b1 1.1",
+  "table": 4,
+  "orig_mean": 95.0,
+  "orig_sem": 0.7,
+  "harbor_mean": 95.0,
+  "harbor_sem": 1.1,
+  "parity_n": 150,
+  "full_n": 12207,
+  "json_matches": [
+   {
+    "adapter": "strongreject",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "codex@0.77.0",
+    "model": "gpt-5-nano-2025-08-07",
+    "number_of_runs": 3,
+    "metric": "Average Defense Score",
+    "scale": 100.0,
+    "json_sem": [
+     0.007,
+     0.011
+    ]
+   }
+  ]
+ },
+ {
+  "benchmark": "MMAU",
+  "subdomain": "Audio",
+  "scenario": "2",
+  "mode": "N",
+  "parity_agent": "terminus-2",
+  "parity_model": "gpt-4o",
+  "k": "3",
+  "parity_set": "1000/1000",
+  "orig": "56.6 \u00b1 0.8",
+  "harbor": "56.6 \u00b1 0.8",
+  "table": 4,
+  "orig_mean": 56.6,
+  "orig_sem": 0.8,
+  "harbor_mean": 56.6,
+  "harbor_sem": 0.8,
+  "parity_n": 1000,
+  "full_n": 1000,
+  "json_matches": [
+   {
+    "adapter": "mmau",
+    "exp": 0,
+    "metric_index": 0,
+    "agent": "terminus-2",
+    "model": "gpt-4o-2024-08-06",
+    "number_of_runs": 3,
+    "metric": "Resolved Rate (%)",
+    "scale": 1.0,
+    "json_sem": [
+     0.81,
+     0.84
+    ]
+   }
+  ]
+ }
+]

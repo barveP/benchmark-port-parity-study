@@ -1,0 +1,246 @@
+{
+ "n_analysed": 43,
+ "median_pooled_sd": 2.160246899469287,
+ "median_gap": 0.5999999999999943,
+ "largest_gaps": [
+  [
+   "rexbench",
+   "Final Success Rate",
+   8.34
+  ],
+  [
+   "pixiu",
+   "avg_f1",
+   4.94
+  ],
+  [
+   "gdb",
+   "macro_reward",
+   4.57
+  ],
+  [
+   "multi-swe-bench",
+   "Resolve Rate (%)",
+   3.33
+  ],
+  [
+   "usaco",
+   "Resolved Rate (%)",
+   2.63
+  ]
+ ],
+ "n_fail_overlap": 1,
+ "fail_overlap_rows": [
+  [
+   "usaco",
+   "Resolved Rate (%)",
+   [
+    39.5,
+    40.5,
+    41.0
+   ],
+   [
+    45.7,
+    42.1,
+    41.1
+   ]
+  ]
+ ],
+ "tost_within": {
+  "1": 1,
+  "2": 5,
+  "3": 12,
+  "5": 23,
+  "10": 37
+ },
+ "ci95_within": {
+  "1": 0,
+  "2": 3,
+  "3": 7,
+  "5": 16,
+  "10": 34
+ },
+ "tost_within_welch": {
+  "1": 1,
+  "2": 4,
+  "3": 11,
+  "5": 19,
+  "10": 37
+ },
+ "n_distinguishable_from_zero": 0,
+ "median_hw95": 4.897188851450618,
+ "median_hw90": 3.760224286608378,
+ "smallest_margin_tost_quartiles": [
+  2.820523107567843,
+  4.969144325068228,
+  7.279160394968022
+ ],
+ "n_identical_lists_in_set": 1,
+ "n_zero_spread_one_side_in_set": 4,
+ "knife_edge_rows": [
+  [
+   "bigcodebench_hard",
+   "Mean Resolved Rate",
+   5,
+   4.9691
+  ],
+  [
+   "satbench",
+   "Accuracy (%)",
+   5,
+   4.9997
+  ],
+  [
+   "strongreject",
+   "Average Defense Score",
+   3,
+   3.0198
+  ]
+ ],
+ "n_experiments": 121,
+ "n_selected_incl_zero_spread": 44,
+ "n_excluded_zero_spread_both": 1,
+ "runs_needed_plugin_gap0.6_median_sd": {
+  "2": 14,
+  "3": 6,
+  "5": 3
+ },
+ "runs_needed_power80_gap0.6_median_sd": {
+  "2": 31,
+  "3": 12,
+  "5": 5
+ },
+ "runs_needed_power90_gap0.6_median_sd": {
+  "2": 42,
+  "3": 15,
+  "5": 6
+ },
+ "runs_needed_power80_gap0_median_sd": {
+  "2": 21,
+  "3": 10,
+  "5": 5
+ },
+ "tost_power_at_plugin_k": {
+  "2": 0.437,
+  "3": 0.417,
+  "5": 0.526
+ },
+ "t_quantiles": {
+  "t975_df4": 2.7764451051977934,
+  "t95_df4": 2.1318467863266495
+ },
+ "sensitivity_variants": {
+  "base": {
+   "n_analysed": 43,
+   "median_pooled_sd": 2.160246899469287,
+   "median_gap": 0.5999999999999943,
+   "n_fail_overlap": 1,
+   "tost_within": {
+    "1": 1,
+    "2": 5,
+    "3": 12,
+    "5": 23,
+    "10": 37
+   },
+   "ci95_within": {
+    "1": 0,
+    "2": 3,
+    "3": 7,
+    "5": 16,
+    "10": 34
+   },
+   "tost_within_welch": {
+    "1": 1,
+    "2": 4,
+    "3": 11,
+    "5": 19,
+    "10": 37
+   },
+   "n_distinguishable_from_zero": 0
+  },
+  "trials": {
+   "n_analysed": 56,
+   "median_pooled_sd": 1.8544128006931506,
+   "median_gap": 0.6666666666666679,
+   "n_fail_overlap": 1,
+   "tost_within": {
+    "1": 1,
+    "2": 6,
+    "3": 20,
+    "5": 33,
+    "10": 50
+   },
+   "ci95_within": {
+    "1": 0,
+    "2": 3,
+    "3": 13,
+    "5": 25,
+    "10": 47
+   },
+   "tost_within_welch": {
+    "1": 1,
+    "2": 5,
+    "3": 18,
+    "5": 28,
+    "10": 50
+   },
+   "n_distinguishable_from_zero": 0
+  },
+  "lenient": {
+   "n_analysed": 45,
+   "median_pooled_sd": 2.160246899469287,
+   "median_gap": 0.5999999999999943,
+   "n_fail_overlap": 1,
+   "tost_within": {
+    "1": 1,
+    "2": 6,
+    "3": 13,
+    "5": 25,
+    "10": 39
+   },
+   "ci95_within": {
+    "1": 0,
+    "2": 4,
+    "3": 8,
+    "5": 17,
+    "10": 36
+   },
+   "tost_within_welch": {
+    "1": 1,
+    "2": 5,
+    "3": 12,
+    "5": 21,
+    "10": 39
+   },
+   "n_distinguishable_from_zero": 0
+  },
+  "trials+lenient": {
+   "n_analysed": 59,
+   "median_pooled_sd": 1.7146428199482222,
+   "median_gap": 0.6666666666666679,
+   "n_fail_overlap": 1,
+   "tost_within": {
+    "1": 1,
+    "2": 7,
+    "3": 22,
+    "5": 36,
+    "10": 53
+   },
+   "ci95_within": {
+    "1": 0,
+    "2": 4,
+    "3": 15,
+    "5": 27,
+    "10": 50
+   },
+   "tost_within_welch": {
+    "1": 1,
+    "2": 6,
+    "3": 20,
+    "5": 31,
+    "10": 53
+   },
+   "n_distinguishable_from_zero": 0
+  }
+ }
+}

@@ -1,0 +1,123 @@
+{
+ "n_files": 84,
+ "n_adapters": 84,
+ "n_experiments": 121,
+ "n_metric_rows": 298,
+ "n_metric_rows_with_any_run_list": 295,
+ "runs_per_side_by_experiment": {
+  "3": 68,
+  "1": 15,
+  "missing": 12,
+  "2": 9,
+  "5": 9,
+  "4": 4,
+  "6": 2,
+  "8": 2
+ },
+ "actual_min_runs_per_side_by_experiment": {
+  "3": 62,
+  "no paired run lists": 39,
+  "2": 7,
+  "5": 5,
+  "1": 4,
+  "6": 2,
+  "4": 2
+ },
+ "declared_runs_differ_from_actual": [
+  "kumo#0: declared None, actual (original, harbor) per row [(3, 3)]",
+  "kumo#1: declared None, actual (original, harbor) per row [(3, 3)]",
+  "programbench#1: declared 5, actual (original, harbor) per row [(1, 5)]",
+  "swebench#4: declared 3, actual (original, harbor) per row [(1, 3)]",
+  "swelancer#0: declared 5, actual (original, harbor) per row [(3, 5)]"
+ ],
+ "parity_set": {
+  "full": 77,
+  "subset": 38,
+  "unknown": 6
+ },
+ "experiment_keys": {
+  "adapter_name": 121,
+  "agent": 121,
+  "model": 121,
+  "date": 121,
+  "adapter_pr": 121,
+  "dataset_pr": 121,
+  "metrics": 121,
+  "parity_pr": 120,
+  "notes": 119,
+  "original_parity_repo": 119,
+  "adapted_benchmark_size": 115,
+  "parity_benchmark_size": 115,
+  "number_of_runs": 98,
+  "number_of_trials": 17,
+  "parity_between": 9,
+  "judge_model": 1,
+  "parity_costs": 1
+ },
+ "metric_row_keys": {
+  "benchmark_name": 298,
+  "metric": 298,
+  "original": 283,
+  "harbor": 283,
+  "original_runs": 263,
+  "harbor_runs": 258,
+  "tb_adapter": 26,
+  "harbor_trials": 25,
+  "tb_adapter_runs": 23,
+  "original_trials": 20,
+  "tb_adapter_trials": 3,
+  "original_llm": 2,
+  "original_json": 2,
+  "original_llm_runs": 2,
+  "original_json_runs": 2,
+  "original_success_counts": 1,
+  "harbor_success_counts": 1,
+  "original_resolved_ids": 1,
+  "original_unresolved_ids": 1,
+  "harbor_resolved_ids": 1,
+  "harbor_unresolved_ids": 1,
+  "per_environment": 1,
+  "original_run_pass_counts": 1,
+  "harbor_run_pass_counts": 1
+ },
+ "run_list_keys": {
+  "original_runs": 261,
+  "harbor_runs": 256,
+  "harbor_trials": 25,
+  "tb_adapter_runs": 20,
+  "original_trials": 20,
+  "tb_adapter_trials": 3,
+  "original_llm_runs": 2,
+  "original_json_runs": 2
+ },
+ "run_list_lengths": {
+  "0": 23,
+  "1": 24,
+  "2": 14,
+  "3": 484,
+  "4": 12,
+  "5": 24,
+  "6": 4,
+  "8": 3,
+  "32": 1
+ },
+ "run_fields_not_lists": [
+  "crmarena#1 'overall_mean' original_runs=None",
+  "replicationbench#0 'Resolved Rate (%)' original_runs=None",
+  "replicationbench#0 'Resolved Rate (%)' tb_adapter_runs=None",
+  "replicationbench#1 'Accuracy Rate (%)' tb_adapter_runs=None",
+  "replicationbench#1 'Accuracy Rate (%)' harbor_runs=None",
+  "sldbench#0 'Clipped R\u00b2 Score' tb_adapter_runs=None",
+  "sldbench#0 'Clipped R\u00b2 Score' harbor_runs=None"
+ ],
+ "run_lists_with_non_numeric_entries": [
+  "adebench#0 'resolved_rate' original_runs=['58.3%', '56.2%', '60.4%']",
+  "adebench#0 'resolved_rate' harbor_runs=['58.3%', '56.2%', '56.2%']",
+  "bird_bench#0 'EX (%)' original_runs=['58.7', '59.3', '58.0']",
+  "bird_bench#0 'EX (%)' harbor_runs=['58.0', '58.7', '58.0']",
+  "medagentbench#0 'Success Rate' original_trials=['56.33%', '58.33%', '59.33%']",
+  "medagentbench#0 'Success Rate' harbor_trials=['57.33%', '58.33%', '58.00%']",
+  "mmmlu#0 'accuracy' original_runs=['64.67%', '63.33%', '64.67%', '62.67%', '62.00%']",
+  "mmmlu#0 'accuracy' harbor_runs=['62.67%', '63.33%', '62.00%', '64.67%', '64.00%']"
+ ]
+}

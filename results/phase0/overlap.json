@@ -1,0 +1,67 @@
+{
+ "n_metric_rows": 298,
+ "n_paired": 254,
+ "n_paired_note": "rows with NUMERIC run lists on both sides; string-valued lists ('58.3%') are dropped here",
+ "n_rows_with_lists_both_sides_incl_strings": 258,
+ "n_no_paired_runs": 44,
+ "n_fail_overlap": 8,
+ "n_fail_overlap_3v3": 5,
+ "n_fail_overlap_single_run_side": 3,
+ "n_fail_overlap_excluding_float_ties": 7,
+ "fail_rows": [
+  "hle | Calibration error (%, beta=10) | k=3v3 | separation 0.6 | orig [54.05, 55.97, 55.63] | harbor [53.25, 51.36, 53.45]",
+  "osworld | success rate (pass@1, no-result counted as 0) | k=1v1 | separation 0.01969 | orig [0.40257894231800617] | harbor [0.4222652465769431]",
+  "pixiu | acc_stderr | k=3v3 | separation 1.388e-17 (floating-point tie) | orig [0.09085135251589957, 0.09085135251589957, 0.06666666666666667] | harbor [0.09085135251589958, 0.09085135251589958, 0.09085135251589958]",
+  "pixiu | bart_score | k=3v3 | separation 0.009963 | orig [-1.8191567500432333, -1.8907257000605264, -1.7725290258725483] | harbor [-1.9006887873013814, -2.567924201488495, -1.9509955445925395]",
+  "programbench | test_pass_rate | k=1v1 | separation 0.0158 | orig [0.3767] | harbor [0.3925]",
+  "research-code-bench | scaled_success_rate (%) | k=3v3 | separation 0.49 | orig [18.61, 17.42, 19.0] | harbor [20.38, 19.49, 20.38]",
+  "swebench | Resolved Rate | k=1v3 | separation 0.01002 | orig [0.5631262525050101] | harbor [0.531062124248497, 0.5511022044088176, 0.5531062124248497]",
+  "usaco | Resolved Rate (%) | k=3v3 | separation 0.1 | orig [39.5, 40.5, 41.0] | harbor [45.7, 42.1, 41.1]"
+ ],
+ "fail_row_keys": [
+  [
+   "hle",
+   "Calibration error (%, beta=10)"
+  ],
+  [
+   "osworld",
+   "success rate (pass@1, no-result counted as 0)"
+  ],
+  [
+   "pixiu",
+   "acc_stderr"
+  ],
+  [
+   "pixiu",
+   "bart_score"
+  ],
+  [
+   "programbench",
+   "test_pass_rate"
+  ],
+  [
+   "research-code-bench",
+   "scaled_success_rate (%)"
+  ],
+  [
+   "swebench",
+   "Resolved Rate"
+  ],
+  [
+   "usaco",
+   "Resolved Rate (%)"
+  ]
+ ],
+ "adapters_with_a_failing_row": [
+  "hle",
+  "osworld",
+  "pixiu",
+  "programbench",
+  "research-code-bench",
+  "swebench",
+  "usaco"
+ ],
+ "n_identical_lists": 45,
+ "n_zero_spread_both": 36,
+ "n_single_run_side": 4
+}

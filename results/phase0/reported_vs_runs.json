@@ -1,0 +1,54 @@
+{
+ "tolerance": "half a unit in the last reported decimal place",
+ "n_checked": 523,
+ "by_mean_ok_and_err_class": {
+  "mean_ok=True,err=sem": 411,
+  "mean_ok=True,err=both": 109,
+  "mean_ok=False,err=sem": 2,
+  "mean_ok=True,err=neither": 1
+ },
+ "mean_mismatch_rows": [
+  {
+   "adapter": "locomo",
+   "exp": 0,
+   "metric": "F1 (overall)",
+   "side": "harbor",
+   "k": 5,
+   "reported": "0.549 \u00b1 0.018",
+   "mean_runs": 0.55,
+   "sem_runs": 0.018,
+   "sd_runs": 0.04,
+   "mean_ok": false,
+   "err_class": "sem"
+  },
+  {
+   "adapter": "locomo",
+   "exp": 0,
+   "metric": "F1",
+   "side": "harbor",
+   "k": 5,
+   "reported": "0.308 \u00b1 0.019",
+   "mean_runs": 0.307,
+   "sem_runs": 0.019,
+   "sd_runs": 0.043,
+   "mean_ok": false,
+   "err_class": "sem"
+  }
+ ],
+ "err_neither_rows": [
+  {
+   "adapter": "locomo",
+   "exp": 0,
+   "metric": "F1",
+   "side": "original",
+   "k": 5,
+   "reported": "0.460 \u00b1 0.006",
+   "mean_runs": 0.46,
+   "sem_runs": 0.005,
+   "sd_runs": 0.012,
+   "mean_ok": true,
+   "err_class": "neither"
+  }
+ ],
+ "err_sd_rows": []
+}
