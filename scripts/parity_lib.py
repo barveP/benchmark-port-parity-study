@@ -306,3 +306,62 @@ def runs_needed_plugin(margin: float, gap0: float, sigma: float, alpha: float = 
         if gap0 + t_quantile(1 - alpha, 2 * k - 2) * sigma * math.sqrt(2 / k) <= margin:
             return k
     return None
+
+
+def rule_verdicts(a, b, margins=(1, 2, 3, 5, 10)):
+    """Vectorised decision rules on run scores. a, b: arrays of shape (trials, k1) and (trials, k2).
+
+    Returns a dict of boolean arrays:
+      R   range overlap fails (Harbor's rule, ties count as overlap)        True = mismatch
+      S1  mean ± SEM bars do not overlap: |gap| > SEM_a + SEM_b              True = mismatch
+      S2  |gap| > SE of the difference, i.e. |t| > 1                         True = mismatch
+      W   Welch t-test rejects at 0.05 (Satterthwaite df)                    True = mismatch
+      E<m> TOST at margin m (pooled t, alpha .05): |gap| + hw90 <= m         True = equivalence shown
+    gap is mean(b) - mean(a). Zero-variance cases: W rejects iff the means differ.
+    """
+    import numpy as np
+    from scipy.stats import t as tdist
+
+    a, b = np.asarray(a, dtype=float), np.asarray(b, dtype=float)
+    k1, k2 = a.shape[1], b.shape[1]
+    ma, mb = a.mean(1), b.mean(1)
+    va, vb = a.var(1, ddof=1), b.var(1, ddof=1)
+    gap = mb - ma
+    sea, seb = np.sqrt(va / k1), np.sqrt(vb / k2)
+    out = {"R": (a.max(1) < b.min(1) - 1e-9) | (b.max(1) < a.min(1) - 1e-9),
+           "S1": np.abs(gap) > sea + seb + 1e-12,
+           "S2": np.abs(gap) > np.sqrt(sea ** 2 + seb ** 2) + 1e-12}
+    se2 = va / k1 + vb / k2
+    with np.errstate(divide="ignore", invalid="ignore"):
+        tw = np.where(se2 > 0, gap / np.sqrt(se2), np.where(gap != 0, np.inf, 0.0))
+        df = np.where(se2 > 0, se2 ** 2 / ((va / k1) ** 2 / (k1 - 1) + (vb / k2) ** 2 / (k2 - 1)), 1.0)
+        df = np.where(np.isfinite(df) & (df > 0), df, 1.0)
+        out["W"] = 2 * tdist.sf(np.abs(tw), df) < 0.05
+    sp = np.sqrt(((k1 - 1) * va + (k2 - 1) * vb) / (k1 + k2 - 2))
+    hw90 = t_quantile(0.95, k1 + k2 - 2) * sp * math.sqrt(1 / k1 + 1 / k2)
+    for m in margins:
+        out[f"E{m}"] = np.abs(gap) + hw90 <= m
+    return out
+
+
+def paired_task_verdicts(xa, xb, margins=(3, 5)):
+    """Paired per-task test. xa, xb: arrays (trials, k, n_tasks) of outcomes in [0, 1] for the same tasks.
+
+    d_i = task mean on side b minus task mean on side a, in points. Paired t on d_i (n_tasks - 1 df):
+      P      rejects at 0.05                      True = mismatch
+      PE<m>  |mean d| + t(.95) SE <= m            True = equivalence shown
+    """
+    import numpy as np
+    from scipy.stats import t as tdist
+
+    d = (np.asarray(xb, dtype=float).mean(1) - np.asarray(xa, dtype=float).mean(1)) * 100
+    n = d.shape[1]
+    md, sd = d.mean(1), d.std(1, ddof=1)
+    se = sd / math.sqrt(n)
+    with np.errstate(divide="ignore", invalid="ignore"):
+        tt = np.where(se > 0, md / se, np.where(md != 0, np.inf, 0.0))
+    out = {"P": 2 * tdist.sf(np.abs(tt), n - 1) < 0.05}
+    hw90 = t_quantile(0.95, n - 1) * se
+    for m in margins:
+        out[f"PE{m}"] = np.abs(md) + hw90 <= m
+    return out

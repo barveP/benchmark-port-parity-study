@@ -21,10 +21,9 @@ import os
 import sys
 
 import numpy as np
-from scipy.stats import norm, t as tdist
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from parity_lib import rule_false_alarm_exact, rule_mismatch_rate_normal, t_quantile  # noqa: E402
+from parity_lib import rule_false_alarm_exact, rule_mismatch_rate_normal, rule_verdicts  # noqa: E402
 
 out = sys.argv[1]
 pertask_dir = sys.argv[2] if len(sys.argv) > 2 and os.path.isdir(sys.argv[2]) else None
@@ -33,37 +32,8 @@ os.makedirs(os.path.join(out, "figures"), exist_ok=True)
 rng = np.random.default_rng(7)
 
 
-def verdicts(a, b, margins=(1, 2, 3, 5, 10)):
-    """Vectorised rules. a, b: arrays (trials, k). Returns dict of boolean arrays: True = mismatch (R,S1,S2,W)
-    or True = equivalence shown (E_m)."""
-    k1, k2 = a.shape[1], b.shape[1]
-    ma, mb = a.mean(1), b.mean(1)
-    va, vb = a.var(1, ddof=1), b.var(1, ddof=1)
-    gap = mb - ma
-    sea, seb = np.sqrt(va / k1), np.sqrt(vb / k2)
-    res = {
-        "R": (a.max(1) < b.min(1) - 1e-9) | (b.max(1) < a.min(1) - 1e-9),
-        "S1": np.abs(gap) > sea + seb + 1e-12,
-        "S2": np.abs(gap) > np.sqrt(sea ** 2 + seb ** 2) + 1e-12,
-    }
-    # Welch
-    se2 = va / k1 + vb / k2
-    with np.errstate(divide="ignore", invalid="ignore"):
-        tw = np.where(se2 > 0, gap / np.sqrt(se2), np.where(gap != 0, np.inf, 0.0))
-        df = np.where(se2 > 0, se2 ** 2 / ((va / k1) ** 2 / (k1 - 1) + (vb / k2) ** 2 / (k2 - 1)), 1.0)
-        df = np.where(np.isfinite(df) & (df > 0), df, 1.0)
-        p = 2 * tdist.sf(np.abs(tw), df)
-    res["W"] = p < 0.05
-    # pooled TOST
-    sp = np.sqrt(((k1 - 1) * va + (k2 - 1) * vb) / (k1 + k2 - 2))
-    hw90 = t_quantile(0.95, k1 + k2 - 2) * sp * math.sqrt(1 / k1 + 1 / k2)
-    for m in margins:
-        res[f"E{m}"] = np.abs(gap) + hw90 <= m
-    return res
-
-
 def rates(a, b, margins):
-    v = verdicts(a, b, margins)
+    v = rule_verdicts(a, b, margins)
     return {key: float(val.mean()) for key, val in v.items()}
 
 
