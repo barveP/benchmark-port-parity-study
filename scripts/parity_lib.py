@@ -315,9 +315,13 @@ def rule_verdicts(a, b, margins=(1, 2, 3, 5, 10)):
       R   range overlap fails (Harbor's rule, ties count as overlap)        True = mismatch
       S1  mean ± SEM bars do not overlap: |gap| > SEM_a + SEM_b              True = mismatch
       S2  |gap| > SE of the difference, i.e. |t| > 1                         True = mismatch
-      W   Welch t-test rejects at 0.05 (Satterthwaite df)                    True = mismatch
+      S3  |gap| > max(SEM_a, SEM_b), the literal reading of "within sample SEM"  True = mismatch
+      W   Welch t-test rejects at 0.05 (Satterthwaite df; conservative at k <= 5)  True = mismatch
+      T   pooled t-test rejects at 0.05 (k1 + k2 - 2 df; the reference test)  True = mismatch
       E<m> TOST at margin m (pooled t, alpha .05): |gap| + hw90 <= m         True = equivalence shown
-    gap is mean(b) - mean(a). Zero-variance cases: W rejects iff the means differ.
+    gap is mean(b) - mean(a). If both sides have zero spread, W and T count unequal means as a
+    mismatch (adds at most 0.7 points to their false alarm with 10 tasks, nothing at 30 or more).
+    S1, S2, T and W are the same statistic at different thresholds when k1 = k2.
     """
     import numpy as np
     from scipy.stats import t as tdist
@@ -330,7 +334,8 @@ def rule_verdicts(a, b, margins=(1, 2, 3, 5, 10)):
     sea, seb = np.sqrt(va / k1), np.sqrt(vb / k2)
     out = {"R": (a.max(1) < b.min(1) - 1e-9) | (b.max(1) < a.min(1) - 1e-9),
            "S1": np.abs(gap) > sea + seb + 1e-12,
-           "S2": np.abs(gap) > np.sqrt(sea ** 2 + seb ** 2) + 1e-12}
+           "S2": np.abs(gap) > np.sqrt(sea ** 2 + seb ** 2) + 1e-12,
+           "S3": np.abs(gap) > np.maximum(sea, seb) + 1e-12}
     se2 = va / k1 + vb / k2
     with np.errstate(divide="ignore", invalid="ignore"):
         tw = np.where(se2 > 0, gap / np.sqrt(se2), np.where(gap != 0, np.inf, 0.0))
@@ -338,7 +343,11 @@ def rule_verdicts(a, b, margins=(1, 2, 3, 5, 10)):
         df = np.where(np.isfinite(df) & (df > 0), df, 1.0)
         out["W"] = 2 * tdist.sf(np.abs(tw), df) < 0.05
     sp = np.sqrt(((k1 - 1) * va + (k2 - 1) * vb) / (k1 + k2 - 2))
-    hw90 = t_quantile(0.95, k1 + k2 - 2) * sp * math.sqrt(1 / k1 + 1 / k2)
+    se_p = sp * math.sqrt(1 / k1 + 1 / k2)
+    hw90 = t_quantile(0.95, k1 + k2 - 2) * se_p
+    hw95 = t_quantile(0.975, k1 + k2 - 2) * se_p
+    out["T"] = np.abs(gap) > hw95 + 1e-12
+    out["t_pooled_abs"] = np.where(se_p > 0, np.abs(gap) / np.where(se_p > 0, se_p, 1.0), np.where(gap != 0, np.inf, 0.0))
     for m in margins:
         out[f"E{m}"] = np.abs(gap) + hw90 <= m
     return out
