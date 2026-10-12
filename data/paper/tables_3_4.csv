@@ -1,0 +1,61 @@
+table,benchmark,subdomain,scenario,mode,parity_agent,parity_model,k,parity_set,orig,harbor,orig_mean,orig_sem,harbor_mean,harbor_sem,parity_n,full_n,n_json_matches
+3,SWE-Bench-Multilingual,Repo Issues,2,A,codex,gpt-5-mini,3,50/300,33.3 ± 0.7,33.3 ± 3.3,33.3,0.7,33.3,3.3,50,300,1
+3,SWE-Bench Pro,Repo Issues,2,A,codex,gpt-5-mini,6,100/731,35.7 ± 0.6,36.3 ± 1.0,35.7,0.6,36.3,1.0,100,731,1
+3,SWE-bench Verified,Repo Issues,1,A,mini-swe-agent,gpt-5-mini,3,499/500,56.3 ± 0.0,54.5 ± 0.7,56.3,0.0,54.5,0.7,499,500,1
+3,SWE-smith,Repo Issues,1,A,mini-swe-agent,claude-3-haiku,–,100/100,0.0,0.0,0.0,,0.0,,100,100,52
+3,SWT Bench,Repo Issues,1,A,claude-code,haiku-4-5,–,433/433,20.55 ± 0.0,20.55 ± 0.0,20.55,0.0,20.55,0.0,433,433,0
+3,CooperBench,Feature Dev,1,A,openhands-sdk,gemini-3-flash,3,50/652,32.7 ± 1.3,30.7 ± 1.3,32.7,1.3,30.7,1.3,50,652,1
+3,FeatBench,Feature Dev,1,A,trae-agent,deepseek-v3.2,3,156/156,49.8 ± 2.3,49.4 ± 1.1,49.8,2.3,49.4,1.1,156,156,1
+3,FeatureBench,Feature Dev,1,A,codex,gpt-5-mini,2,30/200,13.3 ± 0.0,15.0 ± 1.7,13.3,0.0,15.0,1.7,30,200,1
+3,SWE-Lancer,Feature Dev,2,A,claude-code,claude-sonnet-4,5,463/463,48.4 ± 1.0,47.6 ± 0.4,48.4,1.0,47.6,0.4,463,463,1
+3,WebGen-Bench,Feature Dev,2,M,aider,gpt-5-mini,3,101/101,16.7 ± 0.9,16.2 ± 1.6,16.7,0.9,16.2,1.6,101,101,1
+3,Aider Polyglot,Coding,2,N,claude-code,claude-3-haiku,1,225/225,2.7 ± 0.0,2.7 ± 0.0,2.7,0.0,2.7,0.0,225,225,0
+3,BigCodeBench,Coding,2,M,codex,gpt-5-mini,3,145/145,32.7 ± 0.4,34.0 ± 1.6,32.7,0.4,34.0,1.6,145,145,1
+3,FrontierCS,Coding,2,M,claude-code,opus-4-6,3,10/172,68.9 ± 11.5,53.4 ± 9.9,68.9,11.5,53.4,9.9,10,172,0
+3,LiveCodeBench,Coding,2,N,claude-code,haiku-4-5,4,100/1055,54.5 ± 1.5,53.3 ± 1.0,54.5,1.5,53.3,1.0,100,1055,0
+3,USACO,Coding,2,N,claude-code,haiku-4-5,3,304/304,40.3 ± 0.4,43.0 ± 1.4,40.3,0.4,43.0,1.4,304,304,1
+3,HumanEvalFix,Coding,1,N,openhands,gpt-5-mini,3,164/164,98.2 ± 0.6,98.0 ± 0.4,98.2,0.6,98.0,0.4,164,164,1
+3,QuixBugs,Coding,2,N,codex,gpt-5-mini,3,80/80,88.4 ± 0.4,87.9 ± 0.4,88.4,0.4,87.9,0.4,80,80,0
+3,GSO,Perf. Opt.,1,A,openhands,gpt-5.1,2,102/102,13.7 ± 1.0,13.2 ± 1.5,13.7,1.0,13.2,1.5,102,102,1
+3,AlgoTune,Perf. Opt.,2,A,terminus-2,gpt-5-mini,3,154/154,1.23 ± 0.02,1.23 ± 0.02,1.23,0.02,1.23,0.02,154,154,0
+3,CRUST-Bench,Lang. Trans.,2,M,codex,gpt-5-nano,3,100/100,58.3 ± 0.7,58.3 ± 1.2,58.3,0.7,58.3,1.2,100,100,1
+3,DevOpsGym,DevOps,1,A,codex,gpt-5-mini,3,50/733,22.7 ± 1.8,22.0 ± 0.0,22.7,1.8,22.0,0.0,50,733,1
+3,AIME,Comp. Math,2,N,codex,gpt-5-nano,–,30/30,N/A,N/A,,,,,30,30,0
+3,IneqMath,Comp. Math,2,N,codex,gpt-4o-mini,3,100/100,50.0 ± 1.5,52.0 ± 0.7,50.0,1.5,52.0,0.7,100,100,1
+3,Omni-Math,Comp. Math,2,N,codex,gpt-5.3-codex,2,100/4428,80.0 ± 2.0,81.0 ± 2.0,80.0,2.0,81.0,2.0,100,4428,1
+3,ARC-AGI-2,Abs. Reason.,2,N,codex,gpt-5.2,6,167/167,36.0 ± 0.8,35.8 ± 0.8,36.0,0.8,35.8,0.8,167,167,1
+3,KUMO,Abs. Reason.,2,N,kumo-vanilla,gpt-5-mini,3,212/5300,88.7 ± 0.7,89.9 ± 0.7,88.7,0.7,89.9,0.7,212,5300,1
+3,Reasoning Gym,Abs. Reason.,2,N,codex,gpt-5.1-codex-mini,3,576/576,85.7 ± 0.4,85.9 ± 0.3,85.7,0.4,85.9,0.3,576,576,1
+3,GPQA Diamond,Expert QA,2,N,codex,gpt-5.2,3,198/198,87.9 ± 0.6,87.2 ± 0.3,87.9,0.6,87.2,0.3,198,198,1
+3,Humanity’s Last Exam,Expert QA,2,N,claude-code,haiku-4-5,3,249/2500,10.7 ± 0.9,11.0 ± 0.4,10.7,0.9,11.0,0.4,249,2500,1
+3,MMMLU,Expert QA,2,N,codex-cli,gpt-5.1-codex-mini,5,150/210630,63.5 ± 0.5,63.3 ± 0.5,63.5,0.5,63.3,0.5,150,210630,1
+3,SimpleQA,Expert QA,2,N,claude-code,opus-4-6,3,50/4326,96.7 ± 1.8,94.7 ± 0.7,96.7,1.8,94.7,0.7,50,4326,1
+3,AA-LCR,Long Ctx.,2,N,codex,gpt-5-mini,1,99/99,68.0,68.7,68.0,,68.7,,99,99,0
+4,ReplicationBench,Research WF,1,A,claude-code,haiku-4-5,1,90/90,14.4,14.4,14.4,,14.4,,90,90,0
+4,ScienceAgent Bench,Research WF,1,A,claude-code,haiku-4-5,5,102/102,33.7 ± 0.9,31.8 ± 1.2,33.7,0.9,31.8,1.2,102,102,1
+4,SLDBench,Research WF,1,A,claude-code,haiku-4-5,5,8/8,38.1 ± 9.5,39.2 ± 10.7,38.1,9.5,39.2,10.7,8,8,0
+4,MLGym-Bench,Research WF,2,M,mini-swe-agent,gpt-5,3,12/12,80.6 ± 2.8,80.6 ± 2.8,80.6,2.8,80.6,2.8,12,12,1
+4,CodePDE,Sci. Comp.,2,M,terminus-2,haiku-4-5,8,5/5,27.5 ± 3.7,27.5 ± 3.7,27.5,3.7,27.5,3.7,5,5,0
+4,ResearchCode Bench,Sci. Comp.,2,M,codex,gpt-4.1-mini,3,212/212,41.0 ± 0.4,40.7 ± 0.3,41.0,0.4,40.7,0.3,212,212,1
+4,SciCode,Sci. Comp.,2,M,codex,gpt-5.1-codex-mini,3,80/80,43.3 ± 0.6,43.8 ± 0.6,43.3,0.6,43.8,0.6,80,80,1
+4,QCircuitBench,Sci. Comp.,2,N,codex,gpt-5.2,3,28/28,60.9 ± 2.5,61.9 ± 2.1,60.9,2.5,61.9,2.1,28,28,1
+4,BIX-Bench,Biomed.,3,A,bixbench-agent,gpt-4o-mini,3,50/205,16.0 ± 3.1,16.7 ± 2.4,16.0,3.1,16.7,2.4,50,205,1
+4,LAB-Bench,Biomed.,2,N,codex,gpt-5-codex,3,181/181,40.0 ± 0.2,41.1 ± 0.5,40.0,0.2,41.1,0.5,181,181,1
+4,ACE-Bench,Tool Use,1,A,claude-code,haiku-4-5,3,973/973,83.6 ± 0.4,83.2 ± 0.8,83.6,0.4,83.2,0.8,973,973,1
+4,GAIA,Tool Use,1,A,openhands,gpt-5-mini,3,165/165,51.3 ± 0.7,50.7 ± 0.5,51.3,0.7,50.7,0.5,165,165,1
+4,GAIA2,Tool Use,3,A,gaia2-parity-agent,gpt-5-mini,2,100/800,6.0 ± 1.0,6.0 ± 0.0,6.0,1.0,6.0,0.0,100,800,1
+4,BFCL,Tool Use,2,N,codex,gpt-5-mini,3,123/3641,83.2 ± 0.7,83.5 ± 1.0,83.2,0.7,83.5,1.0,123,3641,1
+4,DeepSynth,Web Agents,1,A,claude-code,haiku-4-5,3,40/40,9.3 ± 1.0,7.8 ± 0.6,9.3,1.0,7.8,0.6,40,40,1
+4,Seal-0,Web Agents,1,A,claude-code,haiku-4-5,3,111/111,33.9 ± 3.0,33.3 ± 3.6,33.9,3.0,33.3,3.6,111,111,1
+4,WideSearch,Web Agents,1,A,claude-code,haiku-4-5,3,200/200,53.8 ± 0.3,53.9 ± 0.3,53.8,0.3,53.9,0.3,200,200,1
+4,DA-Code,SQL & DS,3,A,da-agent,gpt-4o,3,479/479,38.7 ± 1.1,38.9 ± 0.2,38.7,1.1,38.9,0.2,479,479,1
+4,Spider 2,SQL & DS,1,A,spider-agent,gpt-5-mini,3,64/64,18.8 ± 0.0,18.3 ± 0.5,18.8,0.0,18.3,0.5,64,64,1
+4,FinanceAgent,Finance,3,A,finance-agent,gpt-5.2,3,50/50,78.0 ± 1.0,80.0 ± 0.0,78.0,1.0,80.0,0.0,50,50,1
+4,PIXIU,Finance,2,M,codex,gpt-5-mini,3,435/54083,90.1 ± 3.3,85.2 ± 6.4,90.1,3.3,85.2,6.4,435,54083,1
+4,CRMArena,Business,3,A,crmarena-react,haiku-4-5,3,90/1170,69.0 ± 1.0,68.0 ± 2.0,69.0,1.0,68.0,2.0,90,1170,1
+4,SpreadsheetBench,Business,1,A,claude-code,haiku-4-5,3,400/400,68.8 ± 0.8,68.3 ± 1.1,68.8,0.8,68.3,1.1,400,400,1
+4,MedAgentBench,Healthcare,3,A,medagent-react,gpt-4o-mini,3,300/300,58.0 ± 0.9,57.9 ± 0.3,58.0,0.9,57.9,0.3,300,300,0
+4,LawBench,Legal,2,N,qwen-code,glm-4.7,3,120/1000,65.0 ± 0.3,65.6 ± 0.7,65.0,0.3,65.6,0.7,120,1000,1
+4,CyberGym,Cybersec.,3,A,openhands,haiku-4-5,5,10/1507,64.0 ± 4.0,66.0 ± 2.5,64.0,4.0,66.0,2.5,10,1507,1
+4,StrongReject,Jailbreak,2,N,codex,gpt-5-nano,3,150/12207,95.0 ± 0.7,95.0 ± 1.1,95.0,0.7,95.0,1.1,150,12207,1
+4,MMAU,Audio,2,N,terminus-2,gpt-4o,3,1000/1000,56.6 ± 0.8,56.6 ± 0.8,56.6,0.8,56.6,0.8,1000,1000,1
