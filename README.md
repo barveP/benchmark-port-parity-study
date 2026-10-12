@@ -8,7 +8,8 @@ Harbor is the agent-evaluation framework behind Terminal-Bench. About 90 benchma
 
 - Phase 0 (reproduce the first-pass numbers): done. Every number in `BRIEF.md` regenerates from `scripts/`; see `NUMBERS.md`. Two independent re-derivations and two adversarial reviews found no arithmetic errors; the caveats they raised are in `memos/phase-0-1-memo.md`.
 - Phase 1 (prior-work check): done; table and verdict in `memos/phase-0-1-memo.md`.
-- Phases 2 to 4 (analysis, results memo, paper): not started.
+- Phase 2 (analysis): in progress on branch `phase-2`; rules fixed in `memos/phase-2-preregistration.md` before any outcome was computed; results in `results/phase2/`.
+- Phases 3 and 4 (results memo, paper): not started.
 
 ## Layout
 
@@ -20,6 +21,12 @@ Harbor is the agent-evaluation framework behind Terminal-Bench. About 90 benchma
 | `scripts/parity_lib.py` | shared definitions: loading, run-list parsing, the overlap rule, its exact error rates, SEM, t quantiles |
 | `scripts/p0_*.py` | Phase 0 scripts; each writes JSON/CSV into `results/phase0/` |
 | `scripts/p1_parse_paper_tables.py` | parses Tables 3 and 4 of the Harbor paper (arXiv HTML) into `data/paper/tables_3_4.csv` and cross-checks them against the JSON |
+| `scripts/p2_build_comparisons.py` | one comparison per experiment under the pre-registered rule |
+| `scripts/p2_rq1_rules.py` | error rates of the overlap rule and three alternatives under normal, binomial and per-task noise |
+| `scripts/p2_rq2_evidence.py` | gaps, intervals and smallest provable margins for every comparison |
+| `scripts/p2_rq3_runs_needed.py`, `p2_rq3_paired.py`, `p2_rq3_defects.py` | runs needed at 80% power; paired per-task analysis; injected-defect detection curves |
+| `scripts/parity_verdict.py` | reads a `parity_experiment.json` and prints the verdict, the smallest provable margin and the runs needed |
+| `scripts/pertask/<adapter>.py`, `data/pertask/<adapter>/` | per-task outcomes recovered from the Hugging Face dataset, one parser per adapter, validated against the published run scores |
 | `scripts/run_phase0.sh` | regenerates all Phase 0 outputs, rewrites `NUMBERS.md`, runs the tests |
 | `scripts/fetch_harbor_snapshot.sh` | re-creates `data/raw/` from the pinned commit |
 | `starter/` | the first-pass scripts, kept unchanged for the record |
@@ -32,6 +39,7 @@ Harbor is the agent-evaluation framework behind Terminal-Bench. About 90 benchma
 ```bash
 uv venv --python 3.12 .venv && uv pip install --python .venv/bin/python numpy scipy matplotlib pytest pypdf
 bash scripts/run_phase0.sh
+bash scripts/run_phase2.sh
 ```
 
 Scripts are run with `python -I` and take the data directory as an argument, so nothing is imported from the data folder.
