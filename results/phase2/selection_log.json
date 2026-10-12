@@ -1,0 +1,104 @@
+{
+ "excluded_side_quantities": {
+  "acc_stderr": 19,
+  "missing": 18,
+  "missing_stderr": 18
+ },
+ "experiments_without_comparison": [
+  "aa-lcr#0 (codex@0.117.0, gpt-5-mini)",
+  "aa-lcr#1 (claude-code@2.1.104, claude-haiku-4-5)",
+  "aa-lcr#2 (terminus-2@2.0.0, gpt-5-mini)",
+  "aa-lcr#3 (terminus-2@2.0.0, claude-haiku-4-5)",
+  "aider_polyglot#0 (claude_code@v1.0.92, claude-3-7-sonnet-20250219)",
+  "aider_polyglot#1 (claude_code@v2.0.32, claude-3-haiku-20240307)",
+  "algotune#0 (openhands@v0.54.0, gpt-5-2025-08-07)",
+  "algotune#1 (terminus-2, gpt-5-mini-2025-08-07)",
+  "autocodebench#0 (openhands, deepseek-v3.1)",
+  "autocodebench#1 (openhands, deepseek-v3.2)",
+  "bixbench#1 (codex, gpt-5-mini-2025-08-07)",
+  "codepde#0 (terminus-1, o4-mini-2025-04-16)",
+  "codepde#1 (terminus-2, claude-haiku-4-5-20251001)",
+  "crmarena#1 (claude-code@2.1.97, claude-haiku-4-5)",
+  "deveval#0 (claude-code@v2.0.31, claude-haiku-4-5-20251001)",
+  "evoeval#0 (codex@0.53.0, o4-mini-2025-04-16)",
+  "featbench#2 (codex@0.118.0, gpt-5-mini)",
+  "gaia2#1 (opencode, openai/gpt-5-mini)",
+  "kumo#2 (terminus-2, openai/gpt-5-mini)",
+  "kumo#3 (terminus-2, openai/gpt-5-nano)",
+  "kumo#4 (codex, openai/gpt-5-mini)",
+  "kumo#5 (codex, openai/gpt-5-nano)",
+  "livecodebench#0 (terminus-2, gpt-5-mini-2025-08-07)",
+  "livecodebench#1 (claude-code@2.0.32, claude-haiku-4-5-20251001)",
+  "quixbugs#0 (claude-code@1.0.98, claude-3-7-sonnet-20250219)",
+  "quixbugs#1 (codex@0.77.0, gpt-5-mini-2025-08-07)",
+  "replicationbench#0 (claude-code, claude-3-7-sonnet-20250219)",
+  "replicationbench#1 (claude-code, claude-haiku-4-5-20251001)",
+  "sldbench#0 (claude-code, claude-haiku-4-5-20251001)",
+  "swebench#0 (codex@0.2.0, o4-mini)",
+  "swebench#1 (terminus-v1.5-xml, claude-opus-4-20250514)",
+  "swebench#2 (openhands: commit_version=c677f7284ee6e1e80ece4fe63a470912325cfe6a, claude-4-sonnet)",
+  "swebench#3 (terminus-2: commit_version=0bad1ff4af462096d87f8a46855536e0eb10a772, Claude-Sonnet-4-5-20250929)",
+  "swesmith#0 (mini-swe-agent, claude-sonnet-4-20250514)",
+  "swesmith#1 (mini-swe-agent, claude-3-haiku-20240307)",
+  "swtbench#0 (claude-code, claude-haiku-4-5-20251001)",
+  "swtbench#1 (terminus-2, claude-haiku-4-5-20251001)",
+  "swtbench#2 (openhands, claude-haiku-4-5-20251001)",
+  "tau3-bench#1 (codex@0.123.0, gpt-5.2)"
+ ],
+ "original_variant_rows": [
+  "bfcl#0: AST Exact Match Accuracy (%)",
+  "bfcl#1: AST Exact Match Accuracy (%)"
+ ],
+ "single_run_rows": [
+  "osworld#0: success rate (pass@1, no-result counted as 0) k=1v1",
+  "programbench#0: test_pass_rate k=1v1",
+  "programbench#1: test_pass_rate k=1v5",
+  "swebench#4: Resolved Rate k=1v3"
+ ],
+ "table_unmatched_adapters": [
+  "aa-lcr",
+  "aider_polyglot",
+  "algotune",
+  "codepde",
+  "frontier-cs-algorithm",
+  "livecodebench",
+  "quixbugs",
+  "replicationbench",
+  "sldbench",
+  "swesmith",
+  "swtbench"
+ ],
+ "n_experiments": 121,
+ "n_comparisons": 82,
+ "n_legs": 16,
+ "selection_branch_counts": {
+  "1:paper_table": 46,
+  "2b:aggregated_per_task_rows": 2,
+  "2:headline_name": 31,
+  "3:first_remaining": 3
+ },
+ "k_counts": {
+  "3v3": 61,
+  "6v6": 2,
+  "5v5": 5,
+  "4v4": 2,
+  "2v2": 7,
+  "1v1": 2,
+  "1v5": 1,
+  "1v3": 1,
+  "3v5": 1
+ },
+ "flags": {
+  "native_units": 1,
+  "identical_lists": 2,
+  "zero_spread_both": 1,
+  "zero_spread_one": 6,
+  "single_run_side": 4,
+  "scaled_x100": 34
+ },
+ "parity_set_counts": {
+  "full": 47,
+  "subset": 33,
+  "unknown": 2
+ }
+}
