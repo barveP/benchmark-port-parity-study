@@ -182,7 +182,7 @@ ax = axes[0, 0]
 for rule, lab, ls in (("R", "range overlap (Harbor)", "-"), ("S1", "mean ± SEM bars overlap", "--"), ("S2", "|gap| ≤ SE of difference", "-."), ("T", "pooled t-test, p < .05", "-"), ("W", "Welch t-test, p < .05", ":")):
     ax.plot(DELTAS, [normal[f"k=3,gap={d}"][rule] for d in DELTAS], ls, marker="o", ms=3, label=lab)
 ax.set_xlabel("true gap, in run-to-run SDs"); ax.set_ylabel("P(verdict = mismatch)"); ax.set_title("(a) k = 3, normal noise; curves differ mainly by their false-alarm rate", fontsize=9)
-ax.axhline(0.05, color="grey", lw=0.5); ax.text(3.6, 0.06, "0.05", fontsize=7, color="grey"); ax.legend(fontsize=7, frameon=False); ax.set_ylim(0, 1)
+ax.axhline(0.05, color="grey", lw=0.5); ax.text(-0.1, 0.065, "0.05", fontsize=7, color="grey"); ax.legend(fontsize=7, frameon=False, loc="center right"); ax.set_ylim(0, 1)
 ax = axes[0, 1]
 for rule, lab in (("R", "range overlap"), ("S1", "SEM bars overlap"), ("T", "pooled t-test"), ("W", "Welch t-test")):
     ax.plot(KS, [summ["false_alarm_by_k"][rule][str(k)] for k in KS], marker="o", ms=3, label=lab)
@@ -200,7 +200,7 @@ if sd_ticks:
     for q in sd_ticks:
         ax.axvline(q, color="grey", lw=0.6, ls="--")
     ax.text(sd_ticks[1] * 1.05, 0.03, "observed SD quartiles", fontsize=7, color="grey")
-ax.set_xscale("log"); ax.set_xlabel("run-to-run SD, points (both sides)"); ax.set_ylabel("probability (pass, or equivalence shown)"); ax.set_title("(d) true gap fixed at 2 points, k = 3", fontsize=9); ax.set_ylim(0, 1); ax.legend(fontsize=7, frameon=False)
+ax.set_xscale("log"); ax.set_xlabel("run-to-run SD, points (both sides)"); ax.set_ylabel("probability (pass, or equivalence shown)"); ax.set_title("(d) true gap fixed at 2 points, k = 3", fontsize=9); ax.set_ylim(0, 1); ax.legend(fontsize=7, frameon=False, loc="center right")
 fig.tight_layout()
 fig.savefig(os.path.join(out, "figures", "fig_rq1_rules.png"), dpi=200)
 fig.savefig(os.path.join(out, "figures", "fig_rq1_rules.pdf"))
