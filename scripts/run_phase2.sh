@@ -12,4 +12,6 @@ if [ -d data/pertask ]; then
   $PY -I scripts/p2_rq3_paired.py data/pertask "$SNAP" "$OUT"
   $PY -I scripts/p2_rq3_defects.py data/pertask "$OUT"
 fi
+
+$PY -I scripts/p2_numbers_table.py "$OUT"
 $PY -I -m pytest -q
