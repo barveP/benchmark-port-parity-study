@@ -119,6 +119,7 @@ def parse_pm(s):
     """
     if not isinstance(s, str):
         return None
+    s = re.sub(r"\s*\([^)]*\)\s*$", "", s)  # drop a trailing note such as "(stderr across 3 runs)"
     m = _PM.match(s)
     if not m:
         return None
