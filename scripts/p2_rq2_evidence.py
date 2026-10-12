@@ -179,7 +179,7 @@ for m, ls in ((3, "--"), (5, ":")):
     ax.axvline(m, color="grey", ls=ls, lw=0.7); ax.axvline(-m, color="grey", ls=ls, lw=0.7)
 ax.axvline(0, color="black", lw=0.5)
 ax.set_yticks(y); ax.set_yticklabels([f"{r['adapter']} ({r['exp']})" if sum(1 for q in hs if q['adapter'] == r['adapter']) > 1 else r["adapter"] for r in hs], fontsize=5.5)
-ax.set_xlabel("Harbor minus original, points, with the 90% (TOST) interval; red = fails range overlap; arrows = interval continues", fontsize=8)
+ax.set_xlabel("Harbor minus original, points, with the 90% (TOST) interval\nred = fails range overlap; arrows = interval continues beyond the frame", fontsize=8)
 ax.set_xlim(-XLIM, XLIM)
 fig.tight_layout(); fig.savefig(os.path.join(p2, "figures", "fig_rq2_margins.png"), dpi=200); fig.savefig(os.path.join(p2, "figures", "fig_rq2_margins.pdf"))
 
