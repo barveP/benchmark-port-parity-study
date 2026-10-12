@@ -44,19 +44,27 @@ for r in rows:
     sd, g = float(r["pooled_sd"]), abs(float(r["gap"]))
     rec = {"adapter": r["adapter"], "exp": r["exp"], "metric": r["metric"], "pooled_sd": sd, "abs_gap": g}
     for m in MARGINS:
-        rec[f"k80_m{m}_gap0"] = runs_needed_power(m, 0.0, sd, 0.8, kmax=400) if sd > 0 else 2
-        rec[f"k80_m{m}_obsgap"] = runs_needed_power(m, g, sd, 0.8, kmax=400) if (sd > 0 and g < m) else (None if g >= m else 2)
+        k0 = runs_needed_power(m, 0.0, sd, 0.8, kmax=400) if sd > 0 else 2
+        rec[f"k80_m{m}_gap0"] = k0 if k0 is not None else ">400"
+        if g >= m:
+            rec[f"k80_m{m}_obsgap"] = "gap >= margin"
+        else:
+            kg = runs_needed_power(m, g, sd, 0.8, kmax=400) if sd > 0 else 2
+            rec[f"k80_m{m}_obsgap"] = kg if kg is not None else ">400"
     per.append(rec)
 with open(os.path.join(p2, "rq3_runs_needed_per_comparison.csv"), "w", newline="") as fh:
     w = csv.DictWriter(fh, fieldnames=list(per[0].keys())); w.writeheader(); w.writerows(per)
 dist = {}
+BIG = 10_000  # stands for "> 400 runs" in the quantiles and shares (kept in the denominators)
 for m in MARGINS:
-    v0 = np.array([x[f"k80_m{m}_gap0"] for x in per if x[f"k80_m{m}_gap0"] is not None], dtype=float)
+    v0 = np.array([x[f"k80_m{m}_gap0"] if isinstance(x[f"k80_m{m}_gap0"], int) else BIG for x in per], dtype=float)
     vg = [x[f"k80_m{m}_obsgap"] for x in per]
-    reach = [v for v in vg if v is not None]
-    dist[f"m={m}"] = {"gap0_quartiles": [float(x) for x in np.percentile(v0, [25, 50, 75])], "gap0_share_k_le_3": float(np.mean(v0 <= 3)),
-                      "gap0_share_k_le_5": float(np.mean(v0 <= 5)), "gap0_share_k_le_10": float(np.mean(v0 <= 10)),
-                      "obsgap_unreachable_gap_ge_margin": sum(1 for v in vg if v is None), "obsgap_quartiles": [float(x) for x in np.percentile(reach, [25, 50, 75])] if reach else None}
+    reach = [v for v in vg if isinstance(v, int)]
+    q = [float(x) for x in np.percentile(v0, [25, 50, 75])]
+    dist[f"m={m}"] = {"n": len(per), "gap0_quartiles": [(">400" if x >= BIG else x) for x in q], "gap0_n_over_400": int(np.sum(v0 >= BIG)),
+                      "gap0_share_k_le_3": float(np.mean(v0 <= 3)), "gap0_share_k_le_5": float(np.mean(v0 <= 5)), "gap0_share_k_le_10": float(np.mean(v0 <= 10)),
+                      "obsgap_gap_ge_margin": sum(1 for v in vg if v == "gap >= margin"), "obsgap_over_400": sum(1 for v in vg if v == ">400"),
+                      "obsgap_quartiles_of_reachable": [float(x) for x in np.percentile(reach, [25, 50, 75])] if reach else None}
 overlap_fa = {str(k): rule_false_alarm_exact(k) for k in range(2, 11)}
 res = {"headline_sd_quartiles": [q25, q50, q75], "table": table, "per_comparison_distribution_k3": dist, "overlap_false_alarm_by_k": overlap_fa}
 with open(os.path.join(p2, "rq3_runs_needed.json"), "w") as fh:
@@ -68,4 +76,4 @@ for label in ("sd_p25", "sd_p50", "sd_p75"):
         c0, c6 = table[f"{label},gap=0.0,m={m}"], table[f"{label},gap=0.6,m={m}"]
         print(f"  {label} ±{m}: gap0 {c0['k_power80']}/{c0['k_power90']} (power at k=3: {c0['power_at_k3']}) | gap0.6 {c6['k_power80']}/{c6['k_power90']} (plug-in k {c6['k_plugin']} has power {c6['power_at_plugin_k']})")
 print("per comparison (k=3 set), runs for 80% power at true gap 0 by margin:", {m: (round(v['gap0_quartiles'][1]), f"share needing <=3 runs: {v['gap0_share_k_le_3']:.2f}, <=5: {v['gap0_share_k_le_5']:.2f}, <=10: {v['gap0_share_k_le_10']:.2f}") for m, v in dist.items()})
-print("comparisons whose observed gap already exceeds the margin (unreachable):", {m: v["obsgap_unreachable_gap_ge_margin"] for m, v in dist.items()})
+print("comparisons whose observed gap already exceeds the margin:", {m: v["obsgap_gap_ge_margin"] for m, v in dist.items()}, "| needing more than 400 runs at gap 0:", {m: v["gap0_n_over_400"] for m, v in dist.items()})
