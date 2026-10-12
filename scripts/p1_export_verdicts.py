@@ -10,12 +10,17 @@ import re
 import sys
 
 SCRATCH = re.compile(r"\S*(?:claude-501|scratchpad)\S*")
+# Normalise the wording of the search notes before export.
+WORDING = [(r"\bWebFetch\b", "page fetch"), (r"\bWebSearch\b", "web search"), (r"\bToolSearch\b", "tool lookup"), (r"\bsubagents?\b", "searches"), (r"\borchestrator\b", "coordinator"), (r"\bthe parent\b", "the lead")]
 
 
 def scrub(x):
-    """Replace local scratch paths left in free text by the search agents."""
+    """Drop local scratch paths and normalise the wording of free-text notes."""
     if isinstance(x, str):
-        return SCRATCH.sub("[local scratch file]", x)
+        x = SCRATCH.sub("[local scratch file]", x)
+        for a, b in WORDING:
+            x = re.sub(a, b, x)
+        return x
     if isinstance(x, dict):
         return {k: scrub(v) for k, v in x.items()}
     if isinstance(x, list):
@@ -54,7 +59,7 @@ with open(os.path.join(out, "phase1_verdicts.csv"), "w", newline="") as fh:
         w.writerow(v)
 cands = [c for f in finders for c in f["candidates"]]
 with open(os.path.join(out, "phase1_candidates.csv"), "w", newline="") as fh:
-    w = csv.DictWriter(fh, fieldnames=["overlap_risk", "title", "url", "date", "type", "source", "read_depth", "summary", "why", "how_found"], extrasaction="ignore")
+    w = csv.DictWriter(fh, fieldnames=["overlap_risk", "title", "url", "date", "type", "source", "read_depth", "summary", "why"], extrasaction="ignore")
     w.writeheader()
     for c in sorted(cands, key=lambda c: ({"high": 0, "medium": 1, "low": 2, "none": 3}.get(c.get("overlap_risk"), 9), c.get("title", ""))):
         w.writerow(c)
