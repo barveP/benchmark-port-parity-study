@@ -34,10 +34,10 @@ ADAPTER_ALIASES = {  # paper table names -> snapshot adapter file names, where t
     "lab-bench": "labbench", "ace-bench": "ace-bench", "deepsynth": "deepsynth", "seal-0": "seal0", "da-code": "dacode",
     "spider 2": "spider2-dbt", "pixiu": "pixiu", "crmarena": "crmarena", "medagentbench": "medagentbench",
     "cybergym": "cybergym", "strongreject": "strongreject", "mmau": "mmau", "ml-dev-bench": "ml_dev_bench",
-    "llm-srbench": "llmsr_bench", "omni-math": "omni-math", "ineqmath": "ineqmath", "kumo": "kumo", "mmmlu": "mmmlu",
+    "llm-srbench": "llmsr_bench", "omni-math": "omnimath", "ineqmath": "ineqmath", "kumo": "kumo", "mmmlu": "mmmlu",
     "simpleqa": "simpleqa", "replicationbench": "replicationbench", "sldbench": "sldbench", "mlgym-bench": "mlgym-bench",
     "codepde": "codepde", "scicode": "scicode", "qcircuitbench": "qcircuitbench", "gaia": "gaia", "gaia2": "gaia2",
-    "bfcl": "bfcl", "widesearch": "widesearch", "financeagent": "financeagent", "spreadsheetbench": "spreadsheetbench",
+    "bfcl": "bfcl", "widesearch": "widesearch", "financeagent": "financeagent", "spreadsheetbench": "spreadsheetbench-verified",
     "lawbench": "lawbench", "usaco": "usaco", "quixbugs": "quixbugs", "gso": "gso", "algotune": "algotune",
     "devopsgym": "devopsgym", "aime": "aime", "cooperbench": "cooperbench", "featbench": "featbench",
     "featurebench": "featurebench", "theagentcompany": "theagentcompany", "graphdesignbench": "gdb",
@@ -53,11 +53,14 @@ def norm(name):
 
 
 table = {}
+table_rows_without_file = []
 for r in csv.DictReader(open(tables_csv)):
     key = norm(r["benchmark"])
     a = ADAPTER_ALIASES.get(key, key.replace(" ", "_").replace("-", "_"))
     cand = [a, a.replace("_", "-"), a.replace("-", "_")]
     hit = next((c for c in cand if c in adapters_present), None)
+    if not hit:
+        table_rows_without_file.append(r["benchmark"])
     if hit and r["orig_mean"] not in ("", "None") and r["harbor_mean"] not in ("", "None"):
         table.setdefault(hit, []).append({"orig": float(r["orig_mean"]), "harbor": float(r["harbor_mean"]),
                                           "orig_txt": r["orig"], "harbor_txt": r["harbor"], "k": r["k"], "set": r["parity_set"]})
@@ -93,13 +96,11 @@ for adapter, i, e in iter_experiments(snap):
         a, ka = side_list(m, "original")
         b, kb = side_list(m, "harbor")
         t, kt = side_list(m, "tb_adapter")
-        if t and (a or b):  # transitive legs
-            if a:
-                legs.append({"adapter": adapter, "exp": i, "metric_index": j, "metric": name, "leg": "original_vs_tb_adapter",
-                             "side_a_runs": a, "side_b_runs": t, "agent": e.get("agent"), "model": e.get("model")})
-            if b:
-                legs.append({"adapter": adapter, "exp": i, "metric_index": j, "metric": name, "leg": "tb_adapter_vs_harbor",
-                             "side_a_runs": t, "side_b_runs": b, "agent": e.get("agent"), "model": e.get("model")})
+        if t and (a or b) and not is_side_quantity(name):  # transitive legs (secondary set)
+            for leg, x, y in (("original_vs_tb_adapter", a, t), ("tb_adapter_vs_harbor", t, b)):
+                if x and y:
+                    legs.append({"adapter": adapter, "exp": i, "metric_index": j, "metric": name, "leg": leg, "k_a": len(x), "k_b": len(y),
+                                 "unequal_k": len(x) != len(y), "side_a_runs": x, "side_b_runs": y, "agent": e.get("agent"), "model": e.get("model")})
         if not (a and b):
             continue
         if is_side_quantity(name):
@@ -110,8 +111,9 @@ for adapter, i, e in iter_experiments(snap):
         log["experiments_without_comparison"].append(f"{adapter}#{i} ({e.get('agent')}, {e.get('model')})")
         continue
     chosen, branch = None, None
+    cands_pref = sorted(cands, key=lambda c: (0 if is_headline(c[1].get("metric", "")) else 1, c[0]))  # tie-break: headline name, then file order
     for ent in table.get(adapter, []):  # branch 1: match the paper's table entry
-        for c in cands:
+        for c in cands_pref:
             pm_o, pm_h = parse_pm(c[1].get("original")), parse_pm(c[1].get("harbor"))
             if not (pm_o and pm_h):
                 continue
@@ -123,16 +125,22 @@ for adapter, i, e in iter_experiments(snap):
                 break
         if chosen:
             break
-    if not chosen and len(cands) >= 5 and len({str(c[1].get("metric")) for c in cands}) == 1 \
-            and len({str(c[1].get("benchmark_name")) for c in cands}) == len(cands) \
-            and len({(len(c[2]), len(c[3])) for c in cands}) == 1:
-        # Amendment 2b: per-task rows (one row per problem, same metric, equal k): aggregate by run index
-        k = len(cands[0][2])
-        agg_a = [sum(c[2][r] for c in cands) / len(cands) for r in range(k)]
-        agg_b = [sum(c[3][r] for c in cands) / len(cands) for r in range(k)]
-        m0 = dict(cands[0][1]); m0["metric"] = f"{m0.get('metric')} (mean over {len(cands)} per-task rows)"
+    group_rows = [c for c in cands if str(c[1].get("benchmark_name", "")).lower() not in ("overall", "all", "total", adapter.lower())]
+    if not chosen and len(group_rows) >= 5 and len({str(c[1].get("metric")) for c in group_rows}) == 1 \
+            and len({str(c[1].get("benchmark_name")) for c in group_rows}) == len(group_rows) \
+            and len({(len(c[2]), len(c[3])) for c in group_rows}) == 1:
+        # Amendment 2b (as amended by 4b): per-group rows of equal size (one row per problem or per language,
+        # same metric, equal k): aggregate by run index; run i of the experiment = mean over rows of run i
+        k = len(group_rows[0][2])
+        agg_a = [sum(c[2][r] for c in group_rows) / len(group_rows) for r in range(k)]
+        agg_b = [sum(c[3][r] for c in group_rows) / len(group_rows) for r in range(k)]
+        m0 = dict(group_rows[0][1]); m0["metric"] = f"{m0.get('metric')} (mean over {len(group_rows)} per-group rows)"
         m0["original"] = m0["harbor"] = None
-        chosen, branch = (cands[0][0], m0, agg_a, agg_b, cands[0][4], cands[0][5]), "2b:aggregated_per_task_rows"
+        chosen, branch = (group_rows[0][0], m0, agg_a, agg_b, group_rows[0][4], group_rows[0][5]), "2b:aggregated_per_group_rows"
+        for ent in table.get(adapter, []):  # re-check the aggregated means against the paper table
+            for sc in (1.0, 100.0):
+                if abs(mean(agg_a) * sc - ent["orig"]) <= tol(ent["orig_txt"]) and abs(mean(agg_b) * sc - ent["harbor"]) <= tol(ent["harbor_txt"]):
+                    branch = "1:paper_table(aggregated)"
     if not chosen:  # branch 2: headline name
         for c in cands:
             if is_headline(c[1].get("metric", "")):
@@ -142,8 +150,7 @@ for adapter, i, e in iter_experiments(snap):
         chosen, branch = cands[0], "3:first_remaining"
     j, m, a, b, ka, kb = chosen
     vals = a + b
-    pct_in_text = "%" in str(m.get("original", "")) + str(m.get("harbor", ""))
-    fraction = max(vals) <= 1.0 and min(vals) >= 0 and not pct_in_text
+    fraction = max(vals) <= 1.0 and min(vals) >= 0  # amendment 4a: regardless of a % sign in the reported string
     scale = 100.0 if fraction else 1.0
     a_pts, b_pts = [x * scale for x in a], [x * scale for x in b]
     native = min(a_pts + b_pts) < 0 or max(a_pts + b_pts) > 100
@@ -162,11 +169,12 @@ for adapter, i, e in iter_experiments(snap):
         log["single_run_rows"].append(f"{adapter}#{i}: {m.get('metric')} k={len(a)}v{len(b)}")
     rows.append(row)
 
-log["table_unmatched_adapters"] = sorted(a for a in table if not any(r["adapter"] == a and r["selection_branch"] == "1:paper_table" for r in rows))
+log["table_unmatched_adapters"] = sorted(a for a in table if not any(r["adapter"] == a and r["selection_branch"].startswith("1:") for r in rows))
 log["n_experiments"] = sum(1 for _ in iter_experiments(snap))
 log["n_comparisons"] = len(rows)
 log["n_legs"] = len(legs)
-log["selection_branch_counts"] = {b: sum(1 for r in rows if r["selection_branch"] == b) for b in ("1:paper_table", "2b:aggregated_per_task_rows", "2:headline_name", "3:first_remaining")}
+log["selection_branch_counts"] = {b: sum(1 for r in rows if r["selection_branch"] == b) for b in ("1:paper_table", "1:paper_table(aggregated)", "2b:aggregated_per_group_rows", "2:headline_name", "3:first_remaining")}
+log["table_rows_without_adapter_file"] = table_rows_without_file
 log["k_counts"] = {}
 for r in rows:
     kk = f"{r['k_original']}v{r['k_harbor']}"
@@ -174,20 +182,22 @@ for r in rows:
 log["flags"] = {f: sum(1 for r in rows if r[f]) for f in ("native_units", "identical_lists", "zero_spread_both", "zero_spread_one", "single_run_side", "scaled_x100")}
 log["parity_set_counts"] = {s: sum(1 for r in rows if r["parity_set"] == s) for s in ("full", "subset", "unknown")}
 
-cols = list(rows[0].keys())
+cols = ["adapter", "exp", "metric_index", "agent", "model", "metric", "selection_branch", "key_original", "key_harbor", "k_original", "k_harbor",
+        "scaled_x100", "native_units", "parity_set", "parity_n", "adapted_n", "original_runs", "harbor_runs", "mean_original", "mean_harbor", "gap",
+        "identical_lists", "zero_spread_both", "zero_spread_one", "single_run_side", "reported_original", "reported_harbor", "in_paper_table"]
 with open(os.path.join(out, "comparisons.csv"), "w", newline="") as fh:
     w = csv.DictWriter(fh, fieldnames=cols)
     w.writeheader()
     w.writerows(rows)
 with open(os.path.join(out, "comparisons_legs.csv"), "w", newline="") as fh:
-    w = csv.DictWriter(fh, fieldnames=list(legs[0].keys()) if legs else ["none"])
+    w = csv.DictWriter(fh, fieldnames=["adapter", "exp", "metric_index", "metric", "leg", "k_a", "k_b", "unequal_k", "side_a_runs", "side_b_runs", "agent", "model"])
     w.writeheader()
     w.writerows(legs)
 with open(os.path.join(out, "selection_log.json"), "w") as fh:
     json.dump(log, fh, indent=1)
 
 print(f"experiments {log['n_experiments']} | comparisons {len(rows)} | transitive legs {len(legs)} | no comparison {len(log['experiments_without_comparison'])}")
-print("selection branch:", log["selection_branch_counts"], "| paper-table adapters not matched by a row:", log["table_unmatched_adapters"])
+print("selection branch:", log["selection_branch_counts"], "| paper-table adapters not matched by a row:", log["table_unmatched_adapters"], "| table rows with no adapter file:", table_rows_without_file)
 print("k per side:", dict(sorted(log["k_counts"].items(), key=lambda kv: -kv[1])))
 print("flags:", log["flags"], "| parity set:", log["parity_set_counts"])
 print("excluded side-quantity names:", log["excluded_side_quantities"])

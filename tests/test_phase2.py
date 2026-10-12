@@ -98,7 +98,7 @@ def test_builder_applies_the_preregistered_rule(tmp_path):
     assert "acc_stderr" in log["excluded_side_quantities"] and "Mean Semantic Score" not in log["excluded_side_quantities"]
     assert rows["alpha"]["parity_set"] == "subset"
     # beta: six per-task rows aggregated by run index; mean over rows of run i
-    assert rows["beta"]["selection_branch"] == "2b:aggregated_per_task_rows"
+    assert rows["beta"]["selection_branch"] == "2b:aggregated_per_group_rows"
     assert json.loads(rows["beta"]["original_runs"]) == [25.0, 25.0, 25.0] and json.loads(rows["beta"]["harbor_runs"]) == [26.0, 26.0, 26.0]
     # gamma: 'counted' is not 'count'; fractions scaled; single-run flagged; the tb_adapter row is a leg, not a comparison
     assert rows["gamma"]["metric"].startswith("success rate") and rows["gamma"]["single_run_side"] == "True" and rows["gamma"]["scaled_x100"] == "True"

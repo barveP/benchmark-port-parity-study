@@ -60,7 +60,6 @@
   "aider_polyglot",
   "algotune",
   "codepde",
-  "frontier-cs-algorithm",
   "livecodebench",
   "quixbugs",
   "replicationbench",
@@ -70,13 +69,17 @@
  ],
  "n_experiments": 121,
  "n_comparisons": 82,
- "n_legs": 16,
+ "n_legs": 15,
  "selection_branch_counts": {
-  "1:paper_table": 46,
-  "2b:aggregated_per_task_rows": 2,
-  "2:headline_name": 31,
+  "1:paper_table": 48,
+  "1:paper_table(aggregated)": 1,
+  "2b:aggregated_per_group_rows": 1,
+  "2:headline_name": 29,
   "3:first_remaining": 3
  },
+ "table_rows_without_adapter_file": [
+  "AIME"
+ ],
  "k_counts": {
   "3v3": 61,
   "6v6": 2,
@@ -94,7 +97,7 @@
   "zero_spread_both": 1,
   "zero_spread_one": 6,
   "single_run_side": 4,
-  "scaled_x100": 34
+  "scaled_x100": 35
  },
  "parity_set_counts": {
   "full": 47,

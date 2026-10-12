@@ -1,0 +1,1250 @@
+{
+ "summaries": {
+  "headline_k3": {
+   "label": "k = 3 on both sides",
+   "n": 58,
+   "median_abs_gap": 0.6666666666666679,
+   "gap_quartiles": [
+    0.30999999999999783,
+    0.6666666666666679,
+    1.4750000000000003
+   ],
+   "median_pooled_sd": 1.7093312343501772,
+   "sd_quartiles": [
+    1.1159071152498776,
+    1.7093312343501772,
+    2.7432365323091057
+   ],
+   "smallest_margin_quartiles": [
+    2.376470844899736,
+    4.360341479563191,
+    6.008651852142211
+   ],
+   "within_margin_tost": {
+    "1": 1,
+    "2": 7,
+    "3": 22,
+    "5": 36,
+    "10": 53
+   },
+   "within_margin_tost_welch": {
+    "1": 1,
+    "2": 6,
+    "3": 20,
+    "5": 31,
+    "10": 53
+   },
+   "within_margin_share": {
+    "1": 0.017,
+    "2": 0.121,
+    "3": 0.379,
+    "5": 0.621,
+    "10": 0.914
+   },
+   "n_fail_overlap": 1,
+   "n_fail_overlap_strict": 1,
+   "n_S1_mismatch": 4,
+   "n_S2_mismatch": 12,
+   "n_W_mismatch": 0,
+   "n_distinguishable_95": 0,
+   "largest_gaps": [
+    [
+     "frontier-cs-algorithm",
+     "Partial Score (%) (mean over 10 per-task rows)",
+     -15.56,
+     44.15
+    ],
+    [
+     "rexbench",
+     "Final Success Rate",
+     8.34,
+     35.47
+    ],
+    [
+     "pixiu",
+     "avg_f1",
+     -4.94,
+     20.28
+    ],
+    [
+     "gdb",
+     "macro_reward",
+     4.57,
+     11.6
+    ],
+    [
+     "usaco",
+     "Resolved Rate (%)",
+     2.63,
+     5.76
+    ],
+    [
+     "kramabench",
+     "Mean Reward",
+     -2.08,
+     7.34
+    ]
+   ],
+   "overlap_pass_but_margin_over_5": 21,
+   "overlap_fail_but_equiv_within_5": 0,
+   "overlap_fail_but_equiv_within_3": 0
+  },
+  "all_k_ge_2": {
+   "label": "all comparisons with >= 2 runs per side",
+   "n": 75,
+   "median_abs_gap": 0.6666666666666679,
+   "gap_quartiles": [
+    0.2916666666666714,
+    0.6666666666666679,
+    1.5166666666666662
+   ],
+   "median_pooled_sd": 1.793971385873625,
+   "sd_quartiles": [
+    1.1173434100287674,
+    1.793971385873625,
+    2.812706434333897
+   ],
+   "smallest_margin_quartiles": [
+    2.356670024148667,
+    4.336097458269079,
+    6.019848850832858
+   ],
+   "within_margin_tost": {
+    "1": 2,
+    "2": 11,
+    "3": 30,
+    "5": 46,
+    "10": 68
+   },
+   "within_margin_tost_welch": {
+    "1": 2,
+    "2": 9,
+    "3": 26,
+    "5": 40,
+    "10": 67
+   },
+   "within_margin_share": {
+    "1": 0.027,
+    "2": 0.147,
+    "3": 0.4,
+    "5": 0.613,
+    "10": 0.907
+   },
+   "n_fail_overlap": 1,
+   "n_fail_overlap_strict": 1,
+   "n_S1_mismatch": 5,
+   "n_S2_mismatch": 14,
+   "n_W_mismatch": 0,
+   "n_distinguishable_95": 0,
+   "largest_gaps": [
+    [
+     "frontier-cs-algorithm",
+     "Partial Score (%) (mean over 10 per-task rows)",
+     -15.56,
+     44.15
+    ],
+    [
+     "rexbench",
+     "Final Success Rate",
+     8.34,
+     35.47
+    ],
+    [
+     "pixiu",
+     "avg_f1",
+     -4.94,
+     20.28
+    ],
+    [
+     "gdb",
+     "macro_reward",
+     4.57,
+     11.6
+    ],
+    [
+     "usaco",
+     "Resolved Rate (%)",
+     2.63,
+     5.76
+    ],
+    [
+     "swebenchpro",
+     "Resolved Rate (%)",
+     -2.5,
+     15.95
+    ]
+   ],
+   "overlap_pass_but_margin_over_5": 28,
+   "overlap_fail_but_equiv_within_5": 0,
+   "overlap_fail_but_equiv_within_3": 0
+  },
+  "one_per_adapter": {
+   "label": "one comparison per adapter",
+   "n": 66,
+   "median_abs_gap": 0.6666666666666696,
+   "gap_quartiles": [
+    0.2733333333333281,
+    0.6666666666666696,
+    1.5249999999999988
+   ],
+   "median_pooled_sd": 1.7427626841419694,
+   "sd_quartiles": [
+    1.1128377451142801,
+    1.7427626841419694,
+    2.7162354679939558
+   ],
+   "smallest_margin_quartiles": [
+    2.3407817333030736,
+    4.317779224732007,
+    6.008651852142211
+   ],
+   "within_margin_tost": {
+    "1": 2,
+    "2": 10,
+    "3": 27,
+    "5": 41,
+    "10": 60
+   },
+   "within_margin_tost_welch": {
+    "1": 2,
+    "2": 9,
+    "3": 23,
+    "5": 36,
+    "10": 59
+   },
+   "within_margin_share": {
+    "1": 0.03,
+    "2": 0.152,
+    "3": 0.409,
+    "5": 0.621,
+    "10": 0.909
+   },
+   "n_fail_overlap": 1,
+   "n_fail_overlap_strict": 1,
+   "n_S1_mismatch": 5,
+   "n_S2_mismatch": 14,
+   "n_W_mismatch": 0,
+   "n_distinguishable_95": 0,
+   "largest_gaps": [
+    [
+     "frontier-cs-algorithm",
+     "Partial Score (%) (mean over 10 per-task rows)",
+     -15.56,
+     44.15
+    ],
+    [
+     "rexbench",
+     "Final Success Rate",
+     8.34,
+     35.47
+    ],
+    [
+     "pixiu",
+     "avg_f1",
+     -4.94,
+     20.28
+    ],
+    [
+     "gdb",
+     "macro_reward",
+     4.57,
+     11.6
+    ],
+    [
+     "usaco",
+     "Resolved Rate (%)",
+     2.63,
+     5.76
+    ],
+    [
+     "kramabench",
+     "Mean Reward",
+     -2.08,
+     7.34
+    ]
+   ],
+   "overlap_pass_but_margin_over_5": 24,
+   "overlap_fail_but_equiv_within_5": 0,
+   "overlap_fail_but_equiv_within_3": 0
+  },
+  "subset_k3": {
+   "label": "k = 3, parity on a subset",
+   "n": 22,
+   "median_abs_gap": 0.6666666666666679,
+   "gap_quartiles": [
+    0.32083333333334174,
+    0.6666666666666679,
+    1.6333333333333364
+   ],
+   "median_pooled_sd": 2.309401076758503,
+   "sd_quartiles": [
+    1.5588847117541924,
+    2.309401076758503,
+    3.3621971020649246
+   ],
+   "smallest_margin_quartiles": [
+    3.2023897472503497,
+    5.0466534373234335,
+    6.940126394443043
+   ],
+   "within_margin_tost": {
+    "1": 0,
+    "2": 2,
+    "3": 5,
+    "5": 11,
+    "10": 19
+   },
+   "within_margin_tost_welch": {
+    "1": 0,
+    "2": 2,
+    "3": 5,
+    "5": 8,
+    "10": 19
+   },
+   "within_margin_share": {
+    "1": 0.0,
+    "2": 0.091,
+    "3": 0.227,
+    "5": 0.5,
+    "10": 0.864
+   },
+   "n_fail_overlap": 0,
+   "n_fail_overlap_strict": 0,
+   "n_S1_mismatch": 1,
+   "n_S2_mismatch": 5,
+   "n_W_mismatch": 0,
+   "n_distinguishable_95": 0,
+   "largest_gaps": [
+    [
+     "frontier-cs-algorithm",
+     "Partial Score (%) (mean over 10 per-task rows)",
+     -15.56,
+     44.15
+    ],
+    [
+     "pixiu",
+     "avg_f1",
+     -4.94,
+     20.28
+    ],
+    [
+     "gdb",
+     "macro_reward",
+     4.57,
+     11.6
+    ],
+    [
+     "simpleqa",
+     "accuracy",
+     -2.0,
+     6.02
+    ],
+    [
+     "cooperbench",
+     "pass_rate",
+     -2.0,
+     6.02
+    ],
+    [
+     "satbench",
+     "Accuracy (%)",
+     -1.67,
+     5.0
+    ]
+   ],
+   "overlap_pass_but_margin_over_5": 11,
+   "overlap_fail_but_equiv_within_5": 0,
+   "overlap_fail_but_equiv_within_3": 0
+  },
+  "full_k3": {
+   "label": "k = 3, parity on the full set",
+   "n": 34,
+   "median_abs_gap": 0.6016666666666666,
+   "gap_quartiles": [
+    0.30999999999999783,
+    0.6016666666666666,
+    1.391666666666664
+   ],
+   "median_pooled_sd": 1.5430636422099242,
+   "sd_quartiles": [
+    1.0332312859973185,
+    1.5430636422099242,
+    2.4112349751239637
+   ],
+   "smallest_margin_quartiles": [
+    2.2685353129437527,
+    3.6989440364006487,
+    5.7885962054429445
+   ],
+   "within_margin_tost": {
+    "1": 1,
+    "2": 5,
+    "3": 16,
+    "5": 23,
+    "10": 32
+   },
+   "within_margin_tost_welch": {
+    "1": 1,
+    "2": 4,
+    "3": 14,
+    "5": 21,
+    "10": 32
+   },
+   "within_margin_share": {
+    "1": 0.029,
+    "2": 0.147,
+    "3": 0.471,
+    "5": 0.676,
+    "10": 0.941
+   },
+   "n_fail_overlap": 1,
+   "n_fail_overlap_strict": 1,
+   "n_S1_mismatch": 3,
+   "n_S2_mismatch": 6,
+   "n_W_mismatch": 0,
+   "n_distinguishable_95": 0,
+   "largest_gaps": [
+    [
+     "rexbench",
+     "Final Success Rate",
+     8.34,
+     35.47
+    ],
+    [
+     "usaco",
+     "Resolved Rate (%)",
+     2.63,
+     5.76
+    ],
+    [
+     "kramabench",
+     "Mean Reward",
+     -2.08,
+     7.34
+    ],
+    [
+     "ml_dev_bench",
+     "task success rate (%)",
+     -2.02,
+     6.33
+    ],
+    [
+     "financeagent",
+     "Accuracy",
+     2.0,
+     4.46
+    ],
+    [
+     "ineqmath",
+     "Accuracy",
+     2.0,
+     5.41
+    ]
+   ],
+   "overlap_pass_but_margin_over_5": 10,
+   "overlap_fail_but_equiv_within_5": 0,
+   "overlap_fail_but_equiv_within_3": 0
+  },
+  "with_degenerate_rows": {
+   "label": "k >= 2 including identical and zero-spread rows",
+   "n": 77,
+   "median_abs_gap": 0.6666666666666679,
+   "gap_quartiles": [
+    0.27333333333333343,
+    0.6666666666666679,
+    1.5000000000000009
+   ],
+   "median_pooled_sd": 1.793971385873625,
+   "sd_quartiles": [
+    1.108332080199793,
+    1.793971385873625,
+    2.8284271247461903
+   ],
+   "smallest_margin_quartiles": [
+    2.3454868167724126,
+    4.336097458269079,
+    6.019848850832861
+   ],
+   "within_margin_tost": {
+    "1": 3,
+    "2": 12,
+    "3": 31,
+    "5": 47,
+    "10": 70
+   },
+   "within_margin_tost_welch": {
+    "1": 3,
+    "2": 10,
+    "3": 27,
+    "5": 41,
+    "10": 69
+   },
+   "within_margin_share": {
+    "1": 0.039,
+    "2": 0.156,
+    "3": 0.403,
+    "5": 0.61,
+    "10": 0.909
+   },
+   "n_fail_overlap": 1,
+   "n_fail_overlap_strict": 1,
+   "n_S1_mismatch": 5,
+   "n_S2_mismatch": 14,
+   "n_W_mismatch": 0,
+   "n_distinguishable_95": 0,
+   "largest_gaps": [
+    [
+     "frontier-cs-algorithm",
+     "Partial Score (%) (mean over 10 per-task rows)",
+     -15.56,
+     44.15
+    ],
+    [
+     "rexbench",
+     "Final Success Rate",
+     8.34,
+     35.47
+    ],
+    [
+     "pixiu",
+     "avg_f1",
+     -4.94,
+     20.28
+    ],
+    [
+     "gdb",
+     "macro_reward",
+     4.57,
+     11.6
+    ],
+    [
+     "usaco",
+     "Resolved Rate (%)",
+     2.63,
+     5.76
+    ],
+    [
+     "swebenchpro",
+     "Resolved Rate (%)",
+     -2.5,
+     15.95
+    ]
+   ],
+   "overlap_pass_but_margin_over_5": 29,
+   "overlap_fail_but_equiv_within_5": 0,
+   "overlap_fail_but_equiv_within_3": 0
+  },
+  "by_k": {
+   "2v2": {
+    "label": "k = 2",
+    "n": 7,
+    "median_abs_gap": 0.355000000000004,
+    "gap_quartiles": [
+     0.12349999999999844,
+     0.355000000000004,
+     0.7475000000000005
+    ],
+    "median_pooled_sd": 1.7708825483357167,
+    "sd_quartiles": [
+     0.7191603294394311,
+     1.7708825483357167,
+     2.55442461739756
+    ],
+    "smallest_margin_quartiles": [
+     2.277437791925575,
+     5.665951505640351,
+     8.766383048901453
+    ],
+    "within_margin_tost": {
+     "1": 1,
+     "2": 2,
+     "3": 3,
+     "5": 3,
+     "10": 7
+    },
+    "within_margin_tost_welch": {
+     "1": 1,
+     "2": 1,
+     "3": 2,
+     "5": 2,
+     "10": 6
+    },
+    "within_margin_share": {
+     "1": 0.143,
+     "2": 0.286,
+     "3": 0.429,
+     "5": 0.429,
+     "10": 1.0
+    },
+    "n_fail_overlap": 0,
+    "n_fail_overlap_strict": 0,
+    "n_S1_mismatch": 0,
+    "n_S2_mismatch": 0,
+    "n_W_mismatch": 0,
+    "n_distinguishable_95": 0,
+    "largest_gaps": [
+     [
+      "textarena",
+      "Mean Resolved Rate",
+      -1.61,
+      8.27
+     ],
+     [
+      "omnimath",
+      "Accuracy",
+      1.0,
+      9.26
+     ],
+     [
+      "gso",
+      "Opt@1",
+      -0.5,
+      5.67
+     ],
+     [
+      "swegym",
+      "Resolved Rate",
+      -0.36,
+      1.63
+     ],
+     [
+      "swegym",
+      "Resolved Rate",
+      0.23,
+      9.33
+     ],
+     [
+      "featurebench",
+      "resolved_rate",
+      0.02,
+      0.07
+     ]
+    ],
+    "overlap_pass_but_margin_over_5": 4,
+    "overlap_fail_but_equiv_within_5": 0,
+    "overlap_fail_but_equiv_within_3": 0
+   },
+   "3v3": {
+    "label": "k = 3",
+    "n": 58,
+    "median_abs_gap": 0.6666666666666679,
+    "gap_quartiles": [
+     0.30999999999999783,
+     0.6666666666666679,
+     1.4750000000000003
+    ],
+    "median_pooled_sd": 1.7093312343501772,
+    "sd_quartiles": [
+     1.1159071152498776,
+     1.7093312343501772,
+     2.7432365323091057
+    ],
+    "smallest_margin_quartiles": [
+     2.376470844899736,
+     4.360341479563191,
+     6.008651852142211
+    ],
+    "within_margin_tost": {
+     "1": 1,
+     "2": 7,
+     "3": 22,
+     "5": 36,
+     "10": 53
+    },
+    "within_margin_tost_welch": {
+     "1": 1,
+     "2": 6,
+     "3": 20,
+     "5": 31,
+     "10": 53
+    },
+    "within_margin_share": {
+     "1": 0.017,
+     "2": 0.121,
+     "3": 0.379,
+     "5": 0.621,
+     "10": 0.914
+    },
+    "n_fail_overlap": 1,
+    "n_fail_overlap_strict": 1,
+    "n_S1_mismatch": 4,
+    "n_S2_mismatch": 12,
+    "n_W_mismatch": 0,
+    "n_distinguishable_95": 0,
+    "largest_gaps": [
+     [
+      "frontier-cs-algorithm",
+      "Partial Score (%) (mean over 10 per-task rows)",
+      -15.56,
+      44.15
+     ],
+     [
+      "rexbench",
+      "Final Success Rate",
+      8.34,
+      35.47
+     ],
+     [
+      "pixiu",
+      "avg_f1",
+      -4.94,
+      20.28
+     ],
+     [
+      "gdb",
+      "macro_reward",
+      4.57,
+      11.6
+     ],
+     [
+      "usaco",
+      "Resolved Rate (%)",
+      2.63,
+      5.76
+     ],
+     [
+      "kramabench",
+      "Mean Reward",
+      -2.08,
+      7.34
+     ]
+    ],
+    "overlap_pass_but_margin_over_5": 21,
+    "overlap_fail_but_equiv_within_5": 0,
+    "overlap_fail_but_equiv_within_3": 0
+   },
+   "4v4": {
+    "label": "k = 4",
+    "n": 2,
+    "median_abs_gap": 1.634999999999998,
+    "gap_quartiles": [
+     1.202499999999997,
+     1.634999999999998,
+     2.067499999999999
+    ],
+    "median_pooled_sd": 5.279725051862804,
+    "sd_quartiles": [
+     3.0248625259314017,
+     5.279725051862804,
+     7.5345875777942055
+    ],
+    "smallest_margin_quartiles": [
+     5.358769864783637,
+     8.88953204543361,
+     12.420294226083582
+    ],
+    "within_margin_tost": {
+     "1": 0,
+     "2": 1,
+     "3": 1,
+     "5": 1,
+     "10": 1
+    },
+    "within_margin_tost_welch": {
+     "1": 0,
+     "2": 1,
+     "3": 1,
+     "5": 1,
+     "10": 1
+    },
+    "within_margin_share": {
+     "1": 0.0,
+     "2": 0.5,
+     "3": 0.5,
+     "5": 0.5,
+     "10": 0.5
+    },
+    "n_fail_overlap": 0,
+    "n_fail_overlap_strict": 0,
+    "n_S1_mismatch": 1,
+    "n_S2_mismatch": 1,
+    "n_W_mismatch": 0,
+    "n_distinguishable_95": 0,
+    "largest_gaps": [
+     [
+      "swebenchpro",
+      "Resolved Rate (%)",
+      -2.5,
+      15.95
+     ],
+     [
+      "dabstep",
+      "Accuracy (%)",
+      -0.77,
+      1.83
+     ]
+    ],
+    "overlap_pass_but_margin_over_5": 1,
+    "overlap_fail_but_equiv_within_5": 0,
+    "overlap_fail_but_equiv_within_3": 0
+   },
+   "5v5": {
+    "label": "k = 5",
+    "n": 5,
+    "median_abs_gap": 1.6999999999999886,
+    "gap_quartiles": [
+     0.3999999999999999,
+     1.6999999999999886,
+     1.9600000000000009
+    ],
+    "median_pooled_sd": 2.3601525374432906,
+    "sd_quartiles": [
+     2.32379000772445,
+     2.3601525374432906,
+     3.099677402569498
+    ],
+    "smallest_margin_quartiles": [
+     3.1329663064867135,
+     4.735731602924806,
+     5.345473073746504
+    ],
+    "within_margin_tost": {
+     "1": 0,
+     "2": 1,
+     "3": 1,
+     "5": 3,
+     "10": 4
+    },
+    "within_margin_tost_welch": {
+     "1": 0,
+     "2": 1,
+     "3": 1,
+     "5": 3,
+     "10": 4
+    },
+    "within_margin_share": {
+     "1": 0.0,
+     "2": 0.2,
+     "3": 0.2,
+     "5": 0.6,
+     "10": 0.8
+    },
+    "n_fail_overlap": 0,
+    "n_fail_overlap_strict": 0,
+    "n_S1_mismatch": 0,
+    "n_S2_mismatch": 1,
+    "n_W_mismatch": 0,
+    "n_distinguishable_95": 0,
+    "largest_gaps": [
+     [
+      "cybergym",
+      "Accuracy",
+      2.0,
+      10.72
+     ],
+     [
+      "scienceagentbench",
+      "success_rate",
+      -1.96,
+      4.74
+     ],
+     [
+      "locomo",
+      "F1 (overall)",
+      1.7,
+      5.35
+     ],
+     [
+      "devopsgym",
+      "Resolved Rate",
+      -0.4,
+      3.13
+     ],
+     [
+      "mmmlu",
+      "accuracy",
+      -0.13,
+      1.46
+     ]
+    ],
+    "overlap_pass_but_margin_over_5": 2,
+    "overlap_fail_but_equiv_within_5": 0,
+    "overlap_fail_but_equiv_within_3": 0
+   },
+   "6v6": {
+    "label": "k = 6",
+    "n": 2,
+    "median_abs_gap": 0.4550000000000054,
+    "gap_quartiles": [
+     0.3491666666666724,
+     0.4550000000000054,
+     0.5608333333333384
+    ],
+    "median_pooled_sd": 1.9237548550469101,
+    "sd_quartiles": [
+     1.90244020232019,
+     1.9237548550469101,
+     1.9450695077736302
+    ],
+    "smallest_margin_quartiles": [
+     2.3399274977644087,
+     2.4680650148114034,
+     2.596202531858398
+    ],
+    "within_margin_tost": {
+     "1": 0,
+     "2": 0,
+     "3": 2,
+     "5": 2,
+     "10": 2
+    },
+    "within_margin_tost_welch": {
+     "1": 0,
+     "2": 0,
+     "3": 2,
+     "5": 2,
+     "10": 2
+    },
+    "within_margin_share": {
+     "1": 0.0,
+     "2": 0.0,
+     "3": 1.0,
+     "5": 1.0,
+     "10": 1.0
+    },
+    "n_fail_overlap": 0,
+    "n_fail_overlap_strict": 0,
+    "n_S1_mismatch": 0,
+    "n_S2_mismatch": 0,
+    "n_W_mismatch": 0,
+    "n_distinguishable_95": 0,
+    "largest_gaps": [
+     [
+      "swebenchpro",
+      "Resolved Rate (%)",
+      0.67,
+      2.72
+     ],
+     [
+      "arc_agi_2",
+      "Pass@2 Rate (%)",
+      -0.24,
+      2.21
+     ]
+    ],
+    "overlap_pass_but_margin_over_5": 0,
+    "overlap_fail_but_equiv_within_5": 0,
+    "overlap_fail_but_equiv_within_3": 0
+   }
+  },
+  "zero_spread_one_side_k3": {
+   "label": "k = 3, zero spread on one side",
+   "n": 4,
+   "median_abs_gap": 1.333333333333334,
+   "gap_quartiles": [
+    0.6333333333333346,
+    1.333333333333334,
+    3.5841666666666665
+   ],
+   "median_pooled_sd": 1.7872302309211912,
+   "sd_quartiles": [
+    1.2239594879653668,
+    1.7872302309211912,
+    5.517188163010706
+   ],
+   "smallest_margin_quartiles": [
+    3.737747786466505,
+    4.444267792594253,
+    12.213701292706165
+   ],
+   "within_margin_tost": {
+    "1": 0,
+    "2": 1,
+    "3": 1,
+    "5": 3,
+    "10": 3
+   },
+   "within_margin_tost_welch": {
+    "1": 0,
+    "2": 0,
+    "3": 1,
+    "5": 1,
+    "10": 3
+   },
+   "within_margin_share": {
+    "1": 0.0,
+    "2": 0.25,
+    "3": 0.25,
+    "5": 0.75,
+    "10": 0.75
+   },
+   "n_fail_overlap": 0,
+   "n_fail_overlap_strict": 0,
+   "n_S1_mismatch": 1,
+   "n_S2_mismatch": 1,
+   "n_W_mismatch": 0,
+   "n_distinguishable_95": 0,
+   "largest_gaps": [
+    [
+     "rexbench",
+     "Final Success Rate",
+     8.34,
+     35.47
+    ],
+    [
+     "financeagent",
+     "Accuracy",
+     2.0,
+     4.46
+    ],
+    [
+     "devopsgym",
+     "Resolved Rate",
+     -0.67,
+     4.43
+    ],
+    [
+     "spider2-dbt",
+     "Mean Resolved Rate (%)",
+     -0.53,
+     1.67
+    ]
+   ],
+   "overlap_pass_but_margin_over_5": 1,
+   "overlap_fail_but_equiv_within_5": 0,
+   "overlap_fail_but_equiv_within_3": 0
+  },
+  "in_paper_table_k3": {
+   "label": "k = 3, row matches the paper table",
+   "n": 35,
+   "median_abs_gap": 0.533333333333335,
+   "gap_quartiles": [
+    0.23333333333332806,
+    0.533333333333335,
+    1.1789308176100626
+   ],
+   "median_pooled_sd": 1.434108317619931,
+   "sd_quartiles": [
+    1.0582297946394603,
+    1.434108317619931,
+    2.2661935283106613
+   ],
+   "smallest_margin_quartiles": [
+    2.242338906305134,
+    3.019768370901805,
+    5.581997213981047
+   ],
+   "within_margin_tost": {
+    "1": 1,
+    "2": 5,
+    "3": 17,
+    "5": 25,
+    "10": 33
+   },
+   "within_margin_tost_welch": {
+    "1": 1,
+    "2": 4,
+    "3": 15,
+    "5": 22,
+    "10": 33
+   },
+   "within_margin_share": {
+    "1": 0.029,
+    "2": 0.143,
+    "3": 0.486,
+    "5": 0.714,
+    "10": 0.943
+   },
+   "n_fail_overlap": 1,
+   "n_fail_overlap_strict": 1,
+   "n_S1_mismatch": 3,
+   "n_S2_mismatch": 8,
+   "n_W_mismatch": 0,
+   "n_distinguishable_95": 0,
+   "largest_gaps": [
+    [
+     "pixiu",
+     "avg_f1",
+     -4.94,
+     20.28
+    ],
+    [
+     "usaco",
+     "Resolved Rate (%)",
+     2.63,
+     5.76
+    ],
+    [
+     "financeagent",
+     "Accuracy",
+     2.0,
+     4.46
+    ],
+    [
+     "ineqmath",
+     "Accuracy",
+     2.0,
+     5.41
+    ],
+    [
+     "simpleqa",
+     "accuracy",
+     -2.0,
+     6.02
+    ],
+    [
+     "cooperbench",
+     "pass_rate",
+     -2.0,
+     6.02
+    ]
+   ],
+   "overlap_pass_but_margin_over_5": 9,
+   "overlap_fail_but_equiv_within_5": 0,
+   "overlap_fail_but_equiv_within_3": 0
+  },
+  "overlap_vs_tost_headline": {
+   "m=3": {
+    "overlap_pass_equiv_shown": 22,
+    "overlap_pass_equiv_not_shown": 35,
+    "overlap_fail_equiv_shown": 0,
+    "overlap_fail_equiv_not_shown": 1
+   },
+   "m=5": {
+    "overlap_pass_equiv_shown": 36,
+    "overlap_pass_equiv_not_shown": 21,
+    "overlap_fail_equiv_shown": 0,
+    "overlap_fail_equiv_not_shown": 1
+   }
+  }
+ },
+ "data_quality": {
+  "experiments": 121,
+  "comparisons": 82,
+  "transitive_legs": 16,
+  "experiments_without_comparison": [
+   "aa-lcr#0 (codex@0.117.0, gpt-5-mini)",
+   "aa-lcr#1 (claude-code@2.1.104, claude-haiku-4-5)",
+   "aa-lcr#2 (terminus-2@2.0.0, gpt-5-mini)",
+   "aa-lcr#3 (terminus-2@2.0.0, claude-haiku-4-5)",
+   "aider_polyglot#0 (claude_code@v1.0.92, claude-3-7-sonnet-20250219)",
+   "aider_polyglot#1 (claude_code@v2.0.32, claude-3-haiku-20240307)",
+   "algotune#0 (openhands@v0.54.0, gpt-5-2025-08-07)",
+   "algotune#1 (terminus-2, gpt-5-mini-2025-08-07)",
+   "autocodebench#0 (openhands, deepseek-v3.1)",
+   "autocodebench#1 (openhands, deepseek-v3.2)",
+   "bixbench#1 (codex, gpt-5-mini-2025-08-07)",
+   "codepde#0 (terminus-1, o4-mini-2025-04-16)",
+   "codepde#1 (terminus-2, claude-haiku-4-5-20251001)",
+   "crmarena#1 (claude-code@2.1.97, claude-haiku-4-5)",
+   "deveval#0 (claude-code@v2.0.31, claude-haiku-4-5-20251001)",
+   "evoeval#0 (codex@0.53.0, o4-mini-2025-04-16)",
+   "featbench#2 (codex@0.118.0, gpt-5-mini)",
+   "gaia2#1 (opencode, openai/gpt-5-mini)",
+   "kumo#2 (terminus-2, openai/gpt-5-mini)",
+   "kumo#3 (terminus-2, openai/gpt-5-nano)",
+   "kumo#4 (codex, openai/gpt-5-mini)",
+   "kumo#5 (codex, openai/gpt-5-nano)",
+   "livecodebench#0 (terminus-2, gpt-5-mini-2025-08-07)",
+   "livecodebench#1 (claude-code@2.0.32, claude-haiku-4-5-20251001)",
+   "quixbugs#0 (claude-code@1.0.98, claude-3-7-sonnet-20250219)",
+   "quixbugs#1 (codex@0.77.0, gpt-5-mini-2025-08-07)",
+   "replicationbench#0 (claude-code, claude-3-7-sonnet-20250219)",
+   "replicationbench#1 (claude-code, claude-haiku-4-5-20251001)",
+   "sldbench#0 (claude-code, claude-haiku-4-5-20251001)",
+   "swebench#0 (codex@0.2.0, o4-mini)",
+   "swebench#1 (terminus-v1.5-xml, claude-opus-4-20250514)",
+   "swebench#2 (openhands: commit_version=c677f7284ee6e1e80ece4fe63a470912325cfe6a, claude-4-sonnet)",
+   "swebench#3 (terminus-2: commit_version=0bad1ff4af462096d87f8a46855536e0eb10a772, Claude-Sonnet-4-5-20250929)",
+   "swesmith#0 (mini-swe-agent, claude-sonnet-4-20250514)",
+   "swesmith#1 (mini-swe-agent, claude-3-haiku-20240307)",
+   "swtbench#0 (claude-code, claude-haiku-4-5-20251001)",
+   "swtbench#1 (terminus-2, claude-haiku-4-5-20251001)",
+   "swtbench#2 (openhands, claude-haiku-4-5-20251001)",
+   "tau3-bench#1 (codex@0.123.0, gpt-5.2)"
+  ],
+  "single_run_rows": [
+   "osworld#0 success rate (pass@1, no-result counted as 0) k=1v1 gap=1.97",
+   "programbench#0 test_pass_rate k=1v1 gap=1.58",
+   "programbench#1 test_pass_rate k=1v5 gap=2.2",
+   "swebench#4 Resolved Rate k=1v3 gap=-1.8"
+  ],
+  "identical_lists": [
+   "compilebench#0 Accuracy [73.3, 73.3, 73.3]",
+   "mlgym-bench#0 Pass Rate (%) [83.33, 83.33, 75.0]"
+  ],
+  "zero_spread_both": [],
+  "zero_spread_one_side": [
+   "devopsgym#1 Resolved Rate orig=[20.0, 26.0, 22.0] harbor=[22.0, 22.0, 22.0]",
+   "featurebench#0 resolved_rate orig=[0.133, 0.133] harbor=[0.133, 0.167]",
+   "financeagent#0 Accuracy orig=[80.0, 76.0, 78.0] harbor=[80.0, 80.0, 80.0]",
+   "gaia2#0 validation_success_rate orig=[7.0, 5.0] harbor=[6.0, 6.0]",
+   "rexbench#0 Final Success Rate orig=[33.33, 33.33, 33.33] harbor=[16.67, 58.33, 50.0]",
+   "spider2-dbt#0 Mean Resolved Rate (%) orig=[18.8, 18.8, 18.8] harbor=[18.8, 17.2, 18.8]"
+  ],
+  "native_unit_rows": [
+   "mlgym-bench#1 Mean Reward orig=[573.226, 102.572, 130.963] harbor=[70.546, 184.09, 207.222] gap/SD=0.59"
+  ],
+  "declared_runs_differ_from_lists": [
+   "kumo#0: declared None, actual (original, harbor) per row [(3, 3)]",
+   "kumo#1: declared None, actual (original, harbor) per row [(3, 3)]",
+   "programbench#1: declared 5, actual (original, harbor) per row [(1, 5)]",
+   "swebench#4: declared 3, actual (original, harbor) per row [(1, 3)]",
+   "swelancer#0: declared 5, actual (original, harbor) per row [(3, 5)]"
+  ],
+  "run_lists_with_string_values": [
+   "adebench#0 'resolved_rate' original_runs=['58.3%', '56.2%', '60.4%']",
+   "adebench#0 'resolved_rate' harbor_runs=['58.3%', '56.2%', '56.2%']",
+   "bird_bench#0 'EX (%)' original_runs=['58.7', '59.3', '58.0']",
+   "bird_bench#0 'EX (%)' harbor_runs=['58.0', '58.7', '58.0']",
+   "medagentbench#0 'Success Rate' original_trials=['56.33%', '58.33%', '59.33%']",
+   "medagentbench#0 'Success Rate' harbor_trials=['57.33%', '58.33%', '58.00%']",
+   "mmmlu#0 'accuracy' original_runs=['64.67%', '63.33%', '64.67%', '62.67%', '62.00%']",
+   "mmmlu#0 'accuracy' harbor_runs=['62.67%', '63.33%', '62.00%', '64.67%', '64.00%']"
+  ],
+  "reported_string_vs_runs": {
+   "mean_ok=True,err=sem": 411,
+   "mean_ok=True,err=both": 109,
+   "mean_ok=False,err=sem": 2,
+   "mean_ok=True,err=neither": 1
+  },
+  "reported_mean_mismatches": [
+   {
+    "adapter": "locomo",
+    "exp": 0,
+    "metric": "F1 (overall)",
+    "side": "harbor",
+    "k": 5,
+    "reported": "0.549 \u00b1 0.018",
+    "mean_runs": 0.55,
+    "sem_runs": 0.018,
+    "sd_runs": 0.04,
+    "mean_ok": false,
+    "err_class": "sem"
+   },
+   {
+    "adapter": "locomo",
+    "exp": 0,
+    "metric": "F1",
+    "side": "harbor",
+    "k": 5,
+    "reported": "0.308 \u00b1 0.019",
+    "mean_runs": 0.307,
+    "sem_runs": 0.019,
+    "sd_runs": 0.043,
+    "mean_ok": false,
+    "err_class": "sem"
+   }
+  ],
+  "original_variant_rows": [
+   "bfcl#0: AST Exact Match Accuracy (%)",
+   "bfcl#1: AST Exact Match Accuracy (%)"
+  ],
+  "excluded_side_quantity_names": {
+   "acc_stderr": 19,
+   "missing": 18,
+   "missing_stderr": 18
+  },
+  "parity_set_counts": {
+   "full": 47,
+   "subset": 33,
+   "unknown": 2
+  },
+  "selection_branch_counts": {
+   "1:paper_table": 46,
+   "2b:aggregated_per_task_rows": 2,
+   "2:headline_name": 31,
+   "3:first_remaining": 3
+  }
+ }
+}
