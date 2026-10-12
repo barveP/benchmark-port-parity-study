@@ -30,8 +30,12 @@ rng = np.random.default_rng(7)
 
 
 results = {}
+man_path = os.path.join(pertask_dir, "MANIFEST.json")
+allowed = {a for a, v in json.load(open(man_path))["adapters"].items() if v.get("use_for_defect_model")} if os.path.exists(man_path) else None
 for f in sorted(glob.glob(os.path.join(pertask_dir, "*", "harbor.csv"))):
     adapter = os.path.basename(os.path.dirname(f))
+    if allowed is not None and adapter not in allowed:
+        continue
     by_task = {}
     for row in csv.DictReader(open(f)):
         try:
@@ -42,13 +46,18 @@ for f in sorted(glob.glob(os.path.join(pertask_dir, "*", "harbor.csv"))):
         continue
     vals = np.array([v for lst in by_task.values() for v in lst])
     scale = 1.0 if vals.max() <= 1.0 else 1 / 100
-    p_i = np.array([(sum(v) * scale + 1) / (len(v) + 2) for v in by_task.values()])
-    n = len(p_i)
-    per = {"n_tasks": n, "base_rate_points": float(p_i.mean() * 100), "runs_per_task": float(np.mean([len(v) for v in by_task.values()]))}
-    for kind in ("break", "leak"):
+    n = len(by_task)
+    per = {"n_tasks": n, "runs_per_task": float(np.mean([len(v) for v in by_task.values()]))}
+    priors = {"light": (0.05, 0.05), "beta11": (1.0, 1.0)}
+    for prior, (alpha, beta) in priors.items():
+      p_i = np.array([(sum(v) * scale + alpha) / (len(v) + alpha + beta) for v in by_task.values()])
+      per[f"base_rate_points_{prior}"] = float(p_i.mean() * 100)
+      for kind in ("break", "leak"):
         for fr in FS:
             n_def = 0 if fr == 0 else max(1, int(round(fr * n)))
             for k in KS:
+                if prior == "beta11" and (k != 3 or kind != "break"):
+                    continue
                 acc = {}
                 exp_gap = []
                 for start in range(0, REPS, CHUNK):
@@ -64,17 +73,22 @@ for f in sorted(glob.glob(os.path.join(pertask_dir, "*", "harbor.csv"))):
                     a, b = xa.mean(2) * 100, xb.mean(2) * 100
                     v = rule_verdicts(a, b, margins=(3, 5)); v.update(paired_task_verdicts(xa, xb))
                     for key, arr in v.items():
+                        if key == "t_pooled_abs":
+                            continue
                         acc[key] = acc.get(key, 0) + int(arr.sum())
-                per[f"{kind},f={fr},k={k}"] = {key: val / REPS for key, val in acc.items()} | {"expected_gap_points": float(np.mean(exp_gap)), "n_tasks_affected": n_def}
+                cell = f"{kind},f={fr},k={k}" if prior == "light" else f"beta11,{kind},f={fr},k={k}"
+                per[cell] = {key: val / REPS for key, val in acc.items()} | {"expected_gap_points": float(np.mean(exp_gap)), "n_tasks_affected": n_def, "implied_run_sd_points": float(a.std(1, ddof=1).mean())}
     results[adapter] = per
-    print(f"{adapter}: n={n} base {per['base_rate_points']:.1f} | break f=0.1 k=3 gap {per['break,f=0.1,k=3']['expected_gap_points']:.1f} pts -> R {per['break,f=0.1,k=3']['R']:.2f} W {per['break,f=0.1,k=3']['W']:.2f} paired {per['break,f=0.1,k=3']['P']:.2f} | E5 shown {per['break,f=0.1,k=3']['E5']:.2f} paired E5 {per['break,f=0.1,k=3']['PE5']:.2f}")
+    c = per["break,f=0.1,k=3"]
+    print(f"{adapter}: n={n} base {per['base_rate_points_light']:.1f} sd {c['implied_run_sd_points']:.1f} | break f=0.1 k=3 gap {c['expected_gap_points']:.1f} pts -> R {c['R']:.2f} T {c['T']:.2f} paired {c['P']:.2f} | E5 shown {c['E5']:.2f} paired E5 {c['PE5']:.2f}")
 
 # aggregate: mean detection over adapters per cell
 agg = {}
 cells = [key for key in next(iter(results.values())) if "," in key] if results else []
 for cell in cells:
-    agg[cell] = {rule: float(np.mean([results[a][cell][rule] for a in results])) for rule in ("R", "S1", "S2", "W", "E3", "E5", "P", "PE3", "PE5")}
+    agg[cell] = {rule: float(np.mean([results[a][cell][rule] for a in results])) for rule in ("R", "S1", "S2", "S3", "W", "T", "E3", "E5", "P", "PE3", "PE5")}
     agg[cell]["expected_gap_points_median"] = float(np.median([results[a][cell]["expected_gap_points"] for a in results]))
+    agg[cell]["implied_run_sd_quartiles"] = [float(x) for x in np.percentile([results[a][cell]["implied_run_sd_points"] for a in results], [25, 50, 75])]
 with open(os.path.join(p2, "rq3_defects.json"), "w") as fh:
     json.dump({"reps": REPS, "fractions": FS, "ks": KS, "n_adapters": len(results), "aggregate": agg, "adapters": results}, fh, indent=1)
 
@@ -85,7 +99,7 @@ if results:
     os.makedirs(os.path.join(p2, "figures"), exist_ok=True)
     fig, axes = plt.subplots(1, 2, figsize=(9, 3.4), sharey=True)
     for ax, kind in zip(axes, ("break", "leak")):
-        for rule, lab, ls in (("R", "range overlap", "-"), ("S1", "SEM bars overlap", "--"), ("W", "Welch t-test", ":"), ("P", "paired per-task t-test", "-")):
+        for rule, lab, ls in (("R", "range overlap", "-"), ("S1", "SEM bars overlap", "--"), ("T", "pooled t-test", ":"), ("P", "paired per-task t-test", "-")):
             ax.plot(FS, [agg[f"{kind},f={fr},k=3"][rule] for fr in FS], ls, marker="o", ms=3, label=lab)
         ax.axvline(0, color="grey", lw=0.5)
         ax.set_xlabel(f"fraction of tasks {'broken' if kind == 'break' else 'leaked'} on the port side"); ax.set_title(f"{kind} defect, k = 3, mean over {len(results)} adapters", fontsize=10)
@@ -93,6 +107,6 @@ if results:
     axes[0].set_ylabel("P(defect detected)"); axes[0].legend(fontsize=7, frameon=False)
     fig.tight_layout(); fig.savefig(os.path.join(p2, "figures", "fig_rq3_defects.png"), dpi=200); fig.savefig(os.path.join(p2, "figures", "fig_rq3_defects.pdf"))
 print("adapters:", len(results))
-for cell in ("break,f=0.0,k=3", "break,f=0.05,k=3", "break,f=0.1,k=3", "break,f=0.2,k=3", "leak,f=0.1,k=3", "break,f=0.0,k=10", "break,f=0.1,k=10"):
+for cell in ("break,f=0.0,k=3", "break,f=0.05,k=3", "break,f=0.1,k=3", "break,f=0.2,k=3", "leak,f=0.1,k=3", "break,f=0.0,k=10", "break,f=0.1,k=10", "beta11,break,f=0.0,k=3", "beta11,break,f=0.1,k=3"):
     if cell in agg:
-        print(cell, {r: round(v, 2) for r, v in agg[cell].items()})
+        print(cell, {r: (round(v, 2) if isinstance(v, float) else [round(x, 2) for x in v]) for r, v in agg[cell].items()})

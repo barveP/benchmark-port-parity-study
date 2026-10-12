@@ -65,12 +65,21 @@ def matches(means, adapter, side):
 
 
 results, rows = {}, []
+man_path = os.path.join(pertask_dir, "MANIFEST.json")
+manifest = json.load(open(man_path))["adapters"] if os.path.exists(man_path) else {}
 for d in sorted(glob.glob(os.path.join(pertask_dir, "*"))):
     adapter = os.path.basename(d)
+    if manifest and not manifest.get(adapter, {}).get("use_for_paired"):
+        if adapter in manifest and manifest[adapter]["status"] == "both_sides":
+            results[adapter] = {"status": "excluded by manifest", "reason": manifest[adapter].get("replicate_note") or "validation against published run scores failed"}
+        continue
     fo, fh = os.path.join(d, "original.csv"), os.path.join(d, "harbor.csv")
     if not (os.path.exists(fo) and os.path.exists(fh)):
         continue
     ro, rh = load(fo), load(fh)
+    drop = manifest.get(adapter, {}).get("paired_drop_runs", {})
+    ro = {r: v for r, v in ro.items() if r not in set(drop.get("original", []))}
+    rh = {r: v for r, v in rh.items() if r not in set(drop.get("harbor", []))}
     if not ro or not rh:
         continue
     scale = 100.0 if max(max(v.values()) for v in list(ro.values()) + list(rh.values())) <= 1.0 else 1.0
@@ -101,7 +110,7 @@ for d in sorted(glob.glob(os.path.join(pertask_dir, "*"))):
     swapped = matches(run_o, adapter, "harbor").startswith("match") and matches(run_h, adapter, "original").startswith("match") \
         and not (matches(run_o, adapter, "original").startswith("match") and matches(run_h, adapter, "harbor").startswith("match"))
     rec = {"status": "ok", "n_common": len(common), "n_original_tasks": len(tasks_o), "n_harbor_tasks": len(tasks_h),
-           "sides_swapped_vs_published": swapped,
+           "sides_swapped_vs_published": swapped, "manifest_note": manifest.get(adapter, {}).get("paired_note"),
            "k_original": po.shape[0], "k_harbor": ph.shape[0], "binary_outcomes": binary,
            "validation_original": matches(run_o, adapter, "original"), "validation_harbor": matches(run_h, adapter, "harbor"),
            "mean_original": float(task_o.mean()), "mean_harbor": float(task_h.mean()),

@@ -842,7 +842,8 @@
     "harbor": true
    },
    "use_for_defect_model": true,
-   "use_for_paired": true
+   "use_for_paired": false,
+   "paired_note": "the two sides are per-task identical in every run (2999 of 3000 outcomes), so the sides are not independent evaluations; excluded from the paired analysis, kept for the defect model"
   },
   "mmmlu": {
    "hf_name": "mmmlu",
@@ -1144,7 +1145,13 @@
    },
    "replicate_note": "primary pair original.csv/harbor.csv is the 6-run gpt-5-mini experiment; the gpt-5.4 rerun is in separate files",
    "use_for_defect_model": true,
-   "use_for_paired": true
+   "use_for_paired": true,
+   "paired_drop_runs": {
+    "harbor": [
+     1
+    ]
+   },
+   "paired_note": "Harbor run 1 was run on a different 100-task sample (21 tasks in common with the original side); runs 2 to 6 match the original's tasks; run 1 dropped for the paired analysis"
   },
   "swegym": {
    "hf_name": "swegym (adapters/swegym in harborframework/parity-experiments)",
