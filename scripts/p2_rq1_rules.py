@@ -105,7 +105,7 @@ if pertask_dir:
     man_path = os.path.join(pertask_dir, "MANIFEST.json")
     allowed = None
     if os.path.exists(man_path):
-        allowed = {a for a, v in json.load(open(man_path))["adapters"].items() if v.get("use_for_defect_model")}
+        allowed = {a for a, v in json.load(open(man_path))["adapters"].items() if v.get("use_for_defect_model") and v.get("binary_outcomes")}
     files = sorted(glob.glob(os.path.join(pertask_dir, "*", "harbor.csv")))
     for f in files:
         adapter = os.path.basename(os.path.dirname(f))
@@ -126,6 +126,7 @@ if pertask_dir:
             p_i = np.array([(sum(v) * sc + alpha) / (len(v) + alpha + beta) for v in by_task.values()])
             base = float(p_i.mean() * 100)
             per[f"base_rate_points_{prior}"] = base
+            per[f"model_run_sd_points_{prior}"] = float(100 * math.sqrt((p_i * (1 - p_i)).sum()) / len(p_i))
             for k in (3, 5):
                 for d in (0, 1, 2, 3, 5, 10):
                     if prior == "beta11" and k != 3:
@@ -161,7 +162,7 @@ if realistic:
     summ["realistic_k3_false_alarm_R"] = {a: v["light,k=3,gap=0"]["R"] for a, v in realistic.items()}
     summ["realistic_k3_detect_5pts"] = {a: {r: v["light,k=3,gap=5"][r] for r in RULES} for a, v in realistic.items()}
     summ["realistic_median_over_adapters"] = {cell: {r: float(np.median([v[cell][r] for v in realistic.values()])) for r in RULES + ("E3", "E5")} for cell in ("light,k=3,gap=0", "light,k=3,gap=2", "light,k=3,gap=5", "light,k=5,gap=5", "beta11,k=3,gap=0", "beta11,k=3,gap=5")}
-    summ["realistic_implied_run_sd_quartiles"] = {prior: [float(x) for x in np.percentile([v[f"{prior},k=3,gap=0"]["implied_run_sd_points"] for v in realistic.values()], [25, 50, 75])] for prior in ("light", "beta11")}
+    summ["realistic_model_run_sd_quartiles"] = {prior: [float(x) for x in np.percentile([v[f"model_run_sd_points_{prior}"] for v in realistic.values()], [25, 50, 75])] for prior in ("light", "beta11")}
 results["summary"] = summ
 with open(os.path.join(out, "rq1_rules.json"), "w") as fh:
     json.dump(results, fh, indent=1)
@@ -218,4 +219,4 @@ print("pass prob, gap 1 SD, port SD only:", {s: round(v["R_pass"], 3) for s, v i
 print("realistic adapters simulated:", len(realistic))
 if realistic:
     print("realistic, median over adapters:", {c: {r: round(v, 2) for r, v in d.items()} for c, d in summ["realistic_median_over_adapters"].items()})
-    print("implied run SD quartiles by prior:", {k: [round(x, 2) for x in v] for k, v in summ["realistic_implied_run_sd_quartiles"].items()})
+    print("model run SD quartiles by prior:", {k: [round(x, 2) for x in v] for k, v in summ["realistic_model_run_sd_quartiles"].items()})
