@@ -1,51 +1,205 @@
 {
  "summary": {
-  "n_adapters_with_both_sides": 32,
-  "n_adapters_skipped": 12,
-  "validation_both_match": 21,
-  "sides_swapped_vs_published": [],
-  "paired_margin_quartiles": [
-   3.1644736842105257,
-   4.477091437777515,
-   5.725220959595959
-  ],
-  "run_margin_quartiles": [
-   2.207473408252085,
-   3.1697274011669574,
-   5.896753297700093
-  ],
-  "width_ratio_quartiles": [
-   0.4925491927532442,
-   0.7141912101773733,
-   1.33122463297827
-  ],
-  "paired_within": {
-   "1": 1,
-   "2": 3,
-   "3": 7,
-   "5": 21
+  "primary": {
+   "n": 27,
+   "n_with_run_interval": 26,
+   "validation_both_match": 21,
+   "paired_margin_quartiles": [
+    3.009923799397483,
+    4.542418169672676,
+    5.726536195286195
+   ],
+   "run_margin_quartiles": [
+    2.2034961827050807,
+    2.907128169850896,
+    5.934658989231506
+   ],
+   "width_ratio_quartiles": [
+    0.48761440757789365,
+    0.670296082288547,
+    1.2665577968392103
+   ],
+   "width_ratio_null_median_quartiles": [
+    1.1897329847910623,
+    1.2010057755603019,
+    1.2165565255540116
+   ],
+   "n_ratio_below_1": 15,
+   "n_ratio_below_null_q25": 15,
+   "paired_within": {
+    "1": 1,
+    "2": 3,
+    "3": 7,
+    "5": 16
+   },
+   "run_within": {
+    "1": 1,
+    "2": 4,
+    "3": 14,
+    "5": 17
+   },
+   "n_sd_task_diff_exceeds_noise_p05": 14,
+   "n_sd_task_diff_exceeds_noise_p01": 10,
+   "n_mean_gap_not_exchangeable_p05": 0,
+   "n_cmh_reject": 0,
+   "n_binary": 21,
+   "paired_gap_distinguishable_95": 0,
+   "dispersion_ratio_harbor_quartiles": [
+    0.109081341254685,
+    0.3588235294117658,
+    1.044642857142856
+   ],
+   "dispersion_ratio_original_quartiles": [
+    0.25048838584228866,
+    0.49945331898620426,
+    0.8706140350877191
+   ],
+   "under_dispersed_below_0.1": [
+    "adebench",
+    "deepsynth",
+    "kumo",
+    "labbench",
+    "ml_dev_bench",
+    "theagentcompany"
+   ],
+   "discordance_share_quartiles": [
+    0.24874213836477987,
+    0.37037037037037035,
+    0.40712259220546515
+   ]
   },
-  "run_within": {
-   "1": 1,
-   "2": 5,
-   "3": 15,
-   "5": 21
+  "secondary_terminal_bench_legs": {
+   "n": 4,
+   "n_with_run_interval": 4,
+   "validation_both_match": 3,
+   "paired_margin_quartiles": [
+    3.4166666666666665,
+    4.25,
+    6.11111111111111
+   ],
+   "run_margin_quartiles": [
+    3.615987537627956,
+    4.480107367666138,
+    5.5339162795932655
+   ],
+   "width_ratio_quartiles": [
+    0.7209225509280031,
+    1.1263447019127288,
+    1.420061448660779
+   ],
+   "width_ratio_null_median_quartiles": [
+    1.1574096751250653,
+    1.1831707137732188,
+    1.2001208463848783
+   ],
+   "n_ratio_below_1": 2,
+   "n_ratio_below_null_q25": 2,
+   "paired_within": {
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "5": 3
+   },
+   "run_within": {
+    "1": 0,
+    "2": 1,
+    "3": 1,
+    "5": 3
+   },
+   "n_sd_task_diff_exceeds_noise_p05": 1,
+   "n_sd_task_diff_exceeds_noise_p01": 1,
+   "n_mean_gap_not_exchangeable_p05": 0,
+   "n_cmh_reject": 0,
+   "n_binary": 4,
+   "paired_gap_distinguishable_95": 0,
+   "dispersion_ratio_harbor_quartiles": [
+    0.6263477088948787,
+    0.9056603773584904,
+    1.0714285714285712
+   ],
+   "dispersion_ratio_original_quartiles": [
+    0.7140837104072397,
+    1.963235294117647,
+    3.09375
+   ],
+   "under_dispersed_below_0.1": [
+    "quixbugs"
+   ],
+   "discordance_share_quartiles": [
+    0.201875,
+    0.29791666666666666,
+    0.3875
+   ]
   },
-  "paired_gap_distinguishable_95": 0
+  "excluded": {
+   "arc_agi_2": {
+    "status": "excluded by manifest",
+    "reason": "excluded (amendment 6): Harbor runs 1, 2 and 4 do not reproduce the published per-puzzle scores; the files appear to hold runs other than the published ones. Reported as a sensitivity row."
+   },
+   "codepde": {
+    "status": "excluded by manifest",
+    "reason": "32 and 8 run files over 5 tasks, not the published design"
+   },
+   "devopsgym": {
+    "status": "excluded by manifest",
+    "reason": "HF files hold a single 46-task run per experiment, not the five published 50-task runs"
+   },
+   "featurebench": {
+    "status": "excluded by manifest",
+    "reason": "validation against published run scores failed"
+   },
+   "financeagent": {
+    "status": "excluded by manifest",
+    "reason": "validation against published run scores failed"
+   },
+   "humanevalfix": {
+    "status": "excluded by manifest",
+    "reason": "runs 1-3 and 4-6 are two experiments (gpt-5-mini, gpt-4o-mini) in one file"
+   },
+   "llmsr_bench": {
+    "status": "excluded by manifest",
+    "reason": "validation against published run scores failed"
+   },
+   "mlgym-bench": {
+    "status": "excluded by manifest",
+    "reason": "validation against published run scores failed"
+   },
+   "mmau": {
+    "status": "excluded by manifest",
+    "reason": "the two sides are per-task identical in every run (2999 of 3000 outcomes), so the sides are not independent evaluations; excluded from the paired analysis, kept for the defect model"
+   },
+   "qcircuitbench": {
+    "status": "excluded by manifest",
+    "reason": "validation against published run scores failed"
+   },
+   "rexbench": {
+    "status": "excluded by manifest",
+    "reason": "validation against published run scores failed"
+   },
+   "satbench": {
+    "status": "excluded by manifest",
+    "reason": "validation against published run scores failed"
+   },
+   "swegym": {
+    "status": "excluded by manifest",
+    "reason": "one run per side recovered"
+   }
+  }
  },
  "adapters": {
   "abc-bench": {
    "status": "ok",
+   "secondary_leg": false,
    "n_common": 224,
    "n_original_tasks": 224,
    "n_harbor_tasks": 224,
-   "sides_swapped_vs_published": false,
-   "manifest_note": null,
    "k_original": 3,
    "k_harbor": 3,
    "binary_outcomes": true,
-   "validation_original": "match exp0 Resolved Rate (%)",
-   "validation_harbor": "match exp0 Resolved Rate (%)",
+   "manifest_note": null,
+   "validation_original": "match exp0 original Resolved Rate (%)",
+   "validation_harbor": "match exp0 harbor Resolved Rate (%)",
+   "sides_swapped_vs_published": false,
    "mean_original": 45.386904761904766,
    "mean_harbor": 45.6845238095238,
    "paired_gap": 0.29761904761904745,
@@ -64,158 +218,176 @@
    "run_halfwidth95": 7.3908571321652605,
    "run_smallest_margin": 5.97256468076292,
    "width_ratio_run_over_paired": 1.7737504490570628,
+   "width_ratio_null_quartiles": [
+    0.8988437187305058,
+    1.2002061406333921,
+    1.5041799247747751
+   ],
+   "width_ratio_percentile_in_null": 0.884,
+   "sd_of_task_differences": 29.102343580528654,
+   "p_sd_task_differences_exceeds_shared_noise": 0.4687656171914043,
+   "p_mean_gap_exchangeable": 0.9100449775112444,
+   "cmh_reject_at_0.05": false,
+   "dispersion_ratio_original": 3.183908045977009,
+   "dispersion_ratio_harbor": 0.5119047619047622,
    "tasks_with_different_pass_rate": 99,
-   "share_tasks_discordant": 0.4419642857142857,
-   "sd_of_task_differences": 29.102343580528654
+   "share_tasks_discordant": 0.4419642857142857
   },
   "adebench": {
    "status": "ok",
+   "secondary_leg": false,
    "n_common": 48,
    "n_original_tasks": 48,
    "n_harbor_tasks": 48,
-   "sides_swapped_vs_published": false,
-   "manifest_note": null,
    "k_original": 3,
    "k_harbor": 3,
    "binary_outcomes": true,
-   "validation_original": "match exp0 resolved_rate",
-   "validation_harbor": "match exp0 resolved_rate",
+   "manifest_note": null,
+   "validation_original": "match exp0 original resolved_rate",
+   "validation_harbor": "match exp0 harbor resolved_rate",
+   "sides_swapped_vs_published": false,
    "mean_original": 58.333333333333336,
    "mean_harbor": 56.94444444444445,
    "paired_gap": -1.3888888888888886,
    "paired_ci90": [
-    -8.333333333333332,
+    -7.63888888888889,
     4.861111111111111
    ],
    "paired_ci95": [
-    -9.027777777777779,
+    -9.045138888888875,
     6.249999999999999
    ],
-   "paired_halfwidth90": 6.597222222222221,
-   "paired_smallest_margin": 8.333333333333332,
+   "paired_halfwidth90": 6.25,
+   "paired_smallest_margin": 7.63888888888889,
    "run_gap": -1.3888888888888928,
    "run_halfwidth90": 2.9608983143425687,
    "run_halfwidth95": 3.8561737572191577,
    "run_smallest_margin": 4.349787203231461,
-   "width_ratio_run_over_paired": 0.4488098497529789,
+   "width_ratio_run_over_paired": 0.473743730294811,
+   "width_ratio_null_quartiles": [
+    0.9191770274396752,
+    1.2293159213981042,
+    1.5830102938392632
+   ],
+   "width_ratio_percentile_in_null": 0.0275,
+   "sd_of_task_differences": 27.468729982865106,
+   "p_sd_task_differences_exceeds_shared_noise": 0.1924037981009495,
+   "p_mean_gap_exchangeable": 0.7621189405297352,
+   "cmh_reject_at_0.05": false,
+   "dispersion_ratio_original": 0.21428571428571402,
+   "dispersion_ratio_harbor": 0.0909090909090911,
    "tasks_with_different_pass_rate": 18,
-   "share_tasks_discordant": 0.375,
-   "sd_of_task_differences": 27.468729982865106
+   "share_tasks_discordant": 0.375
   },
   "arc_agi_2": {
-   "status": "ok",
-   "n_common": 167,
-   "n_original_tasks": 167,
-   "n_harbor_tasks": 167,
-   "sides_swapped_vs_published": false,
-   "manifest_note": "published rates are per puzzle (120); the files hold per test pair (167); same tasks on both sides, so the paired analysis is valid at pair level",
-   "k_original": 6,
-   "k_harbor": 6,
-   "binary_outcomes": true,
-   "validation_original": "no match (recovered [33.53, 34.73, 35.33, 35.93, 37.72, 40.12])",
-   "validation_harbor": "no match (recovered [32.34, 33.53, 34.73, 35.93, 36.53, 37.13])",
-   "mean_original": 36.22754491017964,
-   "mean_harbor": 35.02994011976048,
-   "paired_gap": -1.1976047904191616,
-   "paired_ci90": [
-    -3.3932135728542914,
-    0.8982035928143718
-   ],
-   "paired_ci95": [
-    -3.792415169660678,
-    1.2974051896207588
-   ],
-   "paired_halfwidth90": 2.1457085828343314,
-   "paired_smallest_margin": 3.3932135728542914,
-   "run_gap": -1.197604790419156,
-   "run_halfwidth90": 2.2153717213176063,
-   "run_halfwidth95": 2.723454722273984,
-   "run_smallest_margin": 3.4129765117367623,
-   "width_ratio_run_over_paired": 1.032466262679182,
-   "tasks_with_different_pass_rate": 68,
-   "share_tasks_discordant": 0.40718562874251496,
-   "sd_of_task_differences": 17.021215035851103
+   "status": "excluded by manifest",
+   "reason": "excluded (amendment 6): Harbor runs 1, 2 and 4 do not reproduce the published per-puzzle scores; the files appear to hold runs other than the published ones. Reported as a sensitivity row."
   },
   "autocodebench": {
    "status": "ok",
+   "secondary_leg": true,
    "n_common": 200,
    "n_original_tasks": 200,
    "n_harbor_tasks": 200,
-   "sides_swapped_vs_published": false,
-   "manifest_note": null,
    "k_original": 3,
    "k_harbor": 3,
    "binary_outcomes": true,
-   "validation_original": "no match (recovered [53.5, 55.0, 58.0])",
-   "validation_harbor": "match exp1 pass_rate",
+   "manifest_note": " The 'original' side of these files is the Terminal-Bench adapter run (transitive leg), so the adapter is reported in the secondary set, not the headline paired set.",
+   "validation_original": "match exp1 tb_adapter pass_rate",
+   "validation_harbor": "match exp1 harbor pass_rate",
+   "sides_swapped_vs_published": false,
    "mean_original": 55.50000000000001,
    "mean_harbor": 55.5,
    "paired_gap": -5.684341886080802e-16,
    "paired_ci90": [
     -3.166666666666666,
-    3.166666666666666
+    3.0
    ],
    "paired_ci95": [
-    -3.666666666666666,
-    3.666666666666666
+    -3.666666666666667,
+    3.666666666666667
    ],
-   "paired_halfwidth90": 3.166666666666666,
+   "paired_halfwidth90": 3.083333333333333,
    "paired_smallest_margin": 3.166666666666666,
    "run_gap": 0.0,
    "run_halfwidth90": 4.263693572653299,
    "run_halfwidth95": 5.552890210395587,
    "run_smallest_margin": 4.263693572653299,
-   "width_ratio_run_over_paired": 1.3464295492589369,
+   "width_ratio_run_over_paired": 1.3828195370767458,
+   "width_ratio_null_quartiles": [
+    0.9007474995739821,
+    1.172841723926446,
+    1.4952033997132728
+   ],
+   "width_ratio_percentile_in_null": 0.6705,
+   "sd_of_task_differences": 26.733584379577895,
+   "p_sd_task_differences_exceeds_shared_noise": 0.4992503748125937,
+   "p_mean_gap_exchangeable": 0.9310344827586207,
+   "cmh_reject_at_0.05": false,
+   "dispersion_ratio_original": 0.926470588235294,
+   "dispersion_ratio_harbor": 1.2857142857142858,
    "tasks_with_different_pass_rate": 80,
-   "share_tasks_discordant": 0.4,
-   "sd_of_task_differences": 26.733584379577895
+   "share_tasks_discordant": 0.4
   },
   "bfcl": {
    "status": "ok",
+   "secondary_leg": false,
    "n_common": 123,
    "n_original_tasks": 123,
    "n_harbor_tasks": 123,
-   "sides_swapped_vs_published": false,
-   "manifest_note": null,
    "k_original": 3,
    "k_harbor": 3,
    "binary_outcomes": true,
-   "validation_original": "match exp0 AST Exact Match Accuracy (%)",
-   "validation_harbor": "match exp0 AST Exact Match Accuracy (%)",
+   "manifest_note": null,
+   "validation_original": "match exp0 original AST Exact Match Accuracy (%)",
+   "validation_harbor": "match exp0 harbor AST Exact Match Accuracy (%)",
+   "sides_swapped_vs_published": false,
    "mean_original": 83.19783197831978,
    "mean_harbor": 83.46883468834687,
    "paired_gap": 0.2710027100270999,
    "paired_ci90": [
-    -3.7940379403794044,
+    -4.065040650406504,
     4.6070460704607035
    ],
    "paired_ci95": [
-    -4.607046070460705,
+    -4.878048780487804,
     5.420054200542004
    ],
-   "paired_halfwidth90": 4.200542005420054,
+   "paired_halfwidth90": 4.336043360433604,
    "paired_smallest_margin": 4.6070460704607035,
    "run_gap": 0.27100271002709064,
    "run_halfwidth90": 2.5837150850085933,
    "run_halfwidth95": 3.3649430845630444,
    "run_smallest_margin": 2.854717795035684,
-   "width_ratio_run_over_paired": 0.6150908815278522,
+   "width_ratio_run_over_paired": 0.5958692914801069,
+   "width_ratio_null_quartiles": [
+    0.9094172142250495,
+    1.2201224193575637,
+    1.5587543648096283
+   ],
+   "width_ratio_percentile_in_null": 0.0685,
+   "sd_of_task_differences": 28.46911692637107,
+   "p_sd_task_differences_exceeds_shared_noise": 0.0004997501249375312,
+   "p_mean_gap_exchangeable": 0.9910044977511244,
+   "cmh_reject_at_0.05": false,
+   "dispersion_ratio_original": 0.34999999999999964,
+   "dispersion_ratio_harbor": 1.083333333333332,
    "tasks_with_different_pass_rate": 25,
-   "share_tasks_discordant": 0.2032520325203252,
-   "sd_of_task_differences": 28.46911692637107
+   "share_tasks_discordant": 0.2032520325203252
   },
   "bixbench": {
    "status": "ok",
+   "secondary_leg": false,
    "n_common": 50,
    "n_original_tasks": 50,
    "n_harbor_tasks": 50,
-   "sides_swapped_vs_published": false,
-   "manifest_note": null,
    "k_original": 3,
    "k_harbor": 3,
    "binary_outcomes": true,
-   "validation_original": "match exp0 Resolved Rate",
-   "validation_harbor": "match exp0 Resolved Rate",
+   "manifest_note": null,
+   "validation_original": "match exp0 original Resolved Rate",
+   "validation_harbor": "match exp0 harbor Resolved Rate",
+   "sides_swapped_vs_published": false,
    "mean_original": 16.000000000000004,
    "mean_harbor": 16.666666666666668,
    "paired_gap": 0.666666666666667,
@@ -234,9 +406,20 @@
    "run_halfwidth95": 10.792878564724688,
    "run_smallest_margin": 8.953797372167495,
    "width_ratio_run_over_paired": 1.4624348303824988,
+   "width_ratio_null_quartiles": [
+    0.890720909202959,
+    1.1783477625908436,
+    1.5192186873199314
+   ],
+   "width_ratio_percentile_in_null": 0.7105,
+   "sd_of_task_differences": 24.734416977562955,
+   "p_sd_task_differences_exceeds_shared_noise": 0.29485257371314344,
+   "p_mean_gap_exchangeable": 0.784607696151924,
+   "cmh_reject_at_0.05": false,
+   "dispersion_ratio_original": 2.1,
+   "dispersion_ratio_harbor": 0.9285714285714285,
    "tasks_with_different_pass_rate": 16,
-   "share_tasks_discordant": 0.32,
-   "sd_of_task_differences": 24.734416977562955
+   "share_tasks_discordant": 0.32
   },
   "codepde": {
    "status": "excluded by manifest",
@@ -244,26 +427,27 @@
   },
   "crustbench": {
    "status": "ok",
+   "secondary_leg": false,
    "n_common": 99,
    "n_original_tasks": 99,
    "n_harbor_tasks": 100,
-   "sides_swapped_vs_published": false,
-   "manifest_note": "file labels used; the published JSON lists the sides the other way round (each side's run list matches the other side's files)",
    "k_original": 3,
    "k_harbor": 3,
    "binary_outcomes": true,
-   "validation_original": "no match (recovered [56.57, 59.6, 60.61])",
-   "validation_harbor": "no match (recovered [57.58, 59.6, 59.6])",
+   "manifest_note": "file labels used; the published JSON lists the sides the other way round (each side's run list matches the other side's files)",
+   "validation_original": "no match",
+   "validation_harbor": "no match",
+   "sides_swapped_vs_published": true,
    "mean_original": 58.92255892255893,
    "mean_harbor": 58.92255892255892,
    "paired_gap": 2.8708797404448495e-16,
    "paired_ci90": [
     -5.723905723905723,
-    5.723905723905723
+    5.723905723905722
    ],
    "paired_ci95": [
-    -6.734006734006734,
-    6.734006734006734
+    -6.7340067340067336,
+    6.734006734006733
    ],
    "paired_halfwidth90": 5.723905723905723,
    "paired_smallest_margin": 5.723905723905723,
@@ -272,111 +456,158 @@
    "run_halfwidth95": 3.8544028392120007,
    "run_smallest_margin": 2.9595385446661084,
    "width_ratio_run_over_paired": 0.517048792803432,
+   "width_ratio_null_quartiles": [
+    0.8961936625100423,
+    1.181023183751691,
+    1.5166894659629573
+   ],
+   "width_ratio_percentile_in_null": 0.045,
+   "sd_of_task_differences": 34.66718994895485,
+   "p_sd_task_differences_exceeds_shared_noise": 0.0004997501249375312,
+   "p_mean_gap_exchangeable": 0.9620189905047476,
+   "cmh_reject_at_0.05": false,
+   "dispersion_ratio_original": 0.4814814814814818,
+   "dispersion_ratio_harbor": 0.13793103448275867,
    "tasks_with_different_pass_rate": 40,
-   "share_tasks_discordant": 0.40404040404040403,
-   "sd_of_task_differences": 34.66718994895485
+   "share_tasks_discordant": 0.40404040404040403
   },
   "dacode": {
    "status": "ok",
+   "secondary_leg": false,
    "n_common": 479,
    "n_original_tasks": 479,
    "n_harbor_tasks": 479,
-   "sides_swapped_vs_published": false,
-   "manifest_note": null,
    "k_original": 3,
    "k_harbor": 3,
    "binary_outcomes": false,
-   "validation_original": "match exp0 Score (average of various metrics depending on task category)",
-   "validation_harbor": "match exp0 Score (average of various metrics depending on task category)",
+   "manifest_note": null,
+   "validation_original": "match exp0 original Score (average of various metrics depending on task category)",
+   "validation_harbor": "match exp0 harbor Score (average of various metrics depending on task category)",
+   "sides_swapped_vs_published": false,
    "mean_original": 38.71252650952194,
    "mean_harbor": 38.91113460250216,
    "paired_gap": 0.1986080929802136,
    "paired_ci90": [
-    -1.4409787019798188,
-    1.8325665479034674
+    -1.4642214582950421,
+    1.8411533032625063
    ],
    "paired_ci95": [
-    -1.7679532387681918,
-    2.158380098178973
+    -1.757368478985254,
+    2.172204997044823
    ],
-   "paired_halfwidth90": 1.636772624941643,
-   "paired_smallest_margin": 1.8325665479034674,
+   "paired_halfwidth90": 1.652687380778774,
+   "paired_smallest_margin": 1.8411533032625063,
    "run_gap": 0.19860809298021564,
    "run_halfwidth90": 2.3333834477787807,
    "run_halfwidth95": 3.038919632352175,
    "run_smallest_margin": 2.5319915407589964,
-   "width_ratio_run_over_paired": 1.425600240511094,
+   "width_ratio_run_over_paired": 1.4118722481436574,
+   "width_ratio_null_quartiles": [
+    0.9145662416807023,
+    1.216657625168883,
+    1.507332744631566
+   ],
+   "width_ratio_percentile_in_null": 0.6735,
+   "sd_of_task_differences": 22.28269397140998,
+   "p_sd_task_differences_exceeds_shared_noise": 0.005997001499250375,
+   "p_mean_gap_exchangeable": 0.8295852073963018,
+   "cmh_reject_at_0.05": null,
+   "dispersion_ratio_original": 3.052319766018722,
+   "dispersion_ratio_harbor": 0.10377512167291333,
    "tasks_with_different_pass_rate": 159,
-   "share_tasks_discordant": 0.33194154488517746,
-   "sd_of_task_differences": 22.28269397140998
+   "share_tasks_discordant": 0.33194154488517746
   },
   "deepsynth": {
    "status": "ok",
+   "secondary_leg": false,
    "n_common": 40,
    "n_original_tasks": 40,
    "n_harbor_tasks": 40,
-   "sides_swapped_vs_published": false,
-   "manifest_note": null,
    "k_original": 3,
    "k_harbor": 3,
    "binary_outcomes": false,
-   "validation_original": "match exp0 Mean F1",
-   "validation_harbor": "match exp0 Mean F1",
+   "manifest_note": null,
+   "validation_original": "match exp0 original Mean F1",
+   "validation_harbor": "match exp0 harbor Mean F1",
+   "sides_swapped_vs_published": false,
    "mean_original": 9.277750000000001,
    "mean_harbor": 7.771680216802167,
    "paired_gap": -1.506069783197832,
    "paired_ci90": [
-    -6.77775,
-    4.028940955284536
+    -6.867180894308943,
+    4.022064261517611
    ],
    "paired_ci95": [
-    -7.845528455284553,
-    5.132819105691057
+    -7.867181588753387,
+    5.071832655826549
    ],
-   "paired_halfwidth90": 5.403345477642269,
-   "paired_smallest_margin": 6.77775,
+   "paired_halfwidth90": 5.444622577913277,
+   "paired_smallest_margin": 6.867180894308943,
    "run_gap": -1.5060697831978311,
    "run_halfwidth90": 2.450181552019149,
    "run_halfwidth95": 3.1910335304495696,
    "run_smallest_margin": 3.95625133521698,
-   "width_ratio_run_over_paired": 0.45345639329511783,
+   "width_ratio_run_over_paired": 0.45001862240343077,
+   "width_ratio_null_quartiles": [
+    0.8951871701709249,
+    1.1949969066430532,
+    1.5023923033036555
+   ],
+   "width_ratio_percentile_in_null": 0.025,
+   "sd_of_task_differences": 21.24172857077189,
+   "p_sd_task_differences_exceeds_shared_noise": 0.04897551224387806,
+   "p_mean_gap_exchangeable": 0.6281859070464768,
+   "cmh_reject_at_0.05": null,
+   "dispersion_ratio_original": 0.1657507246249648,
+   "dispersion_ratio_harbor": 0.0947288006111536,
    "tasks_with_different_pass_rate": 16,
-   "share_tasks_discordant": 0.4,
-   "sd_of_task_differences": 21.24172857077189
+   "share_tasks_discordant": 0.4
   },
   "deveval": {
    "status": "ok",
+   "secondary_leg": true,
    "n_common": 60,
    "n_original_tasks": 63,
    "n_harbor_tasks": 63,
-   "sides_swapped_vs_published": false,
-   "manifest_note": null,
    "k_original": 3,
    "k_harbor": 3,
    "binary_outcomes": true,
-   "validation_original": "no match (recovered [33.33, 38.33, 43.33])",
-   "validation_harbor": "no match (recovered [35.0, 36.67, 41.67])",
+   "manifest_note": " The 'original' side of these files is the Terminal-Bench adapter run (transitive leg), so the adapter is reported in the secondary set, not the headline paired set.",
+   "validation_original": "no match",
+   "validation_harbor": "no match",
+   "sides_swapped_vs_published": false,
    "mean_original": 38.333333333333336,
    "mean_harbor": 37.777777777777786,
    "paired_gap": -0.5555555555555552,
    "paired_ci90": [
-    -9.444444444444445,
+    -9.444444444444441,
     7.7777777777777795
    ],
    "paired_ci95": [
-    -10.555555555555559,
-    10.0
+    -11.111111111111109,
+    9.444444444444446
    ],
-   "paired_halfwidth90": 8.611111111111112,
-   "paired_smallest_margin": 9.444444444444445,
+   "paired_halfwidth90": 8.61111111111111,
+   "paired_smallest_margin": 9.444444444444441,
    "run_gap": -0.5555555555555571,
    "run_halfwidth90": 7.490546074780573,
    "run_halfwidth95": 9.755433700945366,
    "run_smallest_margin": 8.04610163033613,
-   "width_ratio_run_over_paired": 0.8698698667487116,
+   "width_ratio_run_over_paired": 0.8698698667487117,
+   "width_ratio_null_quartiles": [
+    0.8750112339627614,
+    1.2199842746795377,
+    1.5854691017187053
+   ],
+   "width_ratio_percentile_in_null": 0.245,
+   "sd_of_task_differences": 40.93615748123304,
+   "p_sd_task_differences_exceeds_shared_noise": 0.0004997501249375312,
+   "p_mean_gap_exchangeable": 0.9510244877561219,
+   "cmh_reject_at_0.05": false,
+   "dispersion_ratio_original": 3.3750000000000004,
+   "dispersion_ratio_harbor": 0.9999999999999996,
    "tasks_with_different_pass_rate": 23,
-   "share_tasks_discordant": 0.38333333333333336,
-   "sd_of_task_differences": 40.93615748123304
+   "share_tasks_discordant": 0.38333333333333336
   },
   "devopsgym": {
    "status": "excluded by manifest",
@@ -384,71 +615,95 @@
   },
   "ds1000": {
    "status": "ok",
+   "secondary_leg": false,
    "n_common": 1000,
    "n_original_tasks": 1000,
    "n_harbor_tasks": 1000,
-   "sides_swapped_vs_published": false,
-   "manifest_note": null,
    "k_original": 3,
    "k_harbor": 3,
    "binary_outcomes": true,
-   "validation_original": "match exp0 Accuracy (%)",
-   "validation_harbor": "match exp0 Accuracy (%)",
+   "manifest_note": null,
+   "validation_original": "match exp0 original Accuracy (%)",
+   "validation_harbor": "match exp0 harbor Accuracy (%)",
+   "sides_swapped_vs_published": false,
    "mean_original": 76.96666666666665,
    "mean_harbor": 77.76666666666665,
    "paired_gap": 0.8000000000000002,
    "paired_ci90": [
-    -0.4666666666666665,
+    -0.4999999999999997,
     2.066666666666667
    ],
    "paired_ci95": [
-    -0.7333333333333332,
-    2.3
+    -0.7333333333333333,
+    2.333333333333333
    ],
-   "paired_halfwidth90": 1.2666666666666666,
+   "paired_halfwidth90": 1.2833333333333332,
    "paired_smallest_margin": 2.066666666666667,
    "run_gap": 0.7999999999999972,
    "run_halfwidth90": 1.5454868167724152,
    "run_halfwidth95": 2.0127897253672593,
    "run_smallest_margin": 2.3454868167724126,
-   "width_ratio_run_over_paired": 1.2201211711361173,
+   "width_ratio_run_over_paired": 1.2042754416408432,
+   "width_ratio_null_quartiles": [
+    0.8969397971930025,
+    1.1896828838885005,
+    1.5171750975669092
+   ],
+   "width_ratio_percentile_in_null": 0.515,
+   "sd_of_task_differences": 24.44863009027436,
+   "p_sd_task_differences_exceeds_shared_noise": 0.0009995002498750624,
+   "p_mean_gap_exchangeable": 0.23738130934532733,
+   "cmh_reject_at_0.05": false,
+   "dispersion_ratio_original": 0.5384615384615402,
+   "dispersion_ratio_harbor": 1.648401826484009,
    "tasks_with_different_pass_rate": 281,
-   "share_tasks_discordant": 0.281,
-   "sd_of_task_differences": 24.44863009027436
+   "share_tasks_discordant": 0.281
   },
   "featbench": {
    "status": "ok",
+   "secondary_leg": false,
    "n_common": 156,
    "n_original_tasks": 156,
    "n_harbor_tasks": 156,
-   "sides_swapped_vs_published": false,
-   "manifest_note": null,
    "k_original": 2,
    "k_harbor": 3,
    "binary_outcomes": true,
-   "validation_original": "no match (recovered [42.95, 44.87])",
-   "validation_harbor": "match exp1 resolved_rate",
+   "manifest_note": null,
+   "validation_original": "no match",
+   "validation_harbor": "match exp1 harbor resolved_rate",
+   "sides_swapped_vs_published": false,
    "mean_original": 43.91025641025641,
    "mean_harbor": 42.0940170940171,
    "paired_gap": -1.8162393162393147,
    "paired_ci90": [
-    -5.66239316239316,
-    1.816239316239318
+    -5.5555555555555545,
+    1.9230769230769245
    ],
    "paired_ci95": [
-    -6.410256410256409,
-    2.5641025641025657
+    -6.196581196581196,
+    2.670940170940172
    ],
-   "paired_halfwidth90": 3.739316239316239,
-   "paired_smallest_margin": 5.66239316239316,
+   "paired_halfwidth90": 3.7393162393162394,
+   "paired_smallest_margin": 5.5555555555555545,
    "run_gap": -1.8162393162393116,
    "run_halfwidth90": 7.674382327388668,
    "run_halfwidth95": 10.378044173695312,
    "run_smallest_margin": 9.490621643627978,
-   "width_ratio_run_over_paired": 2.052349102410227,
+   "width_ratio_run_over_paired": 2.0523491024102265,
+   "width_ratio_null_quartiles": [
+    0.9032293302176175,
+    1.2447831808446228,
+    1.6615625304561021
+   ],
+   "width_ratio_percentile_in_null": 0.89,
+   "sd_of_task_differences": 28.434274206263503,
+   "p_sd_task_differences_exceeds_shared_noise": 0.3428285857071464,
+   "p_mean_gap_exchangeable": 0.46026986506746626,
+   "cmh_reject_at_0.05": false,
+   "dispersion_ratio_original": 0.31034482758620585,
+   "dispersion_ratio_harbor": 3.166666666666664,
    "tasks_with_different_pass_rate": 60,
-   "share_tasks_discordant": 0.38461538461538464,
-   "sd_of_task_differences": 28.434274206263503
+   "share_tasks_discordant": 0.38461538461538464
   },
   "featurebench": {
    "status": "excluded by manifest",
@@ -460,71 +715,95 @@
   },
   "gpqa-diamond": {
    "status": "ok",
+   "secondary_leg": false,
    "n_common": 198,
    "n_original_tasks": 198,
    "n_harbor_tasks": 198,
-   "sides_swapped_vs_published": false,
-   "manifest_note": null,
    "k_original": 3,
    "k_harbor": 3,
    "binary_outcomes": true,
-   "validation_original": "match exp0 Accuracy",
-   "validation_harbor": "match exp0 Accuracy",
+   "manifest_note": null,
+   "validation_original": "match exp0 original Accuracy",
+   "validation_harbor": "match exp0 harbor Accuracy",
+   "sides_swapped_vs_published": false,
    "mean_original": 87.87878787878788,
    "mean_harbor": 87.20538720538721,
    "paired_gap": -0.6734006734006733,
    "paired_ci90": [
     -2.8619528619528616,
-    1.515151515151515
+    1.5151515151515151
    ],
    "paired_ci95": [
     -3.3670033670033663,
-    1.8518518518518519
+    2.0202020202020203
    ],
-   "paired_halfwidth90": 2.188552188552188,
+   "paired_halfwidth90": 2.1885521885521886,
    "paired_smallest_margin": 2.8619528619528616,
    "run_gap": -0.6734006734006783,
    "run_halfwidth90": 1.4355870614994277,
    "run_halfwidth95": 1.869660003500198,
    "run_smallest_margin": 2.108987734900106,
-   "width_ratio_run_over_paired": 0.6559528573312771,
+   "width_ratio_run_over_paired": 0.655952857331277,
+   "width_ratio_null_quartiles": [
+    0.8918186180414518,
+    1.194634716505412,
+    1.5259204549969538
+   ],
+   "width_ratio_percentile_in_null": 0.1,
+   "sd_of_task_differences": 18.987215088729403,
+   "p_sd_task_differences_exceeds_shared_noise": 0.02848575712143928,
+   "p_mean_gap_exchangeable": 0.623688155922039,
+   "cmh_reject_at_0.05": false,
+   "dispersion_ratio_original": 0.6315789473684215,
+   "dispersion_ratio_harbor": 0.1904761904761906,
    "tasks_with_different_pass_rate": 25,
-   "share_tasks_discordant": 0.12626262626262627,
-   "sd_of_task_differences": 18.987215088729403
+   "share_tasks_discordant": 0.12626262626262627
   },
   "gso": {
    "status": "ok",
+   "secondary_leg": false,
    "n_common": 102,
    "n_original_tasks": 102,
    "n_harbor_tasks": 102,
-   "sides_swapped_vs_published": false,
-   "manifest_note": null,
    "k_original": 2,
    "k_harbor": 2,
    "binary_outcomes": true,
-   "validation_original": "match exp0 Opt@1",
-   "validation_harbor": "match exp0 Opt@1",
+   "manifest_note": null,
+   "validation_original": "match exp0 original Opt@1",
+   "validation_harbor": "match exp0 harbor Opt@1",
+   "sides_swapped_vs_published": false,
    "mean_original": 13.72549019607843,
    "mean_harbor": 13.235294117647058,
    "paired_gap": -0.49019607843137253,
    "paired_ci90": [
-    -4.411764705882353,
+    -4.901960784313726,
     3.4313725490196076
    ],
    "paired_ci95": [
     -5.392156862745098,
     4.411764705882353
    ],
-   "paired_halfwidth90": 3.9215686274509807,
-   "paired_smallest_margin": 4.411764705882353,
+   "paired_halfwidth90": 4.166666666666667,
+   "paired_smallest_margin": 4.901960784313726,
    "run_gap": -0.4901960784313726,
    "run_halfwidth90": 5.160861634108247,
    "run_halfwidth95": 7.6046250184445014,
    "run_smallest_margin": 5.65105771253962,
-   "width_ratio_run_over_paired": 1.316019716697603,
+   "width_ratio_run_over_paired": 1.2386067921859794,
+   "width_ratio_null_quartiles": [
+    0.9722073369706153,
+    1.5100628071138877,
+    2.1559361720826162
+   ],
+   "width_ratio_percentile_in_null": 0.3915,
+   "sd_of_task_differences": 25.8471306020071,
+   "p_sd_task_differences_exceeds_shared_noise": 0.744127936031984,
+   "p_mean_gap_exchangeable": 1.0,
+   "cmh_reject_at_0.05": false,
+   "dispersion_ratio_original": 0.22222222222222227,
+   "dispersion_ratio_harbor": 0.5294117647058819,
    "tasks_with_different_pass_rate": 21,
-   "share_tasks_discordant": 0.20588235294117646,
-   "sd_of_task_differences": 25.8471306020071
+   "share_tasks_discordant": 0.20588235294117646
   },
   "humanevalfix": {
    "status": "excluded by manifest",
@@ -532,152 +811,201 @@
   },
   "kramabench": {
    "status": "ok",
+   "secondary_leg": false,
    "n_common": 104,
    "n_original_tasks": 104,
    "n_harbor_tasks": 104,
-   "sides_swapped_vs_published": false,
-   "manifest_note": null,
    "k_original": 3,
    "k_harbor": 3,
    "binary_outcomes": false,
-   "validation_original": "match exp0 Mean Reward",
-   "validation_harbor": "match exp0 Mean Reward",
+   "manifest_note": null,
+   "validation_original": "match exp0 original Mean Reward",
+   "validation_harbor": "match exp0 harbor Mean Reward",
+   "sides_swapped_vs_published": false,
    "mean_original": 64.86506404032532,
    "mean_harbor": 62.782894910517285,
    "paired_gap": -2.0821691298080416,
    "paired_ci90": [
-    -6.291597987950725,
-    2.0215953331754006
+    -6.178969207442281,
+    2.0625704309208
    ],
    "paired_ci95": [
-    -7.11640263710752,
-    2.7883158578515266
+    -6.959854026078599,
+    2.8891925652861192
    ],
-   "paired_halfwidth90": 4.156596660563062,
-   "paired_smallest_margin": 6.291597987950725,
+   "paired_halfwidth90": 4.1207698191815405,
+   "paired_smallest_margin": 6.178969207442281,
    "run_gap": -2.082169129808044,
    "run_halfwidth90": 5.257586362261028,
    "run_halfwidth95": 6.847302542696722,
    "run_smallest_margin": 7.339755492069072,
-   "width_ratio_run_over_paired": 1.2648776851850771,
+   "width_ratio_run_over_paired": 1.2758747983902872,
+   "width_ratio_null_quartiles": [
+    0.9077430020535151,
+    1.2074100320820222,
+    1.536298396647509
+   ],
+   "width_ratio_percentile_in_null": 0.552,
+   "sd_of_task_differences": 25.74391347541557,
+   "p_sd_task_differences_exceeds_shared_noise": 0.03398300849575212,
+   "p_mean_gap_exchangeable": 0.351824087956022,
+   "cmh_reject_at_0.05": null,
+   "dispersion_ratio_original": 0.5174251564909267,
+   "dispersion_ratio_harbor": 1.906010237543264,
    "tasks_with_different_pass_rate": 40,
-   "share_tasks_discordant": 0.38461538461538464,
-   "sd_of_task_differences": 25.74391347541557
+   "share_tasks_discordant": 0.38461538461538464
   },
   "kumo": {
    "status": "ok",
+   "secondary_leg": false,
    "n_common": 212,
    "n_original_tasks": 212,
    "n_harbor_tasks": 212,
-   "sides_swapped_vs_published": false,
-   "manifest_note": null,
    "k_original": 3,
    "k_harbor": 3,
    "binary_outcomes": true,
-   "validation_original": "match exp0 Accuracy",
-   "validation_harbor": "match exp0 Accuracy",
+   "manifest_note": null,
+   "validation_original": "match exp0 original Accuracy",
+   "validation_harbor": "match exp0 harbor Accuracy",
+   "sides_swapped_vs_published": false,
    "mean_original": 84.59119496855347,
    "mean_harbor": 84.1194968553459,
    "paired_gap": -0.4716981132075468,
    "paired_ci90": [
-    -3.30188679245283,
-    2.358490566037736
+    -3.459119496855345,
+    2.515723270440251
    ],
    "paired_ci95": [
-    -3.930817610062892,
-    2.8301886792452837
+    -3.930817610062893,
+    2.9874213836477987
    ],
-   "paired_halfwidth90": 2.830188679245283,
-   "paired_smallest_margin": 3.30188679245283,
+   "paired_halfwidth90": 2.9874213836477983,
+   "paired_smallest_margin": 3.459119496855345,
    "run_gap": -0.4716981132075375,
    "run_halfwidth90": 1.8961551183173857,
    "run_halfwidth95": 2.4694882534308875,
    "run_smallest_margin": 2.367853231524923,
-   "width_ratio_run_over_paired": 0.669974808472143,
+   "width_ratio_run_over_paired": 0.6347129764472934,
+   "width_ratio_null_quartiles": [
+    0.8835502046499228,
+    1.179924734140636,
+    1.514407696441814
+   ],
+   "width_ratio_percentile_in_null": 0.09,
+   "sd_of_task_differences": 25.651854240191653,
+   "p_sd_task_differences_exceeds_shared_noise": 0.0074962518740629685,
+   "p_mean_gap_exchangeable": 0.8365817091454273,
+   "cmh_reject_at_0.05": false,
+   "dispersion_ratio_original": 0.815789473684209,
+   "dispersion_ratio_harbor": 0.02127659574468126,
    "tasks_with_different_pass_rate": 56,
-   "share_tasks_discordant": 0.2641509433962264,
-   "sd_of_task_differences": 25.651854240191653
+   "share_tasks_discordant": 0.2641509433962264
   },
   "labbench": {
    "status": "ok",
+   "secondary_leg": false,
    "n_common": 181,
    "n_original_tasks": 181,
    "n_harbor_tasks": 181,
-   "sides_swapped_vs_published": false,
-   "manifest_note": null,
    "k_original": 3,
    "k_harbor": 3,
    "binary_outcomes": true,
-   "validation_original": "match exp0 accuracy",
-   "validation_harbor": "match exp0 accuracy",
+   "manifest_note": null,
+   "validation_original": "match exp0 original accuracy",
+   "validation_harbor": "match exp0 harbor accuracy",
+   "sides_swapped_vs_published": false,
    "mean_original": 39.96316758747698,
    "mean_harbor": 41.06813996316759,
    "paired_gap": 1.1049723756906082,
    "paired_ci90": [
     -2.2099447513812156,
-    4.604051565377532
+    4.419889502762431
    ],
    "paired_ci95": [
-    -2.94659300184162,
+    -2.9465930018416207,
     5.156537753222836
    ],
-   "paired_halfwidth90": 3.4069981583793734,
-   "paired_smallest_margin": 4.604051565377532,
+   "paired_halfwidth90": 3.3149171270718236,
+   "paired_smallest_margin": 4.419889502762431,
    "run_gap": 1.1049723756906076,
    "run_halfwidth90": 1.110455483655486,
    "run_halfwidth95": 1.446219640130797,
    "run_smallest_margin": 2.215427859346094,
-   "width_ratio_run_over_paired": 0.32593369060806976,
+   "width_ratio_run_over_paired": 0.3349874042360716,
+   "width_ratio_null_quartiles": [
+    0.8877634741295481,
+    1.1904623277506554,
+    1.5109632133642996
+   ],
+   "width_ratio_percentile_in_null": 0.0065,
+   "sd_of_task_differences": 27.644246267195122,
+   "p_sd_task_differences_exceeds_shared_noise": 0.7316341829085458,
+   "p_mean_gap_exchangeable": 0.5572213893053474,
+   "cmh_reject_at_0.05": false,
+   "dispersion_ratio_original": 0.01587301587301587,
+   "dispersion_ratio_harbor": 0.09459459459459456,
    "tasks_with_different_pass_rate": 74,
-   "share_tasks_discordant": 0.4088397790055249,
-   "sd_of_task_differences": 27.644246267195122
+   "share_tasks_discordant": 0.4088397790055249
   },
   "lawbench": {
    "status": "ok",
+   "secondary_leg": false,
    "n_common": 120,
    "n_original_tasks": 120,
    "n_harbor_tasks": 120,
-   "sides_swapped_vs_published": false,
-   "manifest_note": null,
    "k_original": 3,
    "k_harbor": 3,
    "binary_outcomes": false,
-   "validation_original": "match exp0 Accuracy (%)",
-   "validation_harbor": "match exp0 Accuracy (%)",
+   "manifest_note": null,
+   "validation_original": "match exp0 original Accuracy (%)",
+   "validation_harbor": "match exp0 harbor Accuracy (%)",
+   "sides_swapped_vs_published": false,
    "mean_original": 65.00499150984152,
    "mean_harbor": 65.6291221247832,
    "paired_gap": 0.6241306149416822,
    "paired_ci90": [
-    -0.6895995049042645,
-    1.9192430574560786
+    -0.6769893691258231,
+    1.9357864156868365
    ],
    "paired_ci95": [
-    -0.975644151143265,
-    2.175226975111586
+    -0.9443050817250582,
+    2.170523142501996
    ],
-   "paired_halfwidth90": 1.3044212811801716,
-   "paired_smallest_margin": 1.9192430574560786,
+   "paired_halfwidth90": 1.3063878924063297,
+   "paired_smallest_margin": 1.9357864156868365,
    "run_gap": 0.6241306149416914,
    "run_halfwidth90": 1.5753883422163848,
    "run_halfwidth95": 2.051732460131002,
    "run_smallest_margin": 2.199518957158076,
-   "width_ratio_run_over_paired": 1.2077297150434838,
+   "width_ratio_run_over_paired": 1.2059116219414463,
+   "width_ratio_null_quartiles": [
+    0.922998665414406,
+    1.216253226709397,
+    1.5395432344490194
+   ],
+   "width_ratio_percentile_in_null": 0.4865,
+   "sd_of_task_differences": 8.757500914917738,
+   "p_sd_task_differences_exceeds_shared_noise": 0.3453273363318341,
+   "p_mean_gap_exchangeable": 0.456271864067966,
+   "cmh_reject_at_0.05": null,
+   "dispersion_ratio_original": 0.2411999278638185,
+   "dispersion_ratio_harbor": 1.39540147922078,
    "tasks_with_different_pass_rate": 111,
-   "share_tasks_discordant": 0.925,
-   "sd_of_task_differences": 8.757500914917738
+   "share_tasks_discordant": 0.925
   },
   "livecodebench": {
    "status": "ok",
+   "secondary_leg": true,
    "n_common": 100,
    "n_original_tasks": 100,
    "n_harbor_tasks": 100,
-   "sides_swapped_vs_published": false,
-   "manifest_note": null,
    "k_original": 4,
    "k_harbor": 4,
    "binary_outcomes": true,
-   "validation_original": "no match (recovered [52.0, 52.0, 56.0, 58.0])",
-   "validation_harbor": "match exp1 Accuracy (%)",
+   "manifest_note": " The 'original' side of these files is the Terminal-Bench adapter run (transitive leg), so the adapter is reported in the secondary set, not the headline paired set.",
+   "validation_original": "match exp1 tb_adapter Accuracy (%)",
+   "validation_harbor": "match exp1 harbor Accuracy (%)",
+   "sides_swapped_vs_published": false,
    "mean_original": 54.5,
    "mean_harbor": 53.25,
    "paired_gap": -1.25,
@@ -696,9 +1024,20 @@
    "run_halfwidth95": 4.339964522460447,
    "run_smallest_margin": 4.696521162678977,
    "width_ratio_run_over_paired": 1.5317871834128785,
+   "width_ratio_null_quartiles": [
+    0.8793866227069996,
+    1.1111135287209237,
+    1.3929014952308836
+   ],
+   "width_ratio_percentile_in_null": 0.824,
+   "sd_of_task_differences": 13.472287305892985,
+   "p_sd_task_differences_exceeds_shared_noise": 0.5367316341829086,
+   "p_mean_gap_exchangeable": 0.46976511744127936,
+   "cmh_reject_at_0.05": false,
+   "dispersion_ratio_original": 3.0,
+   "dispersion_ratio_harbor": 0.8113207547169811,
    "tasks_with_different_pass_rate": 17,
-   "share_tasks_discordant": 0.17,
-   "sd_of_task_differences": 13.472287305892985
+   "share_tasks_discordant": 0.17
   },
   "llmsr_bench": {
    "status": "excluded by manifest",
@@ -706,16 +1045,17 @@
   },
   "medagentbench": {
    "status": "ok",
+   "secondary_leg": false,
    "n_common": 300,
    "n_original_tasks": 300,
    "n_harbor_tasks": 300,
-   "sides_swapped_vs_published": false,
-   "manifest_note": null,
    "k_original": 3,
    "k_harbor": 3,
    "binary_outcomes": true,
-   "validation_original": "match exp0 Success Rate",
-   "validation_harbor": "match exp0 Success Rate",
+   "manifest_note": null,
+   "validation_original": "match exp0 original Success Rate",
+   "validation_harbor": "match exp0 harbor Success Rate",
+   "sides_swapped_vs_published": false,
    "mean_original": 58.0,
    "mean_harbor": 57.88888888888889,
    "paired_gap": -0.11111111111111115,
@@ -724,7 +1064,7 @@
     0.6666666666666665
    ],
    "paired_ci95": [
-    -0.8888888888888892,
+    -0.888888888888889,
     0.7777777777777777
    ],
    "paired_halfwidth90": 0.7222222222222221,
@@ -734,22 +1074,34 @@
    "run_halfwidth95": 2.581045150427989,
    "run_smallest_margin": 2.09292332090515,
    "width_ratio_run_over_paired": 2.744047675099444,
+   "width_ratio_null_quartiles": [
+    0.8862947591338997,
+    1.2045902970555848,
+    1.5606104641391154
+   ],
+   "width_ratio_percentile_in_null": 0.995,
+   "sd_of_task_differences": 7.465184064728576,
+   "p_sd_task_differences_exceeds_shared_noise": 0.4612693653173413,
+   "p_mean_gap_exchangeable": 0.735632183908046,
+   "cmh_reject_at_0.05": false,
+   "dispersion_ratio_original": 6.300000000000001,
+   "dispersion_ratio_harbor": 1.1666666666666656,
    "tasks_with_different_pass_rate": 12,
-   "share_tasks_discordant": 0.04,
-   "sd_of_task_differences": 7.465184064728576
+   "share_tasks_discordant": 0.04
   },
   "ml_dev_bench": {
    "status": "ok",
+   "secondary_leg": false,
    "n_common": 33,
    "n_original_tasks": 33,
    "n_harbor_tasks": 33,
-   "sides_swapped_vs_published": false,
-   "manifest_note": null,
    "k_original": 3,
    "k_harbor": 3,
    "binary_outcomes": true,
-   "validation_original": "match exp0 task success rate (%)",
-   "validation_harbor": "match exp0 task success rate (%)",
+   "manifest_note": null,
+   "validation_original": "match exp0 original task success rate (%)",
+   "validation_harbor": "match exp0 harbor task success rate (%)",
+   "sides_swapped_vs_published": false,
    "mean_original": 63.63636363636363,
    "mean_harbor": 61.61616161616163,
    "paired_gap": -2.0202020202020186,
@@ -759,7 +1111,7 @@
    ],
    "paired_ci95": [
     -16.16161616161616,
-    12.121212121212125
+    13.131313131313131
    ],
    "paired_halfwidth90": 12.121212121212121,
    "paired_smallest_margin": 14.141414141414138,
@@ -768,9 +1120,20 @@
    "run_halfwidth95": 5.6089800105005905,
    "run_smallest_margin": 6.3269632047003,
    "width_ratio_run_over_paired": 0.35530779772110804,
+   "width_ratio_null_quartiles": [
+    0.9023875779220196,
+    1.1937465586877922,
+    1.5828614555267497
+   ],
+   "width_ratio_percentile_in_null": 0.014,
+   "sd_of_task_differences": 42.442276109403004,
+   "p_sd_task_differences_exceeds_shared_noise": 0.0004997501249375312,
+   "p_mean_gap_exchangeable": 0.8340829585207397,
+   "cmh_reject_at_0.05": false,
+   "dispersion_ratio_original": 0.7500000000000003,
+   "dispersion_ratio_harbor": 0.09999999999999958,
    "tasks_with_different_pass_rate": 15,
-   "share_tasks_discordant": 0.45454545454545453,
-   "sd_of_task_differences": 42.442276109403004
+   "share_tasks_discordant": 0.45454545454545453
   },
   "mlgym-bench": {
    "status": "excluded by manifest",
@@ -778,20 +1141,21 @@
   },
   "mmau": {
    "status": "excluded by manifest",
-   "reason": "validation against published run scores failed"
+   "reason": "the two sides are per-task identical in every run (2999 of 3000 outcomes), so the sides are not independent evaluations; excluded from the paired analysis, kept for the defect model"
   },
   "mmmlu": {
    "status": "ok",
+   "secondary_leg": false,
    "n_common": 150,
    "n_original_tasks": 150,
    "n_harbor_tasks": 150,
-   "sides_swapped_vs_published": false,
-   "manifest_note": null,
    "k_original": 5,
    "k_harbor": 5,
    "binary_outcomes": true,
-   "validation_original": "match exp0 accuracy",
-   "validation_harbor": "match exp0 accuracy",
+   "manifest_note": null,
+   "validation_original": "match exp0 original accuracy",
+   "validation_harbor": "match exp0 harbor accuracy",
+   "sides_swapped_vs_published": false,
    "mean_original": 63.46666666666667,
    "mean_harbor": 63.333333333333336,
    "paired_gap": -0.13333333333333333,
@@ -810,77 +1174,112 @@
    "run_halfwidth95": 1.6414257734055149,
    "run_smallest_margin": 1.4569693273419124,
    "width_ratio_run_over_paired": 0.684639307245817,
+   "width_ratio_null_quartiles": [
+    0.8962712066331131,
+    1.095182133658501,
+    1.2990765936179611
+   ],
+   "width_ratio_percentile_in_null": 0.072,
+   "sd_of_task_differences": 14.562370679976151,
+   "p_sd_task_differences_exceeds_shared_noise": 0.24737631184407796,
+   "p_mean_gap_exchangeable": 1.0,
+   "cmh_reject_at_0.05": false,
+   "dispersion_ratio_original": 0.4383561643835636,
+   "dispersion_ratio_harbor": 0.36764705882353066,
    "tasks_with_different_pass_rate": 35,
-   "share_tasks_discordant": 0.23333333333333334,
-   "sd_of_task_differences": 14.562370679976151
+   "share_tasks_discordant": 0.23333333333333334
   },
   "multi-swe-bench": {
    "status": "ok",
+   "secondary_leg": false,
    "n_common": 70,
    "n_original_tasks": 70,
    "n_harbor_tasks": 70,
-   "sides_swapped_vs_published": false,
-   "manifest_note": null,
    "k_original": 3,
    "k_harbor": 3,
    "binary_outcomes": true,
-   "validation_original": "no match (recovered [40.0, 45.71, 45.71])",
-   "validation_harbor": "no match (recovered [42.86, 44.29, 47.14])",
+   "manifest_note": null,
+   "validation_original": "no match",
+   "validation_harbor": "no match",
+   "sides_swapped_vs_published": false,
    "mean_original": 43.80952380952381,
    "mean_harbor": 44.761904761904766,
    "paired_gap": 0.9523809523809527,
    "paired_ci90": [
-    -7.142857142857142,
-    9.047619047619046
+    -7.142857142857143,
+    9.047619047619047
    ],
    "paired_ci95": [
     -8.571428571428571,
     10.476190476190476
    ],
    "paired_halfwidth90": 8.095238095238095,
-   "paired_smallest_margin": 9.047619047619046,
+   "paired_smallest_margin": 9.047619047619047,
    "run_gap": 0.952380952380949,
    "run_halfwidth90": 4.868560962256318,
    "run_halfwidth95": 6.3406490277404215,
    "run_smallest_margin": 5.820941914637267,
    "width_ratio_run_over_paired": 0.6014104718081333,
+   "width_ratio_null_quartiles": [
+    0.8976496908966596,
+    1.2096285857561333,
+    1.530451247972342
+   ],
+   "width_ratio_percentile_in_null": 0.0695,
+   "sd_of_task_differences": 41.30380298213168,
+   "p_sd_task_differences_exceeds_shared_noise": 0.0004997501249375312,
+   "p_mean_gap_exchangeable": 0.7346326836581709,
+   "cmh_reject_at_0.05": false,
+   "dispersion_ratio_original": 0.8888888888888891,
+   "dispersion_ratio_harbor": 0.350000000000001,
    "tasks_with_different_pass_rate": 33,
-   "share_tasks_discordant": 0.4714285714285714,
-   "sd_of_task_differences": 41.30380298213168
+   "share_tasks_discordant": 0.4714285714285714
   },
   "pixiu": {
    "status": "ok",
+   "secondary_leg": false,
    "n_common": 285,
    "n_original_tasks": 300,
    "n_harbor_tasks": 420,
-   "sides_swapped_vs_published": false,
-   "manifest_note": null,
    "k_original": 3,
    "k_harbor": 3,
    "binary_outcomes": true,
-   "validation_original": "no match (recovered [63.86, 64.91, 65.96])",
-   "validation_harbor": "no match (recovered [63.16, 64.91, 64.91])",
+   "manifest_note": null,
+   "validation_original": "no match",
+   "validation_harbor": "no match",
+   "sides_swapped_vs_published": false,
    "mean_original": 64.91228070175438,
    "mean_harbor": 64.32748538011697,
    "paired_gap": -0.5847953216374268,
    "paired_ci90": [
-    -3.1578947368421053,
-    1.8771929824560558
+    -3.1578947368421044,
+    1.8713450292397662
    ],
    "paired_ci95": [
-    -3.6257309941520464,
-    2.456140350877193
+    -3.6257309941520472,
+    2.339181286549708
    ],
-   "paired_halfwidth90": 2.5175438596490807,
-   "paired_smallest_margin": 3.1578947368421053,
+   "paired_halfwidth90": 2.514619883040935,
+   "paired_smallest_margin": 3.1578947368421044,
    "run_gap": -0.5847953216374293,
    "run_halfwidth90": 1.798007695797392,
    "run_halfwidth95": 2.341664372000385,
    "run_smallest_margin": 2.3828030174348216,
-   "width_ratio_run_over_paired": 0.7141912101773733,
+   "width_ratio_run_over_paired": 0.7150216650729165,
+   "width_ratio_null_quartiles": [
+    0.9094690499402057,
+    1.2018054104872116,
+    1.524055112463921
+   ],
+   "width_ratio_percentile_in_null": 0.128,
+   "sd_of_task_differences": 26.009529424787416,
+   "p_sd_task_differences_exceeds_shared_noise": 0.0004997501249375312,
+   "p_mean_gap_exchangeable": 0.6646676661669165,
+   "cmh_reject_at_0.05": false,
+   "dispersion_ratio_original": 0.551020408163263,
+   "dispersion_ratio_harbor": 0.4098360655737706,
    "tasks_with_different_pass_rate": 84,
-   "share_tasks_discordant": 0.29473684210526313,
-   "sd_of_task_differences": 26.009529424787416
+   "share_tasks_discordant": 0.29473684210526313
   },
   "qcircuitbench": {
    "status": "excluded by manifest",
@@ -888,37 +1287,49 @@
   },
   "quixbugs": {
    "status": "ok",
+   "secondary_leg": true,
    "n_common": 80,
    "n_original_tasks": 80,
    "n_harbor_tasks": 80,
-   "sides_swapped_vs_published": false,
-   "manifest_note": null,
    "k_original": 3,
    "k_harbor": 3,
    "binary_outcomes": true,
-   "validation_original": "no match (recovered [87.5, 88.75, 88.75])",
-   "validation_harbor": "match exp1 Resolved Rate (%)",
+   "manifest_note": " The 'original' side of these files is the Terminal-Bench adapter run (transitive leg), so the adapter is reported in the secondary set, not the headline paired set.",
+   "validation_original": "match exp1 tb_adapter Resolved Rate (%)",
+   "validation_harbor": "match exp1 harbor Resolved Rate (%)",
+   "sides_swapped_vs_published": false,
    "mean_original": 88.33333333333334,
    "mean_harbor": 87.91666666666667,
    "paired_gap": -0.41666666666666696,
    "paired_ci90": [
-    -4.583333333333334,
-    3.770833333333031
+    -4.999999999999999,
+    4.166666666666666
    ],
    "paired_ci95": [
-    -5.833333333333332,
+    -5.833333333333333,
     4.999999999999999
    ],
-   "paired_halfwidth90": 4.177083333333183,
-   "paired_smallest_margin": 4.583333333333334,
+   "paired_halfwidth90": 4.583333333333332,
+   "paired_smallest_margin": 4.999999999999999,
    "run_gap": -0.4166666666666572,
    "run_halfwidth90": 1.256202765885269,
    "run_halfwidth95": 1.6360359678979646,
    "run_smallest_margin": 1.6728694325519262,
-   "width_ratio_run_over_paired": 0.3007368217580802,
+   "width_ratio_run_over_paired": 0.2740806034658769,
+   "width_ratio_null_quartiles": [
+    0.8949881313049808,
+    1.1934997036199917,
+    1.5558360390564048
+   ],
+   "width_ratio_percentile_in_null": 0.0015,
+   "sd_of_task_differences": 24.009931137946754,
+   "p_sd_task_differences_exceeds_shared_noise": 0.07146426786606697,
+   "p_mean_gap_exchangeable": 0.7541229385307346,
+   "cmh_reject_at_0.05": false,
+   "dispersion_ratio_original": 0.0769230769230769,
+   "dispersion_ratio_harbor": 0.07142857142857142,
    "tasks_with_different_pass_rate": 17,
-   "share_tasks_discordant": 0.2125,
-   "sd_of_task_differences": 24.009931137946754
+   "share_tasks_discordant": 0.2125
   },
   "rexbench": {
    "status": "excluded by manifest",
@@ -930,21 +1341,22 @@
   },
   "seal0": {
    "status": "ok",
+   "secondary_leg": false,
    "n_common": 108,
    "n_original_tasks": 111,
    "n_harbor_tasks": 108,
-   "sides_swapped_vs_published": false,
-   "manifest_note": null,
    "k_original": 3,
    "k_harbor": 3,
    "binary_outcomes": true,
-   "validation_original": "no match (recovered [27.78, 35.19, 37.04])",
-   "validation_harbor": "no match (recovered [27.78, 32.41, 38.89])",
+   "manifest_note": null,
+   "validation_original": "no match",
+   "validation_harbor": "no match",
+   "sides_swapped_vs_published": false,
    "mean_original": 33.333333333333336,
    "mean_harbor": 33.02469135802469,
    "paired_gap": -0.30864197530864224,
    "paired_ci90": [
-    -4.320987654320987,
+    -4.320987654320986,
     3.7037037037037033
    ],
    "paired_ci95": [
@@ -952,28 +1364,40 @@
     4.320987654320988
    ],
    "paired_halfwidth90": 4.012345679012345,
-   "paired_smallest_margin": 4.320987654320987,
+   "paired_smallest_margin": 4.320987654320986,
    "run_gap": -0.308641975308646,
    "run_halfwidth90": 9.140914220102326,
    "run_halfwidth95": 11.9048173190563,
    "run_smallest_margin": 9.449556195410972,
    "width_ratio_run_over_paired": 2.27819708254858,
+   "width_ratio_null_quartiles": [
+    0.9092241131668131,
+    1.2029203844451155,
+    1.5223696045875736
+   ],
+   "width_ratio_percentile_in_null": 0.979,
+   "sd_of_task_differences": 25.16626760855052,
+   "p_sd_task_differences_exceeds_shared_noise": 0.7306346826586707,
+   "p_mean_gap_exchangeable": 0.8530734632683659,
+   "cmh_reject_at_0.05": false,
+   "dispersion_ratio_original": 2.210526315789474,
+   "dispersion_ratio_harbor": 3.2058823529411744,
    "tasks_with_different_pass_rate": 40,
-   "share_tasks_discordant": 0.37037037037037035,
-   "sd_of_task_differences": 25.16626760855052
+   "share_tasks_discordant": 0.37037037037037035
   },
   "simpleqa": {
    "status": "ok",
+   "secondary_leg": false,
    "n_common": 50,
    "n_original_tasks": 50,
    "n_harbor_tasks": 50,
-   "sides_swapped_vs_published": false,
-   "manifest_note": null,
    "k_original": 3,
    "k_harbor": 3,
    "binary_outcomes": true,
-   "validation_original": "match exp0 accuracy",
-   "validation_harbor": "match exp0 accuracy",
+   "manifest_note": null,
+   "validation_original": "match exp0 original accuracy",
+   "validation_harbor": "match exp0 harbor accuracy",
+   "sides_swapped_vs_published": false,
    "mean_original": 96.66666666666669,
    "mean_harbor": 94.66666666666669,
    "paired_gap": -1.9999999999999993,
@@ -992,111 +1416,154 @@
    "run_halfwidth95": 5.235315097273486,
    "run_smallest_margin": 6.019848850832861,
    "width_ratio_run_over_paired": 1.2059546552498586,
+   "width_ratio_null_quartiles": [
+    0.8847796443505929,
+    1.221838556484152,
+    1.5817029284612447
+   ],
+   "width_ratio_percentile_in_null": 0.4835,
+   "sd_of_task_differences": 14.14213562373095,
+   "p_sd_task_differences_exceeds_shared_noise": 0.7956021989005497,
+   "p_mean_gap_exchangeable": 0.5822088955522239,
+   "cmh_reject_at_0.05": false,
+   "dispersion_ratio_original": 1.7499999999999996,
+   "dispersion_ratio_harbor": 0.125,
    "tasks_with_different_pass_rate": 9,
-   "share_tasks_discordant": 0.18,
-   "sd_of_task_differences": 14.14213562373095
+   "share_tasks_discordant": 0.18
   },
   "spider2-dbt": {
    "status": "ok",
+   "secondary_leg": false,
    "n_common": 64,
    "n_original_tasks": 64,
    "n_harbor_tasks": 64,
-   "sides_swapped_vs_published": false,
-   "manifest_note": null,
    "k_original": 3,
    "k_harbor": 3,
    "binary_outcomes": true,
-   "validation_original": "match exp0 Mean Resolved Rate (%)",
-   "validation_harbor": "match exp0 Mean Resolved Rate (%)",
+   "manifest_note": null,
+   "validation_original": "match exp0 original Mean Resolved Rate (%)",
+   "validation_harbor": "match exp0 harbor Mean Resolved Rate (%)",
+   "sides_swapped_vs_published": false,
    "mean_original": 18.75,
    "mean_harbor": 18.229166666666668,
    "paired_gap": -0.520833333333333,
    "paired_ci90": [
-    -5.729166666666667,
+    -5.729166666666666,
     4.6875
    ],
    "paired_ci95": [
     -6.770833333333334,
-    6.249999999999998
+    5.729166666666667
    ],
-   "paired_halfwidth90": 5.208333333333334,
-   "paired_smallest_margin": 5.729166666666667,
+   "paired_halfwidth90": 5.208333333333333,
+   "paired_smallest_margin": 5.729166666666666,
    "run_gap": -0.5208333333333321,
    "run_halfwidth90": 1.1103368678784635,
    "run_halfwidth95": 1.4460651589571842,
    "run_smallest_margin": 1.6311702012117957,
-   "width_ratio_run_over_paired": 0.21318467863266496,
+   "width_ratio_run_over_paired": 0.21318467863266502,
+   "width_ratio_null_quartiles": [
+    0.8919377416134839,
+    1.2268252308848469,
+    1.6123110513250656
+   ],
+   "width_ratio_percentile_in_null": 0.0,
+   "sd_of_task_differences": 26.22127217810852,
+   "p_sd_task_differences_exceeds_shared_noise": 0.001999000499750125,
+   "p_mean_gap_exchangeable": 0.9645177411294353,
+   "cmh_reject_at_0.05": false,
+   "dispersion_ratio_original": 0.0,
+   "dispersion_ratio_harbor": 0.16666666666666666,
    "tasks_with_different_pass_rate": 12,
-   "share_tasks_discordant": 0.1875,
-   "sd_of_task_differences": 26.22127217810852
+   "share_tasks_discordant": 0.1875
   },
   "swebench": {
    "status": "ok",
+   "secondary_leg": false,
    "n_common": 499,
    "n_original_tasks": 500,
    "n_harbor_tasks": 499,
-   "sides_swapped_vs_published": false,
-   "manifest_note": null,
    "k_original": 1,
    "k_harbor": 3,
    "binary_outcomes": true,
-   "validation_original": "match exp4 Resolved Rate",
-   "validation_harbor": "match exp4 Resolved Rate",
+   "manifest_note": null,
+   "validation_original": "match exp4 original Resolved Rate",
+   "validation_harbor": "match exp4 harbor Resolved Rate",
+   "sides_swapped_vs_published": false,
    "mean_original": 56.312625250501,
    "mean_harbor": 54.50901803607214,
    "paired_gap": -1.8036072144288557,
    "paired_ci90": [
-    -4.542418169672677,
-    0.9352037408149653
+    -4.542418169672676,
+    0.8684034736138964
    ],
    "paired_ci95": [
-    -5.076820307281227,
-    1.4696058784235153
+    -5.010020040080159,
+    1.4028056112224467
    ],
-   "paired_halfwidth90": 2.7388109552438213,
-   "paired_smallest_margin": 4.542418169672677,
+   "paired_halfwidth90": 2.7054108216432864,
+   "paired_smallest_margin": 4.542418169672676,
    "run_gap": -1.8036072144288582,
-   "run_halfwidth90": NaN,
-   "run_halfwidth95": NaN,
-   "run_smallest_margin": NaN,
+   "run_halfwidth90": null,
+   "run_halfwidth95": null,
+   "run_smallest_margin": null,
    "width_ratio_run_over_paired": null,
+   "width_ratio_null_quartiles": null,
+   "width_ratio_percentile_in_null": null,
+   "sd_of_task_differences": 36.574030422898204,
+   "p_sd_task_differences_exceeds_shared_noise": 0.12593703148425786,
+   "p_mean_gap_exchangeable": 0.2673663168415792,
+   "cmh_reject_at_0.05": false,
+   "dispersion_ratio_original": null,
+   "dispersion_ratio_harbor": 0.8345864661654112,
    "tasks_with_different_pass_rate": 169,
-   "share_tasks_discordant": 0.33867735470941884,
-   "sd_of_task_differences": 36.574030422898204
+   "share_tasks_discordant": 0.33867735470941884
   },
   "swebenchpro": {
    "status": "ok",
+   "secondary_leg": false,
    "n_common": 100,
    "n_original_tasks": 100,
    "n_harbor_tasks": 100,
-   "sides_swapped_vs_published": false,
-   "manifest_note": "Harbor run 1 was run on a different 100-task sample (21 tasks in common with the original side); runs 2 to 6 match the original's tasks; run 1 dropped for the paired analysis",
    "k_original": 6,
    "k_harbor": 5,
    "binary_outcomes": true,
-   "validation_original": "match exp0 Resolved Rate (%)",
-   "validation_harbor": "no match (recovered [35.0, 35.0, 36.0, 36.0, 41.0])",
+   "manifest_note": "Harbor run 1 was run on a different 100-task sample (21 tasks in common with the original side); runs 2 to 6 match the original's tasks; run 1 dropped from the paired analysis and from the defect model",
+   "validation_original": "match exp0 original Resolved Rate (%)",
+   "validation_harbor": "no match",
+   "sides_swapped_vs_published": false,
    "mean_original": 35.66666666666667,
    "mean_harbor": 36.6,
    "paired_gap": 0.9333333333333329,
    "paired_ci90": [
-    -2.9333333333333336,
-    4.699999999999999
+    -2.766666666666668,
+    4.8
    ],
    "paired_ci95": [
-    -3.6333333333333333,
-    5.334166666666653
+    -3.5666666666666655,
+    5.533333333333332
    ],
-   "paired_halfwidth90": 3.8166666666666664,
-   "paired_smallest_margin": 4.699999999999999,
+   "paired_halfwidth90": 3.783333333333334,
+   "paired_smallest_margin": 4.8,
    "run_gap": 0.9333333333333371,
    "run_halfwidth90": 2.2363940678336203,
    "run_halfwidth95": 2.75982716027129,
    "run_smallest_margin": 3.1697274011669574,
-   "width_ratio_run_over_paired": 0.5859547775983285,
+   "width_ratio_run_over_paired": 0.5911173747577849,
+   "width_ratio_null_quartiles": [
+    0.8900256917690632,
+    1.0878871118736009,
+    1.2873779578633278
+   ],
+   "width_ratio_percentile_in_null": 0.024,
+   "sd_of_task_differences": 23.465618280836072,
+   "p_sd_task_differences_exceeds_shared_noise": 0.012993503248375811,
+   "p_mean_gap_exchangeable": 0.6266866566716641,
+   "cmh_reject_at_0.05": false,
+   "dispersion_ratio_original": 0.21383647798742134,
+   "dispersion_ratio_harbor": 0.6774193548387099,
    "tasks_with_different_pass_rate": 56,
-   "share_tasks_discordant": 0.56,
-   "sd_of_task_differences": 23.465618280836072
+   "share_tasks_discordant": 0.56
   },
   "swegym": {
    "status": "excluded by manifest",
@@ -1104,71 +1571,95 @@
   },
   "theagentcompany": {
    "status": "ok",
+   "secondary_leg": false,
    "n_common": 37,
    "n_original_tasks": 37,
    "n_harbor_tasks": 37,
-   "sides_swapped_vs_published": false,
-   "manifest_note": null,
    "k_original": 3,
    "k_harbor": 3,
    "binary_outcomes": false,
-   "validation_original": "match exp0 Partial Completion Score",
-   "validation_harbor": "match exp0 Partial Completion Score",
+   "manifest_note": null,
+   "validation_original": "match exp0 original Partial Completion Score",
+   "validation_harbor": "match exp0 harbor Partial Completion Score",
+   "sides_swapped_vs_published": false,
    "mean_original": 26.861711711711713,
    "mean_harbor": 26.71171171171171,
    "paired_gap": -0.15000000000000116,
    "paired_ci90": [
-    -3.9188018018018025,
-    3.4385330330330324
+    -3.7986186186186193,
+    3.4085315315315303
    ],
    "paired_ci95": [
-    -4.75929054054054,
-    4.114543543543538
+    -4.53423873873874,
+    4.039219219219219
    ],
-   "paired_halfwidth90": 3.6786674174174174,
-   "paired_smallest_margin": 3.9188018018018025,
+   "paired_halfwidth90": 3.603575075075075,
+   "paired_smallest_margin": 3.7986186186186193,
    "run_gap": -0.15000000000000213,
    "run_halfwidth90": 1.7217987864122268,
    "run_halfwidth95": 2.242412467598994,
    "run_smallest_margin": 1.871798786412229,
-   "width_ratio_run_over_paired": 0.46804959270305646,
+   "width_ratio_run_over_paired": 0.47780294583604754,
+   "width_ratio_null_quartiles": [
+    0.8848003879329507,
+    1.189883287498747,
+    1.5381657163874882
+   ],
+   "width_ratio_percentile_in_null": 0.0315,
+   "sd_of_task_differences": 13.682147349895498,
+   "p_sd_task_differences_exceeds_shared_noise": 0.11294352823588207,
+   "p_mean_gap_exchangeable": 0.9485257371314343,
+   "cmh_reject_at_0.05": null,
+   "dispersion_ratio_original": 0.34392614103543356,
+   "dispersion_ratio_harbor": 0.0824752282883236,
    "tasks_with_different_pass_rate": 15,
-   "share_tasks_discordant": 0.40540540540540543,
-   "sd_of_task_differences": 13.682147349895498
+   "share_tasks_discordant": 0.40540540540540543
   },
   "widesearch": {
    "status": "ok",
+   "secondary_leg": false,
    "n_common": 200,
    "n_original_tasks": 200,
    "n_harbor_tasks": 200,
-   "sides_swapped_vs_published": false,
-   "manifest_note": null,
    "k_original": 3,
    "k_harbor": 3,
    "binary_outcomes": false,
-   "validation_original": "match exp0 Mean Item F1",
-   "validation_harbor": "match exp0 Mean Item F1",
+   "manifest_note": null,
+   "validation_original": "match exp0 original Mean Item F1",
+   "validation_harbor": "match exp0 harbor Mean Item F1",
+   "sides_swapped_vs_published": false,
    "mean_original": 53.76716271759583,
    "mean_harbor": 53.85997166666667,
    "paired_gap": 0.09280894907083354,
    "paired_ci90": [
-    -1.961187560746356,
-    2.1047497066991636
+    -1.953094726674893,
+    2.098500399947474
    ],
    "paired_ci95": [
-    -2.3607464347615235,
-    2.439994019021615
+    -2.340553200079067,
+    2.4619485578437645
    ],
-   "paired_halfwidth90": 2.03296863372276,
-   "paired_smallest_margin": 2.1047497066991636,
+   "paired_halfwidth90": 2.0257975633111833,
+   "paired_smallest_margin": 2.098500399947474,
    "run_gap": 0.09280894907083592,
    "run_halfwidth90": 0.8541114712437264,
    "run_halfwidth95": 1.1123658739632223,
    "run_smallest_margin": 0.9469204203145624,
-   "width_ratio_run_over_paired": 0.4201301766666624,
+   "width_ratio_run_over_paired": 0.4216173850301577,
+   "width_ratio_null_quartiles": [
+    0.8696796998927474,
+    1.1830902766910194,
+    1.4971732519031717
+   ],
+   "width_ratio_percentile_in_null": 0.022,
+   "sd_of_task_differences": 17.356659306593443,
+   "p_sd_task_differences_exceeds_shared_noise": 0.0004997501249375312,
+   "p_mean_gap_exchangeable": 0.9230384807596201,
+   "cmh_reject_at_0.05": null,
+   "dispersion_ratio_original": 0.27835375977769916,
+   "dispersion_ratio_harbor": 0.1320867559166917,
    "tasks_with_different_pass_rate": 192,
-   "share_tasks_discordant": 0.96,
-   "sd_of_task_differences": 17.356659306593443
+   "share_tasks_discordant": 0.96
   }
  }
 }
