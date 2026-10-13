@@ -50,6 +50,23 @@ for key in ("primary", "secondary_terminal_bench_legs"):
         if k == "n" and v == 0:
             break
         A(f"RQ3 paired [{key}]: {k}", v if not isinstance(v, list) else [round(x, 2) if isinstance(x, float) else x for x in v], S, O)
+# Follow-up outputs added in Phase 4 (same data, no new assumptions): verdict-tool examples, the chance baseline for the
+# dispersion ratio, and the dates of the headline records against the rule's introduction.
+vx = os.path.join(p2, "verdict_examples.txt")
+if os.path.exists(vx):
+    A("RQ3 verdict tool examples (USACO, RexBench): printed lines", [ln.strip() for ln in open(vx) if ln.strip().startswith(("Resolved", "Final"))],
+      "scripts/parity_verdict.py", "results/phase2/verdict_examples.txt")
+dn = os.path.join(p2, "rq3_dispersion_null.json")
+if os.path.exists(dn):
+    x = json.load(open(dn))["summary"]
+    A("RQ3 dispersion ratio below 0.1 under independent outcomes: n adapters / expected / observed / P(at least observed) / per-adapter prob quartiles",
+      [x["n_adapters"], x["expected_below_0.1_under_independence"], x["observed_below_0.1"], x["p_at_least_observed_under_independence"], x["per_adapter_prob_quartiles"]],
+      "scripts/p2_rq3_dispersion_null.py", "results/phase2/rq3_dispersion_null.json")
+rd = os.path.join(p2, "record_dates.json")
+if os.path.exists(rd):
+    x = json.load(open(rd))
+    A("RQ2 headline records dated before the overlap rule entered the guide (2026-04-19): n headline / n dated / n before / n on or after / named",
+      [x["n_headline"], x["n_with_date"], x["n_dated_before_rule"], x["n_dated_on_or_after_rule"], x["named"]], "scripts/p4_record_dates.py", "results/phase2/record_dates.json")
 S, O = "scripts/p2_rq3_defects.py", "results/phase2/rq3_defects.json"
 sm = r3d["summary"]
 A("RQ3 defects: binary adapters, fractional adapters, replications", [sm["n_binary"], sm["n_fractional"], sm["reps"]], S, O)
