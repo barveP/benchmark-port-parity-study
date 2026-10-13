@@ -32,11 +32,11 @@ numbers = {}
 KS = [2, 3, 4, 5, 6, 8, 10]
 RULES = [("R", "range overlap (Harbor)", "-", "o", "tab:blue"), ("S1", "SEM bars overlap", "--", "s", "tab:orange"),
          ("T", "pooled t-test, 5%", ":", "^", "tab:green"), ("W", "Welch t-test, 5%", "-.", "v", "tab:red")]
-fig, axes = plt.subplots(1, 3, figsize=(7.1, 1.95))
+fig, axes = plt.subplots(1, 3, figsize=(7.1, 1.7))
 ax = axes[0]
 for rule, lab, ls, mk, col in RULES:
     ax.plot(KS, [summ["false_alarm_by_k"][rule][str(k)] for k in KS], ls, marker=mk, color=col, label=lab)
-ax.set_xlabel("runs per side $k$"); ax.set_ylabel("false alarm: P(mismatch | perfect port)"); ax.set_title("(a) false alarm by $k$")
+ax.set_xlabel("runs per side $k$"); ax.set_ylabel("false-alarm rate"); ax.set_title("(a) false alarm by $k$")
 ax.set_ylim(0, 0.4); ax.legend(frameon=False, loc="upper right")
 ax = axes[1]
 normal = rq1["normal_sd_units"]
@@ -68,7 +68,7 @@ numbers["fig2_n"] = n
 numbers["fig2_within_3"] = sum(m <= 3 for m in margins)
 numbers["fig2_within_5"] = sum(m <= 5 for m in margins)
 numbers["fig2_n_fail_overlap"] = sum(fails)
-fig, ax = plt.subplots(figsize=(3.45, 2.15))
+fig, ax = plt.subplots(figsize=(3.45, 1.95))
 xs = list(range(1, n + 1))
 ax.scatter([x for x, f in zip(xs, fails) if not f], [m for m, f in zip(margins, fails) if not f], s=9, color="tab:blue", label="passes range overlap", zorder=3)
 ax.scatter([x for x, f in zip(xs, fails) if f], [m for m, f in zip(margins, fails) if f], s=16, color="tab:red", marker="D", label="fails range overlap", zorder=4)
@@ -90,7 +90,7 @@ fig.savefig(os.path.join(figdir, "fig2_margins.pdf")); fig.savefig(os.path.join(
 A = defects["aggregate"]["primary_binary_light"]
 FS = defects["summary"]["fractions"]
 nad = defects["summary"]["n_binary"]
-fig, axes = plt.subplots(1, 3, figsize=(7.1, 1.9), sharey=True)
+fig, axes = plt.subplots(1, 3, figsize=(7.1, 1.65), sharey=True)
 for ax, (kind, k, title) in zip(axes, (("break", 3, "(a) break defect, $k = 3$"), ("leak", 3, "(b) leak defect, $k = 3$"), ("break", 10, "(c) break defect, $k = 10$"))):
     for rule, lab, ls, col in (("R", "range overlap", "-", "tab:blue"), ("T", "pooled t-test", ":", "tab:green"), ("P", "paired per-task t", "-", "tab:red"), ("CMH", "stratified per-task test", "--", "tab:purple")):
         ys = [A[f"{kind},f={fr},k={k}"][rule]["mean"] for fr in FS]
@@ -98,7 +98,7 @@ for ax, (kind, k, title) in zip(axes, (("break", 3, "(a) break defect, $k = 3$")
         if rule in ("T", "CMH"):
             ax.fill_between(FS, [A[f"{kind},f={fr},k={k}"][rule]["q25"] for fr in FS], [A[f"{kind},f={fr},k={k}"][rule]["q75"] for fr in FS], color=col, alpha=0.08, lw=0)
     ax.set_xlabel(f"fraction of tasks {'broken' if kind == 'break' else 'leaked'} on the port side"); ax.set_title(title); ax.set_ylim(0, 1)
-axes[0].set_ylabel("P(verdict = mismatch)"); axes[0].legend(frameon=False, loc="upper left")
+axes[0].set_ylabel("P(verdict = mismatch)"); axes[2].legend(frameon=True, framealpha=0.9, edgecolor="none", loc="lower right")
 fig.tight_layout(w_pad=0.8)
 fig.savefig(os.path.join(figdir, "fig3_defects.pdf")); fig.savefig(os.path.join(figdir, "fig3_defects.png"), dpi=200); plt.close(fig)
 numbers["fig3_n_adapters"] = nad
