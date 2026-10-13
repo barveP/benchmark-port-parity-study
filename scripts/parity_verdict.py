@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Read a Harbor parity_experiment.json and print, for every metric row with runs on both sides:
-the range-overlap verdict Harbor uses, the gap with its 95% interval, the smallest margin within which
+the range-overlap verdict Harbor uses, the gap with its 90% and 95% intervals, the smallest margin within which
 equivalence can be shown (TOST, alpha .05), and the runs per side needed to show equivalence within
 3 and 5 points at 80% power using that row's own run-to-run SD (if the true gap were 0).
 
@@ -52,7 +52,7 @@ for e in exps:
         sd = pooled_sd(a, b)
         hw95, hw90 = diff_ci_halfwidth(a, b, 0.95), diff_ci_halfwidth(a, b, 0.90)
         sm = abs(gap) + hw90
-        line += f" [95%: {gap - hw95:+.2f}, {gap + hw95:+.2f}] | run SD {sd:.2f} | smallest provable margin ±{sm:.1f} pts"
+        line += f" [90%: {gap - hw90:+.2f}, {gap + hw90:+.2f}] [95%: {gap - hw95:+.2f}, {gap + hw95:+.2f}] | run SD {sd:.2f} | smallest provable margin ±{sm:.1f} pts"
         if args.margin is not None:
             line += f" | within ±{args.margin:g}: {'shown' if sm <= args.margin else 'NOT shown'}"
         if sd > 0:

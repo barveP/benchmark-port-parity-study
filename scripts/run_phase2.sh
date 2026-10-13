@@ -8,6 +8,8 @@ $PY -I scripts/p2_build_comparisons.py "$SNAP" data/paper/tables_3_4.csv "$OUT"
 $PY -I scripts/p2_rq2_evidence.py "$OUT" results/phase0
 $PY -I scripts/p2_rq1_rules.py "$OUT" data/pertask
 $PY -I scripts/p2_rq3_runs_needed.py "$OUT"
+$PY -I scripts/parity_verdict.py "$SNAP/usaco.json" > "$OUT/verdict_examples.txt"
+$PY -I scripts/parity_verdict.py "$SNAP/rexbench.json" >> "$OUT/verdict_examples.txt"
 if [ -d data/pertask ]; then
   $PY -I scripts/p2_rq3_paired.py data/pertask "$SNAP" "$OUT"
   $PY -I scripts/p2_rq3_defects.py data/pertask "$OUT"
