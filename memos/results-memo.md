@@ -4,7 +4,7 @@ Poorva Barve. Results memo, October 2026. Code, data and every number: github.co
 
 ## The question
 
-Harbor is the evaluation framework behind Terminal-Bench. More than eighty existing benchmarks have been ported to it through "adapters", and the maintainers' own leaderboard and cross-benchmark comparisons are built on the ports. Each adapter must pass a parity experiment: the same agent and model are run on the original harness and on the port, usually three times each. The contributor guide states the pass rule in one line: the two sides match if and only if the ranges of their run scores overlap. The maintainers' paper words the check differently, as the two means agreeing "within a margin consistent with their standard errors".
+Harbor is the evaluation framework behind Terminal-Bench. More than eighty existing benchmarks have been ported to it through "adapters", and the maintainers' cross-benchmark comparisons and their curated Harbor-Index task set are built on the ports. Each adapter must pass a parity experiment: the same agent and model are run on the original harness and on the port, usually three times each. The contributor guide states the pass rule in one line: the two sides match if and only if the ranges of their run scores overlap. The maintainers' paper words the check differently, as the two means agreeing "within a margin consistent with their standard errors".
 
 We asked what the rule guarantees, what the published parity runs establish, and what a better check would cost. Everything here comes from public data: the 84 parity files in the Harbor repository, the per-task result files on Hugging Face, and the paper. We reran no benchmark.
 
