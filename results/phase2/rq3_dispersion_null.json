@@ -1,0 +1,227 @@
+{
+ "reps": 20000,
+ "threshold": 0.1,
+ "adapters": {
+  "abc-bench": {
+   "runs": 3,
+   "n_tasks": 224,
+   "observed_ratio": 0.5119,
+   "observed_ratio_exact": 0.5119047619047619,
+   "p_ratio_below_0.1_under_independence": 0.082
+  },
+  "adebench": {
+   "runs": 3,
+   "n_tasks": 48,
+   "observed_ratio": 0.0909,
+   "observed_ratio_exact": 0.09090909090909122,
+   "p_ratio_below_0.1_under_independence": 0.0663
+  },
+  "autocodebench": {
+   "runs": 3,
+   "n_tasks": 200,
+   "observed_ratio": 1.2857,
+   "observed_ratio_exact": 1.2857142857142814,
+   "p_ratio_below_0.1_under_independence": 0.0966
+  },
+  "bfcl": {
+   "runs": 3,
+   "n_tasks": 123,
+   "observed_ratio": 1.0833,
+   "observed_ratio_exact": 1.0833333333333317,
+   "p_ratio_below_0.1_under_independence": 0.113
+  },
+  "bigcodebench_hard": {
+   "runs": 3,
+   "n_tasks": 145,
+   "observed_ratio": 1.4848,
+   "observed_ratio_exact": 1.4848484848484849,
+   "p_ratio_below_0.1_under_independence": 0.0823
+  },
+  "bird_bench": {
+   "runs": 3,
+   "n_tasks": 150,
+   "observed_ratio": 0.0417,
+   "observed_ratio_exact": 0.0416666666666672,
+   "p_ratio_below_0.1_under_independence": 0.0811
+  },
+  "bixbench": {
+   "runs": 3,
+   "n_tasks": 50,
+   "observed_ratio": 0.9286,
+   "observed_ratio_exact": 0.9285714285714288,
+   "p_ratio_below_0.1_under_independence": 0.1128
+  },
+  "deveval": {
+   "runs": 3,
+   "n_tasks": 63,
+   "observed_ratio": 1.5,
+   "observed_ratio_exact": 1.5,
+   "p_ratio_below_0.1_under_independence": 0.125
+  },
+  "ds1000": {
+   "runs": 3,
+   "n_tasks": 1000,
+   "observed_ratio": 1.6484,
+   "observed_ratio_exact": 1.648401826484021,
+   "p_ratio_below_0.1_under_independence": 0.0899
+  },
+  "featbench": {
+   "runs": 3,
+   "n_tasks": 156,
+   "observed_ratio": 3.1667,
+   "observed_ratio_exact": 3.166666666666665,
+   "p_ratio_below_0.1_under_independence": 0.0921
+  },
+  "financeagent": {
+   "runs": 3,
+   "n_tasks": 50,
+   "observed_ratio": 0.0,
+   "observed_ratio_exact": 1.7333369499485123e-29,
+   "p_ratio_below_0.1_under_independence": 0.0452
+  },
+  "gpqa-diamond": {
+   "runs": 3,
+   "n_tasks": 198,
+   "observed_ratio": 0.1905,
+   "observed_ratio_exact": 0.19047619047618874,
+   "p_ratio_below_0.1_under_independence": 0.0802
+  },
+  "gso": {
+   "runs": 2,
+   "n_tasks": 102,
+   "observed_ratio": 0.5294,
+   "observed_ratio_exact": 0.5294117647058826,
+   "p_ratio_below_0.1_under_independence": 0.2787
+  },
+  "ineqmath": {
+   "runs": 3,
+   "n_tasks": 100,
+   "observed_ratio": 0.0952,
+   "observed_ratio_exact": 0.09523809523809537,
+   "p_ratio_below_0.1_under_independence": 0.0828
+  },
+  "kumo": {
+   "runs": 3,
+   "n_tasks": 212,
+   "observed_ratio": 0.0213,
+   "observed_ratio_exact": 0.021276595744680337,
+   "p_ratio_below_0.1_under_independence": 0.1041
+  },
+  "labbench": {
+   "runs": 3,
+   "n_tasks": 181,
+   "observed_ratio": 0.0946,
+   "observed_ratio_exact": 0.09459459459459409,
+   "p_ratio_below_0.1_under_independence": 0.0901
+  },
+  "livecodebench": {
+   "runs": 4,
+   "n_tasks": 100,
+   "observed_ratio": 0.8113,
+   "observed_ratio_exact": 0.8113207547169827,
+   "p_ratio_below_0.1_under_independence": 0.0453
+  },
+  "medagentbench": {
+   "runs": 3,
+   "n_tasks": 300,
+   "observed_ratio": 1.1667,
+   "observed_ratio_exact": 1.1666666666666652,
+   "p_ratio_below_0.1_under_independence": 0.1026
+  },
+  "ml_dev_bench": {
+   "runs": 3,
+   "n_tasks": 33,
+   "observed_ratio": 0.1,
+   "observed_ratio_exact": 0.09999999999999981,
+   "p_ratio_below_0.1_under_independence": 0.0576
+  },
+  "mmau": {
+   "runs": 3,
+   "n_tasks": 1000,
+   "observed_ratio": 3.5989,
+   "observed_ratio_exact": 3.5988700564971556,
+   "p_ratio_below_0.1_under_independence": 0.0964
+  },
+  "mmmlu": {
+   "runs": 5,
+   "n_tasks": 150,
+   "observed_ratio": 0.3676,
+   "observed_ratio_exact": 0.367647058823528,
+   "p_ratio_below_0.1_under_independence": 0.017
+  },
+  "multi-swe-bench": {
+   "runs": 3,
+   "n_tasks": 70,
+   "observed_ratio": 0.35,
+   "observed_ratio_exact": 0.35000000000000014,
+   "p_ratio_below_0.1_under_independence": 0.113
+  },
+  "quixbugs": {
+   "runs": 3,
+   "n_tasks": 80,
+   "observed_ratio": 0.0714,
+   "observed_ratio_exact": 0.07142857142857093,
+   "p_ratio_below_0.1_under_independence": 0.1194
+  },
+  "satbench": {
+   "runs": 3,
+   "n_tasks": 100,
+   "observed_ratio": 0.0204,
+   "observed_ratio_exact": 0.020408163265306152,
+   "p_ratio_below_0.1_under_independence": 0.0955
+  },
+  "seal0": {
+   "runs": 3,
+   "n_tasks": 108,
+   "observed_ratio": 3.2059,
+   "observed_ratio_exact": 3.2058823529411757,
+   "p_ratio_below_0.1_under_independence": 0.0744
+  },
+  "simpleqa": {
+   "runs": 3,
+   "n_tasks": 50,
+   "observed_ratio": 0.125,
+   "observed_ratio_exact": 0.1250000000000002,
+   "p_ratio_below_0.1_under_independence": 0.0472
+  },
+  "spider2-dbt": {
+   "runs": 3,
+   "n_tasks": 64,
+   "observed_ratio": 0.1667,
+   "observed_ratio_exact": 0.16666666666666666,
+   "p_ratio_below_0.1_under_independence": 0.0534
+  },
+  "swebench": {
+   "runs": 3,
+   "n_tasks": 499,
+   "observed_ratio": 0.8346,
+   "observed_ratio_exact": 0.8345864661654149,
+   "p_ratio_below_0.1_under_independence": 0.0912
+  },
+  "swebenchpro": {
+   "runs": 5,
+   "n_tasks": 100,
+   "observed_ratio": 0.6774,
+   "observed_ratio_exact": 0.6774193548387094,
+   "p_ratio_below_0.1_under_independence": 0.0215
+  },
+  "usaco": {
+   "runs": 3,
+   "n_tasks": 304,
+   "observed_ratio": 2.4697,
+   "observed_ratio_exact": 2.4696969696969733,
+   "p_ratio_below_0.1_under_independence": 0.0871
+  }
+ },
+ "summary": {
+  "n_adapters": 30,
+  "expected_below_0.1_under_independence": 2.64,
+  "observed_below_0.1": 9,
+  "p_at_least_observed_under_independence": 0.0007,
+  "per_adapter_prob_quartiles": [
+   0.068,
+   0.088,
+   0.101
+  ]
+ }
+}
