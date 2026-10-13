@@ -1622,6 +1622,12 @@
     "expected_mismatches_if_all_ports_perfect": 2.87999,
     "observed": 0,
     "p_observed_or_fewer": 0.052133281161213525
+   },
+   "R_ties": {
+    "false_alarm_under_parity": 0.067775,
+    "expected_mismatches_if_all_ports_perfect": 3.93095,
+    "observed": 1,
+    "p_observed_or_fewer": 0.08904353431273673
    }
   }
  },

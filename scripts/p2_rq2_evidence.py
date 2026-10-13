@@ -128,6 +128,12 @@ if os.path.exists(rq1_path):
     n = summaries["headline_k3"]["n"]
     summaries["selection_check_headline"] = {r: {"false_alarm_under_parity": fa[r], "expected_mismatches_if_all_ports_perfect": n * fa[r], "observed": obs[r],
                                                  "p_observed_or_fewer": float(binom.cdf(obs[r], n, fa[r]))} for r in fa}
+    # Tie-adjusted version for R: the median false alarm of the per-task model (scores that can tie), when rq1 has it.
+    rm = rq1.get("summary", {}).get("realistic_median_over_adapters", {}).get("light,k=3,gap=0", {})
+    if "R" in rm:
+        fr = rm["R"]
+        summaries["selection_check_headline"]["R_ties"] = {"false_alarm_under_parity": fr, "expected_mismatches_if_all_ports_perfect": n * fr,
+                                                           "observed": obs["R"], "p_observed_or_fewer": float(binom.cdf(obs["R"], n, fr))}
 
 # data quality
 sel = json.load(open(os.path.join(p2, "selection_log.json")))
