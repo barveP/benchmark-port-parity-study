@@ -73,15 +73,15 @@ xs = list(range(1, n + 1))
 ax.scatter([x for x, f in zip(xs, fails) if not f], [m for m, f in zip(margins, fails) if not f], s=9, color="tab:blue", label="passes range overlap", zorder=3)
 ax.scatter([x for x, f in zip(xs, fails) if f], [m for m, f in zip(margins, fails) if f], s=16, color="tab:red", marker="D", label="fails range overlap", zorder=4)
 ax.axhline(3, color="grey", lw=0.6, ls="--"); ax.axhline(5, color="grey", lw=0.6, ls=":")
-ax.text(n + 0.5, 3, " 3", va="center", fontsize=6.5, color="grey"); ax.text(n + 0.5, 5, " 5", va="center", fontsize=6.5, color="grey")
+ax.text(1, 3 * 1.06, "3 points", va="bottom", fontsize=6, color="grey"); ax.text(1, 5 * 1.06, "5 points", va="bottom", fontsize=6, color="grey")
 ax.set_yscale("log"); ax.set_ylim(0.8, 60); ax.set_xlim(0, n + 3)
 ax.set_yticks([1, 2, 3, 5, 10, 20, 50]); ax.set_yticklabels(["1", "2", "3", "5", "10", "20", "50"])
-ax.set_xlabel(f"comparison, sorted ({n} with three runs per side)"); ax.set_ylabel("smallest provable margin, points")
+ax.set_xlabel(f"comparison, sorted ({n} with three runs per side)"); ax.set_ylabel("smallest provable\nmargin (points)")
 LABELS = {"frontier-cs-algorithm": "Frontier-CS", "rexbench": "RexBench", "pixiu": "PIXIU", "gdb": "GDB", "usaco": "USACO"}
 for x, r, m in zip(xs, head, margins):
     if r["adapter"] in LABELS:
         gap = float(r["gap"])
-        ax.annotate(f"{LABELS[r['adapter']]} (gap {gap:+.1f})", (x, m), xytext=(-4, 3 if r["adapter"] != "usaco" else 5), textcoords="offset points", ha="right", fontsize=6)
+        ax.annotate(f"{LABELS[r['adapter']]} (gap {gap:+.1f})", (x, m), xytext={"frontier-cs-algorithm": (-5, 5), "rexbench": (-8, -2), "pixiu": (-4, -3)}.get(r["adapter"], (-4, 3 if r["adapter"] != "usaco" else 5)), textcoords="offset points", ha="right", fontsize=6)
 ax.legend(frameon=False, loc="upper left")
 fig.tight_layout()
 fig.savefig(os.path.join(figdir, "fig2_margins.pdf")); fig.savefig(os.path.join(figdir, "fig2_margins.png"), dpi=200); plt.close(fig)
@@ -92,13 +92,13 @@ FS = defects["summary"]["fractions"]
 nad = defects["summary"]["n_binary"]
 fig, axes = plt.subplots(1, 3, figsize=(7.1, 1.65), sharey=True)
 for ax, (kind, k, title) in zip(axes, (("break", 3, "(a) break defect, $k = 3$"), ("leak", 3, "(b) leak defect, $k = 3$"), ("break", 10, "(c) break defect, $k = 10$"))):
-    for rule, lab, ls, col in (("R", "range overlap", "-", "tab:blue"), ("T", "pooled t-test", ":", "tab:green"), ("P", "paired per-task t", "-", "tab:red"), ("CMH", "stratified per-task test", "--", "tab:purple")):
+    for rule, lab, ls, col in (("R", "range overlap", "-", "tab:blue"), ("T", "pooled t-test", ":", "tab:green"), ("P", "paired t-test", "-", "tab:red"), ("CMH", "stratified test", "--", "tab:purple")):
         ys = [A[f"{kind},f={fr},k={k}"][rule]["mean"] for fr in FS]
         ax.plot(FS, ys, ls, marker="o", color=col, label=lab)
         if rule in ("T", "CMH"):
             ax.fill_between(FS, [A[f"{kind},f={fr},k={k}"][rule]["q25"] for fr in FS], [A[f"{kind},f={fr},k={k}"][rule]["q75"] for fr in FS], color=col, alpha=0.08, lw=0)
     ax.set_xlabel(f"fraction of tasks {'broken' if kind == 'break' else 'leaked'} on the port side"); ax.set_title(title); ax.set_ylim(0, 1)
-axes[0].set_ylabel("P(verdict = mismatch)"); axes[2].legend(frameon=True, framealpha=0.9, edgecolor="none", loc="lower right")
+axes[0].set_ylabel("P(verdict = mismatch)"); axes[1].legend(frameon=False, loc="upper left", fontsize=5.5, handlelength=1.6, borderaxespad=0.2)
 fig.tight_layout(w_pad=0.8)
 fig.savefig(os.path.join(figdir, "fig3_defects.pdf")); fig.savefig(os.path.join(figdir, "fig3_defects.png"), dpi=200); plt.close(fig)
 numbers["fig3_n_adapters"] = nad
