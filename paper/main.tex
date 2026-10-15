@@ -22,7 +22,7 @@ Harbor, the evaluation framework behind Terminal-Bench, hosts more than eighty b
 
 \section{Introduction}
 
-Two adapters in the Harbor repository illustrate the problem. For USACO the original harness scored 39.5, 40.5 and 41.0 in three runs and the Harbor port scored 45.7, 42.1 and 41.1. The ranges do not overlap, by 0.1 point, so under the guide's matching criterion the port does not match. For RexBench (12 tasks) the original harness scored 33.33 in every run and the port scored 16.67, 58.33 and 50.0. The ranges overlap, so the port passes, with an 8.3-point gap between the means. The same rule gives opposite verdicts, and the comparison it rejects is the one whose data say more about closeness.
+Two adapters in the Harbor repository illustrate the problem. For USACO the original harness scored 39.5, 40.5 and 41.0 in three runs and the Harbor port scored 45.7, 42.1 and 41.1. The ranges do not overlap, by 0.1 point, so under the matching criterion of Harbor's contributor guide~\cite{harbor_contributing} the port does not match. For RexBench (12 tasks) the original harness scored 33.33 in every run and the port scored 16.67, 58.33 and 50.0. The ranges overlap, so the port passes, with an 8.3-point gap between the means. The same rule gives opposite verdicts, and the comparison it rejects is the one whose data say more about closeness.
 
 Harbor is the evaluation framework behind Terminal-Bench~\cite{terminal_bench}; existing benchmarks are ported to it through adapters, and the maintainers' cross-benchmark comparisons and their curated Harbor-Index task set are built on the ports~\cite{harbor_adapters}. A port that drifts is a different benchmark under the same name. The contributor guide therefore requires a parity experiment and states the acceptance rule in one sentence: the two sides match if and only if their run-score ranges overlap~\cite{harbor_contributing}. The maintainers' paper words the check as the means agreeing ``within a margin consistent with their standard errors''~\cite{harbor_adapters}.
 
@@ -128,8 +128,7 @@ That overlap of error bars or intervals is a poorly calibrated test is classical
 A parity experiment under the range-overlap rule proves that a difference test with a false-alarm rate of at most 10\% did not fire; it cannot show that a port is within any stated distance of the original, and the published runs show equivalence within 5 points for about six comparisons in ten. The fix is a margin, about seven runs per side, an equivalence test, and the per-task outcomes the files already hold.
 
 \section*{Acknowledgments}
-We thank the Harbor maintainers, whose published runs and per-task files made this analysis possible.
-% AI assistance statement: the authors write it before submission, following the venue's and IEEE's disclosure rules.
+We thank the Harbor maintainers, whose published runs and per-task files made this analysis possible. AI tools assisted with code, literature search and drafting; the authors checked every number and citation and take responsibility for the content.
 
 \bibliographystyle{IEEEtran}
 \bibliography{refs}
