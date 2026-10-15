@@ -8,4 +8,4 @@
 - Torkar et al. "A Method to Assess and Argue for Practical Significance in Software Engineering." IEEE TSE 48(6):2053-2065, 2022. DOI 10.1109/TSE.2020.3048991. Abstract read.
 - de Oliveira Neto et al. "Evolution of statistical analysis in empirical software engineering research." JSS 156:246-267, 2019. DOI 10.1016/j.jss.2019.07.002. Abstract read.
 - Lakens 2017 (SPPS 8(4):355-362, DOI 10.1177/1948550617697177) and Schuirmann 1987 (J Pharmacokinet Biopharm 15(6):657-680, DOI 10.1007/BF01068419): re-verified via Crossref, no discrepancies.
-Set aside after checking: Arcuri & Briand 2014 (no equivalence testing); Reyes et al. ICSE 2018 (error catalogue lacks "non-significance read as no effect"); Ahmad et al. ICSE 2024 (invokes absence-of-evidence but no TOST).
+- Set aside after checking: Arcuri & Briand 2014 (no equivalence testing); Reyes et al. ICSE 2018 (error catalogue lacks "non-significance read as no effect"); Ahmad et al. ICSE 2024 (invokes absence-of-evidence but no TOST).
