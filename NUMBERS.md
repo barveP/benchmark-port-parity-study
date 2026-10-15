@@ -1,6 +1,6 @@
 # Numbers: first pass vs reproduction
 
-Source snapshot: Harbor commit dc933be707feafbb9efcdf092cb8a0e391332617 (see data/raw/MANIFEST.json). 87 of 87 numbers match; where the first pass rounded a value, a match means agreement within that rounding (for the simulated probabilities, within rounding plus Monte Carlo error).
+Source snapshot: Harbor commit dc933be707feafbb9efcdf092cb8a0e391332617 (see data/raw/MANIFEST.json). 87 of 87 numbers match; where the first pass rounded a value, a match means agreement within that rounding (for the simulated probabilities, within rounding plus Monte Carlo error). Tolerances: 0.01 for simulated probabilities, 0.0075 against the exact integral, 0.05 for values given to one decimal.
 
 The first-pass cut is the first pass's one-main-metric-per-experiment selection of 43 comparisons (three runs per side), defined in `scripts/p0_first_pass_cut.py`.
 

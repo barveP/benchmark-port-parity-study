@@ -5,6 +5,8 @@ Decision rules on two run lists a (original) and b (Harbor), k runs each:
   R  : range overlap (Harbor's rule; ties count as overlap)                -> "match" / "mismatch"
   S1 : mean ± SEM bars overlap, |gap| <= SEM_a + SEM_b                       -> paper reading 1
   S2 : |gap| <= SE of the difference, i.e. |t| <= 1                          -> paper reading 2
+  S3 : |gap| <= max(SEM_a, SEM_b), the literal reading of D.7 (amendment 4e)
+  T  : pooled t-test, mismatch iff p < 0.05, the reference test (amendment 4e)
   W  : Welch t-test, mismatch iff p < 0.05
   E_m: TOST at margin m points, pooled t, alpha 0.05: equivalence shown iff |gap| + t(.95, 2k-2) s_p sqrt(2/k) <= m
 For R, S1, S2, W we report P(verdict = mismatch) as a function of the true gap: at gap 0 it is the
