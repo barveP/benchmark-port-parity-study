@@ -41,7 +41,7 @@ for e in exps:
         if not (a and b):
             print(f"   {name}: no run lists on both sides")
             continue
-        if max(a + b) <= 1.0 and min(a + b) >= 0 and "%" not in str(m.get("original", "")) + str(m.get("harbor", "")):
+        if max(a + b) <= 1.0 and min(a + b) >= 0:  # fractions, whatever the reported string says (amendment 4a)
             a, b = [x * 100 for x in a], [x * 100 for x in b]
         gap = statistics.mean(b) - statistics.mean(a)
         ov = ranges_overlap(a, b, eps=1e-9)
