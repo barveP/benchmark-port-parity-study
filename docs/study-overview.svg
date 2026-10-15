@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400" width="960" height="400" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#1f2937">
+  <rect width="960" height="400" fill="#ffffff"/>
+  <text x="20" y="32" font-size="20" font-weight="bold">What this study did</text>
+
+  <!-- data -->
+  <rect x="20" y="60" width="210" height="112" rx="6" fill="#f9fafb" stroke="#9ca3af" stroke-width="1.2"/>
+  <text x="32" y="84" font-weight="bold">Public data only</text>
+  <text x="32" y="106">84 parity files from Harbor</text>
+  <text x="32" y="124">(commit dc933be, 10 Oct 2026)</text>
+  <text x="32" y="142">121 experiments; per-task results</text>
+  <text x="32" y="160">for 44 adapters; no benchmark rerun</text>
+
+  <line x1="230" y1="116" x2="262" y2="116" stroke="#6b7280" stroke-width="1.5"/>
+  <polygon points="260,111 260,121 270,116" fill="#6b7280"/>
+
+  <!-- selection -->
+  <rect x="272" y="60" width="210" height="112" rx="6" fill="#f9fafb" stroke="#9ca3af" stroke-width="1.2"/>
+  <text x="284" y="84" font-weight="bold">Rule fixed before the analysis</text>
+  <text x="284" y="106">one comparison per experiment,</text>
+  <text x="284" y="124">metric and exclusions written down</text>
+  <text x="284" y="142">first; six dated amendments;</text>
+  <text x="284" y="160">58 comparisons with 3 runs per side</text>
+
+  <line x1="482" y1="116" x2="514" y2="116" stroke="#6b7280" stroke-width="1.5"/>
+  <polygon points="512,111 512,121 522,116" fill="#6b7280"/>
+
+  <!-- RQ boxes -->
+  <rect x="524" y="44" width="416" height="68" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/>
+  <text x="536" y="64" font-weight="bold" fill="#1e40af">RQ1  What does the overlap rule guarantee?</text>
+  <text x="536" y="84">False alarm 2(k!)²/(2k)!, 10% at three runs, not chosen by anyone;</text>
+  <text x="536" y="102">detection falls as runs are added; noisier ports pass more easily.</text>
+
+  <rect x="524" y="124" width="416" height="68" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/>
+  <text x="536" y="144" font-weight="bold" fill="#1e40af">RQ2  What do the published runs establish?</text>
+  <text x="536" y="164">Ports look close (median gap 0.7 points), but equivalence within 3 points</text>
+  <text x="536" y="182">is shown for 22 of 58 and within 5 for 36; the four largest gaps pass.</text>
+
+  <rect x="524" y="204" width="416" height="68" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/>
+  <text x="536" y="224" font-weight="bold" fill="#1e40af">RQ3  What would a better check cost?</text>
+  <text x="536" y="244">About 7 runs per side for a 3-point margin; per-task outcomes expose</text>
+  <text x="536" y="262">task-level disagreement in half the adapters; a stratified test works best.</text>
+
+  <line x1="732" y1="272" x2="732" y2="298" stroke="#6b7280" stroke-width="1.5"/>
+  <polygon points="727,296 737,296 732,306" fill="#6b7280"/>
+
+  <!-- protocol -->
+  <rect x="20" y="310" width="920" height="72" rx="6" fill="#fff7ed" stroke="#d97706" stroke-width="1.2"/>
+  <text x="32" y="332" font-weight="bold" fill="#9a3412">The five-line protocol</text>
+  <text x="32" y="354">1. State the margin first.   2. Choose the run count from the noise.   3. Report the gap, its 90% interval and the smallest provable margin.</text>
+  <text x="32" y="372">4. Publish per-task outcomes on both sides and run a stratified test.   5. Keep range overlap as a sanity check at most.</text>
+</svg>
