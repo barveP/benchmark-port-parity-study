@@ -13,7 +13,10 @@ $PY -I scripts/parity_verdict.py "$SNAP/rexbench.json" >> "$OUT/verdict_examples
 if [ -d data/pertask ]; then
   $PY -I scripts/p2_rq3_paired.py data/pertask "$SNAP" "$OUT"
   $PY -I scripts/p2_rq3_defects.py data/pertask "$OUT"
+  $PY -I scripts/p2_rq3_dispersion_null.py data/pertask "$OUT"
 fi
 
+$PY -I scripts/p4_record_dates.py "$SNAP" "$OUT"
+$PY -I scripts/p4_paper_figures.py "$OUT" paper
 $PY -I scripts/p2_numbers_table.py "$OUT"
 $PY -I -m pytest -q
