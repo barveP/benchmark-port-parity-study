@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Phase 2: write results/phase2/NUMBERS_phase2.md, mapping each number quoted in the Phase 2 memo
-to its value, script and output file. Usage: python -I scripts/p2_numbers_table.py <phase2_dir>
+(memos/phase-2-memo.md) to its value, script and output file.
+Usage: python -I scripts/p2_numbers_table.py <phase2_dir>
 """
 import json
 import os
@@ -84,7 +85,8 @@ for key, cell in (("binary_dispersion_ratio_ge_0.1", "break,f=0.1,k=3"), ("beta1
         A(f"RQ3 defects sensitivity [{key}] {cell}: n, mean of R, T, paired t, CMH, E5", [v["n_adapters"]] + [round(v[r]["mean"], 2) for r in ("R", "T", "P", "CMH", "E5")], S, O)
 lines = ["# Phase 2 numbers: value, script, output", "", "| Number | Value | Script | Output |", "|---|---|---|---|"]
 for label, val, script, out in rows:
-    lines.append(f"| {label} | `{json.dumps(val)}` | `{script}` | `{out}` |")
+    cell = json.dumps(val, ensure_ascii=False).replace("|", "\\|")  # escape pipes so the table keeps four columns
+    lines.append(f"| {label} | `{cell}` | `{script}` | `{out}` |")
 with open(os.path.join(p2, "NUMBERS_phase2.md"), "w") as fh:
     fh.write("\n".join(lines) + "\n")
 print(f"{len(rows)} numbers written to {os.path.join(p2, 'NUMBERS_phase2.md')}")
