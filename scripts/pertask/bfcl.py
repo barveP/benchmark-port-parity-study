@@ -2,7 +2,7 @@
 
 Usage: python -I bfcl.py <download_dir> <out_dir>
 <download_dir> is the local mirror of adapters/bfcl/ (results_collection/ and
-original_parity/<run>/score/). Stdlib only.
+original_parity/<run>/score/). Stdlib only; nothing in <download_dir> is executed.
 
 Harbor side (results_collection/result_harbor_<model>_run<k>.json): a JSON list of
 trial records; reward = record["verifier_result"]["rewards"]["reward"] (0.0 / 1.0).

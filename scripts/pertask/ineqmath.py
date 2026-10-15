@@ -2,7 +2,7 @@
 
 Usage: python -I ineqmath.py <download_dir> <out_dir>
 <download_dir> is the local mirror of adapters/ineqmath/ (results_collection/).
-Stdlib only. Experiment: agent codex@0.77.0, model gpt-4o-mini (2024-07-18),
+Stdlib only; nothing in <download_dir> is executed. Experiment: agent codex@0.77.0, model gpt-4o-mini (2024-07-18),
 100 tasks (IneqMath dev subset) x 3 trials per side.
 
 Harbor side: results_collection/result_harbor_trial<k>.json is a Harbor job-level

@@ -2,7 +2,7 @@
 
 Usage: python -I mmau.py <download_dir> <out_dir>
 <download_dir> mirrors adapters/mmau/ (results_collection/ required, original_parity/
-optional). Stdlib only. Experiment: agent terminus-2, model gpt-4o-2024-08-06,
+optional). Stdlib only; nothing in <download_dir> is executed. Experiment: agent terminus-2, model gpt-4o-2024-08-06,
 1000 MMAU test-mini tasks x 3 trials per side.
 
 Original side: results_collection/original-trial<k>.json is a JSON list of the 1000

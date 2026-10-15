@@ -2,7 +2,7 @@
 
 Usage: python -I simpleqa.py <download_dir> <out_dir>
 <download_dir> is the local mirror of adapters/simpleqa/ (results_collection/).
-Stdlib only. Experiment: agent claude-code@2.1.32, model claude-opus-4-6,
+Stdlib only; nothing in <download_dir> is executed. Experiment: agent claude-code@2.1.32, model claude-opus-4-6,
 50 tasks x 3 trials per side.
 
 Both sides in results_collection/ use the Harbor job-level result.json layout:

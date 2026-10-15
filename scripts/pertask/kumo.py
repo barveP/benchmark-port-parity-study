@@ -7,7 +7,7 @@ Usage: python -I kumo.py <download_dir> <out_dir>
 
 <download_dir> mirrors adapters/kumo/ of the Hugging Face dataset
 harborframework/parity-experiments (results_collection/, original_parity/ and
-a few per-trial folders of harbor_parity/).  Stdlib only.  Writes
+a few per-trial folders of harbor_parity/).  Stdlib only; nothing in <download_dir> is executed.  Writes
 <out_dir>/original.csv and <out_dir>/harbor.csv (columns run,task_id,reward).
 
 Task ids.  A KUMO task is a (domain, scenario, seed) triple, e.g.

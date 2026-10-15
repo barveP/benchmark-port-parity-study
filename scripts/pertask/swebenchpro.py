@@ -4,7 +4,7 @@ snapshot adapter ``swebenchpro``).
 
 Usage: python -I swebenchpro.py <download_dir> <out_dir>
 
-<download_dir> mirrors adapters/swebenchpro/.  Stdlib only.  The folder holds
+<download_dir> mirrors adapters/swebenchpro/.  Stdlib only; nothing in <download_dir> is executed.  The folder holds
 two experiments, both with binary reward (1 = resolved):
 
     results_collection/, harbor_parity/, original_parity/

@@ -5,7 +5,7 @@
 Usage: python -I swegym.py <download_dir> <out_dir>
 
 <download_dir> mirrors adapters/swegym/; only results_collection/ is read.
-Stdlib only.
+Stdlib only; nothing in <download_dir> is executed.
 
 What the files are.  The HF folder (PR #60, merged 2026-01-14) holds ONE run
 per model for openhands + {gpt-5-mini, gpt-5-nano}, dated 2026-01: Harbor

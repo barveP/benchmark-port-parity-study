@@ -3,7 +3,7 @@
 Usage: python -I financeagent.py <download_dir> <out_dir>
 <download_dir> mirrors adapters/financeagent/: results_collection/ plus
 harbor_parity/trial1/<task>__<suffix>/verifier/judgment.json for the 50 tasks.
-Stdlib only.
+Stdlib only; nothing in <download_dir> is executed.
 
 Harbor side (results_collection/result_harbor_trial<k>.json, one per run): a Harbor
 job-level result.json; stats.evals[<name>].reward_stats.reward maps a reward value

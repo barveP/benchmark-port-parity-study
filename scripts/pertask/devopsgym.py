@@ -6,7 +6,7 @@ Usage: python -I devopsgym.py <download_dir> <out_dir>
 
 <download_dir> mirrors adapters/devopsgym/: results_collection/ (read for all
 rewards) and, optionally, harbor_parity/<job>/<trial>/result.json for the
-trials whose names Harbor truncated (see below).  Stdlib only.
+trials whose names Harbor truncated (see below).  Stdlib only; nothing in <download_dir> is executed.
 
 What the files are.  The HF folder holds three (agent, model) experiments,
 each a SINGLE run over a 46-task subset, dated 2026-01-02..09, all with the

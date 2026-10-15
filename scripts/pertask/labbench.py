@@ -2,7 +2,7 @@
 
 Usage: python -I labbench.py <download_dir> <out_dir>
 <download_dir> is the local mirror of adapters/labbench/; only results_collection/
-is read. Stdlib only. Experiment: agent codex@0.71.0, model gpt-5-codex,
+is read. Stdlib only; nothing in <download_dir> is executed. Experiment: agent codex@0.71.0, model gpt-5-codex,
 181 FigQA tasks x 3 trials per side. A fourth Harbor trial (mean 0.392) exists in
 results_collection but is not in the snapshot JSON, so it is excluded (see HARBOR_RUNS).
 

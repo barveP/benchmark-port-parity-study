@@ -2,7 +2,7 @@
 
 Usage: python -I pixiu.py <download_dir> <out_dir>
 <download_dir> is the local mirror of adapters/pixiu/ (results_collection/ and
-harbor_parity/running_records/). Stdlib only.
+harbor_parity/running_records/). Stdlib only; nothing in <download_dir> is executed.
 Experiment: agent codex@0.75.0, model gpt-5-mini-2026-03-01; 29 PIXIU subsets
 (cra-ccf, en-fpb, flare-ner, ...) x 15 samples = 435 tasks, 3 trials per side.
 

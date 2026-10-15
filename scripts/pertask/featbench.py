@@ -8,7 +8,7 @@ Usage: python -I featbench.py <download_dir> <out_dir>
 <download_dir> mirrors adapters/featbench/ of the Hugging Face dataset
 harborframework/parity-experiments: results_collection/ plus, for the
 ambiguously truncated Harbor trials only (see below),
-harbor_parity/<job>/<run>/<trial>/result.json.  Stdlib only.
+harbor_parity/<job>/<run>/<trial>/result.json.  Stdlib only; nothing in <download_dir> is executed.
 
 Original side -- results_collection/original__<model>__<YYYYMMDD-HHMMSS>.json
 is the FeatBench harness output (all original runs use trae-agent): a JSON list

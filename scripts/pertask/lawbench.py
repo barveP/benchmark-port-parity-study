@@ -2,7 +2,7 @@
 
 Usage: python -I lawbench.py <download_dir> <out_dir>
 <download_dir> is the local mirror of adapters/lawbench/ (results_collection/ and
-original_parity/). Stdlib only.
+original_parity/). Stdlib only; nothing in <download_dir> is executed.
 Experiment: agent qwen-code@0.6.0, model glm-4.7, 120 tasks x 3 trials per side.
 A "task" is one 25-question chunk of one LawBench scenario under one prompt type
 (20 scenarios x 3 chunks x {zero-shot, one-shot}); its reward is the chunk's mean
