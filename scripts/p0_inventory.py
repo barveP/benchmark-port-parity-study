@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Phase 0, number set A: inventory of the parity snapshot.
 
-Reproduces the first pass (starter/parity_summary.py) with the same definitions:
+Reproduces the first pass (scripts/first_pass/parity_summary.py) with the same definitions:
   * experiment = one JSON object; a file holding a single object counts as one
   * runs per side = field number_of_runs, else number_of_trials; null or absent -> "missing"
   * subset/full = parity_benchmark_size < adapted_benchmark_size, both numeric; else "unknown"

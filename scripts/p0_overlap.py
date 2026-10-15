@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Phase 0, number set B: Harbor's range-overlap rule applied to every metric row.
 
-Reproduces the first pass (starter/parity_overlap.py) with the same definitions:
+Reproduces the first pass (scripts/first_pass/parity_overlap.py) with the same definitions:
   * a side's run list = first non-empty numeric list among <side>_runs, <side>_trials
     (non-numeric entries such as "58.3%" are dropped; rows using tb_adapter_* are not paired)
   * paired row = both original and harbor run lists present

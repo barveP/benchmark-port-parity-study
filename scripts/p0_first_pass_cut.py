@@ -2,7 +2,7 @@
 """Phase 0, number set D: the first pass's "one main metric per experiment" cut (43 comparisons),
 plus the sensitivity variants and the power calculation that the independent review asked for.
 
-BASE variant reproduces starter/parity_clean.py and starter/parity_tost.py EXACTLY, including the
+BASE variant reproduces scripts/first_pass/parity_clean.py and scripts/first_pass/parity_tost.py EXACTLY, including the
 crude metric filter (to be replaced by a rule written down before Phase 2). Selection, per
 experiment, over its metric rows in file order:
   1. original_runs and harbor_runs are lists (BASE: *_runs only; variant "trials": fall back to
