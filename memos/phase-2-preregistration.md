@@ -1,6 +1,6 @@
 # Phase 2 pre-registration: rules fixed before computing outcomes
 
-Date: 2026-10-11, before any Phase 2 script was run. Data: the pinned snapshot in `data/raw/` (Harbor commit dc933be7, 2026-10-10) and per-task result files from the Hugging Face dataset `harborframework/parity-experiments`. The first pass's numbers (NUMBERS.md) were known when this was written; the rules below were chosen on principle, and each rule's effect is reported as a sensitivity analysis so a reader can see what it changed.
+Date: 2026-10-11, before any Phase 2 script was run. This is an analysis plan committed to the repository (commit 6bcb9ba), not a registration with an outside registry. Data: the pinned snapshot in `data/raw/` (Harbor commit dc933be7, 2026-10-10) and per-task result files from the Hugging Face dataset `harborframework/parity-experiments`. The first pass's numbers (NUMBERS.md) were known when this was written; the rules below were chosen on principle, and each rule's effect is reported as a sensitivity analysis so a reader can see what it changed.
 
 ## 1. Unit of analysis
 
@@ -51,7 +51,7 @@ Identical run lists on both sides, and rows with zero spread on both sides, are 
 - 95% interval for the gap (pooled t); 90% interval = the TOST interval at alpha 0.05.
 - Smallest provable margin = |gap| + half-width of the 90% interval. Equivalence within ±m is shown iff this is at most m. Margins reported: 1, 2, 3, 5, 10 points.
 - A gap is distinguishable from zero iff the 95% interval excludes zero (equivalently, the pooled t-test rejects at 0.05).
-- Five decision rules (listed as four in the first draft) compared in RQ1 and applied in RQ2: (R) range overlap; (S1) mean ± SEM bars overlap, i.e. |gap| <= SEM_a + SEM_b; (S2) |gap| <= standard error of the difference, i.e. |t| <= 1; (W) Welch t-test at 0.05 flags a mismatch; (E) TOST at margin m shows equivalence. S1 and S2 are the two readings of the paper's "agree within a margin consistent with their standard errors".
+- Five decision rules compared in RQ1 and applied in RQ2 (amendment 4e adds two more, T and S3): (R) range overlap; (S1) mean ± SEM bars overlap, i.e. |gap| <= SEM_a + SEM_b; (S2) |gap| <= standard error of the difference, i.e. |t| <= 1; (W) Welch t-test at 0.05 flags a mismatch; (E) TOST at margin m shows equivalence. S1 and S2 are the two readings of the paper's "agree within a margin consistent with their standard errors".
 - Subset versus full task set from `parity_benchmark_size` < `adapted_benchmark_size`; unknown stays unknown.
 
 ## 9. RQ1 simulation designs (fixed now)
