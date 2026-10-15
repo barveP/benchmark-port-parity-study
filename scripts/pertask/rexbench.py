@@ -7,7 +7,7 @@ harborframework/parity-experiments; only results_collection/ is read.
 Experiment: OpenHands@1.4.0 + anthropic/claude-sonnet-4-5, 3 runs x 12 tasks,
 metric "Final Success Rate" (Harbor: pass rate), BINARY rewards 0/1.
 
-ORIGINAL side, results_collection/result_original_trial<N>.json (the RExBench
+Original side, results_collection/result_original_trial<N>.json (the RExBench
 evaluator's own output):
     {"tasks": {<task>: {"default": {"success": bool, "details": {...}}}},
      "summary": {"overall": {"default": {"success_rate", "success_count",
@@ -15,7 +15,7 @@ evaluator's own output):
 reward = 1.0 if success else 0.0; task_id = the "tasks" key verbatim
 ("cogs", "othello", "entity-tracking-multimodal", ...).
 
-HARBOR side, results_collection/result_harbor_trial<N>.json = Harbor job-level
+Harbor side, results_collection/result_harbor_trial<N>.json = Harbor job-level
 result.json:
     stats.evals[<name>].reward_stats.reward = {"<reward>": [trial names]}
 Trial names are "rexbench-<task name truncated to 32 chars>__<7-char suffix>".

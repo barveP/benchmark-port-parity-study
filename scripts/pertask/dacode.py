@@ -9,8 +9,8 @@ Both sides are Harbor job-level result.json files, one per run:
     results_collection/result_harbor_trial<N>.json
     results_collection/result_original_trial<N>.json
 (the original DA-Agent runs were converted to this format upstream with the
-da-code repo's scripts/convert_results.py, see README.md).  Per-task rewards
-live in
+da-code repo's scripts/convert_results.py; see the adapter's README on Hugging
+Face).  Per-task rewards live in
     stats.evals[<eval name>].reward_stats.reward = {"<reward>": [trial names]}
 with FRACTIONAL rewards in [0, 1] (DA-Code's per-task score).  Trials that
 raised an exception (Harbor: RewardFileNotFoundError; original:

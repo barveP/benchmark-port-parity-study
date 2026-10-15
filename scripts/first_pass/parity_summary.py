@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Descriptive pass over harbor adapters/*/parity_experiment.json (read-only). Usage: parity_summary.py <harbor_clone_dir>"""
+"""Descriptive pass over harbor adapters/*/parity_experiment.json; prints to stdout. Usage: parity_summary.py <harbor_clone_dir>"""
 import json, glob, sys, os, re, collections, statistics as st
 root=sys.argv[1]
 files=sorted(glob.glob(os.path.join(root,'adapters','*','parity_experiment.json')))

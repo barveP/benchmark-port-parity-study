@@ -19,7 +19,7 @@ Harbor side -- results_collection/result_harbor_trial<k>.json is the Harbor job-
   "<task name truncated to 32 chars>__<7-char id>"; the "__<id>" suffix is stripped.  Because of
   the truncation, shortest_path_length / shortest_path_lengths (Python and Java) collapse to one
   prefix, so every prefix is expanded back to the full task name: from the per-trial file
-  harbor_parity/<run>/<trial name>/result.json ("task_name", downloaded only for those 4 trials
+  harbor_parity/<run>/<trial name>/result.json ("task_name"; needed only for those 4 trials
   per run) when present, otherwise by unique prefix match against the original-side task ids
   (both sides use the same "quixbugs-<lang>-<program>" ids).  An unresolvable prefix is kept
   as is and reported on stderr.

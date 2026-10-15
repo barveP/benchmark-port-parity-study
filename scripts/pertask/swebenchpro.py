@@ -4,9 +4,8 @@ snapshot adapter ``swebenchpro``).
 
 Usage: python -I swebenchpro.py <download_dir> <out_dir>
 
-<download_dir> mirrors adapters/swebenchpro/.  Stdlib only; nothing under
-<download_dir> is executed.  The folder holds two experiments, both with
-binary reward (1 = resolved):
+<download_dir> mirrors adapters/swebenchpro/.  Stdlib only.  The folder holds
+two experiments, both with binary reward (1 = resolved):
 
     results_collection/, harbor_parity/, original_parity/
         codex@0.77.0 + gpt-5-mini-2025-08-07, 6 runs x 100 tasks (2025-12-21)
@@ -15,13 +14,13 @@ binary reward (1 = resolved):
         codex@0.114.0 + gpt-5.4, 4 runs x 10 tasks (2026-03-11)
         -> original__gpt-5.4.csv / harbor__gpt-5.4.csv
 
-ORIGINAL SIDE: results_collection*/result_original_trial<N>.json is a flat
+Original side: results_collection*/result_original_trial<N>.json is a flat
 dict {instance_id: bool} (a byte copy of original_parity*/trial<N>/
 eval_results.json).  task_id = the SWE-bench Pro instance id verbatim, e.g.
 "instance_ansible__ansible-1c06c46c...-v0f01c69f..."; reward = 1.0 if the
 bool is true else 0.0; run = N from the file name.
 
-HARBOR SIDE: results_collection*/result_harbor_trial<N>.json is a Harbor
+Harbor side: results_collection*/result_harbor_trial<N>.json is a Harbor
 job-level result.json; stats.evals[<name>].reward_stats.reward =
 {"0.0": [trial names], "1.0": [trial names]}.  Trial names are the task
 name cut to 32 characters plus a "__<7 chars>" suffix, e.g.
@@ -33,7 +32,7 @@ verifier_result.rewards.reward is checked against the job-level value).
 Harbor task names equal the original instance ids, so both CSVs join on
 task_id.  The script asserts that, and that no (run, task) repeats.
 
-CAVEAT (reported, not fixed): Harbor run 1 of the 2025 experiment was run on
+Caveat (reported, not fixed): Harbor run 1 of the 2025 experiment was run on
 dataset "swebenchpro5", a different 100-task sample from the one used by
 Harbor runs 2-6 and by all original runs ("swebenchpro7"/"swebenchpro-sample"
 = the original_parity sample).  It is kept because the published run list
@@ -116,7 +115,7 @@ def main(download_dir, out_dir):
     for rc, hp, suffix in EXPERIMENTS:
         rc_dir = os.path.join(download_dir, rc)
         if not os.path.isdir(rc_dir):
-            print(f"skip {rc}: not downloaded")
+            print(f"skip {rc}: folder not present under {download_dir}")
             continue
         orig = original_rows(rc_dir)
         harb = harbor_rows(rc_dir, os.path.join(download_dir, hp))

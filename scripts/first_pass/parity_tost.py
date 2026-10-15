@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Lead's check: same 43 comparisons, standard equivalence test convention (TOST at alpha=0.05 = 90% CI inside margin).
+"""First-pass check: same 43 comparisons, standard equivalence test convention (TOST at alpha=0.05 = 90% CI inside margin).
 Also: runs per side needed at the median noise level. Usage: parity_tost.py <harbor_clone_dir>"""
 import json, glob, os, sys, statistics as st, math
 # two-sided t quantiles: t.95 (for 90% CI) and t.975 (for 95% CI) by degrees of freedom
 T95 = {2:2.920,4:2.132,6:1.943,8:1.860,10:1.812,12:1.782,14:1.761,16:1.746,18:1.734,20:1.725,22:1.717,24:1.711,26:1.706,28:1.701,30:1.697,34:1.691,38:1.686,48:1.677,58:1.672,78:1.665,98:1.661}
 def t95(df):
-    ks = sorted(T95); 
+    ks = sorted(T95)
     for k in ks:
         if df <= k: return T95[k]
     return 1.645

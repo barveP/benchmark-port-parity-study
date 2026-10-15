@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Lead's own check, cleaner cut: one primary (first rate-like) metric per experiment, exactly 3 runs per side.
+"""First-pass check, cleaner cut: one primary (first rate-like) metric per experiment, exactly 3 runs per side.
 Usage: parity_clean.py <harbor_clone_dir>"""
 import json, glob, os, sys, statistics as st, math
 root = sys.argv[1]

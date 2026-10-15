@@ -2,7 +2,7 @@
 
 Usage: python -I satbench.py <download_dir> <out_dir>
 <download_dir> is the local mirror of adapters/satbench/ (results_collection/ and
-original_parity/ are read). Stdlib only; nothing in <download_dir> is executed.
+original_parity/ are read). Stdlib only.
 Experiment: agent codex@0.77.0, model gpt-5-nano-2025-08-07, 100 tasks sampled
 from 2100 x 3 runs per side, metric accuracy (SAT/UNSAT label match).
 

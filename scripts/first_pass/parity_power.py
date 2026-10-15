@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Lead's own check. (1) Error rates of the 'run-score ranges overlap' rule with k runs per side,
+"""First-pass check. (1) Error rates of the 'run-score ranges overlap' rule with k runs per side,
 by simulation with normal noise. (2) Rough run-to-run spread in the published parity files.
 Usage: parity_power.py <harbor_clone_dir>"""
 import json, glob, os, sys, random, statistics as st, math

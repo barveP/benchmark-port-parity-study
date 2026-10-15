@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Check Harbor's own parity 'matching criterion' (run-score ranges overlap) on adapters/*/parity_experiment.json.
-Read-only descriptive pass. Usage: parity_overlap.py <harbor_clone_dir>"""
+Descriptive pass; prints to stdout. Usage: parity_overlap.py <harbor_clone_dir>"""
 import json, glob, sys, os, statistics as st, collections
 root=sys.argv[1]
 rows=[]

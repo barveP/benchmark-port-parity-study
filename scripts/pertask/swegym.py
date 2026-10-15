@@ -5,9 +5,9 @@
 Usage: python -I swegym.py <download_dir> <out_dir>
 
 <download_dir> mirrors adapters/swegym/; only results_collection/ is read.
-Stdlib only; nothing in <download_dir> is executed.
+Stdlib only.
 
-WHAT THE FILES ARE.  The HF folder (PR #60, merged 2026-01-14) holds ONE run
+What the files are.  The HF folder (PR #60, merged 2026-01-14) holds ONE run
 per model for openhands + {gpt-5-mini, gpt-5-nano}, dated 2026-01: Harbor
 jobs over the 183-task swegym-lite dataset of that time, and the OpenHands
 "run_1" outputs with 206 / 196 evaluated instances.  The results_collection/
@@ -22,7 +22,7 @@ Layout (bfcl/devopsgym style; the model that validates is the primary pair):
     original__gpt-5-nano.csv / harbor__gpt-5-nano.csv  openhands + gpt-5-nano
 Every file has run = 1 only.
 
-ORIGINAL SIDE: results_collection/original_openhands_<model>_result.jsonl is
+Original side: results_collection/original_openhands_<model>_result.jsonl is
 OpenHands' SWE-bench-style output.swebench_eval.jsonl: one JSON object per
 evaluated instance with "instance_id" and test_result.report =
 {"resolved": bool, "empty_generation", "failed_apply_patch", "error_eval",
@@ -31,7 +31,7 @@ evaluated instance with "instance_id" and test_result.report =
 0.0.  Instances without an output row (24 / 34 of the 230) are absent, as in
 the published resolve rate (resolved / rows).
 
-HARBOR SIDE: results_collection/harbor_openhands_<model>_result.json is a
+Harbor side: results_collection/harbor_openhands_<model>_result.json is a
 Harbor job-level result.json: stats.evals["openhands__swegym-lite"]
 .reward_stats.reward = {"1.0": [trial names], "0.0": [...]} plus
 exception_stats = {<error>: [trial names]}.  Trial names are

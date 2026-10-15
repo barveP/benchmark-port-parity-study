@@ -2,7 +2,7 @@
 
 Usage: python -I qcircuitbench.py <download_dir> <out_dir>
 <download_dir> is the local mirror of adapters/qcircuitbench/ (only
-results_collection/ is read). Stdlib only; nothing in <download_dir> is executed.
+results_collection/ is read). Stdlib only.
 Experiment: agent codex@0.76.0, model gpt-5.2, 28 tasks x 3 trials per side.
 
 Both sides use the Harbor job-level result.json layout:

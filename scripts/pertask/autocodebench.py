@@ -1,7 +1,7 @@
 """Per-task parity outcomes for the autocodebench adapter (HF harborframework/parity-experiments).
 
 Usage: python -I autocodebench.py <download_dir> <out_dir>
-  <download_dir> is the local mirror of adapters/autocodebench/ ; writes original.csv and harbor.csv
+  <download_dir> is the local mirror of adapters/autocodebench/; writes original.csv and harbor.csv
   (columns run,task_id,reward) into <out_dir>.
 
 Original side ("TB adapter", Terminal-Bench run of the adapter):
@@ -12,11 +12,12 @@ Original side ("TB adapter", Terminal-Bench run of the adapter):
 
 Harbor side: one Harbor job (harbor_parity/<job>/) with n_attempts=3, so all 600 trials are pooled in
   the job-level result.json (stats.evals[...].reward_stats.reward = {"1.0": [ids], "0.0": [ids]}) and
-  the attempt index is not recorded there. We therefore read the per-trial files
+  the attempt index is not recorded there. The script therefore reads the per-trial files
   harbor_parity/<job>/<task>__<suffix>/result.json ({"task_name", "trial_name", "started_at",
-  "verifier_result": {"rewards": {"reward": x}}, "exception_info"}), group them by task_name, sort each
-  task's trials by started_at and call them run 1, 2, 3 (the README defines "Trial k" as the k-th
-  attempt of every task). task_id = task_name, i.e. the trial name with the "__<suffix>" stripped.
+  "verifier_result": {"rewards": {"reward": x}}, "exception_info"}), groups them by task_name, sorts
+  each task's trials by started_at and calls them run 1, 2, 3 (the adapter's README defines "Trial k"
+  as the k-th attempt of every task). task_id = task_name, i.e. the trial name with the "__<suffix>"
+  stripped.
   The per-trial rewards are cross-checked against the pooled job-level lists; a trial without a
   verifier reward gets 0.0 and is reported.
 """

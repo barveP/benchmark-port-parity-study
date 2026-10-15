@@ -146,7 +146,7 @@ if pertask_dir:
         realistic[adapter] = per
 results["realistic_pertask"] = realistic
 
-# ---------------------------------------------------------------- summaries used in the memo
+# ---------------------------------------------------------------- summaries quoted in memos/phase-2-memo.md
 summ = {}
 k3 = {d: normal[f"k=3,gap={d}"] for d in DELTAS}
 summ["k3_normal_false_alarm"] = {r: k3[0][r] for r in RULES}

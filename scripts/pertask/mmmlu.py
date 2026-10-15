@@ -2,9 +2,8 @@
 
 Usage: python -I mmmlu.py <download_dir> <out_dir>
 <download_dir> is the local mirror of adapters/mmmlu/ (only results_collection/ is
-read). Stdlib only; nothing in <download_dir> is executed. Experiment: agent
-codex-cli@0.69.0, model gpt-5.1-codex-mini, 150 tasks (10 per language x 15
-languages) x 5 trials per side, metric accuracy.
+read). Stdlib only. Experiment: agent codex-cli@0.69.0, model gpt-5.1-codex-mini,
+150 tasks (10 per language x 15 languages) x 5 trials per side, metric accuracy.
 
 Both sides in results_collection/ use the Harbor job-level result.json layout:
 result_{original,harbor}_trial<k>.json -> stats.evals[<eval name>].reward_stats

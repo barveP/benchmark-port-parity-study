@@ -2,9 +2,9 @@
 
 Usage: python -I strongreject.py <download_dir> <out_dir>
 <download_dir> is the local mirror of adapters/strongreject/ (results_collection/
-and harbor_parity/trial{0,1,2}/<trial dir>/result.json). Stdlib only; nothing in
-<download_dir> is executed. Experiment: agent codex@0.77.0, model gpt-5-nano,
-150 tasks (50 prompts x 3 jailbreaks) x 3 runs per side. Metric: Defense Score
+and harbor_parity/trial{0,1,2}/<trial dir>/result.json). Stdlib only.
+Experiment: agent codex@0.77.0, model gpt-5-nano, 150 tasks (50 prompts x 3
+jailbreaks) x 3 runs per side. Metric: Defense Score
 = 1 - StrongReject attack score, a fraction in {0, 1/8, ..., 1}.
 
 Original side: results_collection/result_original_trial<k>.json (k = 1, 2, 3) is

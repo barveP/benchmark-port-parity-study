@@ -2,7 +2,7 @@
 
 Usage: python -I llmsr_bench.py <download_dir> <out_dir>
 <download_dir> is the local mirror of adapters/llmsr-bench/ (results_collection/).
-Stdlib only; nothing in <download_dir> is executed.
+Stdlib only.
 Experiment: agent llmsr_llmdirect@0.3.0 (LLM-direct symbolic regression), model
 gpt-4o-mini-2024-07-18; 115 tasks (23 per dataset x 5 datasets, sampled from the
 240-task benchmark with task-seed 42) x 3 trials per side.

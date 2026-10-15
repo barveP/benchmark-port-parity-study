@@ -6,7 +6,7 @@ Usage:  python -I deveval.py <download_dir> <out_dir>
 harborframework/parity-experiments; only results_collection/ is read.
 Both sides: 3 runs x 63 tasks (21 repos x 3 phases), binary rewards.
 
-ORIGINAL side (Terminal-Bench harness),
+Original side (Terminal-Bench harness),
     results_collection/result_original_trial<N>.json =
     {"results": [{"task_id", "is_resolved": true|false|null, "failure_mode",
                   "parser_results", ...}, ...],
@@ -16,7 +16,7 @@ reward = 1.0 if is_resolved is true else 0.0.  is_resolved is null for a few
 unresolved_ids and accuracy == n_resolved / 63), so they get 0.0 here.
 task_id = the "task_id" field verbatim, e.g. "cpp-area-calculation-unit-testing".
 
-HARBOR side, results_collection/result_harbor_trial<N>.json = Harbor job-level
+Harbor side, results_collection/result_harbor_trial<N>.json = Harbor job-level
 result.json:
     stats.evals[<name>].reward_stats.reward   = {"<reward>": [trial names]}
     stats.evals[<name>].exception_stats       = {"<ExcName>": [trial names]}

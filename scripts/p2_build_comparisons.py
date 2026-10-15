@@ -86,7 +86,7 @@ def is_side_quantity(name):
 
 
 rows, legs, log = [], [], {"excluded_side_quantities": {}, "experiments_without_comparison": [], "original_variant_rows": [],
-                           "single_run_rows": [], "table_unmatched_adapters": sorted(set(table) - set()),}
+                           "single_run_rows": []}  # table_unmatched_adapters is set after the loop
 for adapter, i, e in iter_experiments(snap):
     cands = []
     for j, m in enumerate(e.get("metrics") or []):

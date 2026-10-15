@@ -13,7 +13,8 @@ task by task: d_i = Harbor task mean - original task mean (points). Reported per
   per side, the dispersion ratio of real run scores (observed between-run variance over the variance
   implied by within-task flip rates); the CMH z test on binary outcomes.
 Validation: recovered run means are matched to the published run lists (original, harbor and
-tb_adapter fields); the crustbench swap and other documented cases are read from the manifest.
+tb_adapter fields). The crustbench side swap is flagged in this script; the other documented
+cases (dropped runs, exclusions) are read from the manifest.
 Usage: python -I scripts/p2_rq3_paired.py <pertask_dir> <snapshot_dir> <phase2_dir>
 """
 import csv

@@ -2,10 +2,10 @@
 
 Usage: python -I mmau.py <download_dir> <out_dir>
 <download_dir> mirrors adapters/mmau/ (results_collection/ required, original_parity/
-optional). Stdlib only; nothing under <download_dir> is executed. Experiment: agent
-terminus-2, model gpt-4o-2024-08-06, 1000 MMAU test-mini tasks x 3 trials per side.
+optional). Stdlib only. Experiment: agent terminus-2, model gpt-4o-2024-08-06,
+1000 MMAU test-mini tasks x 3 trials per side.
 
-ORIGINAL SIDE  results_collection/original-trial<k>.json is a JSON list of the 1000
+Original side: results_collection/original-trial<k>.json is a JSON list of the 1000
 MMAU test-mini records {"id", "question", "choices", "answer", "model_output", ...}.
 There is no correctness field, so the reward is recomputed with MMAU's own rule
 (string_match in the benchmark's evaluation.py, re-implemented below): lower-case,
@@ -15,7 +15,7 @@ token of the answer and no token that occurs only in an incorrect choice. This g
 would give 578/549/560). When original_parity/original-parity-trial<k>.json is
 present it is scored the same way and any disagreement is printed (not fatal).
 
-HARBOR SIDE  results_collection/harbor-trial<k>.json is a Harbor job-level result.json:
+Harbor side: results_collection/harbor-trial<k>.json is a Harbor job-level result.json:
 stats.evals["terminus-2__gpt-4o__mmau"].reward_stats.reward = {"0.0": [...], "1.0": [...]}.
 Trial names are "<first 32 chars of the MMAU uuid>__<7-char suffix>", e.g.
 "a1517078-ff3b-4090-983e-0b0ce4cc__vDRNugJ". The suffix is stripped and the 32-char

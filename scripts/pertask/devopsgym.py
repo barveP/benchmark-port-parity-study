@@ -6,10 +6,9 @@ Usage: python -I devopsgym.py <download_dir> <out_dir>
 
 <download_dir> mirrors adapters/devopsgym/: results_collection/ (read for all
 rewards) and, optionally, harbor_parity/<job>/<trial>/result.json for the
-trials whose names Harbor truncated (see below).  Stdlib only; nothing in
-<download_dir> is executed.
+trials whose names Harbor truncated (see below).  Stdlib only.
 
-WHAT THE FILES ARE.  The HF folder holds three (agent, model) experiments,
+What the files are.  The HF folder holds three (agent, model) experiments,
 each a SINGLE run over a 46-task subset, dated 2026-01-02..09, all with the
 codex agent (config.json / run_metadata.json say so, also for claude-haiku).
 They are NOT the 50-task, 5/3-run experiments of March 2026 listed in the
@@ -20,7 +19,7 @@ Following the bfcl layout, the first snapshot experiment is the primary pair:
     original__claude-haiku-4-5.csv / harbor__...csv    codex + claude-haiku-4-5
 Every file has run = 1 only.
 
-ORIGINAL SIDE (terminal-bench harness): results_collection/tbench*.json is a
+Original side (terminal-bench harness): results_collection/tbench*.json is a
 terminal-bench results.json: {"results": [{"task_id", "is_resolved",
 "failure_mode", ...}], "resolved_ids", "unresolved_ids", "accuracy"}.
 task_id is taken verbatim (e.g. "build__new_bugswarm__wmixvideo-nfe-44649171033",
@@ -30,7 +29,7 @@ task_id is taken verbatim (e.g. "build__new_bugswarm__wmixvideo-nfe-44649171033"
 counts them as failures (n_resolved / 46) and so does this script.  The
 script checks that against resolved_ids and accuracy.
 
-HARBOR SIDE: results_collection/harbor_*.json is a Harbor job-level
+Harbor side: results_collection/harbor_*.json is a Harbor job-level
 result.json; stats.evals["codex__DevOpsGym_subset"].reward_stats.reward =
 {"1.0": [trial names], "0.0": [trial names]}; trials under exception_stats
 have no reward and are written as 0.0 (Harbor's metrics.mean divides by
@@ -90,7 +89,7 @@ def read_harbor(path):
 
 
 def harbor_task_name(download_dir, trial):
-    """Full task name from the per-trial result.json if downloaded, else the truncated name."""
+    """Full task name from the per-trial result.json if it is present in <download_dir>, else the truncated name."""
     hits = glob.glob(os.path.join(download_dir, "harbor_parity", "*", trial, "result.json"))
     if hits:
         with open(hits[0], encoding="utf-8") as fh:

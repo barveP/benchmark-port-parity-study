@@ -8,8 +8,8 @@ Usage: python -I theagentcompany.py <download_dir> <out_dir>
 
 <download_dir> mirrors adapters/theagentcompany/ of the Hugging Face dataset
 harborframework/parity-experiments; only results_collection/ is read.  Stdlib
-only; nothing in <download_dir> is executed.  Writes <out_dir>/original.csv
-and <out_dir>/harbor.csv (columns run,task_id,reward).
+only.  Writes <out_dir>/original.csv and <out_dir>/harbor.csv (columns
+run,task_id,reward).
 
 Format (both sides, one file per run):
 results_collection/result_<side>_trial<N>.json is a small JSON object

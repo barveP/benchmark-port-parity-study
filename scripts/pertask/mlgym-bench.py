@@ -26,9 +26,9 @@ Harbor side:  results_collection/result_harbor_trial<N>.json (job-level)
     which makes 4 of the 11 names per run ambiguous (cifar10 vs cifar10-l1,
     house-price vs house-price-l1).  Each trial is resolved to its full task
     name with harbor_parity/trial<N>/<trial name>/result.json ("task_name"),
-    downloaded only for the ambiguous trial dirs; unambiguous names are
-    resolved by unique prefix match against the 11 known task names.  The
-    "__<suffix>" is stripped in either case.
+    which is needed (and present in the mirror) only for the ambiguous trial
+    dirs; unambiguous names are resolved by unique prefix match against the
+    11 known task names.  The "__<suffix>" is stripped in either case.
 
 task_id on BOTH sides is the Harbor task name ("mlgym-battle-of-sexes"), the
 form used by the snapshot JSON's per_environment table; original MLGym names

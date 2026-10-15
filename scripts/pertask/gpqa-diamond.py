@@ -2,8 +2,8 @@
 
 Usage: python -I gpqa-diamond.py <download_dir> <out_dir>
 <download_dir> is the local mirror of adapters/gpqa-diamond/ (results_collection/
-and, optionally, original_parity/*.csv). Stdlib only; nothing in <download_dir> is
-executed. Experiment: agent codex, model gpt-5.2, 198 tasks x 3 trials per side.
+and, optionally, original_parity/*.csv). Stdlib only.
+Experiment: agent codex, model gpt-5.2, 198 tasks x 3 trials per side.
 
 Both sides in results_collection/ use the Harbor job-level result.json layout:
 result_{original,harbor}_trial<k>.json  ->  stats.evals[<eval name>].reward_stats

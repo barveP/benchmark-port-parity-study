@@ -2,8 +2,8 @@
 
 Usage: python -I ineqmath.py <download_dir> <out_dir>
 <download_dir> is the local mirror of adapters/ineqmath/ (results_collection/).
-Stdlib only; nothing in <download_dir> is executed. Experiment: agent codex@0.77.0,
-model gpt-4o-mini (2024-07-18), 100 tasks (IneqMath dev subset) x 3 trials per side.
+Stdlib only. Experiment: agent codex@0.77.0, model gpt-4o-mini (2024-07-18),
+100 tasks (IneqMath dev subset) x 3 trials per side.
 
 Harbor side: results_collection/result_harbor_trial<k>.json is a Harbor job-level
 result.json: stats.evals["codex__gpt-4o-mini__ineqmath"].reward_stats.reward =
@@ -19,8 +19,8 @@ success, error). "success"/"error" only say whether a response was obtained (all
 True / None); there is no per-task correctness field, and the LLM-judge verdicts
 were not uploaded (original_parity/<trial>/raw/<id>.json and .md carry the same
 fields; scores.json is the aggregate). So no original.csv is written: the script
-only prints the aggregate correct counts and aborts if a verdict-like field ever
-appears, so it can be wired in.
+only prints the aggregate correct counts. It aborts if a verdict-like field appears,
+so that a later upload with per-task verdicts is noticed rather than silently ignored.
 
 Outputs <out_dir>/harbor.csv with columns run,task_id,reward (run = trial number).
 """
@@ -63,7 +63,8 @@ def original_check(path):
     agg, recs = data[0]["dev"]["all"], data[1:]
     found = sorted({k for r in recs for k in r} & VERDICT_KEYS)
     if found:
-        sys.exit(f"{path}: per-task verdict field(s) {found} present; extend the parser")
+        sys.exit(f"{path}: per-task verdict field(s) {found} present; "
+                 "per-task scoring is not implemented for this layout")
     n_resp = sum(1 for r in recs if r.get("success") and r.get("response"))
     ids = [r["data_id"] for r in recs]
     print(f"  {os.path.basename(path)}: {len(recs)} records ({len(set(ids))} unique data_id), "

@@ -36,7 +36,7 @@ codex lv2 rerun records; they carry reward 1.0.  They are not outcomes of the
 agent under study, so records whose agent is not the experiment's agent
 (codex, taken from the majority of records) are dropped and listed on
 stdout.  harbor.csv therefore has 30 rows for run 1 and 28 for run 2; no
-value is invented for the two missing cells (the README and the published
+value is invented for the two missing cells (the adapter's README and the published
 run-2 score 5/30 imply the authors counted them as 0).
 """
 import csv
