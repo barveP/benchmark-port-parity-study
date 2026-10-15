@@ -23,7 +23,7 @@ Amendment 1 (2026-10-11, after the first run of the selection script and before 
 3. Otherwise the first remaining candidate row.
 The chosen branch is recorded for every comparison.
 
-Amendment 2 (2026-10-11, same session, before any statistic was computed): (a) the headline pattern is matched on whole tokens, like the side-quantity rule, so "macro_reward" and "success_rate" count; (b) when step 1 fails and an experiment holds five or more rows with the same metric name, one per task, with equal run counts, the rows are per-task scores and are aggregated by run index into one comparison (run i of the experiment is the mean over rows of run i); this applies to Frontier-CS, whose paper-table entry is such a mean. (c) A reported string with a trailing note in parentheses, such as "58.00% +/- 0.88% (stderr across 3 runs)", is parsed by dropping the note.
+Amendment 2 (2026-10-11, same day as amendment 1, before any statistic was computed): (a) the headline pattern is matched on whole tokens, like the side-quantity rule, so "macro_reward" and "success_rate" count; (b) when step 1 fails and an experiment holds five or more rows with the same metric name, one per task, with equal run counts, the rows are per-task scores and are aggregated by run index into one comparison (run i of the experiment is the mean over rows of run i); this applies to Frontier-CS, whose paper-table entry is such a mean. (c) A reported string with a trailing note in parentheses, such as "58.00% +/- 0.88% (stderr across 3 runs)", is parsed by dropping the note.
 
 ## 5. Units and scales
 
