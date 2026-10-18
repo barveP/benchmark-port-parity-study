@@ -18,5 +18,6 @@ fi
 
 $PY -I scripts/p4_record_dates.py "$SNAP" "$OUT"
 $PY -I scripts/p4_paper_figures.py "$OUT" paper
+$PY -I scripts/p4_readme_diagrams.py . docs
 $PY -I scripts/p2_numbers_table.py "$OUT"
 $PY -I -m pytest -q

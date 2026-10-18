@@ -91,7 +91,7 @@ The first two scripts regenerate the phase 0 and phase 2 outputs and the paper's
 | `scripts/p1_parse_paper_tables.py` | parses Tables 3 and 4 of the Harbor paper (`data/paper/tables_3_4.csv`) |
 | `scripts/p2_*.py` | the analysis: comparison table, rule properties, evidence per comparison, runs needed, paired per-task analysis, injected defects (`results/phase2/`) |
 | `scripts/p3_render_memo.py` | renders `memos/results-memo.md` to a self-contained `memos/results-memo.html` with the figures embedded |
-| `scripts/p4_*.py` | the paper's figures and tables, and the dating of records against the rule's introduction |
+| `scripts/p4_*.py` | the paper's figures and tables, the README diagrams, and the dating of records against the rule's introduction |
 | `scripts/pertask/<adapter>.py` | one parser per adapter for the Hugging Face result files |
 | `scripts/parity_verdict.py` | the verdict tool shown above |
 | `scripts/first_pass/` | the exploratory first-pass scripts, kept as they were apart from their docstrings and one stray semicolon; `scripts/p0_*.py` reproduce them |
@@ -99,7 +99,7 @@ The first two scripts regenerate the phase 0 and phase 2 outputs and the paper's
 | `results/` | every output, by phase; `results/phase1/` holds the prior-work search records |
 | `memos/` | the pre-registration (`phase-2-preregistration.md`) and one memo per phase: `phase-0-1-memo.md`, `phase-2-memo.md`, `results-memo.md` (phase 3, also as HTML) and `phase-4-memo.md` |
 | `paper/` | the paper (`main.tex`, `refs.bib`, `main.pdf`), its figures and table rows, `NUMBERS_paper.md`, the outline it was written from, and `build.sh` |
-| `docs/` | the two diagrams on this page |
+| `docs/` | the two diagrams on this page, drawn by `scripts/p4_readme_diagrams.py` from the data and results files |
 
 The work ran in phases: reproduction of an exploratory first pass made before this repository was started (phase 0; its scripts are in `scripts/first_pass/` and the numbers it reported are listed in `NUMBERS.md`), a search for prior work (phase 1), the analysis under a plan fixed in advance (phase 2), the results memo (phase 3) and the paper (phase 4). Each phase has a memo in `memos/`; the phase 3 memo is `results-memo.md`.
 
