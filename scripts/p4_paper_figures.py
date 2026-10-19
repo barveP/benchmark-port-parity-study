@@ -17,9 +17,16 @@ import matplotlib.pyplot as plt  # noqa: E402
 p2, out = sys.argv[1], sys.argv[2]
 figdir = os.path.join(out, "figures")
 os.makedirs(figdir, exist_ok=True)
-plt.rcParams.update({"font.size": 7.5, "axes.titlesize": 8, "axes.labelsize": 7.5, "legend.fontsize": 6.5,
-                     "xtick.labelsize": 7, "ytick.labelsize": 7, "lines.linewidth": 1.1, "lines.markersize": 2.6,
+# Paper style: IEEE column widths (3.5 in, 7.16 in), a Times-like serif that matches the IEEEtran body (STIX, which
+# ships with matplotlib), text no smaller than 6.5 pt at print size, embedded TrueType fonts, no top or right spines.
+# Colours are Okabe-Ito, a colour-blind-safe set, with a fixed colour per test across figures; every series also has
+# its own marker and line style so the figures read in greyscale.
+COL1, COL2 = 3.5, 7.16
+plt.rcParams.update({"font.family": "serif", "font.serif": ["STIXGeneral"], "mathtext.fontset": "stix",
+                     "font.size": 8, "axes.titlesize": 8, "axes.labelsize": 8, "legend.fontsize": 6.5,
+                     "xtick.labelsize": 7, "ytick.labelsize": 7, "lines.linewidth": 1.1, "lines.markersize": 3,
                      "pdf.fonttype": 42, "axes.spines.top": False, "axes.spines.right": False})
+BLUE, ORANGE, GREEN, VERMILLION, PURPLE, GREY = "#0072B2", "#E69F00", "#009E73", "#D55E00", "#CC79A7", "#7f7f7f"
 
 rq1 = json.load(open(os.path.join(p2, "rq1_rules.json")))
 runs = json.load(open(os.path.join(p2, "rq3_runs_needed.json")))
@@ -30,14 +37,14 @@ numbers = {}
 
 # ---------- Figure 1: RQ1 ----------
 KS = [2, 3, 4, 5, 6, 8, 10]
-RULES = [("R", "range overlap (Harbor)", "-", "o", "tab:blue"), ("S1", "SEM bars overlap", "--", "s", "tab:orange"),
-         ("T", "pooled t-test, 5%", ":", "^", "tab:green"), ("W", "Welch t-test, 5%", "-.", "v", "tab:red")]
-fig, axes = plt.subplots(1, 3, figsize=(7.1, 1.7))
+RULES = [("R", "range overlap (Harbor)", "-", "o", BLUE), ("S1", "SEM bars overlap", "--", "s", ORANGE),
+         ("T", "pooled t-test, 5%", ":", "^", GREEN), ("W", "Welch t-test, 5%", "-.", "v", VERMILLION)]
+fig, axes = plt.subplots(1, 3, figsize=(COL2, 1.66))
 ax = axes[0]
 for rule, lab, ls, mk, col in RULES:
     ax.plot(KS, [summ["false_alarm_by_k"][rule][str(k)] for k in KS], ls, marker=mk, color=col, label=lab)
 ax.set_xlabel("runs per side $k$"); ax.set_ylabel("false-alarm rate"); ax.set_title("(a) false alarm by $k$")
-ax.set_ylim(0, 0.4); ax.legend(frameon=False, loc="upper right")
+ax.set_ylim(0, 0.52); ax.set_yticks([0, 0.1, 0.2, 0.3, 0.4]); ax.legend(frameon=False, loc="upper right")
 ax = axes[1]
 normal = rq1["normal_sd_units"]
 for rule, lab, ls, mk, col in RULES:
@@ -47,14 +54,14 @@ ax.set_xlabel("runs per side $k$"); ax.set_ylabel("P(detect a 2 SD gap)"); ax.se
 ax = axes[2]
 nc = rq1["pass_prob_fixed_gap2_common_sd_k3"]
 sds = [float(s) for s in nc]
-ax.plot(sds, [nc[s]["R"] for s in nc], "-", marker="o", color="tab:blue", label="range overlap: P(pass)")
-ax.plot(sds, [nc[s]["T_pass"] for s in nc], ":", marker="^", color="tab:green", label="pooled t-test: P(no significant gap)")
-ax.plot(sds, [nc[s]["E3"] for s in nc], "-", marker="s", color="tab:purple", label="TOST $\\pm$3: P(equivalence shown)")
+ax.plot(sds, [nc[s]["R"] for s in nc], "-", marker="o", color=BLUE, label="overlap passes")
+ax.plot(sds, [nc[s]["T_pass"] for s in nc], ":", marker="^", color=GREEN, label="t-test: no gap")
+ax.plot(sds, [nc[s]["E3"] for s in nc], "--", marker="D", color=PURPLE, label="TOST: within $\\pm$3")
 for q in runs["headline_sd_quartiles"]:
-    ax.axvline(q, color="grey", lw=0.6, ls="--")
-ax.set_xscale("log"); ax.set_xlim(0.2, 12); ax.set_ylim(0, 1)
+    ax.axvline(q, color=GREY, lw=0.6, ls="--")
+ax.set_xscale("log"); ax.set_xlim(0.2, 40); ax.set_ylim(0, 1)  # x runs past the data to leave room for the legend
 ax.set_xlabel("run-to-run SD, points (both sides)"); ax.set_ylabel("probability"); ax.set_title("(c) true gap 2 points, $k = 3$")
-ax.legend(frameon=False, loc="lower right", fontsize=6)
+ax.legend(frameon=False, loc="center right", bbox_to_anchor=(1.0, 0.42), handlelength=1.6, borderaxespad=0.1)
 fig.tight_layout(w_pad=1.0)
 fig.savefig(os.path.join(figdir, "fig1_rules.pdf")); fig.savefig(os.path.join(figdir, "fig1_rules.png"), dpi=200); plt.close(fig)
 
@@ -68,12 +75,12 @@ numbers["fig2_n"] = n
 numbers["fig2_within_3"] = sum(m <= 3 for m in margins)
 numbers["fig2_within_5"] = sum(m <= 5 for m in margins)
 numbers["fig2_n_fail_overlap"] = sum(fails)
-fig, ax = plt.subplots(figsize=(3.45, 1.95))
+fig, ax = plt.subplots(figsize=(COL1, 1.92))
 xs = list(range(1, n + 1))
-ax.scatter([x for x, f in zip(xs, fails) if not f], [m for m, f in zip(margins, fails) if not f], s=9, color="tab:blue", label="passes range overlap", zorder=3)
-ax.scatter([x for x, f in zip(xs, fails) if f], [m for m, f in zip(margins, fails) if f], s=16, color="tab:red", marker="D", label="fails range overlap", zorder=4)
-ax.axhline(3, color="grey", lw=0.6, ls="--"); ax.axhline(5, color="grey", lw=0.6, ls=":")
-ax.text(1, 3 * 1.06, "3 points", va="bottom", fontsize=6, color="grey"); ax.text(1, 5 * 1.06, "5 points", va="bottom", fontsize=6, color="grey")
+ax.scatter([x for x, f in zip(xs, fails) if not f], [m for m, f in zip(margins, fails) if not f], s=9, color=BLUE, label="passes range overlap", zorder=3)
+ax.scatter([x for x, f in zip(xs, fails) if f], [m for m, f in zip(margins, fails) if f], s=16, color=VERMILLION, marker="D", label="fails range overlap", zorder=4)
+ax.axhline(3, color=GREY, lw=0.6, ls="--"); ax.axhline(5, color=GREY, lw=0.6, ls=":")
+ax.text(1, 3 * 1.06, "3 points", va="bottom", fontsize=6.5, color=GREY); ax.text(1, 5 * 1.06, "5 points", va="bottom", fontsize=6.5, color=GREY)
 ax.set_yscale("log"); ax.set_ylim(0.8, 60); ax.set_xlim(0, n + 3)
 ax.set_yticks([1, 2, 3, 5, 10, 20, 50]); ax.set_yticklabels(["1", "2", "3", "5", "10", "20", "50"])
 ax.set_xlabel(f"comparison, sorted ({n} with three runs per side)"); ax.set_ylabel("smallest provable\nmargin (points)")
@@ -90,16 +97,17 @@ fig.savefig(os.path.join(figdir, "fig2_margins.pdf")); fig.savefig(os.path.join(
 A = defects["aggregate"]["primary_binary_light"]
 FS = defects["summary"]["fractions"]
 nad = defects["summary"]["n_binary"]
-fig, axes = plt.subplots(1, 3, figsize=(7.1, 1.65), sharey=True)
+fig, axes = plt.subplots(1, 3, figsize=(COL2, 1.64), sharey=True)
 for ax, (kind, k, title) in zip(axes, (("break", 3, "(a) break defect, $k = 3$"), ("leak", 3, "(b) leak defect, $k = 3$"), ("break", 10, "(c) break defect, $k = 10$"))):
-    for rule, lab, ls, col in (("R", "range overlap", "-", "tab:blue"), ("T", "pooled t-test", ":", "tab:green"), ("P", "paired t-test", "-", "tab:red"), ("CMH", "stratified test", "--", "tab:purple")):
+    for rule, lab, ls, mk, col in (("R", "range overlap", "-", "o", BLUE), ("T", "pooled t-test", ":", "^", GREEN), ("P", "paired t-test", "-.", "s", VERMILLION), ("CMH", "stratified test", "--", "D", PURPLE)):
         ys = [A[f"{kind},f={fr},k={k}"][rule]["mean"] for fr in FS]
-        ax.plot(FS, ys, ls, marker="o", color=col, label=lab)
+        ax.plot(FS, ys, ls, marker=mk, color=col, label=lab)
         if rule in ("T", "CMH"):
             ax.fill_between(FS, [A[f"{kind},f={fr},k={k}"][rule]["q25"] for fr in FS], [A[f"{kind},f={fr},k={k}"][rule]["q75"] for fr in FS], color=col, alpha=0.08, lw=0)
     ax.set_xlabel(f"fraction of tasks {'broken' if kind == 'break' else 'leaked'} on the port side"); ax.set_title(title); ax.set_ylim(0, 1)
-axes[0].set_ylabel("P(verdict = mismatch)"); axes[1].legend(frameon=False, loc="upper left", fontsize=5.5, handlelength=1.6, borderaxespad=0.2)
-fig.tight_layout(w_pad=0.8)
+axes[0].set_ylabel("P(verdict = mismatch)"); h, l = axes[0].get_legend_handles_labels()
+fig.legend(h, l, loc="upper center", ncol=4, frameon=False, handlelength=2.2, columnspacing=1.6, bbox_to_anchor=(0.5, 1.0))
+fig.tight_layout(w_pad=0.8, rect=(0, 0, 1, 0.89))
 fig.savefig(os.path.join(figdir, "fig3_defects.pdf")); fig.savefig(os.path.join(figdir, "fig3_defects.png"), dpi=200); plt.close(fig)
 numbers["fig3_n_adapters"] = nad
 
