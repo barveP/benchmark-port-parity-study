@@ -8,7 +8,7 @@ The phase 0 and phase 2 outputs regenerate with `scripts/run_phase0.sh` and `scr
 
 ## Phase 1 records
 
-- `phase1_summary.json`: the search counts and the eight second-round searches as planned (`second_round_searches_planned`); `memos/phase-0-1-memo.md`, section 7, lists the sources that could not be reached. `n_searches` counts the six first-round searches and the eight second-round searches (14 in all). `n_candidate_records` is the number of rows in `phase1_candidates.csv`. `n_verified_at_source` is the number of rows in `phase1_verdicts.csv`.
+- `phase1_summary.json`: the search counts and the eight second-round searches as planned (`second_round_searches_planned`); the source notes in these records identify access limitations. `n_searches` counts the six first-round searches and the eight second-round searches (14 in all). `n_candidate_records` is the number of rows in `phase1_candidates.csv`. `n_verified_at_source` is the number of rows in `phase1_verdicts.csv`.
 - `phase1_candidates.csv`: one row per candidate screened (381 rows). The same source can appear in several rows when more than one search found it.
 - `phase1_verdicts.csv`: one row per source read in full at source (24 rows), with a verdict.
 - `extra_verifications/`: notes on sources checked at source outside the verdict table: arXiv 2608.15046, arXiv 2609.13714 with ClawBench issue #359, arXiv 2610.04433, and the software-engineering references on equivalence testing. The notes on papers use the same verdict labels.

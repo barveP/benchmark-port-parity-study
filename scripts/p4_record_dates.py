@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Phase 4: date each headline comparison against the day the range-overlap criterion entered the guide.
-The criterion was added by Harbor pull request 1403, merged 2026-04-19 (memos/phase-0-1-memo.md). Reads the
+The criterion was added by Harbor pull request 1403, merged 2026-04-19 (https://github.com/harbor-framework/harbor/pull/1403). Reads the
 experiment dates from the pinned parity files and the headline set from results/phase2/rq2_comparisons.csv.
 Usage: python -I scripts/p4_record_dates.py <snapshot dir> <phase2 dir>
 """

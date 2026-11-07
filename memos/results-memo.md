@@ -1,6 +1,6 @@
 # How much does a parity experiment prove?
 
-Poorva Barve. Results memo, October 2026. Code, data and every number: github.com/barveP/benchmark-port-parity.
+Poorva Barve. Results memo, October 2026. Code, data and every number: github.com/barveP/benchmark-port-parity-archive.
 
 ## The question
 

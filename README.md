@@ -4,6 +4,8 @@ A statistical look at the rule that accepts benchmark ports in Harbor, the evalu
 
 Poorva Barve, 2026. Short paper under preparation for the AGENT workshop at ICSE 2027.
 
+[Read the paper](paper/main.pdf) · [Results summary](memos/results-memo.md)
+
 ## The question
 
 Harbor hosts more than eighty existing benchmarks, each ported through an "adapter". A port is only useful if it gives the same scores as the original benchmark, so every adapter must pass a **parity experiment**: the same agent and model are run on the original harness and on the port, usually three times each. Harbor's adapter guide (`ADAPTER_CONTRIBUTING.md`, Step 5 of its detailed specification) decides the outcome with one rule: the two sides match if and only if the ranges of their run scores overlap.
@@ -32,13 +34,13 @@ Everything here uses public data: the parity files in the Harbor repository, the
 
 *Each dot is one published comparison: the smallest margin within which its three runs per side can show equivalence. Lines mark 3 and 5 points.*
 
-**A better check is cheap.** An equivalence test with a margin stated in advance needs about seven runs per side at the observed noise for a 3-point margin. Per-task outcomes, which the published files hold for both sides in 44 adapters, do not make the interval tighter, but they reveal something the run scores hide: in half of the adapters the two sides disagree on individual tasks more than shared pass probabilities allow, while agreeing on the mean. Injecting defects into real per-task data shows that with three runs no calibrated test catches a defect that breaks 10% of tasks more than about two times in three; a stratified-by-task test does best, and all of them improve with runs except the overlap rule.
+**An equivalence test needs more runs.** With normal noise, a common SD at the observed median, and a true gap of zero, an equivalence test needs about seven runs per side for a 3-point margin and 80% power, compared with the usual three. Per-task outcomes, which the published files hold for both sides in 44 adapters, do not make the interval tighter, but they reveal something the run scores hide: in half of the adapters the two sides disagree on individual tasks more than shared pass probabilities allow, while agreeing on the mean. Injecting defects into real per-task data shows that with three runs none of the evaluated 5% tests catches the simulated defect that breaks 10% of tasks more than about two times in three; a stratified-by-task test does best, and all of them improve with runs except the overlap rule.
 
 ![Detection of injected defects](paper/figures/fig3_defects.png)
 
 *How often each test notices a defect that breaks or leaks a share of tasks on the port side, averaged over 30 adapters.*
 
-One open question came out of the per-task files: on nine of thirty Harbor sides, the published run totals vary less from run to run than their own per-task flips allow. Either outcomes within a run are dependent, or the runs are not independent replicates.
+One open question came out of the per-task files: on nine of thirty Harbor sides, the published run totals vary less from run to run than their own per-task flips allow. This diagnostic is consistent with dependence within or between runs, but does not identify the cause.
 
 ## How the study was done
 
@@ -97,11 +99,11 @@ The first two scripts regenerate the phase 0 and phase 2 outputs and the paper's
 | `scripts/first_pass/` | the exploratory first-pass scripts, kept as they were apart from their docstrings and one stray semicolon; `scripts/p0_*.py` reproduce them |
 | `tests/` | pytest suite: closed forms against simulation, rules against scipy, parsing, manifest hashes, synthetic snapshots |
 | `results/` | every output, by phase; `results/phase1/` holds the prior-work search records |
-| `memos/` | the pre-registration (`phase-2-preregistration.md`) and one memo per phase: `phase-0-1-memo.md`, `phase-2-memo.md`, `results-memo.md` (phase 3, also as HTML) and `phase-4-memo.md` |
-| `paper/` | the paper (`main.tex`, `refs.bib`, `main.pdf`), its figures and table rows, `NUMBERS_paper.md`, the outline it was written from, and `build.sh` |
+| `memos/` | the analysis plan with dated amendments, analysis notes, and a results summary in Markdown and HTML |
+| `paper/` | the paper (`main.tex`, `refs.bib`, `main.pdf`), its figures and table rows, `NUMBERS_paper.md`, and `build.sh` |
 | `docs/` | the two diagrams on this page, drawn by `scripts/p4_readme_diagrams.py` from the data and results files |
 
-The work ran in phases: reproduction of an exploratory first pass made before this repository was started (phase 0; its scripts are in `scripts/first_pass/` and the numbers it reported are listed in `NUMBERS.md`), a search for prior work (phase 1), the analysis under a plan fixed in advance (phase 2), the results memo (phase 3) and the paper (phase 4). Each phase has a memo in `memos/`; the phase 3 memo is `results-memo.md`.
+The work ran in phases: reproduction of an exploratory first pass made before this repository was started (phase 0; its scripts are in `scripts/first_pass/` and the numbers it reported are listed in `NUMBERS.md`), a search for prior work (phase 1), the analysis under a plan fixed in advance (phase 2), the results memo (phase 3) and the paper (phase 4). The analysis plan and notes are in `memos/`; the results summary is `results-memo.md`.
 
 ## Data sources
 

@@ -39,12 +39,12 @@ numbers = {}
 KS = [2, 3, 4, 5, 6, 8, 10]
 RULES = [("R", "range overlap (Harbor)", "-", "o", BLUE), ("S1", "SEM bars overlap", "--", "s", ORANGE),
          ("T", "pooled t-test, 5%", ":", "^", GREEN), ("W", "Welch t-test, 5%", "-.", "v", VERMILLION)]
-fig, axes = plt.subplots(1, 3, figsize=(COL2, 1.66))
+fig, axes = plt.subplots(1, 3, figsize=(COL2, 2.05))
 ax = axes[0]
 for rule, lab, ls, mk, col in RULES:
     ax.plot(KS, [summ["false_alarm_by_k"][rule][str(k)] for k in KS], ls, marker=mk, color=col, label=lab)
 ax.set_xlabel("runs per side $k$"); ax.set_ylabel("false-alarm rate"); ax.set_title("(a) false alarm by $k$")
-ax.set_ylim(0, 0.52); ax.set_yticks([0, 0.1, 0.2, 0.3, 0.4]); ax.legend(frameon=False, loc="upper right")
+ax.set_ylim(0, 0.52); ax.set_yticks([0, 0.1, 0.2, 0.3, 0.4])
 ax = axes[1]
 normal = rq1["normal_sd_units"]
 for rule, lab, ls, mk, col in RULES:
@@ -62,7 +62,10 @@ for q in runs["headline_sd_quartiles"]:
 ax.set_xscale("log"); ax.set_xlim(0.2, 40); ax.set_ylim(0, 1)  # x runs past the data to leave room for the legend
 ax.set_xlabel("run-to-run SD, points (both sides)"); ax.set_ylabel("probability"); ax.set_title("(c) true gap 2 points, $k = 3$")
 ax.legend(frameon=False, loc="center right", bbox_to_anchor=(1.0, 0.42), handlelength=1.6, borderaxespad=0.1)
-fig.tight_layout(w_pad=1.0)
+handles, labels = axes[0].get_legend_handles_labels()
+fig.legend(handles, labels, loc="upper center", ncol=4, frameon=False,
+           bbox_to_anchor=(0.5, 1.0), handlelength=2.0, columnspacing=1.4)
+fig.tight_layout(w_pad=1.0, rect=(0, 0, 1, 0.86))
 fig.savefig(os.path.join(figdir, "fig1_rules.pdf")); fig.savefig(os.path.join(figdir, "fig1_rules.png"), dpi=200); plt.close(fig)
 
 # ---------- Figure 2: RQ2 ----------
@@ -119,7 +122,7 @@ for rule in ("R", "S1", "S2", "S3", "T", "W"):
     fa = summ["k3_normal_false_alarm"][rule]; d1 = summ["k3_normal_detect_1sd"][rule]; d2 = summ["k3_normal_detect_2sd"][rule]
     tm = summ["k3_t_at_matched_false_alarm_detect_2sd"][rule]
     rows.append(f"{names[rule]} & {fa:.2f} & {d1:.2f} & {d2:.2f} & {tm:.2f} \\\\")
-open(os.path.join(out, "tab1_rules.tex"), "w").write("\\begin{tabular}{lcccc}\n\\toprule\nrule & false alarm & 1 SD & 2 SD & $t$ at same FA \\\\\n\\midrule\n" + "\n".join(rows) + "\n\\bottomrule\n\\end{tabular}\n")
+open(os.path.join(out, "tab1_rules.tex"), "w").write("\\begin{tabular}{lcccc}\n\\toprule\nrule & \\shortstack{false\\\\alarm} & 1 SD & 2 SD & \\shortstack{$t$ at\\\\same FA} \\\\\n\\midrule\n" + "\n".join(rows) + "\n\\bottomrule\n\\end{tabular}\n")
 numbers["tab1"] = {rule: [round(summ["k3_normal_false_alarm"][rule], 3), round(summ["k3_normal_detect_1sd"][rule], 3), round(summ["k3_normal_detect_2sd"][rule], 3), round(summ["k3_t_at_matched_false_alarm_detect_2sd"][rule], 3)] for rule in names}
 
 # ---------- Table 2: runs per side ----------
