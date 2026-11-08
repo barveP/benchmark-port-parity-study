@@ -5,8 +5,9 @@ PY=.venv/bin/python
 SNAP=data/raw/harbor_parity
 OUT=results/phase2
 $PY -I scripts/p2_build_comparisons.py "$SNAP" data/paper/tables_3_4.csv "$OUT"
+$PY -I scripts/p2_rq1_rules.py "$OUT" data/pertask --skip-figure
 $PY -I scripts/p2_rq2_evidence.py "$OUT" results/phase0
-$PY -I scripts/p2_rq1_rules.py "$OUT" data/pertask
+$PY -I scripts/p2_rq1_rules.py "$OUT" --figure-only
 $PY -I scripts/p2_rq3_runs_needed.py "$OUT"
 $PY -I scripts/parity_verdict.py "$SNAP/usaco.json" > "$OUT/verdict_examples.txt"
 $PY -I scripts/parity_verdict.py "$SNAP/rexbench.json" >> "$OUT/verdict_examples.txt"

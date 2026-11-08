@@ -13,8 +13,10 @@ For R, S1, S2, W we report P(verdict = mismatch) as a function of the true gap: 
 false-alarm rate, at gap > 0 the detection rate. For E_m we report P(equivalence shown).
 Noise models (pre-registered): normal (gap in SD units, exact where possible), binomial pass rates over n
 tasks (gap in points), and realistic per-task heterogeneity from recovered per-task outcomes when
-data/pertask/ exists. Usage: python -I scripts/p2_rq1_rules.py <out_dir> [pertask_dir] [n_trials]
+data/pertask/ exists. Use --skip-figure to compute results before RQ2, then --figure-only
+to render the saved results with the observed SD quartiles from RQ2.
 """
+import argparse
 import csv
 import glob
 import json
@@ -27,14 +29,78 @@ import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from parity_lib import rule_false_alarm_exact, rule_mismatch_rate_normal, rule_verdicts, runs_needed_power, t_quantile  # noqa: E402
 
-out = sys.argv[1]
-pertask_dir = sys.argv[2] if len(sys.argv) > 2 and os.path.isdir(sys.argv[2]) else None
-N = int(sys.argv[3]) if len(sys.argv) > 3 else 200_000
-os.makedirs(os.path.join(out, "figures"), exist_ok=True)
-rng = np.random.default_rng(7)
-
-
+KS = (2, 3, 4, 5, 6, 8, 10)
+DELTAS = (0, 0.5, 1, 1.5, 2, 3, 4)
 RULES = ("R", "S1", "S2", "S3", "W", "T")
+
+
+def render_figure(out, results):
+    import matplotlib
+
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    normal = results["normal_sd_units"]
+    summ = results["summary"]
+    noise_common = results["pass_prob_fixed_gap2_common_sd_k3"]
+    figures = os.path.join(out, "figures")
+    os.makedirs(figures, exist_ok=True)
+
+    sd_ticks = None
+    try:
+        with open(os.path.join(out, "rq2_summary.json")) as fh:
+            sd_ticks = json.load(fh)["summaries"]["headline_k3"].get("sd_quartiles")
+    except FileNotFoundError:
+        pass
+    fig, axes = plt.subplots(2, 2, figsize=(10, 7.2))
+    ax = axes[0, 0]
+    for rule, lab, ls in (("R", "range overlap (Harbor)", "-"), ("S1", "mean ± SEM bars overlap", "--"), ("S2", "|gap| ≤ SE of difference", "-."), ("T", "pooled t-test, p < .05", "-"), ("W", "Welch t-test, p < .05", ":")):
+        ax.plot(DELTAS, [normal[f"k=3,gap={d}"][rule] for d in DELTAS], ls, marker="o", ms=3, label=lab)
+    ax.set_xlabel("true gap, in run-to-run SDs"); ax.set_ylabel("P(verdict = mismatch)"); ax.set_title("(a) k = 3, normal noise; curves differ mainly by their false-alarm rate", fontsize=9)
+    ax.axhline(0.05, color="grey", lw=0.5); ax.text(-0.1, 0.065, "0.05", fontsize=7, color="grey"); ax.legend(fontsize=7, frameon=False, loc="center right"); ax.set_ylim(0, 1)
+    ax = axes[0, 1]
+    for rule, lab in (("R", "range overlap"), ("S1", "SEM bars overlap"), ("T", "pooled t-test"), ("W", "Welch t-test")):
+        ax.plot(KS, [summ["false_alarm_by_k"][rule][str(k)] for k in KS], marker="o", ms=3, label=lab)
+    ax.set_xlabel("runs per side k"); ax.set_ylabel("false alarm: P(mismatch | perfect port)"); ax.set_title("(b) false-alarm rate by k", fontsize=9); ax.set_ylim(0, 0.4); ax.legend(fontsize=7, frameon=False)
+    ax = axes[1, 0]
+    for rule, lab in (("R", "range overlap"), ("S1", "SEM bars overlap"), ("T", "pooled t-test"), ("W", "Welch t-test")):
+        ax.plot(KS, [normal[f"k={k},gap=2"][rule if rule != "R" else "R_exact"] for k in KS], marker="o", ms=3, label=lab)
+    ax.set_xlabel("runs per side k"); ax.set_ylabel("P(detect a 2 SD gap)"); ax.set_title("(c) detection of a fixed 2 SD gap by k", fontsize=9); ax.set_ylim(0, 1); ax.legend(fontsize=7, frameon=False)
+    ax = axes[1, 1]
+    sds = [0.25, 0.5, 1, 1.5, 2, 3, 5, 10]
+    ax.plot(sds, [noise_common[str(s)]["R"] for s in sds], marker="o", ms=3, label="range overlap: P(pass)")
+    ax.plot(sds, [noise_common[str(s)]["T_pass"] for s in sds], marker="^", ms=3, label="pooled t-test: P(no significant gap)")
+    ax.plot(sds, [noise_common[str(s)]["E3"] for s in sds], marker="s", ms=3, label="TOST ±3: P(equivalence shown)")
+    if sd_ticks:
+        for q in sd_ticks:
+            ax.axvline(q, color="grey", lw=0.6, ls="--")
+        ax.text(sd_ticks[1] * 1.05, 0.03, "observed SD quartiles", fontsize=7, color="grey")
+    ax.set_xscale("log"); ax.set_xlabel("run-to-run SD, points (both sides)"); ax.set_ylabel("probability (pass, or equivalence shown)"); ax.set_title("(d) true gap fixed at 2 points, k = 3", fontsize=9); ax.set_ylim(0, 1); ax.legend(fontsize=7, frameon=False, loc="center right")
+    fig.tight_layout()
+    fig.savefig(os.path.join(figures, "fig_rq1_rules.png"), dpi=200)
+    fig.savefig(os.path.join(figures, "fig_rq1_rules.pdf"))
+    plt.close(fig)
+
+
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument("out_dir")
+parser.add_argument("pertask_dir", nargs="?")
+parser.add_argument("n_trials", nargs="?", type=int, default=200_000)
+figure_mode = parser.add_mutually_exclusive_group()
+figure_mode.add_argument("--skip-figure", action="store_true", help="write results without drawing the figure")
+figure_mode.add_argument("--figure-only", action="store_true", help="draw the figure from saved results")
+args = parser.parse_args()
+
+out = args.out_dir
+if args.figure_only:
+    with open(os.path.join(out, "rq1_rules.json")) as fh:
+        render_figure(out, json.load(fh))
+    sys.exit(0)
+
+pertask_dir = args.pertask_dir if args.pertask_dir and os.path.isdir(args.pertask_dir) else None
+N = args.n_trials
+os.makedirs(out, exist_ok=True)
+rng = np.random.default_rng(7)
 
 
 def rates(a, b, margins):
@@ -45,7 +111,6 @@ def rates(a, b, margins):
 results = {"n_trials": N, "seed": 7}
 
 # ---------------------------------------------------------------- (a) normal noise, gap in SD units
-KS, DELTAS = (2, 3, 4, 5, 6, 8, 10), (0, 0.5, 1, 1.5, 2, 3, 4)
 normal, matched = {}, {}
 for k in KS:
     a0 = rng.standard_normal((N, k)); b0 = rng.standard_normal((N, k))
@@ -174,43 +239,8 @@ results["summary"] = summ
 with open(os.path.join(out, "rq1_rules.json"), "w") as fh:
     json.dump(results, fh, indent=1)
 
-# ---------------------------------------------------------------- figure
-import matplotlib  # noqa: E402
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt  # noqa: E402
-
-sd_ticks = None
-try:
-    sd_ticks = json.load(open(os.path.join(out, "rq2_summary.json")))["summaries"]["headline_k3"]["sd_quartiles"]
-except Exception:
-    pass
-fig, axes = plt.subplots(2, 2, figsize=(10, 7.2))
-ax = axes[0, 0]
-for rule, lab, ls in (("R", "range overlap (Harbor)", "-"), ("S1", "mean ± SEM bars overlap", "--"), ("S2", "|gap| ≤ SE of difference", "-."), ("T", "pooled t-test, p < .05", "-"), ("W", "Welch t-test, p < .05", ":")):
-    ax.plot(DELTAS, [normal[f"k=3,gap={d}"][rule] for d in DELTAS], ls, marker="o", ms=3, label=lab)
-ax.set_xlabel("true gap, in run-to-run SDs"); ax.set_ylabel("P(verdict = mismatch)"); ax.set_title("(a) k = 3, normal noise; curves differ mainly by their false-alarm rate", fontsize=9)
-ax.axhline(0.05, color="grey", lw=0.5); ax.text(-0.1, 0.065, "0.05", fontsize=7, color="grey"); ax.legend(fontsize=7, frameon=False, loc="center right"); ax.set_ylim(0, 1)
-ax = axes[0, 1]
-for rule, lab in (("R", "range overlap"), ("S1", "SEM bars overlap"), ("T", "pooled t-test"), ("W", "Welch t-test")):
-    ax.plot(KS, [summ["false_alarm_by_k"][rule][str(k)] for k in KS], marker="o", ms=3, label=lab)
-ax.set_xlabel("runs per side k"); ax.set_ylabel("false alarm: P(mismatch | perfect port)"); ax.set_title("(b) false-alarm rate by k", fontsize=9); ax.set_ylim(0, 0.4); ax.legend(fontsize=7, frameon=False)
-ax = axes[1, 0]
-for rule, lab in (("R", "range overlap"), ("S1", "SEM bars overlap"), ("T", "pooled t-test"), ("W", "Welch t-test")):
-    ax.plot(KS, [normal[f"k={k},gap=2"][rule if rule != "R" else "R_exact"] for k in KS], marker="o", ms=3, label=lab)
-ax.set_xlabel("runs per side k"); ax.set_ylabel("P(detect a 2 SD gap)"); ax.set_title("(c) detection of a fixed 2 SD gap by k", fontsize=9); ax.set_ylim(0, 1); ax.legend(fontsize=7, frameon=False)
-ax = axes[1, 1]
-sds = [0.25, 0.5, 1, 1.5, 2, 3, 5, 10]
-ax.plot(sds, [noise_common[str(s)]["R"] for s in sds], marker="o", ms=3, label="range overlap: P(pass)")
-ax.plot(sds, [noise_common[str(s)]["T_pass"] for s in sds], marker="^", ms=3, label="pooled t-test: P(no significant gap)")
-ax.plot(sds, [noise_common[str(s)]["E3"] for s in sds], marker="s", ms=3, label="TOST ±3: P(equivalence shown)")
-if sd_ticks:
-    for q in sd_ticks:
-        ax.axvline(q, color="grey", lw=0.6, ls="--")
-    ax.text(sd_ticks[1] * 1.05, 0.03, "observed SD quartiles", fontsize=7, color="grey")
-ax.set_xscale("log"); ax.set_xlabel("run-to-run SD, points (both sides)"); ax.set_ylabel("probability (pass, or equivalence shown)"); ax.set_title("(d) true gap fixed at 2 points, k = 3", fontsize=9); ax.set_ylim(0, 1); ax.legend(fontsize=7, frameon=False, loc="center right")
-fig.tight_layout()
-fig.savefig(os.path.join(out, "figures", "fig_rq1_rules.png"), dpi=200)
-fig.savefig(os.path.join(out, "figures", "fig_rq1_rules.pdf"))
+if not args.skip_figure:
+    render_figure(out, results)
 
 print("k=3, normal: false alarm", {r: round(v, 3) for r, v in summ["k3_normal_false_alarm"].items()})
 print("k=3, normal: detect 1 SD", {r: round(v, 3) for r, v in summ["k3_normal_detect_1sd"].items()}, "| detect 2 SD", {r: round(v, 3) for r, v in summ["k3_normal_detect_2sd"].items()})

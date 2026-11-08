@@ -1,8 +1,8 @@
 {
  "tolerance": "half a unit in the last reported decimal place",
- "n_checked": 523,
+ "n_checked": 527,
  "by_mean_ok_and_err_class": {
-  "mean_ok=True,err=sem": 411,
+  "mean_ok=True,err=sem": 415,
   "mean_ok=True,err=both": 109,
   "mean_ok=False,err=sem": 2,
   "mean_ok=True,err=neither": 1
