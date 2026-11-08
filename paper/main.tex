@@ -56,7 +56,7 @@ The snapshot is Harbor commit \texttt{dc933be} (10 October 2026). Its 84 parity 
 \begin{figure*}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/fig1_rules.pdf}
-\caption{Normal run-to-run noise; $k$ is runs per side. (a) False-alarm rate against $k$. (b) Detection of a fixed 2 SD gap against $k$. (c) A true gap of 2 points at $k=3$ against the run-to-run SD: the probability that range overlap passes, that a pooled $t$-test finds no significant gap, and that TOST (Section~\ref{sec:rq2}) shows equivalence within 3 points; dashed lines mark the SD quartiles of the published runs.}
+\caption{Normal run-to-run noise. (a) False-alarm rate and (b) detection of a 2 SD gap as runs per side ($k$) increase. Both $t$-tests use the 5\% level. (c) For a true 2-point gap at $k=3$, the curves show the probabilities that range overlap passes, the pooled $t$-test fails to reject, and TOST (Section~\ref{sec:rq2}) shows equivalence within 3 points. Vertical lines mark the observed SD quartiles.}
 \label{fig:rules}
 \end{figure*}
 
@@ -72,7 +72,7 @@ The snapshot is Harbor commit \texttt{dc933be} (10 October 2026). Its 84 parity 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\columnwidth]{figures/fig2_margins.pdf}
-\caption{Smallest margin within which each of the 58 published comparisons can show equivalence (TOST, 90\% interval), sorted. Lines mark 3 and 5 points. The one comparison that fails range overlap, USACO, is the 40th of 58, above the median; the four largest gaps all pass.}
+\caption{Smallest equivalence margin supported by each of the 58 comparisons with three runs per side (TOST, 90\% interval). The dashed and dotted lines mark 3 and 5 points, respectively. The diamond marks USACO at rank 40. The four largest gaps (Frontier-CS, RexBench, PIXIU, and GDB) all pass range overlap.}
 \label{fig:margins}
 \end{figure}
 

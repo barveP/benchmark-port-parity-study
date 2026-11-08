@@ -32,7 +32,7 @@ Everything here uses public data: the parity files in the Harbor repository, the
 
 ![Smallest provable margin per comparison](paper/figures/fig2_margins.png)
 
-*Each dot is one published comparison: the smallest margin within which its three runs per side can show equivalence. Lines mark 3 and 5 points.*
+*Each marker shows the smallest equivalence margin supported by one comparison with three runs per side. The diamond marks USACO, the only comparison whose ranges do not overlap. Lines mark 3 and 5 points.*
 
 **An equivalence test needs more runs.** With normal noise, a common SD at the observed median, and a true gap of zero, an equivalence test needs about seven runs per side for a 3-point margin and 80% power, compared with the usual three. Per-task outcomes, which the published files hold for both sides in 44 adapters, do not make the interval tighter, but they reveal something the run scores hide: in half of the adapters the two sides disagree on individual tasks more than shared pass probabilities allow, while agreeing on the mean. Injecting defects into real per-task data shows that with three runs none of the evaluated 5% tests catches the simulated defect that breaks 10% of tasks more than about two times in three; a stratified-by-task test does best, and all of them improve with runs except the overlap rule.
 
