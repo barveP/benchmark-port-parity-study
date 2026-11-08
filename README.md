@@ -34,7 +34,7 @@ Everything here uses public data: the parity files in the Harbor repository, the
 
 *Each marker shows the smallest equivalence margin supported by one comparison with three runs per side. The diamond marks USACO, the only comparison whose ranges do not overlap. Lines mark 3 and 5 points.*
 
-**An equivalence test needs more runs.** With normal noise, a common SD at the observed median, and a true gap of zero, an equivalence test needs about seven runs per side for a 3-point margin and 80% power, compared with the usual three. Per-task outcomes, which the published files hold for both sides in 44 adapters, do not make the interval tighter, but they reveal something the run scores hide: in half of the adapters the two sides disagree on individual tasks more than shared pass probabilities allow, while agreeing on the mean. Injecting defects into real per-task data shows that with three runs none of the evaluated 5% tests catches the simulated defect that breaks 10% of tasks more than about two times in three; a stratified-by-task test does best, and all of them improve with runs except the overlap rule.
+**An equivalence test needs more runs.** With normal noise, a common SD at the observed median, and a true gap of zero, an equivalence test needs about seven runs per side for a 3-point margin and 80% power, compared with the usual three. Per-task outcomes, which the published files hold for both sides in 44 adapters, do not make the interval tighter, but they reveal something the run scores hide: the two sides disagree on individual tasks more than shared pass probabilities allow in 14 of 27 adapters at an unadjusted 5% threshold and in 11 after Benjamini–Hochberg correction at a 5% false discovery rate. A within-task permutation test detected no mean gap in any of the 27. Injecting defects into real per-task data shows that with three runs none of the evaluated 5% tests catches the simulated defect that breaks 10% of tasks more than about two times in three; a stratified-by-task test does best, and all of them improve with runs except the overlap rule.
 
 ![Detection of injected defects](paper/figures/fig3_defects.png)
 
@@ -115,8 +115,8 @@ The work ran in phases: reproduction of an exploratory first pass made before th
 
 The Harbor team made this analysis possible by publishing their parity runs and per-task results.
 
-Claude (Anthropic) assisted with manuscript drafting and analysis scripts for Sections III–V. OpenAI Codex assisted with manuscript revisions and plotting code for Figs. 1–3.
+I used Claude (Anthropic) to help draft the manuscript and to write and debug the analysis code for Sections III–V. I used Codex (OpenAI) to correct grammar and revise the plotting code for Figs. 1–3.
 
 ## License
 
-MIT, see `LICENSE`.
+The original analysis code is [MIT-licensed](LICENSE). The Harbor snapshot and data derived from the Harbor parity dataset retain their [Apache-2.0 license](data/LICENSE-APACHE-2.0). See the [data provenance and license notes](data/README.md).

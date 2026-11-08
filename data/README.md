@@ -8,3 +8,9 @@
 - `pertask/MANIFEST.json`: per adapter, the files used, the formats, whether the recovered run means reproduce the published run scores, and which analyses the adapter enters. `recovery_method` states how files were chosen from the dataset and the download limits. `not_recovered` lists the one adapter with a parser but no per-task files here (strongreject) and the reason.
 - `pertask/commit0/harbor.csv` (Harbor side only, 3 runs x 16 tasks, from `scripts/pertask/commit0.py`) has no manifest entry and enters no analysis. commit0 has no `parity_experiment.json` in the pinned snapshot, and its original-side files hold only aider transcripts with no evaluation output.
 - `external/` is named in some manifest notes. It is a local download cache that git does not track. Its paths mirror the dataset layout: `external/hf/<hf_name>/` holds the files fetched from `adapters/<hf_name>/`. Each `scripts/pertask/<adapter>.py` takes such a folder as its first argument.
+
+## License
+
+The files copied from the [Harbor snapshot](https://github.com/harbor-framework/harbor/tree/dc933be707feafbb9efcdf092cb8a0e391332617) and the per-task CSVs extracted from the [Harbor parity dataset](https://huggingface.co/datasets/harborframework/parity-experiments) retain their upstream Apache-2.0 terms. See [LICENSE-APACHE-2.0](LICENSE-APACHE-2.0) for the license text. The copied snapshot files are unchanged. The CSVs under `pertask/` are reformatted extracts of the upstream results.
+
+The table extract under `paper/` is attributed to Shi et al., [Harbor Adapters and Harbor-Index](https://arxiv.org/abs/2609.04298v3), Tables 3 and 4. The project's [MIT license](../LICENSE) covers its original analysis code.
