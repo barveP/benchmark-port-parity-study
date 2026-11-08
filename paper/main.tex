@@ -1,15 +1,16 @@
 \documentclass[conference]{IEEEtran}
 \IEEEoverridecommandlockouts
+\usepackage[T1]{fontenc}
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{url}
-\usepackage[hidelinks]{hyperref}
+\usepackage[draft]{hyperref}
 \usepackage{cite}
 
 \begin{document}
 
-\title{How Much Does a Parity Experiment Prove?\\ Error Rates of the Rule That Accepts Benchmark Ports}
+\title{How Much Does a Parity Experiment Prove?}
 
 \author{\IEEEauthorblockN{Poorva Barve}
 \IEEEauthorblockA{poorvabarve@gmail.com}}
@@ -17,8 +18,12 @@
 \maketitle
 
 \begin{abstract}
-Harbor ports more than eighty benchmarks through adapters. Each port undergoes a parity experiment comparing the original harness and the port with the same agent and model, usually three times each. The port passes when the run-score ranges overlap. Under exchangeable scores at parity and $k$ runs per side, the rule's false-alarm rate without ties is $2(k!)^2/(2k)!$: 10\% at $k=3$, and lower with ties. Detection of a fixed gap decreases as runs are added; under common normal noise, greater noise makes that gap easier to pass. I re-analyse 58 published comparisons with three runs per side. Their median gap is 0.7 points, but equivalence within 3 points can be shown for only 22 comparisons and within 5 points for 36. The rule passes the four largest gaps, up to 15.6 points. At the median observed SD and a true gap of zero, an equivalence test needs about seven runs per side for a 3-point margin and 80\% power. Per-task outcomes expose task-level disagreement in 14 of 27 adapters. Among the tests evaluated in binary-outcome simulations at a 5\% false-alarm rate, a stratified-by-task test detects the most injected defects with three runs. I provide a five-step protocol and a verdict tool.
+Harbor ports more than eighty benchmarks through adapters. Each port undergoes a parity experiment comparing the original harness and the port with the same agent and model, usually three times each. The port passes when the run-score ranges overlap. With three runs per side and exchangeable scores under parity, the rule has a false-alarm rate of 10 percent without ties and a lower rate with ties. Adding runs reduces the rule's chance of detecting a fixed gap. Under common normal noise, more noise makes a port with that gap more likely to pass. I re-analyse 58 published comparisons with three runs per side. Their median absolute gap is 0.7 points, but equivalence within 3 points can be shown for only 22 comparisons and within 5 points for 36. The rule passes the four largest gaps, up to 15.6 points. At the median observed standard deviation and a true gap of zero, an equivalence test needs about seven runs per side for a 3-point margin and 80 percent power. Per-task outcomes expose task-level disagreement in 14 of 27 adapters. Among the tests evaluated in binary-outcome simulations at a 5 percent false-alarm rate, a stratified-by-task test detects the most injected defects with three runs. I provide a five-step protocol and a verdict tool.
 \end{abstract}
+
+\begin{IEEEkeywords}
+agent evaluation, benchmark portability, equivalence testing, reproducibility
+\end{IEEEkeywords}
 
 \section{Introduction}
 
@@ -130,9 +135,12 @@ That overlap of error bars or intervals is a poorly calibrated test is classical
 
 With three runs per side and exchangeable scores under parity, range overlap has a false-alarm rate of at most 10\%; a pass does not certify closeness. Of the 58 published comparisons, 36 show equivalence within 5 points. For a 3-point margin at the median observed SD and a true gap of zero, about seven runs per side provide 80\% power. Stated margins, equivalence tests and aligned per-task outcomes make the check more informative.
 
-\section*{Acknowledgments}
-I thank the Harbor maintainers for publishing their runs and per-task files. I also used AI assistants to refine the writing style, check grammar, and assist with coding.
+\section*{Acknowledgment}
+I thank the Harbor maintainers for publishing their runs and per-task files.
 
+Claude (Anthropic) assisted with manuscript drafting and analysis scripts for Sections~III--V. OpenAI Codex assisted with manuscript revisions and plotting code for Figs.~1--3.
+
+\IEEEtriggeratref{11}
 \bibliographystyle{IEEEtran}
 \bibliography{refs}
 

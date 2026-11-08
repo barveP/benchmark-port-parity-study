@@ -115,7 +115,7 @@ The work ran in phases: reproduction of an exploratory first pass made before th
 
 The Harbor team made this analysis possible by publishing their parity runs and per-task results.
 
-I also used AI assistants to refine the writing style, check grammar, and assist with coding.
+Claude (Anthropic) assisted with manuscript drafting and analysis scripts for Sections III–V. OpenAI Codex assisted with manuscript revisions and plotting code for Figs. 1–3.
 
 ## License
 
