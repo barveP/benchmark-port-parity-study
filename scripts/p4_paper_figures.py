@@ -121,9 +121,9 @@ ax.set_ylabel("Smallest margin (points)")
 gap_labels = {"frontier-cs-algorithm": "Frontier-CS", "rexbench": "RexBench",
               "pixiu": "PIXIU", "gdb": "GDB"}
 largest_gaps = sorted(enumerate(head, 1), key=lambda item: abs(float(item[1]["gap"])), reverse=True)[:4]
-for (rank, row), offset in zip(largest_gaps, (4, -4, -3, -3)):
+for (rank, row), offset in zip(largest_gaps, ((-9, 4), (-9, -4), (-9, -3), (-18, -2))):
     label = gap_labels.get(row["adapter"], row["adapter"])
-    ax.annotate(label, (rank, margins[rank - 1]), xytext=(-9, offset), textcoords="offset points",
+    ax.annotate(label, (rank, margins[rank - 1]), xytext=offset, textcoords="offset points",
                 ha="right", va="center", arrowprops={"arrowstyle": "-", "color": GREY, "lw": 0.7})
 fig.legend(loc="outside upper center", ncols=2, frameon=False)
 save_figure(fig, "fig2_margins")

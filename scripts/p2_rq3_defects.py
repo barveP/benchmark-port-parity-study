@@ -9,9 +9,9 @@ f = 0 is the no-defect control (amendment 3). For k runs per side, run scores ar
 rule applied: R, S1, S2, S3, W, T (run level), E3, E5 (TOST shown), P and PE3/PE5 (paired t on task
 means), CMH (stratified-by-task z; amendment 6c). Sensitivities: Beta(1,1) prior (break, k = 3);
 fractional-score adapters by within-task resampling of their observed rewards. Aggregates report the
-mean, median and interquartile range over adapters. Per adapter, the model's run SD
-100 sqrt(sum p (1 - p)) / n and the dispersion ratio of the real Harbor runs (observed between-run
-variance over the variance implied by within-task flip rates) are recorded.
+mean, median and interquartile range over adapters. Per adapter, record the observed Harbor run SD,
+the model's run SD 100 sqrt(sum p (1 - p)) / n, and the ratio of observed run-score variance to the
+variance implied by within-task flip rates.
 Usage: python -I scripts/p2_rq3_defects.py <pertask_dir> <phase2_dir> [reps]
 """
 import csv
@@ -51,20 +51,21 @@ def load_tasks(adapter):
     return {t: [x * sc for x in v] for t, v in by_task.items()}
 
 
-def dispersion_ratio(by_task):
-    """Observed variance of the real run scores over the variance implied by within-task flip rates.
+def run_dispersion(by_task):
+    """Return the observed run SD in points and the observed-to-implied variance ratio.
 
     Only tasks present in every run are used; implied Var(run mean) = sum_i s_i^2 / n^2 with s_i^2 the
-    sample variance of task i over its runs. Returns None when fewer than 2 complete runs exist.
+    sample variance of task i over its runs.
     """
     runs = max(len(v) for v in by_task.values())
     full = [v for v in by_task.values() if len(v) == runs]
     if runs < 2 or len(full) < 2:
-        return None
+        return None, None
     X = np.array(full)  # tasks x runs
     obs = X.mean(0).var(ddof=1) * 1e4
     implied = X.var(1, ddof=1).sum() / len(full) ** 2 * 1e4
-    return float(obs / implied) if implied > 0 else None
+    ratio = float(obs / implied) if implied > 0 else None
+    return math.sqrt(obs), ratio
 
 
 def simulate_cell(draw_a, draw_b, k, n, n_def, kind, reps):
@@ -94,8 +95,9 @@ for adapter in sorted(a for a, v in man.items() if v.get("use_for_defect_model")
     if n < 20:
         continue
     binary = bool(man[adapter].get("binary_outcomes"))
+    observed_sd, dispersion = run_dispersion(by_task)
     per = {"n_tasks": n, "runs_per_task": float(np.mean([len(v) for v in by_task.values()])), "binary_outcomes": binary,
-           "dispersion_ratio_harbor_runs": dispersion_ratio(by_task)}
+           "observed_run_sd_points": observed_sd, "dispersion_ratio_harbor_runs": dispersion}
     if binary:
         for prior, (alpha, beta) in (("light", (0.05, 0.05)), ("beta11", (1.0, 1.0))):
             p_i = np.array([(sum(v) + alpha) / (len(v) + alpha + beta) for v in by_task.values()])
@@ -157,6 +159,13 @@ def aggregate(adapters, prefix=""):
 
 
 binary_adapters = [a for a in results if results[a]["binary_outcomes"]]
+sd_adapters = [results[a] for a in binary_adapters if results[a]["observed_run_sd_points"] is not None]
+run_sd_medians = {
+    "n_adapters": len(sd_adapters),
+    "observed": float(np.median([a["observed_run_sd_points"] for a in sd_adapters])) if sd_adapters else None,
+    "light": float(np.median([a["model_run_sd_points_light"] for a in sd_adapters])) if sd_adapters else None,
+    "beta11": float(np.median([a["model_run_sd_points_beta11"] for a in sd_adapters])) if sd_adapters else None,
+}
 frac_adapters = [a for a in results if not results[a]["binary_outcomes"]]
 well_dispersed = [a for a in binary_adapters if results[a]["dispersion_ratio_harbor_runs"] is None or results[a]["dispersion_ratio_harbor_runs"] >= 0.1 + 1e-9]
 agg = {"primary_binary_light": aggregate(binary_adapters), "binary_dispersion_ratio_ge_0.1": aggregate(well_dispersed),
@@ -166,6 +175,7 @@ summary = {"reps": REPS, "fractions": FS, "ks": KS, "n_binary": len(binary_adapt
            "dispersion_ratio_quartiles_binary": [float(x) for x in np.percentile([results[a]["dispersion_ratio_harbor_runs"] for a in binary_adapters if results[a]["dispersion_ratio_harbor_runs"] is not None], [25, 50, 75])],
            "under_dispersed_below_0.1": sorted(a for a in binary_adapters if results[a]["dispersion_ratio_harbor_runs"] is not None and results[a]["dispersion_ratio_harbor_runs"] < 0.1 + 1e-9),
            "model_run_sd_quartiles_light": [float(x) for x in np.percentile([results[a]["model_run_sd_points_light"] for a in binary_adapters], [25, 50, 75])],
+           "run_sd_medians_binary": run_sd_medians,
            "p_minus_t_at_break10_k3": {"n_P_gt_T": int(sum(results[a]["break,f=0.1,k=3"]["P"] > results[a]["break,f=0.1,k=3"]["T"] for a in binary_adapters)),
                                         "quartiles": [float(x) for x in np.percentile([results[a]["break,f=0.1,k=3"]["P"] - results[a]["break,f=0.1,k=3"]["T"] for a in binary_adapters], [25, 50, 75])]}}
 with open(os.path.join(p2, "rq3_defects.json"), "w") as fh:

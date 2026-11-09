@@ -43,7 +43,7 @@ def load_tasks(adapter):
 
 
 def dispersion_ratio_matrix(X):
-    """X is tasks x runs. Same definition as p2_rq3_defects.dispersion_ratio."""
+    """X is tasks x runs. Same ratio as in p2_rq3_defects.run_dispersion."""
     obs = X.mean(0).var(ddof=1)
     implied = X.var(1, ddof=1).sum() / X.shape[0] ** 2
     return obs / implied if implied > 0 else np.nan
