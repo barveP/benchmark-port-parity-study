@@ -8,11 +8,11 @@ Poorva Barve, 2026. Short paper under preparation for the AGENT workshop at ICSE
 
 ## The question
 
-Harbor hosts more than eighty existing benchmarks, each ported through an "adapter". A port is only useful if it gives the same scores as the original benchmark, so every adapter must pass a **parity experiment**: the same agent and model are run on the original harness and on the port, usually three times each. Harbor's adapter guide (`ADAPTER_CONTRIBUTING.md`, Step 5 of its detailed specification) decides the outcome with one rule: the two sides match if and only if the ranges of their run scores overlap.
+Harbor hosts more than eighty existing benchmarks, each ported through an "adapter". A port should preserve the original benchmark scores within a meaningful tolerance. Harbor requires a **parity experiment** for each adapter: the same agent and model are run on the original harness and on the port, usually three times each. Harbor's adapter guide (`ADAPTER_CONTRIBUTING.md`, Step 5 of its detailed specification) decides the outcome with one rule: the two sides match if and only if the ranges of their run scores overlap.
 
 ![A parity experiment and the overlap rule](docs/parity-rule.svg)
 
-The two records above are real. USACO fails the rule by a tenth of a point with a gap of 2.6 points between the means. RexBench passes with a gap of 8.3 points, because its port scores spread from 17 to 58 across three runs. We asked three questions.
+The two records above are real. USACO fails the rule by a tenth of a point with a gap of 2.6 points between the means. RexBench passes with a gap of 8.3 points, because its port scores spread from 17 to 58 across three runs. I ask three questions.
 
 1. What does the overlap rule guarantee?
 2. What do the published parity runs establish?
@@ -20,21 +20,21 @@ The two records above are real. USACO fails the rule by a tenth of a point with 
 
 Everything here uses public data: the parity files in the Harbor repository, the per-task result files the maintainers published on Hugging Face, and their paper. No benchmark was rerun and no agent or model was evaluated.
 
-## What we found
+## Findings
 
-**The rule is a weak test, and in a way that cannot be fixed by running it harder.** With three runs per side it flags a perfect port 10% of the time when scores cannot tie (4 to 9% for pass counts that can), and nobody chooses that rate: it is set by the run count. Adding runs makes it *less* likely to catch a real gap, because wider ranges overlap more easily. Noise helps a port pass: for a true gap of 2 points, the pass probability rises from 2% at very low noise to 68% at the noise level of the published runs. A pass means "not rejected at the 10% level"; it never means the port is within any stated distance of the original.
+**The rule is a weak test, and in a way that cannot be fixed by running it harder.** With three runs per side it flags a perfect port 10% of the time when scores cannot tie (4 to 9% for pass counts that can), and nobody chooses that rate: it is set by the run count. Adding runs makes it *less* likely to catch a real gap, because wider ranges overlap more easily. For a true gap of 2 points under common normal noise, the overlap pass probability rises from 2% at an SD of 0.5 points to 68% at the median observed SD. The pooled t-test also misses the gap more often as noise grows, and TOST establishes equivalence less often. A pass means "not rejected at the 10% level"; it never means the port is within any stated distance of the original.
 
 ![Error rates of the overlap rule](paper/figures/fig1_rules.png)
 
 *Left: the false-alarm rate is fixed by the run count. Middle: detection of a fixed gap falls with more runs for the overlap rule and rises for a t-test. Right: for a fixed 2-point gap, more noise means more passes; dashed lines mark the quartiles of the run-to-run SD in the published runs (1.1, 1.7 and 2.7 points). "SEM bars overlap" is one reading of the Harbor paper's wording.*
 
-**The published runs look close but prove little.** Of the 58 comparisons with three runs per side, the median gap between original and port is 0.7 points, and no gap is distinguishable from zero. But three runs cannot show much: equivalence within 3 points can be shown for only 22 of the 58, and within 5 points for 36. The rule passes the four largest gaps (15.6, 8.3, 4.9 and 4.6 points). The one comparison it fails, USACO, has better evidence of closeness than 18 of the passes.
+**The published runs look close but prove little.** Of the 58 comparisons with three runs per side, the median absolute gap between original and port is 0.7 points, and no gap is distinguishable from zero. But three runs cannot show much: equivalence within 3 points can be shown for only 22 of the 58, and within 5 points for 36. The rule passes the four largest gaps (15.6, 8.3, 4.9 and 4.6 points). The one comparison it fails, USACO, has better evidence of closeness than 18 of the passes.
 
 ![Smallest provable margin per comparison](paper/figures/fig2_margins.png)
 
-*Each marker shows the smallest equivalence margin supported by one comparison with three runs per side. The diamond marks USACO, the only comparison whose ranges do not overlap. Lines mark 3 and 5 points.*
+*Each marker shows the smallest equivalence margin supported by one comparison with three runs per side. The diamond marks USACO, the only comparison whose ranges do not overlap. Lines mark 3 and 5 points. Labels identify the four comparisons with the largest absolute gaps.*
 
-**An equivalence test needs more runs.** With normal noise, a common SD at the observed median, and a true gap of zero, an equivalence test needs about seven runs per side for a 3-point margin and 80% power, compared with the usual three. Per-task outcomes, which the published files hold for both sides in 44 adapters, do not make the interval tighter, but they reveal something the run scores hide: the two sides disagree on individual tasks more than shared pass probabilities allow in 14 of 27 adapters at an unadjusted 5% threshold and in 11 after Benjamini–Hochberg correction at a 5% false discovery rate. A within-task permutation test detected no mean gap in any of the 27. Injecting defects into real per-task data shows that with three runs none of the evaluated 5% tests catches the simulated defect that breaks 10% of tasks more than about two times in three; a stratified-by-task test does best, and all of them improve with runs except the overlap rule.
+**An equivalence test needs more runs.** With normal noise, a common SD at the observed median, and a true gap of zero, an equivalence test needs about seven runs per side for a 3-point margin and 80% power, compared with the usual three. Per-task outcomes, which the published files hold for both sides in 44 adapters, do not make the interval tighter, but they reveal something the run scores hide: the two sides disagree on individual tasks more than shared pass probabilities allow in 14 of 27 adapters at an unadjusted 5% threshold and in 11 after Benjamini–Hochberg correction at a 5% false discovery rate. A within-task permutation test found no statistically detectable mean gap in any of the 27. In the per-task simulations, with ten runs per side, range overlap catches a defect that breaks 10% of tasks in 36% of trials. The pooled t-test and the stratified-by-task test each catch it in 86%.
 
 ![Detection of injected defects](paper/figures/fig3_defects.png)
 
@@ -48,7 +48,7 @@ One open question came out of the per-task files: on nine of thirty Harbor sides
 
 The analysis rules (which metric counts, which rows are excluded, how units are handled) were written down in `memos/phase-2-preregistration.md` before the results were computed, and every later change is logged there with its date and reason. This is an analysis plan committed to the repository, not a registration with an outside registry. Every number in the memos and the paper maps to a script and an output file: `NUMBERS.md`, `results/phase2/NUMBERS_phase2.md` and `paper/NUMBERS_paper.md`.
 
-## The protocol we propose
+## Recommended protocol
 
 1. State the margin before running: how many points of difference would make the port a different benchmark.
 2. Choose the run count from the noise, for 80% power at that margin; start with at least five runs per side when the noise is unknown.

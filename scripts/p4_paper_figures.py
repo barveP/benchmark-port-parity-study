@@ -113,11 +113,18 @@ ax.scatter([x for x, f in zip(xs, fails) if f], [m for m, f in zip(margins, fail
 ax.axhline(3, color=GREY, lw=0.8, ls="--")
 ax.axhline(5, color=GREY, lw=0.8, ls=":")
 ax.set_yscale("log")
-ax.set_ylim(0.8, 60)
+ax.set_ylim(0.8, 70)
 ax.set_xlim(0, n + 3)
 ax.set_yticks([1, 2, 3, 5, 10, 20, 50], labels=["1", "2", "3", "5", "10", "20", "50"])
 ax.set_xlabel("Comparison rank")
 ax.set_ylabel("Smallest margin (points)")
+gap_labels = {"frontier-cs-algorithm": "Frontier-CS", "rexbench": "RexBench",
+              "pixiu": "PIXIU", "gdb": "GDB"}
+largest_gaps = sorted(enumerate(head, 1), key=lambda item: abs(float(item[1]["gap"])), reverse=True)[:4]
+for (rank, row), offset in zip(largest_gaps, (4, -4, -3, -3)):
+    label = gap_labels.get(row["adapter"], row["adapter"])
+    ax.annotate(label, (rank, margins[rank - 1]), xytext=(-9, offset), textcoords="offset points",
+                ha="right", va="center", arrowprops={"arrowstyle": "-", "color": GREY, "lw": 0.7})
 fig.legend(loc="outside upper center", ncols=2, frameon=False)
 save_figure(fig, "fig2_margins")
 
@@ -136,7 +143,7 @@ for ax, (kind, k, title) in zip(axes, panels):
                 markerfacecolor="none" if rule == "CMH" else col,
                 markersize=5 if rule == "CMH" else 3.6)
         if rule in ("T", "CMH"):
-            ax.fill_between(FS, [A[f"{kind},f={fr},k={k}"][rule]["q25"] for fr in FS], [A[f"{kind},f={fr},k={k}"][rule]["q75"] for fr in FS], color=col, alpha=0.08, lw=0)
+            ax.fill_between(FS, [A[f"{kind},f={fr},k={k}"][rule]["q25"] for fr in FS], [A[f"{kind},f={fr},k={k}"][rule]["q75"] for fr in FS], color=col, alpha=0.17, lw=0)
     ax.set_xticks([0, 0.05, 0.10, 0.15, 0.20], labels=["0", "5", "10", "15", "20"])
     ax.set_title(title)
     ax.set_ylim(-0.025, 1.025)
@@ -149,7 +156,7 @@ save_figure(fig, "fig3_defects")
 numbers["fig3_n_adapters"] = nad
 
 # ---------- Table 1: RQ1 rules at k = 3 ----------
-names = {"R": "range overlap (Harbor)", "S1": "SEM bars overlap", "S2": "gap within SE of difference", "S3": "gap within one SEM",
+names = {"R": "range overlap (Harbor)", "S1": "(S1) SEM bars overlap", "S2": "(S2) gap within difference SE", "S3": "(S3) gap within one SEM",
          "T": "pooled $t$-test, 5\\%", "W": "Welch $t$-test, 5\\%"}
 rows = []
 for rule in ("R", "S1", "S2", "S3", "T", "W"):
