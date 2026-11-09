@@ -115,7 +115,7 @@ The work ran in phases: reproduction of an exploratory first pass made before th
 
 The Harbor team made this analysis possible by publishing their parity runs and per-task results.
 
-I used Claude (Anthropic) to help draft the manuscript and to write and debug the analysis code for Sections III–V. I used Codex (OpenAI) to correct grammar and revise the plotting code for Figs. 1–3.
+Under my direction, Claude (Anthropic) wrote most of the analysis code for Sections III–V, ran the literature search for Section VIII and drafted the text, which I revised. Codex (OpenAI) corrected grammar and revised the plotting code for Figs. 1–3.
 
 ## License
 
